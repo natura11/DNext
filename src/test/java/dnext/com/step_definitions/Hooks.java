@@ -49,8 +49,28 @@ public class Hooks {
         //System.out.println("----->applying setup using @BeforeStep");
     }
 
-    @AfterStep
-    public void afterStep() throws InterruptedException {
-        // System.out.println("----->applying tearDown using @AfterStep");
+    @After
+    public void tearDown(Scenario scenario) {
+        try {
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            if (scenario.isFailed()) {
+                scenario.attach(screenshot, "image/png", "screenshots");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Driver.closeDriver();
+        }
     }
+
+    @AfterStep
+    public void takeScreenshotAfterStep(Scenario scenario) {
+        try {
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "screenshots");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

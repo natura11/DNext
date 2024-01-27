@@ -5,15 +5,16 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {
+        plugin = {"pretty",
                 "json:target/cucumber.json",
-                "html:target/cucumber-report.html",
+               // "html:target/cucumber-report.html",
+
+                "dnext.com.utilities.formatter.PrettyReports:target/cucumber-pretty-reports",
                 "rerun:target/rerun.txt",
-                //"me.jvt.cucumber.report.PrettyReports:target/cucumber"
         },
         features = "src/test/resources/features",//path from content root
         glue = "dnext/com/step_definitions",
-        dryRun =true,
+        dryRun =false,
         tags =" ",
         publish = false
 
