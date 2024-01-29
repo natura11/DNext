@@ -1,7 +1,6 @@
-package dnext.com.utilities;
+package com.utilities;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
@@ -19,43 +18,19 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-public class ReusableMethods {
+public class Utils {
 
-
-        public static void assertAndPrintMessage(WebElement element, String attribute, String expectedMessage) {
-
-            String actualMessage;
-
-            if (attribute.equalsIgnoreCase("text")) {
-                ReusableMethods.waitForVisibility(element, 20);
-                actualMessage = element.getText();
-            } else {
-                ReusableMethods.waitForVisibility(element, 20);
-                actualMessage = element.getAttribute(attribute);
-            }
-
-
-            Assert.assertEquals(expectedMessage, actualMessage);
-
-            System.out.println("Expected Message: " + expectedMessage);
-            System.out.println("Actual Message: " + actualMessage);
-        }
-
-        //Bu method yuklemek istedigimiz fotografi secmemizi saglar.
         public static void uploadFile(String fileName, WebElement uploadElement) {
             String separator = System.getProperty("file.separator");
             String path = System.getProperty("user.dir") + separator + "src" + separator + "test" + separator + "resources" + separator + "fotos" + separator + fileName;
-            ReusableMethods.waitFor(2);
+            Utils.waitFor(2);
             uploadElement.sendKeys(path);
         }
 
-
         public static void highlightElement(WebElement element) {
-            // JavaScriptExecutor kullanarak öğeyi sarı renkle vurgula
             String highlightScript = "arguments[0].style.border='3px solid yellow';";
             ((JavascriptExecutor) Driver.getDriver()).executeScript(highlightScript, element);
 
-            // Öğenin rengini belirli bir süre sonra geri çevirin
             try {
                 Thread.sleep(2000); // 2 saniye waityin
             } catch (InterruptedException e) {
@@ -66,40 +41,21 @@ public class ReusableMethods {
             ((JavascriptExecutor) Driver.getDriver()).executeScript(resetScript, element);
         }
 
-        public static void waitForAndClick(WebDriver driver, WebElement element) {
+        public static void waitForAndClick(WebElement element) {
             int maxWaitTimeInSeconds = 10;
-            int intervalInMillis = 500;
             long startTime = System.currentTimeMillis();
 
             while ((System.currentTimeMillis() - startTime) < (maxWaitTimeInSeconds * 1000)) {
                 try {
                     if (element.isDisplayed() && element.isEnabled()) {
-                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+                        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
                         break;
                     }
-                } catch (Exception e) {
-                    // Element not found or not clickable, continue waiting
-                }
-                try {
-                    Thread.sleep(intervalInMillis);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                } catch (Exception ignored) {}
+                wait(1);
             }
         }
 
-        /**
-         * JavaScript ile webelement olusturma
-         *
-         * @param javascriptYolu internet sitesinden sag klik ile JS yolunu kopyala ile alınan metin olacak
-         */
-        public static WebElement webelementJavaScript(String javascriptYolu) {
-            JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-            WebElement webElement = (WebElement) js.executeScript("return " + javascriptYolu + "");
-            return webElement;
-        }
-
-        //JS GetAttributeValue
         public static void getValueByJS(String id, String attributeName) {
             JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
             String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
@@ -117,17 +73,9 @@ public class ReusableMethods {
 
         }
 
-
-        /**
-         * Bu metot ile elementin className değeri string olarak verilerek o classtaki text alinir.
-         *
-         * @param className text degeri alinmak istenen class ismi string olarak verilir
-         * @return
-         */
         public static String getTextWithJavaScript(String className) {
             WebElement element = Driver.getDriver().findElement(By.className(className));
 
-            // JavaScriptExecutor kullanarak elementin içeriğini al
             JavascriptExecutor jsExecutor = (JavascriptExecutor) Driver.getDriver();
             String text = (String) jsExecutor.executeScript("return arguments[0].textContent;", element);
             return text;
@@ -135,48 +83,42 @@ public class ReusableMethods {
 
         public static void robotClassDosyaYukleme(String filePath) {
             try {
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 StringSelection stringSelection = new StringSelection(filePath);
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
                 Robot robot = new Robot();
                 //pressing ctrl+v
                 robot.keyPress(KeyEvent.VK_CONTROL);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 robot.keyPress(KeyEvent.VK_V);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 //releasing ctrl+v
                 robot.keyRelease(KeyEvent.VK_CONTROL);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 robot.keyRelease(KeyEvent.VK_V);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 System.out.println("PASSED");
                 //pressing enter
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 robot.keyPress(KeyEvent.VK_ENTER);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 //releasing enter
                 robot.keyRelease(KeyEvent.VK_ENTER);
-                ReusableMethods.wait(3);
+                Utils.wait(3);
                 System.out.println("ENTER");
             } catch (Exception e) {
             }
         }
 
-        //Alert Wait
         public static void alertWait(int sayi) {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(sayi));
             wait.until(ExpectedConditions.alertIsPresent());
         }
 
-        //SwitchToWindow1
         public static void switchToWindowNew(int sayi) {
             List<String> tumWindowHandles = new ArrayList<String>(Driver.getDriver().getWindowHandles());
             Driver.getDriver().switchTo().window(tumWindowHandles.get(sayi));
         }
-
-        /**
-         * Javascript ile click yapma
-         */
 
         public static void click(WebElement element) {
             try {
@@ -188,19 +130,14 @@ public class ReusableMethods {
         }
 
         public static String getScreenshot(String name) throws IOException {
-            // naming the screenshot with the current date to avoid duplication
-            String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-            // TakesScreenshot is an interface of selenium that takes the screenshot
-            TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
-            File source = ts.getScreenshotAs(OutputType.FILE);
-            // full path to the screenshot location
-            String target = System.getProperty("user.dir") + "/target/Screenshots/" + name + date + ".png";
-            File finalDestination = new File(target);
-            // save the screenshot to the path given
+            var date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+            var ts = (TakesScreenshot) Driver.getDriver();
+            var source = ts.getScreenshotAs(OutputType.FILE);
+            var target = System.getProperty("user.dir") + "/target/Screenshots/" + name + date + ".png";
+            var finalDestination = new File(target);
             FileUtils.copyFile(source, finalDestination);
             return target;
         }
-
 
         //========Switching Window=====//
         public static void switchToWindow(String targetTitle) {
@@ -220,36 +157,11 @@ public class ReusableMethods {
             actions.moveToElement(element).perform();
         }
 
-        //==========Return a list of string given a list of Web Element====////
-        public static List<String> stringListeCevir(List<WebElement> list) {
-            List<String> elemTexts = new ArrayList<>();
-            for (WebElement el : list) {
-                if (!el.getText().isEmpty()) {
-                    elemTexts.add(el.getText());
-                }
-            }
-            return elemTexts;
-        }
 
-        //========Returns the Text of the element given an element locator==//
-        public static List<String> getElementsText(By locator) {
-            List<WebElement> elems = Driver.getDriver().findElements(locator);
-            List<String> elemTexts = new ArrayList<>();
-            for (WebElement el : elems) {
-                if (!el.getText().isEmpty()) {
-                    elemTexts.add(el.getText());
-                }
-            }
-            return elemTexts;
-        }
-
-        //   HARD WAIT WITH THREAD.SLEEP
-//   waitFor(5);  => waits for 5 second
         public static void wait(int saniye) {
             try {
                 Thread.sleep(saniye * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException ignored) {
             }
         }
 
@@ -273,7 +185,6 @@ public class ReusableMethods {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
             return wait.until(ExpectedConditions.elementToBeClickable(locator));
         }
-
 
         public static void clickWithTimeOut(WebElement element, int timeout) {
             for (int i = 0; i < timeout; i++) {
@@ -327,7 +238,6 @@ public class ReusableMethods {
             }
         }
 
-
         public static void switchWindowAndVerify(String expectedInUrl, String expectedInTitle) {
 
             Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
@@ -345,16 +255,7 @@ public class ReusableMethods {
 
             //5. Assert:Title contains “expectedInTitle”
             String actualTitle = Driver.getDriver().getTitle();
-            Assert.assertTrue(actualTitle.contains(expectedInTitle));
         }
-
-
-        public static void verifyTitle(String expectedTitle) {
-
-            Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
-
-        }
-
 
         public static void waitForInvisibilityOf(WebElement webElement) {
 
@@ -362,44 +263,22 @@ public class ReusableMethods {
             wait.until(ExpectedConditions.invisibilityOf(webElement));
         }
 
-
-        public static void verifyURLContains(String expectedInURL) {
-            Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
-        }
-
-
         public static List<String> dropdownOptionsAsString(WebElement dropdownElement) {
-            Select select = new Select(dropdownElement);
-
-
-            List<WebElement> actualOptionsAsWebElement = select.getOptions();
-
-
-            List<String> actualOptionsAsString = new ArrayList<>();
-
-
-            for (WebElement each : actualOptionsAsWebElement) {
-                actualOptionsAsString.add(each.getText());
-            }
-
-            return actualOptionsAsString;
-
+            return new Select(dropdownElement)
+                    .getOptions()
+                    .stream()
+                    .map(WebElement::getText).toList();
         }
-
 
         public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue) {
-
-            for (WebElement each : radioButtons) {
-
-                if (each.getAttribute("value").equalsIgnoreCase(attributeValue)) {
-                    each.click();
-                }
-            }
+            radioButtons.stream()
+                    .filter(k -> k.getText().contains(attributeValue))
+                    .toList()
+                    .getFirst().click();
         }
 
-
         public static void switchToWindow1(String targetTitle) {
-            String origin = Driver.getDriver().getWindowHandle();
+            var origin = Driver.getDriver().getWindowHandle();
             for (String handle : Driver.getDriver().getWindowHandles()) {
                 Driver.getDriver().switchTo().window(handle);
                 if (Driver.getDriver().getTitle().equals(targetTitle)) {
@@ -417,25 +296,13 @@ public class ReusableMethods {
 
 
         public static List<String> getElementsText(List<WebElement> list) {
-            List<String> elemTexts = new ArrayList<>();
-            for (WebElement el : list) {
-                elemTexts.add(el.getText());
-            }
-            return elemTexts;
+            return list.stream().map(WebElement::getText).toList();
         }
 
-
-        public static List<String> getElementsText1(By locator) {
-
-            List<WebElement> elems = Driver.getDriver().findElements(locator);
-            List<String> elemTexts = new ArrayList<>();
-
-            for (WebElement el : elems) {
-                elemTexts.add(el.getText());
-            }
-            return elemTexts;
+        public static List<String> getElementsText(By locator) {
+            return Driver.getDriver().findElements(locator)
+                    .stream().map(WebElement::getText).toList();
         }
-
 
         public static void waitFor(int seconds) {
             try {
@@ -445,30 +312,25 @@ public class ReusableMethods {
             }
         }
 
-
         public static WebElement waitForVisibility1(WebElement element, int timeToWaitInSec) {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
             return wait.until(ExpectedConditions.visibilityOf(element));
         }
-
 
         public static WebElement waitForVisibility1(By locator, int timeout) {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
 
-
         public static WebElement waitForClickablility1(WebElement element, int timeout) {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
             return wait.until(ExpectedConditions.elementToBeClickable(element));
         }
 
-
         public static WebElement waitForClickablility1(By locator, int timeout) {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
             return wait.until(ExpectedConditions.elementToBeClickable(locator));
         }
-
 
         public static void waitForPageToLoad1(long timeOutInSeconds) {
             ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
@@ -483,39 +345,6 @@ public class ReusableMethods {
                 error.printStackTrace();
             }
         }
-
-
-        public static void verifyElementDisplayed(By by) {
-            try {
-                Assert.assertTrue("Element not visible: " + by, Driver.getDriver().findElement(by).isDisplayed());
-            } catch (NoSuchElementException e) {
-                e.printStackTrace();
-                Assert.fail("Element not found: " + by);
-
-            }
-        }
-
-
-        public static void verifyElementNotDisplayed(By by) {
-            try {
-                Assert.assertFalse("Element should not be visible: " + by, Driver.getDriver().findElement(by).isDisplayed());
-            } catch (NoSuchElementException e) {
-                e.printStackTrace();
-
-            }
-        }
-
-
-        public static void verifyElementDisplayed(WebElement element) {
-            try {
-                Assert.assertTrue("Element not visible: " + element, element.isDisplayed());
-            } catch (NoSuchElementException e) {
-                e.printStackTrace();
-                Assert.fail("Element not found: " + element);
-
-            }
-        }
-
 
         public static void waitForStaleElement(WebElement element) {
             int y = 0;
@@ -542,34 +371,28 @@ public class ReusableMethods {
             }
         }
 
-
         public static void clickWithJS(WebElement element) {
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
         }
 
-
         public static void scrollToElement(WebElement element) {
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         }
-
 
         public static void doubleClick(WebElement element) {
             new Actions(Driver.getDriver()).doubleClick(element).build().perform();
         }
 
-
         public static void setAttribute(WebElement element, String attributeName, String attributeValue) {
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attributeName, attributeValue);
         }
-
 
         public static void highlight(WebElement element) {
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
             waitFor(1);
             ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].removeAttribute('style', 'background: yellow; border: 2px solid red;');", element);
         }
-
 
         public static void selectCheckBox(WebElement element, boolean check) {
             if (check) {
@@ -583,7 +406,6 @@ public class ReusableMethods {
             }
         }
 
-
         public static void clickWithTimeOut1(WebElement element, int timeout) {
             for (int i = 0; i < timeout; i++) {
                 try {
@@ -595,20 +417,17 @@ public class ReusableMethods {
             }
         }
 
-
         public static void executeJScommand(WebElement element, String command) {
             JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
             jse.executeScript(command, element);
 
         }
 
-
         public static void executeJScommand(String command) {
             JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
             jse.executeScript(command);
 
         }
-
 
         public static void clickWithWait(By by, int attempts) {
             int counter = 0;
@@ -629,7 +448,6 @@ public class ReusableMethods {
             }
         }
 
-
         public static void waitForPresenceOfElement(By by, long time) {
             new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15)).until(ExpectedConditions.presenceOfElementLocated(by));
         }
@@ -642,8 +460,6 @@ public class ReusableMethods {
                 } catch (StaleElementReferenceException | NoSuchElementException e) {
                     waitFor(2);
                 }
-
-
             }
         }
 }

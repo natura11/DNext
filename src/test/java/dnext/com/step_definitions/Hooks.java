@@ -1,7 +1,7 @@
 package dnext.com.step_definitions;
 
-import dnext.com.utilities.Driver;
-import dnext.com.utilities.ReusableMethods;
+import com.utilities.Driver;
+import com.utilities.Utils;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -45,7 +45,7 @@ public class Hooks {
 
     @BeforeStep
     public void setUpStep() throws InterruptedException {
-        ReusableMethods.sleep(2);
+        Utils.sleep(2);
         //System.out.println("----->applying setup using @BeforeStep");
     }
 
