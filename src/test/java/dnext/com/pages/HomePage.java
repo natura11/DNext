@@ -14,23 +14,32 @@ public class HomePage {
 
 
     @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[1]/span/div/img")
-    WebElement profileSignBtn;
-
+    public WebElement profileSignBtn;
 
     @FindBy(xpath = "//mat-icon[contains(text(),'keyboard_arrow_down')]")
-    WebElement profileSignDropdownArrowBtn;
+    public WebElement profileSignDropdownArrowBtn;
+
+    @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[1]/span/div/span")
+    public WebElement userNameWithProfile;
 
     @FindBy(xpath = "//*[@id=\"mat-menu-panel-0\"]/div/button[1]/span")
-    WebElement myProfileBtn;
+    public WebElement myProfileBtn;
 
     @FindBy(xpath = "//*[@id=\"mat-menu-panel-0\"]/div/button[2]/span")
-    WebElement inboxBtn;
+    public WebElement inboxBtn;
 
-    @FindBy(xpath = "//*[@id=\"mat-menu-panel-0\"]/div/button[3]/span")
-    WebElement logoutBtn;
+    @FindBy(xpath = "//button[3]")
+    public WebElement logoutBtn;
 
-    @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/fuse-search-bar/div/div/label/button/span/mat-icon")
-    WebElement searchSignBtn;
+    @FindBy(css = "button[aria-label='Expand Search Bar'] mat-icon[role='img']")
+    public WebElement searchSignBtn;
+
+    @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[2]/span/div/span")
+    public WebElement languageBtn;
+
+    @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
+    public WebElement arrowBackBtn;
+
 
 
 
