@@ -1,4 +1,4 @@
-package dnext.com.utilities.formatter;
+package com.utilities.formatter;
 
 import io.cucumber.core.plugin.JsonFormatter;
 import io.cucumber.plugin.event.EventPublisher;
@@ -23,8 +23,6 @@ import static java.io.File.createTempFile;
 import static java.util.Collections.singletonList;
 
 public class PrettyReports implements Plugin, EventListener{
-
-
 
         private final File outputDir;
         private final File jsonFile;

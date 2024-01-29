@@ -1,4 +1,4 @@
-package dnext.com.utilities.formatter;
+package com.utilities.formatter;
 
 import net.masterthought.cucumber.presentation.PresentationMode;
 import net.masterthought.cucumber.reducers.ReducingMethod;
@@ -23,9 +23,6 @@ import java.nio.file.Paths;
 import java.util.Enumeration;
 
 public class ConfigFactory {
-
-
-
         private static final String DEFAULT_FILENAME = "cucumber-reporting.properties";
         private static final String TAGS_TO_EXCLUDE_FROM_CHART_PATTERN = "^tagsToExcludeFromChart\\.\\d+$";
         private static final String PRESENTATION_MODE_PREFIX = "presentationMode.";
