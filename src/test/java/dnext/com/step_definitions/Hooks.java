@@ -6,22 +6,14 @@ import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.time.Duration;
+
 public class Hooks {
 
     @Before
     public void setUpScenario() {
-        // System.out.println("====Setting up browser using cucumber @Before");
-
-    }
-    @Before ()
-    public void setUpScenarioForLogins() {
-        //System.out.println("====This will only apply to scenarios with @login tag");
-
-    }
-    @Before ()
-    public void setUpDatabaseScenario() {
-        //System.out.println("====This will only apply to scenarios with @db tag");
-
+        Driver.getDriver().manage().timeouts().getPageLoadTimeout();
+        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @After
@@ -33,13 +25,7 @@ public class Hooks {
             scenario.attach(screenshot,"image/png", scenario.getName());
 
         }
-
-
-
         Driver.closeDriver();
-
-        // System.out.println("====Closing browser using cucumber @After");
-        //System.out.println("====Scenario ended/Take screenshot if failed!");
     }
 
 
