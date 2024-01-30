@@ -2,25 +2,21 @@ package dnext.com.pages;
 
 import com.utilities.Driver;
 import com.utilities.Driver;
+import com.utilities.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SignInPage {
-
-    public SignInPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
-
+public class SignInPage extends BasePage{
 
     @FindBy(id = "username")
-   public WebElement  usernameField;
+    public WebElement usernameField;
 
     @FindBy(id = "password")
-   public WebElement passwordField;
+    public WebElement passwordField;
 
     @FindBy(id = "kc-login")
-   public WebElement signInBtn;
+    public WebElement signInBtn;
 
     @FindBy(className = "kc-social-provider-name")
     public WebElement ConnectWithVodafoneAccountBtn;
@@ -34,19 +30,8 @@ public class SignInPage {
     @FindBy(id = "kc-page-title")
     public WebElement pageTitleOfLoginPage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public SignInPage fillUserNameInput(String username) {
+        usernameField.sendKeys(username);
+        return this;
+    }
 }

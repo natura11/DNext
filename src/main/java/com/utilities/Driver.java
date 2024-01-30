@@ -7,6 +7,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Driver {
     private static final InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
 
@@ -36,13 +39,15 @@ public class Driver {
     }
 
     public static ChromeOptions chromeOptions() {
-        var options = ConfigurationReader.getProperty("chrome_options").split(";");
+        var options = Arrays.asList(ConfigurationReader.getProperty("chrome_options").split(";"));
+        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("true")) options.add("--headless");
         return new ChromeOptions()
                 .addArguments(options);
     }
 
     public static FirefoxOptions firefoxOptions() {
-        var options = ConfigurationReader.getProperty("fire_options").split(";");
+        var options = Arrays.stream(ConfigurationReader.getProperty("fire_options").split(";")).toList();
+        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("true")) options.add("--headless");
         return new FirefoxOptions()
                 .addArguments(options);
     }

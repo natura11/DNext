@@ -13,7 +13,7 @@ Feature: Authorization Definition on UI
 
    @loginNegative
   Scenario: (Negative Scenario) As a user ,I want to log in to the page by using invalid credentials.
-    When I enter a value "invalidItem" in the UserName field
-    And  I enter a value "invalidValue" in the Password field
-    And  I click the login button for Login Page
+    When I enter a value "afad" in the Username or email field
+    And  I enter a value "asdfa" in the Password field
+    And  I click the login button on Login Page
     Then I should be seeing the message "Invalid username or password." for Login Page
