@@ -1,6 +1,7 @@
 package dnext.com.pages;
 
-import dnext.com.utilities.Driver;
+import com.utilities.Driver;
+import com.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,25 +14,25 @@ public class SignInPage {
 
 
     @FindBy(id = "username")
-    WebElement usernameField;
+   public WebElement  usernameField;
 
     @FindBy(id = "password")
-    WebElement passwordField;
+   public WebElement passwordField;
 
     @FindBy(id = "kc-login")
-    WebElement signInBtn;
+   public WebElement signInBtn;
 
     @FindBy(className = "kc-social-provider-name")
-    WebElement ConnectWithVodafoneAccountBtn;
+    public WebElement ConnectWithVodafoneAccountBtn;
 
     @FindBy(id = "input-error")
-    WebElement invalidUsernameOrPasswordWarning;
+    public WebElement invalidUsernameOrPasswordWarning;
 
     @FindBy(id = "kc-header-wrapper")
-    WebElement HeaderSignOfDnext;
+    public WebElement HeaderSignOfDnext;
 
     @FindBy(id = "kc-page-title")
-    WebElement pageTitleOfLoginPage;
+    public WebElement pageTitleOfLoginPage;
 
 
 
