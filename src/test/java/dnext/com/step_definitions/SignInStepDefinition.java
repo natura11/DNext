@@ -26,14 +26,16 @@ public class SignInStepDefinition {
    }
    @When("I enter a value {string} in the Password field")
    public void i_enter_a_value_in_the_password_field(String password) {
-    signInPage.passwordField.sendKeys(password);
+
+       signInPage.passwordField.sendKeys(password);
    }
    @When("I click the Sign in button for Sign in  Page")
-   public void i_click_the_sign_in_button_for_sign_in_page() {signInPage.signInBtn.click();
+   public void i_click_the_sign_in_button_for_sign_in_page() {
+       signInPage.signInBtn.click();
    }
    @Then("I should be seeing that the {string} is shown on opened page")
    public void iShouldBeSeeingThatTheIsShownOnOpenedPage(String searchSign) {
-   homePage.searchSignBtn.isDisplayed();
+       homePage.searchSignBtn.isDisplayed();
    }
    @When("I have log out into the system.")
    public void i_have_log_out_into_the_system() {
@@ -48,7 +50,21 @@ public class SignInStepDefinition {
     String expectedTitle="Sign in to your account";
     Assert.assertEquals(expectedTitle,actualTitle);
  }
+    @When("I enter an item {string} in the UserName field")
+    public void iEnterAnItemInTheUserNameField(String invalidUsername) {
+        signInPage.usernameField.sendKeys(invalidUsername);
+    }
 
+    @Then("I should be seeing the message {string} for Login Page")
+    public void i_should_be_seeing_the_message_for_login_page(String invalidPassword) {
+        signInPage.passwordField.sendKeys(invalidPassword);
+    }
+
+    @Then("I should be seeing the message {string} for Sign in Page")
+    public void iShouldBeSeeingTheMessageForSignInPage(String arg0) {
+        System.out.println("signInPage.invalidUsernameOrPasswordWarning.isDisplayed() = "
+                + signInPage.invalidUsernameOrPasswordWarning.isDisplayed());
+    }
 
 
 }

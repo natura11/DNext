@@ -62,7 +62,7 @@ public class Hooks {
             Driver.closeDriver();
         }
     }
-
+/**
     @AfterStep
     public void takeScreenshotAfterStep(Scenario scenario) {
         try {
@@ -71,6 +71,6 @@ public class Hooks {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }
