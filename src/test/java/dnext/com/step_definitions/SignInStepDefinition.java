@@ -46,7 +46,6 @@ public class SignInStepDefinition {
 
     @When("I have log out into the system.")
     public void i_have_log_out_into_the_system() {
-        Utils.wait(3);
         homePage.profileSignBtn.click();
         homePage.logoutBtn.click();
     }
@@ -54,10 +53,8 @@ public class SignInStepDefinition {
     @Then("I should be seeing that the {string} page is opened for Login Page")
     public void i_should_be_seeing_that_the_page_is_opened_for_login_page(String title) {
         String actualTitle = signInPage.pageTitleOfLoginPage.getText();
-        System.out.println("actualTitle = " + actualTitle);
         String expectedTitle = "Sign in to your account";
         Assert.assertEquals(expectedTitle, actualTitle);
     }
-
 
 }

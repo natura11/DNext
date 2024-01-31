@@ -17,3 +17,4 @@ Feature: Authorization Definition on UI
     And  I enter a value "asdfa" in the Password field
     And  I click the login button on Login Page
     Then I should be seeing the message "Invalid username or password." for Login Page
+     Then I navigate the page: ""

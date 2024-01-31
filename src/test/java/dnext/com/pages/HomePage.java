@@ -1,12 +1,11 @@
 package dnext.com.pages;
 
-import com.utilities.Driver;
-import org.openqa.selenium.By;
+import com.utilities.anotations.DefaultUrl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+@DefaultUrl("home.page.url")
+public class HomePage extends BasePage{
 
     @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[1]/span/div/img")
     public WebElement profileSignBtn;
@@ -35,16 +34,8 @@ public class HomePage {
     @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
     public WebElement arrowBackBtn;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public boolean isPageLoad() {
+        return false;
+    }
 }
