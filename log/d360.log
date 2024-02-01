@@ -1,0 +1,17 @@
+2024-02-01 20:56:40.594 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 20:56:52.176 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 20:56:54.078 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
+2024-02-01 20:59:21.341 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 20:59:31.511 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 20:59:33.424 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
+2024-02-01 21:02:31.767 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:02:55.527 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:02:56.923 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
+2024-02-01 21:08:36.830 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:08:59.763 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:09:01.160 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
+2024-02-01 21:09:56.872 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:10:04.238 INFO [main] [dnext.com.pages.HomePage.logout(HomePage.java:45)] - User logs out from the page
+2024-02-01 21:10:10.795 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-01 21:10:11.646 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
+2024-02-01 21:15:42.883 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting

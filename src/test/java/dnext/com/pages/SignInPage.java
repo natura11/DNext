@@ -4,13 +4,16 @@ import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Driver;
 import com.utilities.Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import com.utilities.anotations.DefaultUrl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 @DefaultUrl("signin.page.url")
+@Slf4j
 public class SignInPage extends BasePage {
 
     @FindBy(id = "username")
@@ -32,6 +35,7 @@ public class SignInPage extends BasePage {
         return this;
     }
     public SignInPage fillPasswordInput(String password) {
+        log.info("Password is inserting");
         passwordFieldOnSignInPage.sendKeys(password);
         return this;
     }
@@ -41,6 +45,7 @@ public class SignInPage extends BasePage {
         return this;
     }
     public SignInPage warningMessageAssertionOnSignIn(String warningMessage){
+        log.info("Warning message is shown in Sign in page");
         String actualresult=invalidUsernameOrPasswordWarningOnSignInPage.getText();
         String expectedResult=warningMessage;
         Assert.assertEquals(warningMessage,actualresult);

@@ -3,17 +3,19 @@ package dnext.com.pages;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import com.utilities.anotations.DefaultUrl;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @DefaultUrl("home.page.url")
+@Slf4j
 public class HomePage extends BasePage{
 
     @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[1]/span/div/img")
     public WebElement profileSignBtnOnHomePage;
 
-    @FindBy(xpath = "//mat-icon[contains(text(),'keyboard_arrow_down')]")
+    @FindBy(xpath = "//mat-icon[normalize-space()='keyboard_arrow_down']")
     public WebElement profileSignDropdownArrowBtnOnPage;
 
     @FindBy(xpath = "//span[@class='username mr-12']")
@@ -39,8 +41,11 @@ public class HomePage extends BasePage{
 
 
     public HomePage logout(){
+        Utils.waitFor(3);
+        log.info("User logs out from the page");
         Utils.click( profileSignDropdownArrowBtnOnPage);
         Utils.click(logoutBtnInDropdownOnHomePage);
+
 
         return this;
     }

@@ -1,5 +1,6 @@
 package com.utilities;
 
+import dev.failsafe.internal.util.Assert;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -74,6 +75,13 @@ public class Utils {
 
     public static void alertWait() {
         new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.alertIsPresent());
+    }
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getAlertMessage() {
@@ -185,6 +193,7 @@ public class Utils {
         sleep(2);
         uploadElement.sendKeys(path);
     }
+
 
     public static String getScreenshot(String name) throws IOException {
         var date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
