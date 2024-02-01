@@ -1,13 +1,16 @@
 package dnext.com.pages;
 
+import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Driver;
 import com.utilities.Utils;
+import com.utilities.anotations.DefaultUrl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SignInPage extends BasePage{
+@DefaultUrl("signin.page.url")
+public class SignInPage extends BasePage {
 
     @FindBy(id = "username")
     public WebElement usernameField;
@@ -33,5 +36,10 @@ public class SignInPage extends BasePage{
     public SignInPage fillUserNameInput(String username) {
         usernameField.sendKeys(username);
         return this;
+    }
+
+    @Override
+    public boolean isPageLoad() {
+        return false;
     }
 }
