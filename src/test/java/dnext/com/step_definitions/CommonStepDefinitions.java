@@ -10,11 +10,6 @@ public class CommonStepDefinitions {
         this.homePage = new HomePage();
     }
 
-    @And("I navigate the page: {string}")
-    public void iNavigateThePage(String className) throws ClassNotFoundException {
-        homePage.openPage(Class.forName(className.replace(" ", "")));
-    }
-
     @And("I refresh the page")
     public void iRefreshThePage() {
         homePage.refreshPage();
