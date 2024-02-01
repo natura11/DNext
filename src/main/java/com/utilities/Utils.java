@@ -1,5 +1,6 @@
 package com.utilities;
 
+import dev.failsafe.internal.util.Assert;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -17,15 +18,6 @@ import static com.utilities.config.Constant.GLOBAL_TIME_OUT;
 
 public class Utils {
 
-    private static WebDriverWait wait;
-    private static JavascriptExecutor jsExecutor;
-    private static Actions actions;
-
-    public Utils() {
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT));
-        jsExecutor = ((JavascriptExecutor) getDriver());
-        actions = new Actions(getDriver());
-    }
 
     public static void refreshThePage() {
         getDriver().navigate().refresh();
@@ -43,9 +35,9 @@ public class Utils {
 
     public static WebElement getElement(Object element) {
         if(element instanceof WebElement) {
-            return wait.until(ExpectedConditions.visibilityOf((WebElement) element));
+            return new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.visibilityOf((WebElement) element));
         } else {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated((By) element));
+            return new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.visibilityOfElementLocated((By) element));
         }
     }
 
@@ -74,15 +66,22 @@ public class Utils {
     public static void highlightElement(WebElement element) {
         scrollToElement(element);
         var highlightScript = "arguments[0].style.border='3px solid yellow';";
-        jsExecutor.executeScript(highlightScript, element);
+        ((JavascriptExecutor) getDriver()).executeScript(highlightScript, element);
     }
 
     public static String getCssJavaScript(WebElement element) {
-        return (String) jsExecutor.executeScript("return arguments[0].textContent;", getElement(element));
+        return (String) ((JavascriptExecutor) getDriver()).executeScript("return arguments[0].textContent;", getElement(element));
     }
 
     public static void alertWait() {
-        wait.until(ExpectedConditions.alertIsPresent());
+        new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.alertIsPresent());
+    }
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getAlertMessage() {
@@ -99,14 +98,18 @@ public class Utils {
     }
 
     public static void waitForPageToLoad() {
-        ExpectedCondition<Boolean> expectation = driver -> jsExecutor.executeScript("return document.readyState").equals("complete");
+        ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) getDriver()).executeScript("return document.readyState").equals("complete");
         try {
-            wait.until(expectation);
+            new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(expectation);
         } catch (Throwable ignored) {}
     }
 
     public static WebElement waitForClickablility(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(getElement(element)));
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.elementToBeClickable(getElement(element)));
+    }
+    public static void hover(WebElement element) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).perform();
     }
 
     public static WebElement fluentWait(final WebElement webElement, int timeout) {
@@ -118,7 +121,7 @@ public class Utils {
     }
 
     public static void waitForInvisibilityOf(WebElement webElement) {
-        wait.until(ExpectedConditions.invisibilityOf(webElement));
+        new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.invisibilityOf(webElement));
     }
 
     public static List<String> dropdownOptionsAsString(WebElement dropdownElement) {
@@ -138,20 +141,20 @@ public class Utils {
 
     public static void doubleClick(WebElement element) {
         highlightElement(element);
-        actions.doubleClick(element).build().perform();
+        new Actions(getDriver()).doubleClick(element).build().perform();
     }
 
     public static void clickWithJS(WebElement element) {
         highlightElement(element);
-        jsExecutor.executeScript("arguments[0].click();", element);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", element);
     }
 
     public static void scrollToElement(WebElement element) {
-        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(element));
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", getElement(element));
     }
 
     public static void setAttribute(WebElement element, String attributeName, String attributeValue) {
-        jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", getElement(element), attributeName, attributeValue);
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", getElement(element), attributeName, attributeValue);
     }
 
     public static void selectCheckBox(WebElement element, boolean check) {
@@ -166,7 +169,7 @@ public class Utils {
     public static void switchToWindowByUrlContains(String urlPart) {
         for (String handle : getDriver().getWindowHandles()) {
             getDriver().switchTo().window(handle);
-            wait.until(ExpectedConditions.urlContains(urlPart));
+            new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.urlContains(urlPart));
             if (getDriver().getCurrentUrl().contains(urlPart)) {
                 return;
             }
@@ -190,6 +193,7 @@ public class Utils {
         sleep(2);
         uploadElement.sendKeys(path);
     }
+
 
     public static String getScreenshot(String name) throws IOException {
         var date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
