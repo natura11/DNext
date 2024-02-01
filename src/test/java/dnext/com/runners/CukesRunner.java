@@ -9,13 +9,13 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "html:target/cucumber-report.html",
 
-                "com.utilities.formatter.PrettyReports:target/cucumber-pretty-reports",
+                //"com.utilities.formatter.PrettyReports:target/cucumber-pretty-reports",
                 "rerun:target/rerun.txt",
         },
         features = "src/test/resources/features",//path from content root
         glue = "dnext/com/step_definitions",
         dryRun =false,
-        tags ="@bothNegativeAndPositive",
+        tags ="@bothNegativeAndPositiveSignIn",
         publish = false
 
 
