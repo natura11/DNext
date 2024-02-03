@@ -1,17 +1,544 @@
-2024-02-01 20:56:40.594 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 20:56:52.176 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 20:56:54.078 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
-2024-02-01 20:59:21.341 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 20:59:31.511 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 20:59:33.424 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
-2024-02-01 21:02:31.767 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:02:55.527 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:02:56.923 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
-2024-02-01 21:08:36.830 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:08:59.763 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:09:01.160 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
-2024-02-01 21:09:56.872 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:10:04.238 INFO [main] [dnext.com.pages.HomePage.logout(HomePage.java:45)] - User logs out from the page
-2024-02-01 21:10:10.795 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
-2024-02-01 21:10:11.646 INFO [main] [dnext.com.pages.SignInPage.warningMessageAssertionOnSignIn(SignInPage.java:48)] - Warning message is shown in Sign in page
-2024-02-01 21:15:42.883 INFO [main] [dnext.com.pages.SignInPage.fillPasswordInput(SignInPage.java:38)] - Password is inserting
+2024-02-02 10:48:42.325 INFO [main] [optiim.framework.utils.log.info(log.java:47)] - scenario ID:@VFALFT-XXXX
+2024-02-02 10:48:42.412 INFO [main] [optiim.framework.utils.log.info(log.java:47)] - Request for newIndividualCreate {
+  "customerOperations": [
+    {
+      "op": "post",
+      "path": "/api/customerManagement/v4/customer",
+      "provisionalId": "8raRp",
+      "value": {
+        "name": "OLEN GORCZANY",
+        "status": "Prospect",
+        "engagedParty": {
+          "derivedFrom": "rrDBE"
+        },
+        "account": [
+          {
+            "derivedFrom": "yn7iE"
+          },
+          {
+            "derivedFrom": "Rre1V"
+          }
+        ],
+        "characteristic": [
+          {
+            "name": "isCustomerInAlex",
+            "value": "false"
+          }
+        ],
+        "relatedParty": [
+          {
+            "id": "ea36508c-e4b2-42ae-aaed-63fa235f8b61",
+            "name": "VATHI  GERTA",
+            "href": "/api/partyRoleManagement/v4/partyRole/ea36508c-e4b2-42ae-aaed-63fa235f8b61",
+            "@referredType": "PartyRole",
+            "role": "Sales Agent"
+          },
+          {
+            "id": "VF-Q7GAX1",
+            "name": "VF-Albania-Partnership",
+            "href": "/api/partnershipManagement/v4/partnership/VF-Q7GAX1",
+            "@referredType": "Partner",
+            "role": "Sales Partner"
+          },
+          {
+            "derivedFrom": "LXeP9"
+          },
+          {
+            "derivedFrom": "LxsOn"
+          }
+        ],
+        "contactMedium": [
+          {
+            "mediumType": "PHONE",
+            "characteristic": {
+              "phoneNumber": "698933127",
+              "country": "+355",
+              "contactType": "MOBILE_NUMBER"
+            }
+          },
+          {
+            "mediumType": "EMAIL",
+            "characteristic": {
+              "emailAddress": "RALEIGH.HERMANN@YANDEX.COM",
+              "contactType": "PERSONAL_EMAIL"
+            }
+          },
+          {
+            "mediumType": "communicationMethod",
+            "characteristic": {
+              "contactType": "EMAIL_SMS"
+            }
+          },
+          {
+            "mediumType": "POSTAL_ADDRESS",
+            "characteristic": {
+              "contactType": "DEFAULT_SERVICE_ADDRESS",
+              "place": [
+                {
+                  "derivedFrom": "PDE7o",
+                  "role": "DEFAULT_SERVICE_ADDRESS"
+                }
+              ]
+            }
+          }
+        ],
+        "id": "F32132068"
+      }
+    }
+  ],
+  "documentOperations": [
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "iO1X1",
+      "value": {
+        "attachmentType": "DOCUMENT",
+        "description": "ID",
+        "mimeType": "image/png",
+        "name": "Turkey.png",
+        "size": {
+          "amount": 1,
+          "units": "1"
+        },
+        "url": "J20602789L/Turkey.png"
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "0kfYr",
+      "value": {
+        "attachmentType": "EBillDocument",
+        "description": "E-Bill Document",
+        "mimeType": "image/png",
+        "name": "TURK-bayragi.png",
+        "size": {
+          "amount": 1,
+          "units": "1"
+        },
+        "url": "J20602789L/TURK-bayragi.png"
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "isNZS",
+      "value": {
+        "attachmentType": "DisabilityForm",
+        "description": "Disability Form for ID:J20602789L",
+        "mimeType": "image/png",
+        "name": "TURK-bayragi.png",
+        "size": {
+          "amount": 1,
+          "units": "1"
+        },
+        "url": "J20602789L/TURK-bayragi.png"
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "P3gME",
+      "value": {
+        "attachmentType": "ConsentForm",
+        "description": "Consent Form for ID:J20602789L",
+        "mimeType": "image/png",
+        "name": "Turkey_8kb.png",
+        "size": {
+          "amount": 1,
+          "units": "1"
+        },
+        "url": "J20602789L/Turkey_8kb.png"
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "5sSNT",
+      "value": {
+        "attachmentType": "AttorneyLetter",
+        "description": "Attorney Letter for ID: J20602778E",
+        "mimeType": "image/png",
+        "name": "Flag_of_Turkey.png",
+        "size": {
+          "amount": 0,
+          "units": "KB"
+        },
+        "url": "J20602778E/Flag_of_Turkey.png"
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/documentManagement/v4/attachment",
+      "provisionalId": "QWupb",
+      "value": {
+        "attachmentType": "AttorneyLetter",
+        "description": "Attorney Letter for ID: J20602644Q",
+        "mimeType": "image/png",
+        "name": "Flag_of_Turkey.png",
+        "size": {
+          "amount": 0,
+          "units": "KB"
+        },
+        "url": "J20602644Q/Flag_of_Turkey.png"
+      }
+    }
+  ],
+  "partyOperations": [
+    {
+      "op": "post",
+      "path": "/api/partyManagement/v4/individual",
+      "provisionalId": "rrDBE",
+      "value": {
+        "gender": "MALE",
+        "placeOfBirth": "BERAT",
+        "countryOfBirth": "ALBANIA",
+        "nationality": "TURKISH",
+        "birthDate": "1992-06-02T00:00:00.000Z",
+        "givenName": "OLEN",
+        "familyName": "GORCZANY",
+        "middleName": "PATTIE",
+        "fullName": "OLEN GORCZANY",
+        "partyCharacteristic": [
+          {
+            "name": "juridicalInfo",
+            "value": "INDIVIDUAL"
+          },
+          {
+            "name": "isCustomerInBlackList",
+            "value": "NO"
+          },
+          {
+            "name": "disableOrganization",
+            "value": "ABCD",
+            "valueType": "string"
+          },
+          {
+            "name": "disableAgreementDoc",
+            "value": "YES_PRINT",
+            "valueType": "string"
+          }
+        ],
+        "individualIdentification": [
+          {
+            "identificationId": "J20602789L",
+            "issuingDate": "2022-03-02T00:00:00.000Z",
+            "identificationType": "ID_CARD",
+            "attachment": {
+              "derivedFrom": "iO1X1"
+            }
+          }
+        ],
+        "contactMedium": [
+          {
+            "mediumType": "disableCommunicationMethod",
+            "characteristic": {
+              "contactType": "MOBILE_PHONE"
+            }
+          }
+        ],
+        "disability": [
+          {
+            "disabilityCode": "3",
+            "disabilityName": "WALKING DISABLED"
+          }
+        ],
+        "marketSegment": [
+          {
+            "id": "524cdbde-6f30-4a8b-a687-9e4e9936adf9",
+            "href": "/api/referenceManagement/v4/marketSegment/524cdbde-6f30-4a8b-a687-9e4e9936adf9",
+            "name": "Individual",
+            "@referredType": "MarketSegment"
+          },
+          {
+            "id": "8eb15ff1-c6ca-47b9-a06f-31469b139378",
+            "href": "/api/referenceManagement/v4/marketSegment/8eb15ff1-c6ca-47b9-a06f-31469b139378",
+            "name": "Consumer",
+            "@referredType": "CustomerSegment"
+          }
+        ],
+        "attachment": [
+          {
+            "derivedFrom": "P3gME"
+          },
+          {
+            "derivedFrom": "isNZS"
+          }
+        ]
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/partyManagement/v4/individual",
+      "provisionalId": "iPj3Z",
+      "value": {
+        "gender": "MALE",
+        "nationality": "ALBANIAN",
+        "birthDate": "1992-06-02T00:00:00.000Z",
+        "givenName": "ESER",
+        "familyName": "ATTAR",
+        "individualIdentification": [
+          {
+            "identificationId": "J20602778E",
+            "identificationType": "ATTORNEY_LETTER"
+          }
+        ]
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/partyManagement/v4/individual",
+      "provisionalId": "MHSO1",
+      "value": {
+        "gender": "MALE",
+        "nationality": "ALBANIAN",
+        "birthDate": "1992-06-02T00:00:00.000Z",
+        "givenName": "ENDER",
+        "familyName": "LOSE",
+        "individualIdentification": [
+          {
+            "identificationId": "J20602644Q",
+            "identificationType": "ATTORNEY_LETTER"
+          }
+        ]
+      }
+    }
+  ],
+  "accountOperations": [
+    {
+      "op": "post",
+      "path": "/api/accountManagement/v4/billingAccount",
+      "provisionalId": "yn7iE",
+      "value": {
+        "ratingType": "Prepaid",
+        "billStructure": {
+          "preferredBillingCurrency": "ALL"
+        },
+        "characteristic": [
+          {
+            "name": "CreditClassId",
+            "value": "C1"
+          }
+        ],
+        "name": "Invoice Account",
+        "accountType": "InvoiceAccount",
+        "relatedParty": [
+          {
+            "derivedFrom": "8raRp"
+          }
+        ],
+        "contact": [
+          {
+            "contactType": "primary",
+            "contactMedium": [
+              {
+                "mediumType": "POSTAL_ADDRESS",
+                "characteristic": {
+                  "contactType": "DEFAULT_BILLING_ADDRESS",
+                  "place": [
+                    {
+                      "derivedFrom": "PDE7o",
+                      "role": "DEFAULT_BILLING_ADDRESS"
+                    }
+                  ]
+                }
+              }
+            ],
+            "validFor": {
+              "startDateTime": "2022-03-23T08:17:14.866Z"
+            }
+          }
+        ],
+        "defaultPaymentMethod": {
+          "derivedFrom": "Tc4FE"
+        }
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/accountManagement/v4/billingAccount",
+      "provisionalId": "Rre1V",
+      "value": {
+        "ratingType": "Postpaid",
+        "description": "LOREM",
+        "billStructure": {
+          "presentationMedia": [
+            {
+              "id": "5c46bde5-18b7-4a5a-bf07-7f0984028970",
+              "href": "/api/accountManagement/v4/billPresentationMedia/5c46bde5-18b7-4a5a-bf07-7f0984028970",
+              "name": "E-Bill",
+              "isRef": true
+            }
+          ],
+          "preferredBillingCurrency": "ALL",
+          "cycleSpecification": {
+            "id": "75bb3a42-7ce6-4fcc-a8fe-474ab9b9bf75",
+            "href": "/api/accountManagement/v4/billingCycleSpecification/75bb3a42-7ce6-4fcc-a8fe-474ab9b9bf75",
+            "name": "BILLCYCLE_1",
+            "isRef": true
+          }
+        },
+        "characteristic": [
+          {
+            "name": "CreditClassId",
+            "value": "C1"
+          }
+        ],
+        "name": "Invoice Account",
+        "accountType": "InvoiceAccount",
+        "relatedParty": [
+          {
+            "derivedFrom": "8raRp"
+          }
+        ],
+        "contact": [
+          {
+            "contactType": "primary",
+            "contactMedium": [
+              {
+                "mediumType": "POSTAL_ADDRESS",
+                "characteristic": {
+                  "contactType": "DEFAULT_BILLING_ADDRESS",
+                  "place": [
+                    {
+                      "derivedFrom": "PDE7o",
+                      "role": "DEFAULT_BILLING_ADDRESS"
+                    }
+                  ]
+                }
+              },
+              {
+                "mediumType": "PHONE",
+                "characteristic": {
+                  "phoneNumber": "698933127",
+                  "country": "+355",
+                  "contactType": "EBILL_NUMBER"
+                }
+              },
+              {
+                "mediumType": "EMAIL",
+                "characteristic": {
+                  "emailAddress": "RALEIGH.HERMANN@YANDEX.COM",
+                  "contactType": "EBILL_EMAIL"
+                }
+              }
+            ],
+            "validFor": {
+              "startDateTime": "2022-03-16T07:09:43.146Z"
+            }
+          }
+        ],
+        "defaultPaymentMethod": {
+          "derivedFrom": "Tc4FE"
+        },
+        "attachment": [
+          {
+            "derivedFrom": "0kfYr"
+          }
+        ]
+      }
+    }
+  ],
+  "partyRoleOperations": [
+    {
+      "op": "post",
+      "path": "/api/partyRoleManagement/v4/partyRole",
+      "provisionalId": "LXeP9",
+      "value": {
+        "name": "ESER ATTAR",
+        "roleType": {
+          "id": "3138183a-254a-4880-907d-2b1cb8835d92",
+          "href": "/api/partyRoleManagement/v4/roleType/3138183a-254a-4880-907d-2b1cb8835d92",
+          "name": "Legal_Custodian"
+        },
+        "attachment": [
+          {
+            "derivedFrom": "5sSNT",
+            "attachmentType": "AttorneyLetter"
+          }
+        ],
+        "engagedParty": {
+          "derivedFrom": "iPj3Z"
+        }
+      }
+    },
+    {
+      "op": "post",
+      "path": "/api/partyRoleManagement/v4/partyRole",
+      "provisionalId": "LxsOn",
+      "value": {
+        "name": "ENDER LOSE",
+        "roleType": {
+          "id": "3d78f733-cbe2-41eb-a11d-3d2adddbc124",
+          "href": "/api/partyRoleManagement/v4/roleType/3d78f733-cbe2-41eb-a11d-3d2adddbc124",
+          "name": "Authorized_Person"
+        },
+        "attachment": [
+          {
+            "derivedFrom": "QWupb",
+            "attachmentType": "AttorneyLetter"
+          }
+        ],
+        "engagedParty": {
+          "derivedFrom": "MHSO1"
+        }
+      }
+    }
+  ],
+  "geoAddressOperations": [
+    {
+      "op": "post",
+      "path": "/api/geographicAddressManagement/v4/geographicAddress",
+      "provisionalId": "PDE7o",
+      "value": {
+        "city": "BERAT",
+        "streetName": "ADR1",
+        "streetSuffix": "ADR2",
+        "country": "ALBANIA",
+        "geographicSubAddress": [],
+        "name": "CUSTOMER_ADDRESS",
+        "streetType": "street",
+        "postcode": "0000",
+        "@type": "FieldedAddress"
+      }
+    }
+  ],
+  "paymentMethodOperations": [
+    {
+      "op": "post",
+      "path": "/api/paymentMethod/v4/paymentMethod",
+      "provisionalId": "Tc4FE",
+      "value": {
+        "name": "Cash",
+        "@type": "Cash",
+        "accountNumberType": "IBAN",
+        "account": [
+          {
+            "derivedFrom": "yn7iE"
+          },
+          {
+            "derivedFrom": "Rre1V"
+          }
+        ],
+        "description": "Default Payment Method",
+        "isPreferred": true,
+        "relatedParty": {
+          "derivedFrom": "8raRp"
+        }
+      }
+    }
+  ]
+}
+2024-02-02 10:48:42.733 DEBUG [main] [org.apache.http.client.protocol.RequestAddCookies.process(RequestAddCookies.java:123)] - CookieSpec selected: default
+2024-02-02 10:48:42.736 DEBUG [main] [org.apache.http.client.protocol.RequestAuthCache.process(RequestAuthCache.java:77)] - Auth cache not set in the context
+2024-02-02 10:48:42.737 DEBUG [main] [org.apache.http.impl.conn.PoolingHttpClientConnectionManager.requestConnection(PoolingHttpClientConnectionManager.java:265)] - Connection request: [route: {s}->https://diam.uat.dnext.al.vodafone.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+2024-02-02 10:48:42.741 DEBUG [main] [org.apache.http.impl.conn.PoolingHttpClientConnectionManager.leaseConnection(PoolingHttpClientConnectionManager.java:309)] - Connection leased: [id: 0][route: {s}->https://diam.uat.dnext.al.vodafone.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+2024-02-02 10:48:42.742 DEBUG [main] [org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:235)] - Opening connection {s}->https://diam.uat.dnext.al.vodafone.com:443
+2024-02-02 10:48:42.744 DEBUG [main] [org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:139)] - Connecting to diam.uat.dnext.al.vodafone.com/63.32.181.107:443
+2024-02-02 10:48:42.745 DEBUG [main] [org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:337)] - Connecting socket to diam.uat.dnext.al.vodafone.com/63.32.181.107:443 with timeout 0
+2024-02-02 10:49:57.750 DEBUG [main] [org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:168)] - Connect to diam.uat.dnext.al.vodafone.com/63.32.181.107:443 timed out. Connection will be retried using another IP address
+2024-02-02 10:49:57.753 DEBUG [main] [org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:139)] - Connecting to diam.uat.dnext.al.vodafone.com/54.217.195.90:443
+2024-02-02 10:49:57.754 DEBUG [main] [org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:337)] - Connecting socket to diam.uat.dnext.al.vodafone.com/54.217.195.90:443 with timeout 0
+2024-02-02 10:51:12.756 DEBUG [main] [org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:168)] - Connect to diam.uat.dnext.al.vodafone.com/54.217.195.90:443 timed out. Connection will be retried using another IP address
+2024-02-02 10:51:12.759 DEBUG [main] [org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:139)] - Connecting to diam.uat.dnext.al.vodafone.com/46.51.147.222:443
+2024-02-02 10:51:12.759 DEBUG [main] [org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:337)] - Connecting socket to diam.uat.dnext.al.vodafone.com/46.51.147.222:443 with timeout 0

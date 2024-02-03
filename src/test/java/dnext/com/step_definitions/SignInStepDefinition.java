@@ -20,10 +20,6 @@ public class SignInStepDefinition {
         this.homePage = new HomePage();
     }
 
-    @Given("I have opened the {string} application")
-    public void i_have_opened_the_application(String string) {
-        Driver.getDriver().get(ConfigurationReader.getProperty("dnext.url"));
-    }
     @When("I enter a value {string} in the Username or email field on Sign In page")
     public void i_enter_a_value_in_the_username_or_email_field_on_sign_in_page(String username) {
         signInPage.fillUserNameInput(username);
