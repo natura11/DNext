@@ -9,7 +9,8 @@ Feature:New Business Customer-Search Organization
     Given  User opens Create Business Customer page on Home page
     Given  User should see the "customer/create-enterprise-customer" on Create Business Customer page
     Given  User should see the "New Business Customer" header on screen on Create Business Customer page
-@first
+
+  @regression @smoke @first
   Scenario:As a user,I want to search customer by using existing NIPT numbers on Search Organization Page
     Given  User selects the Albanian Customer from the dropdown on Search Organization page
     When   User fills in the NIPT field with existing "L12345678M" nıpt number on Search Organization page
