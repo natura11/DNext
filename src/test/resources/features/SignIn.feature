@@ -1,4 +1,4 @@
-@smoke @bothNegativeAndPositiveSignIn
+@smoke @regression @bothNegativeAndPositiveSignIn
 Feature: Authorization Definition on UI
   Background:
     Given I have opened the "Customer Management" application

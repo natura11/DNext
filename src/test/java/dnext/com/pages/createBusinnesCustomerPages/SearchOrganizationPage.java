@@ -37,7 +37,7 @@ public class SearchOrganizationPage extends BasePage {
     @FindBy(xpath = "//input[@id='mat-input-44']")
         public WebElement newCustomerTextWithNumberInNiptField;
     @FindBy(xpath = "//span[contains(text(),'This organization cannot have more than one custom')]")
-        public WebElement warningWithExistingNıptNumber;
+        public WebElement warningWithExistingNiptNumber;
 
 
      public SearchOrganizationPage getCurrentUrl(String currentUrl){
@@ -49,8 +49,8 @@ public class SearchOrganizationPage extends BasePage {
      }
 
      public  SearchOrganizationPage popUpWarningValidationOfExistenceNumber(String popUpMessage){
-         Utils.waitForInvisibilityOf(warningWithExistingNıptNumber);
-         String actualMessage=warningWithExistingNıptNumber.getText();
+         Utils.waitFor(3);
+         String actualMessage=warningWithExistingNiptNumber.getText();
          String expectedMessage=popUpMessage;
          System.out.println("actualMessage = " + actualMessage);
          System.out.println("expectedMessage = " + expectedMessage);

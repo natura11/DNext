@@ -27,7 +27,7 @@ public class SignInPage extends BasePage {
     @FindBy(id = "input-error")
     public WebElement invalidUsernameOrPasswordWarningOnSignInPage;
     @FindBy(id = "kc-header-wrapper")
-    public WebElement headerSignOfDnextOnSignInPage;
+    private WebElement headerSignOfDnextOnSignInPage;
     @FindBy(id = "kc-page-title")
     public WebElement titleOfSignInOnSignInPage;
     public SignInPage fillUserNameInput(String username) {
