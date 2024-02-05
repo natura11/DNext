@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:target/cucumber-report.html",
-
-                //"com.utilities.formatter.PrettyReports:target/cucumber-pretty-reports",
+                "me.jvt.cucumber.report.PrettyReports:target/cucumber",
                 "rerun:target/rerun.txt",
         },
         features = "src/test/resources/features",//path from content root
