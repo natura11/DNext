@@ -22,7 +22,6 @@ public  abstract class BasePage {
     }
 
     public static ThreadLocal<List<TestContext>> testContext = new InheritableThreadLocal<>();
-
     public void setTestData(String key, String value) {
         testContext.get().add(new TestContext(Hooks.scenarioName.get(), Map.of(key, value)));
     }
