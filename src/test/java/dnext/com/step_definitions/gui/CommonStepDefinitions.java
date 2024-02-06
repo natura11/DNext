@@ -1,22 +1,22 @@
-package dnext.com.step_definitions;
+package dnext.com.step_definitions.gui;
 
-import dnext.com.pages.HomePage;
+import dnext.com.pages.BasePage;
 import io.cucumber.java.en.And;
 
-public class CommonStepDefinitions {
+public class CommonStepDefinitions extends BasePage {
 
-    private HomePage homePage;
+
     public CommonStepDefinitions() {
-        this.homePage = new HomePage();
+
     }
 
     @And("I navigate the page: {string}")
     public void iNavigateThePage(String className) throws ClassNotFoundException {
-        homePage.openPage(Class.forName(className.replace(" ", "")));
+        openPage(Class.forName(className.replace(" ", "")));
     }
 
     @And("I refresh the page")
     public void iRefreshThePage() {
-        homePage.refreshPage();
+        refreshPage();
     }
 }
