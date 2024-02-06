@@ -11,7 +11,6 @@ Feature: Authorization Definition on UI
     When I have log out into the system on the home page.
     Then I should be seeing that the "Sign in to your account" header on Sign In page
 
-
    @signInNegative
   Scenario: (Negative Scenario) As a user ,I want to sign in to the page by using invalid credentials.
     When I enter a value "afad" in the Username or email field on Sign In page
