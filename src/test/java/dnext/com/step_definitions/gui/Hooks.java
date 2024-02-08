@@ -1,4 +1,4 @@
-package dnext.com.step_definitions;
+package dnext.com.step_definitions.gui;
 
 import com.utilities.Driver;
 import com.utilities.TestContext;

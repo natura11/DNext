@@ -9,6 +9,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Driver {
     private static final InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
@@ -39,15 +40,16 @@ public class Driver {
     }
 
     public static ChromeOptions chromeOptions() {
-        var options = Arrays.asList(ConfigurationReader.getProperty("chrome_options").split(";"));
-        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("true")) options.add("--headless");
+        var options = new ArrayList<>(Arrays.asList(ConfigurationReader.getProperty("chrome_options").split(";")));
+        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("false")) options.remove("--headless=new");
         return new ChromeOptions()
                 .addArguments(options);
     }
 
     public static FirefoxOptions firefoxOptions() {
-        var options = Arrays.stream(ConfigurationReader.getProperty("fire_options").split(";")).toList();
-        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("true")) options.add("--headless");
+        var options = new ArrayList<>(Arrays.asList(ConfigurationReader.getProperty("firefox_options").split(";")));
+
+        if(ConfigurationReader.getProperty("is_headless").equalsIgnoreCase("false")) options.add("--headless=new");
         return new FirefoxOptions()
                 .addArguments(options);
     }
