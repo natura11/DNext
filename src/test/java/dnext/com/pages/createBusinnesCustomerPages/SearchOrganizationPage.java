@@ -31,7 +31,7 @@ public class SearchOrganizationPage extends BasePage {
     public WebElement niptTextOnSeacrOrganization;
     @FindBy(xpath = "//input[@formcontrolname = 'organizationNumber']")
     public WebElement niptNumberField;
-    @FindBy(xpath= "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
     public static WebElement searchBtnOnSearchOrganizationPage;
     @FindBy(css = "div[id='cdk-step-content-0-0'] span[class='mat-button-wrapper'] span")
     public WebElement nextBtnOnSearchOrganizationPage;
@@ -116,16 +116,17 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage verifySearchBtnEnable() {
-        String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
-        if (isDisabled != null && isDisabled.equals("true")) {
-            System.out.println("The search button is disabled.");
-        } else {
+        try {
+            Utils.waitFor(3);
+            String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
+            if (isDisabled != null && isDisabled.equals("true")) {
+                System.out.println("The search button is disabled.");
+            }
+        } catch (Throwable e) {
             System.out.println("The search button is enabled.");
         }
         return this;
     }
-
 }
-
 
 

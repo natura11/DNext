@@ -103,7 +103,14 @@ public class Utils {
             new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(expectation);
         } catch (Throwable ignored) {}
     }
-
+    public static WebElement waitForVisibility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static WebElement waitForVisibility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
     public static WebElement waitForClickablility(WebElement element) {
         return new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.elementToBeClickable(getElement(element)));
     }
