@@ -4,24 +4,19 @@ import com.github.javafaker.Faker;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.NoSuchElementException;
 
-@Slf4j
+@Log4j2
 public class SearchOrganizationPage extends BasePage {
-    public SearchOrganizationPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
-
-
     Faker faker = new Faker();
 
     @FindBy(xpath = "//mat-icon[normalize-space()='create']")
@@ -36,9 +31,9 @@ public class SearchOrganizationPage extends BasePage {
     public WebElement niptTextOnSeacrOrganization;
     @FindBy(xpath = "//input[@formcontrolname = 'organizationNumber']")
     public WebElement niptNumberField;
-    @FindBy(xpath = "//button[@class='mat-focus-indicator warn mat-raised-button mat-button-base']")
-    public WebElement searchBtnOnSearchOrganizationPage;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/div/button/span/span")
+    @FindBy(xpath= "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
+    public static WebElement searchBtnOnSearchOrganizationPage;
+    @FindBy(css = "div[id='cdk-step-content-0-0'] span[class='mat-button-wrapper'] span")
     public WebElement nextBtnOnSearchOrganizationPage;
     @FindBy(xpath = "//mat-error[@id='mat-error-0']")
     public WebElement warningInvalidNıptNumber;
@@ -49,7 +44,7 @@ public class SearchOrganizationPage extends BasePage {
 
 
     public SearchOrganizationPage getCurrentUrl(String currentUrl) {
-        Utils.waitFor(2);
+        Utils.waitFor(3);
         Driver.getDriver().getCurrentUrl();
         System.out.println("Driver.getDriver().getCurrentUrl() = " + Driver.getDriver().getCurrentUrl());
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("customer/create-enterprise-customer"));
@@ -60,8 +55,6 @@ public class SearchOrganizationPage extends BasePage {
         Utils.waitFor(3);
         String actualMessage = warningWithExistingNiptNumber.getText();
         String expectedMessage = popUpMessage;
-        System.out.println("actualMessage = " + actualMessage);
-        System.out.println("expectedMessage = " + expectedMessage);
         Assert.assertTrue(expectedMessage.equals(actualMessage));
         return this;
     }
@@ -106,27 +99,33 @@ public class SearchOrganizationPage extends BasePage {
         return this;
     }
 
-//    public SearchOrganizationPage verificationOfValidAndNonExistenceInput(String text) {
-//        Utils.waitFor(
-//                10
-//        );
-////        JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver();
-//        WebElement element = Driver.getDriver().findElement(By.cssSelector("input[formcontrolname='organizationNumberWithName']"));
-//
-//        String text1 = (String) ((JavascriptExecutor)Driver.getDriver()).executeScript("return arguments[0].text", element);
-//        //String elementSelector = "input[formcontrolname='organizationNumberWithName']";
-//        System.out.println("text1 = " + text1);
-//
-//        return this;
-//    }
-
     public SearchOrganizationPage inputNiptForForeignCustomer() {
         String randomNipt = faker.bothify("?????####");
         Utils.sendKeys(niptNumberField, randomNipt);
         return this;
     }
 
+    public SearchOrganizationPage searchBtnClickOnSearchOrgPage() {
+        Utils.click(searchBtnOnSearchOrganizationPage);
+        return this;
+    }
 
+    public SearchOrganizationPage nextBtnClickOnSearchPage() {
+        Utils.click(nextBtnOnSearchOrganizationPage);
+        return this;
+    }
 
+    public SearchOrganizationPage verifySearchBtnEnable() {
+        String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
+        if (isDisabled != null && isDisabled.equals("true")) {
+            System.out.println("The search button is disabled.");
+        } else {
+            System.out.println("The search button is enabled.");
+        }
+        return this;
+    }
 
 }
+
+
+

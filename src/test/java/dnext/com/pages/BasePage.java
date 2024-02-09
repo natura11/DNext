@@ -1,6 +1,8 @@
 package dnext.com.pages;
 
 import com.utilities.ConfigurationReader;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +17,11 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.utilities.Driver.getDriver;
-@Slf4j
+@Log4j2
+@AllArgsConstructor
 public  abstract class BasePage {
+
+
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
     }

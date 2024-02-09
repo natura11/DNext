@@ -10,15 +10,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
-
+@AllArgsConstructor
+@Log4j2
 public class searchOrganizationStepDefinition extends BasePage {
 
-    SearchOrganizationPage searchOrganizationPage = new SearchOrganizationPage();
-    CreateBusinessCustomerCommonPage createBusinessCustomerCommonPage = new CreateBusinessCustomerCommonPage();
-    Faker faker = new Faker();
-    GeneralInformationPage generalInformationPage = new GeneralInformationPage();
+    private SearchOrganizationPage searchOrganizationPage;
+    private CreateBusinessCustomerCommonPage createBusinessCustomerCommonPage;
+
 
     @Given("User opens Create Business Customer page on Home page")
     public void user_opens_create_business_customer_page_on_home_page() throws InterruptedException {
@@ -32,7 +33,7 @@ public class searchOrganizationStepDefinition extends BasePage {
 
     @Given("User should see the {string} header on screen on Create Business Customer page")
     public void user_should_see_the_header_on_screen_on_create_business_customer_page(String header) {
-        createBusinessCustomerCommonPage.newBusinessCustomerHeaderVerification(header);
+        createBusinessCustomerCommonPage.VerificationNewBusinessCustomerHeader(header);
     }
 
     @Given("User selects the Albanian Customer from the dropdown on Search Organization page")
@@ -47,8 +48,7 @@ public class searchOrganizationStepDefinition extends BasePage {
 
     @When("User clicks the Search button on Search Organization page")
     public void user_clicks_the_search_button_on_search_organization_page() {
-        Utils.waitFor(5);
-        searchOrganizationPage.searchBtnOnSearchOrganizationPage.click();
+        searchOrganizationPage.searchBtnClickOnSearchOrgPage();
     }
 
     @Then("One {string} is displayed on the screen on Search Organization page")
@@ -69,7 +69,7 @@ public class searchOrganizationStepDefinition extends BasePage {
 
     @And("User is not allowed to use the search button on Search Organization page")
     public void userIsNotAllowedToUseTheSearchButtonOnSearchOrganizationPage() {
-        searchOrganizationPage.searchBtnOnSearchOrganizationPage.isDisplayed();
+        searchOrganizationPage.verifySearchBtnEnable();
     }
 
     @When("User fills in the NIPT field with valid and non-existing  {string} on Search Organization page")
@@ -77,16 +77,13 @@ public class searchOrganizationStepDefinition extends BasePage {
         searchOrganizationPage.niptNumberField.sendKeys(validNonExistenceInput + Keys.ENTER);
     }
 
-
     @And("User clicks the Next button on Search Organization page")
     public void userClicksTheNextButtonOnSearchOrganizationPage() {
-        Utils.waitFor(3);
-        searchOrganizationPage.nextBtnOnSearchOrganizationPage.click();
+        searchOrganizationPage.nextBtnClickOnSearchPage();
     }
 
     @Then("User should see the {string} header on General Information  page")
     public void userShouldSeeTheHeaderOnGeneralInformationPage(String header) {
-        //Assert.assertEquals(header, generalInformationPage.generalInformationBtn.getText());
         createBusinessCustomerCommonPage.controlTab(header);
     }
 

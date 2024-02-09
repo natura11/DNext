@@ -40,7 +40,7 @@ public class SignInStepDefinition extends BasePage {
     }
     @Then("I should be seeing that the {string} header on Sign In page")
     public void i_should_be_seeing_that_the_header_on_sign_in_page(String title) {
-        signInPage.titleVerificationOnSignIn(title);
+        signInPage.verificationTitleOnSignIn(title);
     }
     @Then("I should be seeing the message {string} on Sign In page")
     public void iShouldBeSeeingTheMessageOnSignInPage(String warningMessage) {
