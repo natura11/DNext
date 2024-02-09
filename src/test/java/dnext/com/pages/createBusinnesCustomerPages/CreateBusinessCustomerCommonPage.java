@@ -2,13 +2,14 @@ package dnext.com.pages.createBusinnesCustomerPages;
 
 import com.utilities.Driver;
 import dnext.com.pages.BasePage;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@Slf4j
+@Log4j2
 public class CreateBusinessCustomerCommonPage extends BasePage {
     public CreateBusinessCustomerCommonPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -39,7 +40,7 @@ public class CreateBusinessCustomerCommonPage extends BasePage {
     public WebElement otherInformationHeader;
 
 
-    public CreateBusinessCustomerCommonPage newBusinessCustomerHeaderVerification(String header) {
+    public CreateBusinessCustomerCommonPage VerificationNewBusinessCustomerHeader(String header) {
         String actualHeader = newBusinessCustomerHeader.getText();
         String expectedHeader = header;
         System.out.println("header = " + header);
