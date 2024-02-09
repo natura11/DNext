@@ -1,5 +1,6 @@
 package dnext.com.pages;
 
+import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +21,11 @@ import static com.utilities.Driver.getDriver;
 @Log4j2
 @AllArgsConstructor
 public  abstract class BasePage {
+   protected Faker faker;
 
+    public BasePage(Faker faker) {
+        this.faker = faker;
+    }
 
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
