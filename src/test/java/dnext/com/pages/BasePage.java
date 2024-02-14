@@ -18,10 +18,11 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.utilities.Driver.getDriver;
+
 @Log4j2
 @AllArgsConstructor
-public  abstract class BasePage {
-   protected Faker faker;
+public abstract class BasePage {
+    protected Faker faker;
 
     public BasePage(Faker faker) {
         this.faker = faker;
@@ -32,6 +33,7 @@ public  abstract class BasePage {
     }
 
     public static ThreadLocal<List<TestContext>> testContext = new InheritableThreadLocal<>();
+
     public void setTestData(String key, String value) {
         testContext.get().add(new TestContext(Hooks.scenarioName.get(), Map.of(key, value)));
     }
@@ -52,7 +54,9 @@ public  abstract class BasePage {
     public <T> void openPage(Class<T> className) {
         getDriver().get(ConfigurationReader.getProperty(className.getAnnotation(DefaultUrl.class).value()));
         Utils.waitForPageToLoad();
-    };
+    }
+
+    ;
 
 
     public void refreshPage() {
@@ -75,13 +79,13 @@ public  abstract class BasePage {
     @FindBy(xpath = "//span[normalize-space()='Enterprise Parent Account']")
     public WebElement enterpriseParentAccountBtn;
     @FindBy(xpath = "//span[@class='nav-link-title ng-star-inserted'][normalize-space()='Batch Operations']")
-    public  WebElement batchOperationsBtn;
+    public WebElement batchOperationsBtn;
     @FindBy(xpath = "//span[@class='nav-link-title ng-star-inserted'][normalize-space()='Partner']")
     public WebElement partnerBtn;
     @FindBy(xpath = "//span[@class='nav-link-title ng-star-inserted'][normalize-space()='Skeda']")
     public WebElement skedaBtn;
     @FindBy(xpath = "//*[@id=\"container-1\"]/fuse-sidebar/navbar/navbar-vertical-style-1/div[1]")
-    public  WebElement dnextlogoOnNavbar;
+    public WebElement dnextlogoOnNavbar;
     @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[1]/span/div/img")
     public WebElement profileSignBtnOnHomePage;
     @FindBy(xpath = "//mat-icon[normalize-space()='keyboard_arrow_down']")
@@ -103,15 +107,15 @@ public  abstract class BasePage {
     @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
     public WebElement arrowBackBtn;
 
-    public BasePage logout(){
+    public BasePage logout() {
         Utils.waitFor(3);
         log.info("User logs out from the page");
-        Utils.click( profileSignDropdownArrowBtnOnPage);
+        Utils.click(profileSignDropdownArrowBtnOnPage);
         Utils.click(logoutBtnInDropdownOnHomePage);
         return this;
     }
 
-    public BasePage isShownEmailOfUserOnHomePage(){
+    public BasePage isShownEmailOfUserOnHomePage() {
         emailOfUserOnHomePage.isDisplayed();
         System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
         return this;
@@ -120,7 +124,6 @@ public  abstract class BasePage {
     public static class CommonElements {
 
     }
-
 
 
 }

@@ -28,6 +28,7 @@ Feature:New Business Customer-Search Organization
   Scenario:As a user,I want to search customer by using valid and non-existing  NIPT numbers on Search Organization Page
     Given  User selects the Albanian Customer from the dropdown on Search Organization page
     When   User fills in the NIPT field with valid and non-existing  "R12985637T" on Search Organization page
+    And    User clicks the Search button on Search Organization page
     And    User is not allowed to use the search button on Search Organization page
     And    User clicks the Next button on Search Organization page
     Then   User should see the "General Information" header on General Information  page

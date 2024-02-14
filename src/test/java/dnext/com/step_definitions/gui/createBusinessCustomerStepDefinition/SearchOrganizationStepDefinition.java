@@ -72,7 +72,7 @@ public class SearchOrganizationStepDefinition extends BasePage {
 
     @When("User fills in the NIPT field with valid and non-existing  {string} on Search Organization page")
     public void userFillsInTheNIPTFieldWithValidAndNonExistingOnSearchOrganizationPage(String validNonExistenceInput) {
-        searchOrganizationPage.niptNumberField.sendKeys(validNonExistenceInput + Keys.ENTER);
+        searchOrganizationPage.niptNumberField.sendKeys(validNonExistenceInput);
     }
 
     @And("User clicks the Next button on Search Organization page")
