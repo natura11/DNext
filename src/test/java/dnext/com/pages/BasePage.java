@@ -2,9 +2,14 @@ package dnext.com.pages;
 
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
+import com.utilities.Driver;
+import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
+import dnext.com.pages.createBusinnesCustomerPages.SearchOrganizationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.utilities.TestContext;
@@ -119,6 +124,24 @@ public abstract class BasePage {
         emailOfUserOnHomePage.isDisplayed();
         System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
         return this;
+    }
+    public static void warningMessage(String message,WebElement element) {
+        Utils.waitFor(3);
+        String actualMessage = element.getText();
+        String expectedMessage = message;
+        Assert.assertEquals(expectedMessage, actualMessage);
+    }
+    public static void DropdownSelectable(By by) {
+        List<WebElement> options = Driver.getDriver().findElements(by);
+        System.out.println("options.size() = " + options.size());
+        for (WebElement option : options) {
+            if (option.isDisplayed()) {
+                log.info("Option '" + option.getText() + "' is selectable.");
+            } else {
+                log.info("Option '" + option.getText() + "' is not selectable.");
+            }
+        }
+
     }
 
     public static class CommonElements {
