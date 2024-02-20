@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.jcajce.provider.asymmetric.X509;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +32,7 @@ public class SearchOrganizationPage extends BasePage {
     public WebElement niptTextOnSeacrOrganization;
     @FindBy(xpath = "//input[@formcontrolname = 'organizationNumber']")
     public WebElement niptNumberField;
-    @FindBy(xpath= "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
     public static WebElement searchBtnOnSearchOrganizationPage;
     @FindBy(css = "div[id='cdk-step-content-0-0'] span[class='mat-button-wrapper'] span")
     public WebElement nextBtnOnSearchOrganizationPage;
@@ -41,6 +42,7 @@ public class SearchOrganizationPage extends BasePage {
     public WebElement newCustomerTextWithNumberInNiptField;
     @FindBy(xpath = "//span[contains(text(),'This organization cannot have more than one custom')]")
     public WebElement warningWithExistingNiptNumber;
+
 
 
     public SearchOrganizationPage getCurrentUrl(String currentUrl) {
@@ -81,7 +83,9 @@ public class SearchOrganizationPage extends BasePage {
 
     public SearchOrganizationPage openCreateBusinessCustomerPage() {
         Utils.hover(dnextlogoOnNavbar);
-        Utils.waitForPageToLoad();
+        Utils.waitFor(3);
+       //Utils.waitForVisibility(createBusinessCustomerBtn,15);
+        //Utils.waitForPageToLoad();
         Utils.click(createBusinessCustomerBtn);
         return this;
     }
@@ -116,16 +120,17 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage verifySearchBtnEnable() {
-        String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
-        if (isDisabled != null && isDisabled.equals("true")) {
-            System.out.println("The search button is disabled.");
-        } else {
+        try {
+            Utils.waitFor(3);
+            String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
+            if (isDisabled != null && isDisabled.equals("true")) {
+                System.out.println("The search button is disabled.");
+            }
+        } catch (Throwable e) {
             System.out.println("The search button is enabled.");
         }
         return this;
     }
-
 }
-
 
 

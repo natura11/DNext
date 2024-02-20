@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -103,7 +105,14 @@ public class Utils {
             new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(expectation);
         } catch (Throwable ignored) {}
     }
-
+    public static WebElement waitForVisibility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static WebElement waitForVisibility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
     public static WebElement waitForClickablility(WebElement element) {
         return new WebDriverWait(getDriver(), Duration.ofSeconds(GLOBAL_TIME_OUT)).until(ExpectedConditions.elementToBeClickable(getElement(element)));
     }
@@ -187,11 +196,26 @@ public class Utils {
         getDriver().switchTo().window(origin);
     }
 
-    public static void uploadFile(String fileName, WebElement uploadElement) {
+    public static void uploadFile1(String fileName, WebElement uploadElement) {
         var separator = System.getProperty("file.separator");
         var path = System.getProperty("user.dir") + separator + "src" + separator + "test" + separator + "resources" + separator + "fotos" + separator + fileName;
         sleep(2);
         uploadElement.sendKeys(path);
+    }
+    public static void uploadFile(WebElement addElement,WebElement sendFieldElement,String fileName) {
+        String path = System.getProperty("user.dir") +"\\src\\test\\resources\\fotosAndDoc\\" + fileName;
+        Utils.waitForVisibility(addElement,15);
+        addElement.click();
+        sendFieldElement.sendKeys(path);
+        Utils.waitFor(1);
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
     }
 
 

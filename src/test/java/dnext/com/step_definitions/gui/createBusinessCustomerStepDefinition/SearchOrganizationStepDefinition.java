@@ -1,10 +1,7 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
-import com.github.javafaker.Faker;
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.CreateBusinessCustomerCommonPage;
-import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
 import dnext.com.pages.createBusinnesCustomerPages.SearchOrganizationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -13,9 +10,10 @@ import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
+
 @AllArgsConstructor
 @Log4j2
-public class searchOrganizationStepDefinition extends BasePage {
+public class SearchOrganizationStepDefinition extends BasePage {
 
     private SearchOrganizationPage searchOrganizationPage;
     private CreateBusinessCustomerCommonPage createBusinessCustomerCommonPage;
@@ -74,7 +72,7 @@ public class searchOrganizationStepDefinition extends BasePage {
 
     @When("User fills in the NIPT field with valid and non-existing  {string} on Search Organization page")
     public void userFillsInTheNIPTFieldWithValidAndNonExistingOnSearchOrganizationPage(String validNonExistenceInput) {
-        searchOrganizationPage.niptNumberField.sendKeys(validNonExistenceInput + Keys.ENTER);
+        searchOrganizationPage.niptNumberField.sendKeys(validNonExistenceInput);
     }
 
     @And("User clicks the Next button on Search Organization page")
@@ -92,13 +90,16 @@ public class searchOrganizationStepDefinition extends BasePage {
         searchOrganizationPage.selectOfForeignCustomerType();
     }
 
-    @When("User fills in the NIPT field with  {string} on Search Organization page")
-    public void userFillsInTheNIPTFieldWithOnSearchOrganizationPage(String arg0) {
+    @When("User fills in the NIPT field with  NIPT numbers on Search Organization page")
+    public void userFillsInTheNIPTFieldWithNIPTNumbersOnSearchOrganizationPage() {
         searchOrganizationPage.inputNiptForForeignCustomer().nextBtnOnSearchOrganizationPage.click();
     }
+
 
     @Then("User should see the {string} text on General Information page")
     public void userShouldSeeTheTextOnGeneralInformationPage(String header) {
         createBusinessCustomerCommonPage.controlTab(header);
     }
+
+
 }

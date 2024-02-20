@@ -11,9 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 @Log4j2
 public class CreateBusinessCustomerCommonPage extends BasePage {
-    public CreateBusinessCustomerCommonPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+
 
     @FindBy(xpath = "//div[contains(@class,'h2')]")
     public WebElement newBusinessCustomerHeader;
