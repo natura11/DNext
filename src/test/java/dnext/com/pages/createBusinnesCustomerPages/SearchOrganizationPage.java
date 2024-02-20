@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.jcajce.provider.asymmetric.X509;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -41,6 +42,7 @@ public class SearchOrganizationPage extends BasePage {
     public WebElement newCustomerTextWithNumberInNiptField;
     @FindBy(xpath = "//span[contains(text(),'This organization cannot have more than one custom')]")
     public WebElement warningWithExistingNiptNumber;
+
 
 
     public SearchOrganizationPage getCurrentUrl(String currentUrl) {
@@ -81,7 +83,9 @@ public class SearchOrganizationPage extends BasePage {
 
     public SearchOrganizationPage openCreateBusinessCustomerPage() {
         Utils.hover(dnextlogoOnNavbar);
-        Utils.waitForPageToLoad();
+        Utils.waitFor(3);
+       //Utils.waitForVisibility(createBusinessCustomerBtn,15);
+        //Utils.waitForPageToLoad();
         Utils.click(createBusinessCustomerBtn);
         return this;
     }
