@@ -202,21 +202,7 @@ public class Utils {
         sleep(2);
         uploadElement.sendKeys(path);
     }
-    public static void uploadFile(WebElement addElement,WebElement sendFieldElement,String fileName) {
-        String path = System.getProperty("user.dir") +"\\src\\test\\resources\\fotosAndDoc\\" + fileName;
-        Utils.waitForVisibility(addElement,15);
-        addElement.click();
-        sendFieldElement.sendKeys(path);
-        Utils.waitFor(1);
-        Robot robot = null;
-        try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
-        }
-        robot.keyPress(KeyEvent.VK_ESCAPE);
-        robot.keyRelease(KeyEvent.VK_ESCAPE);
-    }
+
 
 
     public static String getScreenshot(String name) throws IOException {

@@ -1,0 +1,129 @@
+package com.utilities;
+
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
+import io.restassured.path.json.exception.JsonPathException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
+import io.restassured.path.json.exception.JsonPathException;
+import io.restassured.response.Response;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+public class ApiBaseMethods {
+    public static Response getRequest(String endpoint, String token) {
+        defaultParser = Parser.JSON;
+        baseURI = endpoint;
+        Response r = null;
+        System.out.println("baseURI: " + baseURI);
+        try {
+            r = given().headers("Content-Type", " application/json", "Authorization", token)
+                    .when()
+                    .get(baseURI)
+                    .then()
+//                    .statusCode(200)
+//                    .header("Date", notNullValue())
+//                    .and()
+//                    .body("data", notNullValue())
+//                    .body("status", is("SUCCESS"))
+//                    .body("code", is("SUCCESS"))
+                    .and()
+//                    .contentType("application/json;charset=UTF-8")
+                    .log().all()
+                    .extract().response();
+        } catch (Exception e) {
+            throw new JsonPathException("Failed to parse the JSON document", e);
+        }
+        RestAssured.reset();
+        return r;
+    }
+
+
+    public static Response postRequest(String endpoint, String token, String body) {
+        defaultParser = Parser.JSON;
+        baseURI = endpoint;
+        Response r = null;
+        System.out.println("baseURI : " + baseURI);
+        System.out.println("body : " + body);
+        try {
+            r = given().headers("Content-Type", ContentType.JSON, "Accept", ContentType.JSON, "Authorization", token).
+                    body(body).
+                    when()
+                    .post(baseURI).
+                    then()
+//                    .header("Date", notNullValue())
+//                    .and()
+//                    .body("status", is("SUCCESS"))
+//                    .body("code", is("SUCCESS"))
+//                    .contentType("application/json;charset=UTF-8")
+                    .log().all()
+                    .extract().response();
+
+        } catch (Exception e) {
+            throw new JsonPathException("Failed to parse the JSON document", e);
+        }
+        RestAssured.reset();
+        return r;
+
+    }
+
+    public static Response putRequest(String endpoint, String token, String requestBody) {
+        defaultParser = Parser.JSON;
+        baseURI = endpoint;
+        Response r = null;
+        System.out.println("baseURI: " + baseURI);
+        try {
+            r = given().headers("Content-Type", "application/json", "Authorization", token)
+                    .body(requestBody)
+                    .when()
+                    .put(baseURI)
+                    .then()
+//                    .header("Date", notNullValue())
+//                    .and()
+//                    .body("data", notNullValue())
+//                    .body("status", is("SUCCESS"))
+//                    .body("code", is("SUCCESS"))
+//                    .body("message", is("Resource updated"))
+//                    .contentType("application/json;charset=UTF-8")
+                    .log().all()
+                    .contentType(ContentType.JSON)
+                    .extract().response();
+        } catch (Exception e) {
+            throw new JsonPathException("Failed to parse the JSON document", e);
+        }
+        RestAssured.reset();
+        return r;
+    }
+
+    public static Response deleteRequest(String endpoint, String token) {
+        defaultParser = Parser.JSON;
+        baseURI = endpoint;
+        Response r = null;
+        System.out.println("baseURI: " + baseURI);
+        try {
+            r = given().headers("Content-Type", "application/json", "Authorization", token)
+                    .when()
+                    .delete(baseURI)
+                    .then()
+//                    .statusCode(200)
+//                    .header("Date", notNullValue())
+//                    .and()
+//                    .body("status", is("SUCCESS"))
+//                    .body("code", is("SUCCESS"))
+//                    //.body("message", is("Resource deleted"))
+                    .and()
+                    .contentType("application/json;charset=UTF-8")
+                    .log().all()
+                    .contentType(ContentType.JSON)
+                    .extract().response();
+        } catch (Exception e) {
+            throw new JsonPathException("Failed to parse the JSON document", e);
+        }
+        RestAssured.reset();
+        return r;
+
+    }
+}

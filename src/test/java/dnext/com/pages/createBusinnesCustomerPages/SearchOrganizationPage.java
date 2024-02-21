@@ -115,6 +115,7 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage nextBtnClickOnSearchPage() {
+        Utils.waitFor(1);
         Utils.click(nextBtnOnSearchOrganizationPage);
         return this;
     }
