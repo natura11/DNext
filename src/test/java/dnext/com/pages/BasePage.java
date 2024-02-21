@@ -3,23 +3,18 @@ package dnext.com.pages;
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
-import dnext.com.pages.createBusinnesCustomerPages.AdminInformationPage;
-import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
-import dnext.com.pages.createBusinnesCustomerPages.SearchOrganizationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import com.utilities.TestContext;
 import com.utilities.Utils;
 import com.utilities.anotations.DefaultUrl;
-import dnext.com.step_definitions.gui.Hooks;
+import dnext.com.step_definitions.gui.HooksUI;
 import org.openqa.selenium.support.PageFactory;
 
 import java.awt.*;
@@ -46,7 +41,7 @@ public abstract class BasePage {
     public static ThreadLocal<List<TestContext>> testContext = new InheritableThreadLocal<>();
 
     public void setTestData(String key, String value) {
-        testContext.get().add(new TestContext(Hooks.scenarioName.get(), Map.of(key, value)));
+        testContext.get().add(new TestContext(HooksUI.scenarioName.get(), Map.of(key, value)));
     }
 
     public String getTestDate(String key, String scenarioName) {
