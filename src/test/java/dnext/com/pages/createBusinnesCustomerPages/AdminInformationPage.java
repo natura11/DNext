@@ -158,11 +158,13 @@ public class AdminInformationPage extends BasePage {
     }
 
     public AdminInformationPage verifyUploadingFilesWithDifferentFormats(String fileName) {
+
         try {
             if (!(fileName.endsWith(".pdf") || fileName.endsWith(".jpg"))) {
+                Utils.waitFor(3);
                 log.info(fileName + " is not an acceptable format");
             } else {
-                Utils.uploadFile(addBtn, txtFileInput, fileName);
+                uploadFile(addBtn, txtFileInput, fileName);
                 Assert.assertEquals("AdminDoc-" + fileName, nameOfUploadedFile.getText());
                 System.out.println("nameOfUploadedFile.getText() = " + nameOfUploadedFile.getText());
             }
@@ -174,7 +176,7 @@ public class AdminInformationPage extends BasePage {
     }
 
     public AdminInformationPage verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
-        Utils.uploadFile(addBtn, txtFileInput, fileName);
+        uploadFile(addBtn, txtFileInput, fileName);
         Utils.waitForVisibility(warningBiggerSizeFile, 10);
         log.info(warningBiggerSizeFile.getText());
         Assert.assertEquals(warning, warningBiggerSizeFile.getText());

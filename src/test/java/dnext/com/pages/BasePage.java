@@ -11,8 +11,10 @@ import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import com.utilities.TestContext;
 import com.utilities.Utils;
@@ -20,6 +22,10 @@ import com.utilities.anotations.DefaultUrl;
 import dnext.com.step_definitions.gui.Hooks;
 import org.openqa.selenium.support.PageFactory;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -143,8 +149,10 @@ public abstract class BasePage {
         return this;
     }
     public static void warningMessage(String message,WebElement element) {
+        Utils.waitFor(3);
         String actualMessage = element.getText();
         String expectedMessage = message;
+
         Assert.assertEquals(expectedMessage, actualMessage);
     }
     public static void DropdownSelectable(By by) {
@@ -162,12 +170,80 @@ public abstract class BasePage {
         Utils.waitForPageToLoad();
         Utils.click(element);
     }
+    public static void uploadFile(WebElement addElement,WebElement sendFieldElement,String fileName) {
+        String path = System.getProperty("user.dir") +"\\src\\test\\resources\\fotosAndDoc\\" + fileName;
+        Utils.waitFor(3);
+        addElement.click();
+        sendFieldElement.sendKeys(path);
+        Utils.waitFor(1);
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+    }
+    public static void verifyDateFromCalendar(String date,WebElement issuingDateField ) {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate givenDate = LocalDate.parse(date, formatter);
+        LocalDate threeMonthsAgo = currentDate.minusMonths(3);
+        if (givenDate.isBefore(threeMonthsAgo)) {
+            Utils.sendKeys(issuingDateField, date + Keys.TAB);
+            log.info("The selected date is out of permitted range!!!");
+        } else {
+            Utils.sendKeys(issuingDateField, date +Keys.TAB) ;
+            log.info("The selected date is inside of permitted range");
+        }
+    }
     public static void verifyTheUploadedBigger5MbSizeFile(String fileName, WebElement warningMsg,WebElement addBtn,WebElement sendFieldBtn,String warningTxt) {
-        Utils.uploadFile(addBtn, sendFieldBtn, fileName);
+        uploadFile(addBtn, sendFieldBtn, fileName);
         Utils.waitForVisibility(warningMsg, 10);
         log.info(warningMsg.getText());
         Assert.assertEquals(warningTxt, warningMsg.getText());
     }
+    public static void isDropdownSelectable(By commonLocateDropdown) {
+        List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
+        System.out.println("options.size() = " + options.size());
+        for (WebElement option : options) {
+            if (option.isDisplayed()) {
+                log.info("Option '" + option.getText() + "' is selectable.");
+            } else {
+                log.info("Option '" + option.getText() + "' is not selectable.");
+            }
+        }
+    }
+    public static void optionFromDropdown(By commonLocateDropdown) {
+        try {
+            List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
+            if (options.size() > 0) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(options.size());
+                options.get(randomIndex).click();
+                log.info("Random option selected: " + options.get(randomIndex).getText());
+            } else {
+                log.info("No options found in the dropdown.");
+            }
+        } catch (Exception e) {
+            log.info("An error occurred: " + e.getMessage());
+        }
+    }
+    //red warning example is at the "GeneralInformationPage warningBackgroundRedColor()" class
+    public static void warningBackgroundRedColor(String colorCode,String propertyName,WebElement pictureButton) {
+        try {
+            String expectedRedColorCode = colorCode;
+            String backgroundColor = pictureButton.getCssValue(propertyName);
+            org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
+            String actualBackRoundColorCode = color.asHex();
+            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
+        } catch (Exception e) {
+            log.info("Error Message: Red Warning message is not displaying!!");
+        }
+
+    }
+
 
     public static class CommonElements {
 

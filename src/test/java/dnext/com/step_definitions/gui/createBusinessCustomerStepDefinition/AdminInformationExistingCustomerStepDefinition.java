@@ -65,7 +65,7 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     @Then("User should see the {string}warning message  under number field on Admin Information Page")
     public void userShouldSeeTheWarningMessageUnderNumberField(String warningMsg) {
         warningMessage(warningMsg, adminInformationPage.warningOfMobilePhoneNumber);
-        Utils.waitFor(5);
+
 
     }
 
@@ -95,11 +95,11 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
         adminInformationPage.verifyUploadingFilesWithDifferentFormats(file);
     }
 
-    @And("User deletes already added valid prf documentation Admin Information Page")
+    @And("User deletes already added valid pdf documentation Admin Information Page")
     public void userDeletesAlreadyAddedValidPrfDocumentationAdminInformationPage() {
         adminInformationPage.cancelButton.click();
 
-    }
+}
 
     @And("User add the {string} and should see the name of file on the screen on Admin Information Page")
     public void userAddTheAndShouldSeeTheNameOfFileOnTheScreenOnAdminInformationPage(String fileName) {

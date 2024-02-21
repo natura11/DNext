@@ -42,7 +42,7 @@ Feature: Existing Customer-Admin Information-Existing Customer
     And   User tries to add "example.xlsx" of which format is out of image or pdf that connat be uploded on Admin Information Page
     And   User adds "bigger5MB.pdf"  which are image or pdf  which is bigger than five MB and should see "File size can not be bigger than 5 MB!" warning on Admin Information Page
     And   User add "smaller5MB.pdf" and should see the name of file  on the screen on Admin Information Page
-    And   User deletes already added valid prf documentation Admin Information Page
+    And   User deletes already added valid pdf documentation Admin Information Page
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
 
   @smoke @nextToContactPage
