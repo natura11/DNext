@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",//path from content root
         glue = {"dnext/com/step_definitions","HooksAPI"},
         dryRun =false,
-        tags ="@tag",
+        tags ="@tag3",
         publish = false
 
 

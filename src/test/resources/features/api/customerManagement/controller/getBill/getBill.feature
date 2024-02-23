@@ -6,7 +6,7 @@ Feature:name
 #  /api/accountManagement/v4/billingAccount
 #  api/customerManagement/v4/customer
   @tag
-  Scenario: Agency - api/agencies - GET Positive Test1
+  Scenario: Agency - api/agencies - GET Positive Test2
     When Create an endpoint component
       | Type        | Value                   | parameters  |
       | endpoint    | /api/customerManagement |             |
@@ -15,6 +15,35 @@ Feature:name
 
     When Send a request
     Then Status code is 206
+
+  @tag1
+  Scenario Outline: Agency - api/agencies - POST Positive Test1
+    When Create an endpoint component
+      | Type        | Value                                            | parameters        |
+      | endpoint    | /api/si-bpmn/camunda/start/BrmCustomerInfoUpdate |                   |
+      | requestType | POST                                             |                   |
+      | plainParam  | body                                             | <body>            |
+      | type1       | apiCamundaBaseURI                                | apiCamundaBaseURI |
+
+
+    When Send a request
+    Then Status code is 200
+
+    Examples:
+      | body                        |
+      | {"customerId": "F52115451"} |
+
+  @tag3
+  Scenario: Agency - api/agencies - GET Positive Test3
+    When Create an endpoint component
+      | Type        | Value         | parameters    |
+      | endpoint    | orderId       |               |
+      | requestType | GET           |               |
+      |             |               |               |
+      | PathParam   | apiBrmBaseURI | apiBrmBaseURI |
+
+    When Send a request
+    Then Status code is 200
 
 
 
