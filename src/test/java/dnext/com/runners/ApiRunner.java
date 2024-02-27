@@ -1,4 +1,5 @@
 package dnext.com.runners;
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -12,13 +13,13 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt",
         },
         features = "src/test/resources/features",//path from content root
-        glue = "dnext/com/step_definitions",
+        glue = {"dnext/com/step_definitions/api","HooksAPI"},
         dryRun =false,
-        tags ="",
+        tags ="@tag12",
         publish = false
 
 
 
 )
-public class CukesRunner {
+public class ApiRunner {
 }
