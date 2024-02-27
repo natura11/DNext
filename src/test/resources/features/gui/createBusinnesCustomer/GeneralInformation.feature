@@ -38,7 +38,7 @@ Feature:New Business Customer-General Information
     Then  User should selects any option in the Tax Exempt dropdown on general information page
 
   @invalidEmailInsert
-  Scenario Outline: As a user I want to enter invalid character based email into email field
+  Scenario Outline: As a user I want to enter invalid and invalid  characters based email into email field
     Given User clicks email field on general information page
     And   User enters "<emails>" on general information page
     And   User should see that background is red on general information page

@@ -7,7 +7,9 @@ import io.cucumber.datatable.DataTable;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
@@ -74,7 +76,7 @@ public class AdminInformationPage extends BasePage {
     @FindBy(xpath = "(//*[@formcontrolname = 'authDocType'])[2]")
     public WebElement AdminDocField;
 
-    @FindBy(css = "*[formcontrolname=gender]")
+    @FindBy(css = "*[formcontrolname=\"gender\"]")
     public WebElement genderDropdown;
 
     @FindBy(css = "*[formcontrolname=phoneCodeWork]")
@@ -98,10 +100,24 @@ public class AdminInformationPage extends BasePage {
     public WebElement nameOfUploadedFile;
     @FindBy(xpath = "//*[@id=\"file-label\"]/div[2]/a[1]/span/mat-icon")
     public WebElement cancelButton;
+    @FindBy(xpath = "//mat-icon[normalize-space()='cancel']")
+    public WebElement cancelIconInIdentificationField;
     @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/div/div/button[2]/span/span")
     public WebElement nextButtonOnAdminInfoPage;
     @FindBy(xpath = "//mat-icon[normalize-space()='create']")
     public WebElement contactPageIcon;
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[1]/mat-form-field[2]/div/div[1]/div[2]")
+    public WebElement firstNamePictureBtnOnAdminInformationPage;
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[3]/mat-form-field[1]/div/div[1]/div[2]")
+    public WebElement emailPictureBtnAdminInformationPage;
+    @FindBy(xpath = "(//*[@*='mat-option-text'])[1]")
+    public WebElement maleOptionOfGender;
+    @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='ALBANIA']")
+    public WebElement albaniaOptionFromCountryDropdown;
+    @FindBy(xpath = "//span[normalize-space()='BERAT']")
+    public WebElement beratCityFromPlaceOfBirthDropdown;
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[4]/mat-form-field[1]/div/div[1]/div[3]/button/span/mat-icon")
+    public WebElement cancelButtonOnDateOfbirthField;
 
     public AdminInformationPage clickAdminInformationIcon() {
         Utils.click(adminInformationButton);
@@ -182,25 +198,88 @@ public class AdminInformationPage extends BasePage {
         Assert.assertEquals(warning, warningBiggerSizeFile.getText());
         return this;
     }
-    public AdminInformationPage inputEmailAndMobilePhoneNumberOnAdminInfoPage(String email,String phoneNumber){
+
+    public AdminInformationPage inputEmailAndMobilePhoneNumberOnAdminInfoPage(String email, String phoneNumber) {
 
         try {
             Utils.waitFor(3);
-            Utils.sendKeys(emailField,email);
-            Utils.sendKeys(mobilePhoneNumberField,phoneNumber);
+            Utils.sendKeys(emailField, email);
+            Utils.sendKeys(mobilePhoneNumberField, phoneNumber);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.info("Texts not inserted!!!");
         }
         return this;
     }
-    public AdminInformationPage verifyContactInfoPageIsOpened(){
+
+    public AdminInformationPage verifyContactInfoPageIsOpened() {
         try {
             cancelButton.isDisplayed();
-        }catch (Exception e){
-            log.info(cancelButton +" is not displayed!!!");
+        } catch (Exception e) {
+            log.info(cancelButton + " is not displayed!!!");
         }
-        return  this;
+        return this;
+    }
+
+    public AdminInformationPage warningBackgroundRedColor() {
+        try {
+            String expectedRedColorCode = "#f44336";
+            String backgroundColor = emailPictureBtnAdminInformationPage.getCssValue("color");
+            Color color = Color.fromString(backgroundColor);
+            String actualBackRoundColorCode = color.asHex();
+            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
+        } catch (Exception e) {
+            log.info("Error Message: Red Warning message is not displaying!!");
+        }
+        return this;
+    }
+
+    public AdminInformationPage warningBackgroundIsNotRedColor() {
+        Utils.waitFor(1);
+        try {
+            String expectedRedColorCode = "#f44336";
+            String backgroundColor = firstNamePictureBtnOnAdminInformationPage.getCssValue("color");
+            org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
+            String actualBackRoundColorCode = color.asHex();
+            Assert.assertFalse(expectedRedColorCode.equals(actualBackRoundColorCode));
+        } catch (Exception e) {
+            log.info("Error Message: Red Warning message is  displaying!!");
+        }
+        return this;
+    }
+
+    public AdminInformationPage verifyValidFormatEmail(String dotSign, String tagSign, String email) {
+        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
+        return this;
+    }
+
+    public AdminInformationPage enterInvalidFormatEmails(String email) {
+        Utils.sendKeys(emailField, email + Keys.TAB);
+        return this;
+    }
+
+    public AdminInformationPage selectMaleOptionFromGenderDropdown() {
+        genderDropdown.click();
+        maleOptionOfGender.click();
+        return this;
+    }
+
+    public AdminInformationPage selectPlaceOfBirthFromDropdown() {
+        placeOfBirthField.click();
+        beratCityFromPlaceOfBirthDropdown.click();
+        return this;
+    }
+
+    public AdminInformationPage selectDateOfBirth(String date) {
+        clickField(birthDateField);
+        sendKeys(birthDateField, date);
+        return this;
+    }
+
+    public AdminInformationPage selectAlbaniaFromDropdown() {
+        clickField(countryOfBirthField);
+        clickField(albaniaOptionFromCountryDropdown);
+        return this;
     }
 
 }

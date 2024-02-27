@@ -3,6 +3,7 @@ package dnext.com.pages;
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
+import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
@@ -26,6 +27,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.utilities.Driver.getDriver;
+import static com.utilities.Utils.getElement;
 
 @Log4j2
 @AllArgsConstructor
@@ -161,9 +163,15 @@ public abstract class BasePage {
             }
         }
     }
+    public static void sendKeys(WebElement element, String data)
+    {getElement(element).sendKeys(data);}
     public static void clickField(WebElement element) {
-        Utils.waitForPageToLoad();
+        Utils.waitFor(3);
+        //Utils.waitForPageToLoad();
         Utils.click(element);
+    }
+    public static void enterValidFormatEmail(String validEmail,WebElement emailButton) {
+        Utils.sendKeys(emailButton, validEmail);
     }
     public static void uploadFile(WebElement addElement,WebElement sendFieldElement,String fileName) {
         String path = System.getProperty("user.dir") +"\\src\\test\\resources\\fotosAndDoc\\" + fileName;
