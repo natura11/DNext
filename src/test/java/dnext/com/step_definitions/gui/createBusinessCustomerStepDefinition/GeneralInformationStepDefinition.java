@@ -85,6 +85,7 @@ public class GeneralInformationStepDefinition extends BasePage {
 
     @And("User enters {string} on general information page")
     public void userEnters(String invalidEmail) {
+
         generalInformationPage.enterInvalidFormatEmails(invalidEmail);
     }
 
