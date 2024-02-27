@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt",
         },
         features = "src/test/resources/features",//path from content root
-        glue = {"dnext/com/step_definitions","HooksAPI"},
+        glue = {"dnext/com/step_definitions/api","HooksAPI"},
         dryRun =false,
-        tags ="@tag3",
+        tags ="@tag12",
         publish = false
 
 

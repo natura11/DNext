@@ -33,7 +33,9 @@ public class CommonSteps {
     static  String ApiBaseURI= ConfigurationReader.getProperty("apiBaseURI");
     static  String ApiCamundaBaseURI= ConfigurationReader.getProperty("apiCamundaBaseURI");
     static  String ApiBrmBaseURI= ConfigurationReader.getProperty("apiBrmBaseURI");
-    String orderId;
+    static  String apiGeoAdressURI= ConfigurationReader.getProperty("apiGeoAdressURI");
+    String getOrderId;
+
 
     @Given("Get Authorization for API")
     public void getAuthorizationForAPI() {
@@ -47,9 +49,8 @@ public class CommonSteps {
         // first get is an index and it is line number
         // second get is column name on the table
         String endpoint = rows.get(0).get("Value");
-//        if(endpoint.equalsIgnoreCase("orderId")){
-//            orderId= response.asString();
-//           endpoint=orderId;
+//        if(endpoint.equalsIgnoreCase("getFromPost")){
+//           endpoint=getOrderId;
 //        }
         int lineSize = rows.size();
         System.out.println("lineSize = " + lineSize);
@@ -66,17 +67,15 @@ public class CommonSteps {
         }
         requestType = rows.get(1).get("Value");
         String baseURIParameter = rows.get(3).get("Value");
-
-
         if(baseURIParameter.equalsIgnoreCase("apiBaseURI")){
         fullEndpoint = ApiBaseURI+ endpoint + paths;
-
         }else if(baseURIParameter.equalsIgnoreCase("apiCamundaBaseURI")){
             fullEndpoint = ApiCamundaBaseURI+ endpoint + paths;
-
         }else if(baseURIParameter.equalsIgnoreCase("apiBrmBaseURI")){
             fullEndpoint = ApiBrmBaseURI+ endpoint + paths;
-        }
+        }else if(baseURIParameter.equalsIgnoreCase("apiGeoAdressURI")){
+            fullEndpoint = ApiBrmBaseURI+ endpoint + paths;
+    }
     }
     @When("Send a request")
     public void send_a_request() throws JsonProcessingException {
@@ -87,17 +86,19 @@ public class CommonSteps {
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("POST")){
             response = ApiBaseMethods.postRequest(fullEndpoint, token,body);
-            response.prettyPrint();
-             orderId= response.asString();
-            System.out.println("orderId = " + orderId);
-
+//            response.prettyPrint();
+//            getOrderId= response.asString();
+//            System.out.println("getOrderId = " + getOrderId);
         }else if (requestType.equalsIgnoreCase("PUT")){
             response = ApiBaseMethods.putRequest(fullEndpoint, token,body);
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("DELETE")){
             response = ApiBaseMethods.deleteRequest(fullEndpoint, token);
             response.prettyPrint();
-        }
+        }else if (requestType.equalsIgnoreCase("GET_RequestBill")){
+            response = ApiBaseMethods.getRequestBillingAddressOnBrm(fullEndpoint, token);
+            response.prettyPrint();
+    }
     }
 
     @Then("Status code is {int}")
