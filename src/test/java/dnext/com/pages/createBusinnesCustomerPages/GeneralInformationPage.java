@@ -1,5 +1,4 @@
 package dnext.com.pages.createBusinnesCustomerPages;
-
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -10,7 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
