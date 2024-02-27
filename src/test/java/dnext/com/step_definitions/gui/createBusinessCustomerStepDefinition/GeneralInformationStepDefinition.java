@@ -1,7 +1,4 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
-
-import com.utilities.Driver;
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
 import io.cucumber.java.en.And;
@@ -9,10 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.AllArgsConstructor;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-
-import java.awt.*;
 
 @AllArgsConstructor
 public class GeneralInformationStepDefinition extends BasePage {

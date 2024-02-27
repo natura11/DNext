@@ -7,6 +7,7 @@ import com.utilities.ConfigurationReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.datatable.DataTable;
@@ -23,12 +24,17 @@ import static io.restassured.RestAssured.given;
 public class CommonSteps {
 
     Response response;
-    public String token;
-    public String fullEndpoint;
+    public  String token;
+    public  String fullEndpoint;
     String requestType;
+   public  String body;
     ApiUtils apiUtils ;
     static List<Map<String,String>> rows;
-    static  String ApiBaseurl= ConfigurationReader.getProperty("apiBaseURI");
+    static  String ApiBaseURI= ConfigurationReader.getProperty("apiBaseURI");
+    static  String ApiCamundaBaseURI= ConfigurationReader.getProperty("apiCamundaBaseURI");
+    static  String ApiBrmBaseURI= ConfigurationReader.getProperty("apiBrmBaseURI");
+    static  String apiGeoAdressURI= ConfigurationReader.getProperty("apiGeoAdressURI");
+    String getOrderId;
 
 
     @Given("Get Authorization for API")
@@ -43,10 +49,13 @@ public class CommonSteps {
         // first get is an index and it is line number
         // second get is column name on the table
         String endpoint = rows.get(0).get("Value");
+//        if(endpoint.equalsIgnoreCase("getFromPost")){
+//           endpoint=getOrderId;
+//        }
         int lineSize = rows.size();
         System.out.println("lineSize = " + lineSize);
-        if (lineSize>2){
-            for (int i = 2; i < lineSize; i++) {
+        if (lineSize>4){
+            for (int i = 3; i < lineSize; i++) {
                 if (rows.get(i).get("Type").equalsIgnoreCase("PathParam")){
                     paths = paths.concat("/");
                     paths = paths + rows.get(i).get("parameters");
@@ -57,27 +66,39 @@ public class CommonSteps {
             }
         }
         requestType = rows.get(1).get("Value");
-        fullEndpoint = ApiBaseurl+ endpoint + paths;
-        System.out.println("fullEndpoint = " + fullEndpoint);
-
+        String baseURIParameter = rows.get(3).get("Value");
+        if(baseURIParameter.equalsIgnoreCase("apiBaseURI")){
+        fullEndpoint = ApiBaseURI+ endpoint + paths;
+        }else if(baseURIParameter.equalsIgnoreCase("apiCamundaBaseURI")){
+            fullEndpoint = ApiCamundaBaseURI+ endpoint + paths;
+        }else if(baseURIParameter.equalsIgnoreCase("apiBrmBaseURI")){
+            fullEndpoint = ApiBrmBaseURI+ endpoint + paths;
+        }else if(baseURIParameter.equalsIgnoreCase("apiGeoAdressURI")){
+            fullEndpoint = ApiBrmBaseURI+ endpoint + paths;
+    }
     }
     @When("Send a request")
     public void send_a_request() throws JsonProcessingException {
         //String postMethodName = rows.get(3).get("Value");
-        String body = rows.get(2).get("parameters");
+         body = rows.get(2).get("parameters");
         if (requestType.equalsIgnoreCase("GET")) {
             response = ApiBaseMethods.getRequest(fullEndpoint, token);
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("POST")){
             response = ApiBaseMethods.postRequest(fullEndpoint, token,body);
-            response.prettyPrint();
+//            response.prettyPrint();
+//            getOrderId= response.asString();
+//            System.out.println("getOrderId = " + getOrderId);
         }else if (requestType.equalsIgnoreCase("PUT")){
             response = ApiBaseMethods.putRequest(fullEndpoint, token,body);
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("DELETE")){
             response = ApiBaseMethods.deleteRequest(fullEndpoint, token);
             response.prettyPrint();
-        }
+        }else if (requestType.equalsIgnoreCase("GET_RequestBill")){
+            response = ApiBaseMethods.getRequestBillingAddressOnBrm(fullEndpoint, token);
+            response.prettyPrint();
+    }
     }
 
     @Then("Status code is {int}")
@@ -85,6 +106,8 @@ public class CommonSteps {
         Assert.assertTrue(apiUtils.statusCode(statusCode,response));
         System.out.println("statusCode = " + statusCode);
     }
+
+
 
     //#######################################################################
 
