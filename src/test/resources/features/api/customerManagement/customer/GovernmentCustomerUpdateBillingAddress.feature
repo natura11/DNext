@@ -29,7 +29,7 @@ Feature:Government customer Update Billing Address
       | body                        |
       | {"customerId": "F52115451"} |
 
-@t1
+@t121
   Scenario: Gov customer Update current Billing Address-Get
     When Create an endpoint component
       | Type          | Value                                | parameters    |

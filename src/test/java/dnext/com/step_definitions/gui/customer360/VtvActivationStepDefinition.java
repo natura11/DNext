@@ -1,7 +1,12 @@
 package dnext.com.step_definitions.gui.customer360;
 
+import com.utilities.ConfigurationReader;
+import com.utilities.Driver;
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.VtvActivationPage;
+import dnext.com.pages.faveo.LoginOfFaveo;
+import dnext.com.pages.faveo.TicketDetailsPageOfFaveo;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,11 +14,14 @@ import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
 @Log4j2
 public class VtvActivationStepDefinition extends BasePage {
     VtvActivationPage vtvActivationPage;
+    LoginOfFaveo loginOfFaveo;
+    TicketDetailsPageOfFaveo ticketDetailsPageOfFaveo;
 
 
     @Then("User is on the Customer360 page")
@@ -81,10 +89,12 @@ public class VtvActivationStepDefinition extends BasePage {
     @When("User selects cash methods as ALL{int} {int}Month on Customer{int} search page")
     public void userSelectsCashMethodsAsALLMonthOnCustomerSearchPage(int arg0, int arg1, int arg2) {
         clickField(vtvActivationPage.paymentOptionALL79003Month);
+        Utils.waitFor(7);
     }
 
     @And("user clicks the TVInfrusructure dropdown button  Customer{int} search page")
     public void userClicksTheTVInfrusructureDropdownButtonCustomerSearchPage(int arg0) {
+        Utils.waitFor(3);
         clickField(vtvActivationPage.dropdownForVtvOptions);
     }
 
@@ -104,10 +114,9 @@ public class VtvActivationStepDefinition extends BasePage {
         clickField(vtvActivationPage.all03MonnthsForAkesFeePerDokoderPremium);
     }
 
-    @And("User enters {string} as CasId on Customer{int} search page")
-    public void userEntersAsCasIdOnCustomerSearchPage(String casID, int arg1) {
-        sendKeys(vtvActivationPage.cashIdForAkesFeePerDokoderPremium, casID);
-
+    @And("User enters CasId on Customer{int} search page")
+    public void userEntersCasIdOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.casIdFromFaker();
     }
 
     @And("User selects Tarife Instalimi from Purchasable Addons part on Customer{int} search page")
@@ -127,16 +136,18 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Assert.assertEquals("Shopping cart created successfully!", vtvActivationPage.shoppingCartCreatedSuccesfullyMessage.getText());
+        warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
+
     }
+
     @When("User clicks the Shopping Cart icon on Customer{int} search page")
     public void userClicksTheShoppingCartIconOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.shoppingCartIcon);
     }
 
-    @Then("User sees the selected product is in the Shopping Cart on Customer{int} search page")
-    public void userSeesTheSelectedProductIsInTheShoppingCartOnCustomerSearchPage(int arg0) {
-        Assert.assertEquals("Digitalb Premium Plus", vtvActivationPage.selectedProductInShoppingCart.getText());
+    @Then("User sees the name of {string} which was selected product is in the Shopping Cart on Customer{int} search page")
+    public void userSeesTheNameOfWhichWasSelectedProductIsInTheShoppingCartOnCustomerSearchPage(String warning, int arg1) {
+        warningMessage(warning, vtvActivationPage.selectedProductInShoppingCart);
     }
 
 
@@ -157,7 +168,8 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("user sees one pop up warning as {string} on Customer{int} search page")
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Assert.assertEquals(warning,vtvActivationPage.checkoutIsSuccessfullyCompletedMessage.getText());
+        warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
+
     }
 
     @When("User clicks the Go Back to Customer{int} button on Customer{int} search page")
@@ -169,9 +181,10 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userClicksTheOrderButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.orderButtonOnCustomer360Page);
     }
+
     @And("User sees the Order id of the selected product on Customer{int} search page")
     public void userSeesTheOrderIdOfTheSelectedProductOnCustomerSearchPage(int arg0) {
-      vtvActivationPage.orderIdField.isEnabled();
+        vtvActivationPage.orderIdField.isEnabled();
     }
 
     @And("User can control the Order Status of the selected product on Customer{int} search page")
@@ -179,5 +192,73 @@ public class VtvActivationStepDefinition extends BasePage {
         vtvActivationPage.orderStatus.isEnabled();
     }
 
+    @And("User clicks the Main Page button on Customer{int} search page")
+    public void userClicksTheMainPageButtonOnCustomerSearchPage(int arg0) {
+        clickField(vtvActivationPage.mainPageButton);
+    }
 
+
+    @When("User should be  General part  under  Main page  button on Customer{int} search page")
+    public void userShouldBeGeneralPartUnderMainPageButtonOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.customerInformationTxtOnGeneral.isDisplayed();
+    }
+
+
+    @And("User clicks Load Tickets button on Customer{int} search page")
+    public void userClicksLoadTicketsButtonOnCustomerSearchPage(int arg0) {
+        clickField(vtvActivationPage.loadTicketsOnTroubleTickets);
+    }
+
+    @And("User cliks three dots right of opened block on Customer{int} search page")
+    public void userCliksThreeDotsRightOfOpenedBlockOnCustomerSearchPage(int arg0) {
+        clickField(vtvActivationPage.threeDotsIconNearLoadTickets);
+    }
+
+    @And("User clicks Dnext option from the opened dropdown on Customer{int} search page")
+    public void userClicksDnextOptionFromTheOpenedDropdownOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.switchToFaveoFromDnext();
+    }
+
+    @And("User enters {string} as Username, {string} as password  and clicks the login button on FAVEO login page")
+    public void userEntersAsUsernameAsPasswordAndClicksTheLoginButtonOnFAVEOLoginPage(String username, String password) throws InterruptedException {
+        loginOfFaveo.login(username, password);
+    }
+
+    @And("User clicks the Change Status button on FAVEO page")
+    public void userClicksTheChangeStatusButtonOnFAVEOPage() {
+        Utils.clickWithJS(ticketDetailsPageOfFaveo.changeStatusBtnOnFaveoPage);
+
+    }
+
+    @And("User clicks the resolve option from the opened dropdown FAVEO  page")
+    public void userClicksTheResolveOptionFromTheOpenedDropdownFAVEOPage() {
+        clickField(ticketDetailsPageOfFaveo.changeStatusWithResolvedBtnOnFaveoPage);
+    }
+
+    @And("User clicks the Proceed button FAVEO  page")
+    public void userClicksTheProceedButtonFAVEOPage() {
+        clickField(ticketDetailsPageOfFaveo.proceedBtnOnFaveoPage);
+    }
+
+    @And("User should see {string} warning on FAVEO page")
+    public void userShouldSeeWarningOnFAVEOPage(String warning) {
+        warningMessage(warning, ticketDetailsPageOfFaveo.ticketStatusChangedSuccessfullyMessage);
+
+    }
+
+    @And("User turns back to Customer Mangement page on Customer{int} search page")
+    public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.switchToDnextFromFaveo();
+    }
+
+    @Then("User should see the Order Status turned to completed  on Customer{int} search page")
+    public void userShouldSeeTheOrderStatusTurnedToCompletedOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.verifyTheOrderStatusIsCompleted();
+    }
+
+
+    @When("User get the Agreement Id from Order part on Customer{int} search page")
+    public void userGetTheAgreementIdFromOrderPartOnCustomerSearchPage(int arg0) {
+        vtvActivationPage.verifyOrderAggrementIdMatchedInFiscalizationReceipt();
+    }
 }
