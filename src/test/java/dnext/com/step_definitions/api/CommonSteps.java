@@ -34,7 +34,7 @@ public class CommonSteps {
     static  String ApiCamundaBaseURI= ConfigurationReader.getProperty("apiCamundaBaseURI");
     static  String ApiBrmBaseURI= ConfigurationReader.getProperty("apiBrmBaseURI");
     static  String apiGeoAdressURI= ConfigurationReader.getProperty("apiGeoAdressURI");
-    String getOrderId;
+    static String  getOrderId;
 
 
     @Given("Get Authorization for API")
@@ -49,9 +49,9 @@ public class CommonSteps {
         // first get is an index and it is line number
         // second get is column name on the table
         String endpoint = rows.get(0).get("Value");
-//        if(endpoint.equalsIgnoreCase("getFromPost")){
-//           endpoint=getOrderId;
-//        }
+        if(endpoint.equalsIgnoreCase("getFromPost")){
+           endpoint=getOrderId;
+        }
         int lineSize = rows.size();
         System.out.println("lineSize = " + lineSize);
         if (lineSize>4){
@@ -86,9 +86,9 @@ public class CommonSteps {
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("POST")){
             response = ApiBaseMethods.postRequest(fullEndpoint, token,body);
-//            response.prettyPrint();
-//            getOrderId= response.asString();
-//            System.out.println("getOrderId = " + getOrderId);
+          response.prettyPrint();
+          getOrderId= response.asString();
+           System.out.println("getOrderId = " + getOrderId);
         }else if (requestType.equalsIgnoreCase("PUT")){
             response = ApiBaseMethods.putRequest(fullEndpoint, token,body);
             response.prettyPrint();

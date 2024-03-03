@@ -1,4 +1,4 @@
-@regresyon @VFALFT-22422
+@regresyon @VFALFT-22422 @12
 Feature:Government customer Update Billing Address
 
   Background: User is logged in
@@ -16,33 +16,32 @@ Feature:Government customer Update Billing Address
 
     When Send a request
     Then Status code is 200
-#    When Create an endpoint component
-#      | Type          | Value           | parameters    |
-#      | endpoint      | getFromPost     |               |
-#      | requestType   | GET_RequestBill |               |
-#      |               |                 |               |
-#      | ApiBrmBaseURI | apiBrmBaseURI   | apiBrmBaseURI |
-#
-#    When Send a request
-#    Then Status code is 200
+    When Create an endpoint component
+      | Type          | Value           | parameters    |
+      | endpoint      | getFromPost     |               |
+      | requestType   | GET_RequestBill |               |
+      |               |                 |               |
+      | ApiBrmBaseURI | apiBrmBaseURI   | apiBrmBaseURI |
+
+    When Send a request
+    Then Status code is 200
     Examples:
       | body                        |
       | {"customerId": "F52115451"} |
 
-  @tag12
-  Scenario: Gov customer Update current Billing Address-Get
-    When Create an endpoint component
-      | Type          | Value                                | parameters    |
-      | endpoint      | 4f237d13-d4e1-11ee-ac12-a6885a437829 |               |
-      | requestType   | GET_RequestBill                      |               |
-      |               |                                      |               |
-      | ApiBrmBaseURI | apiBrmBaseURI                        | apiBrmBaseURI |
-
-    When Send a request
-    Then Status code is 200
+#@t121
+#  Scenario: Gov customer Update current Billing Address-Get
+#    When Create an endpoint component
+#      | Type          | Value                                | parameters    |
+#      | endpoint      | 736300cc-d636-11ee-9d7d-922486ec82e4 |               |
+#      | requestType   | GET_RequestBill                      |               |
+#      |               |                                      |               |
+#      | ApiBrmBaseURI | apiBrmBaseURI                        | apiBrmBaseURI |
 #
-#  @tag3
-#  Scenario: Gov customer Update Billing Address- GET
+#    When Send a request
+#    Then Status code is 200
+
+
 
 
 
