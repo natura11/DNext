@@ -22,6 +22,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -170,6 +171,7 @@ public abstract class BasePage {
         //Utils.waitForPageToLoad();
         Utils.click(element);
     }
+
     public static void enterValidFormatEmail(String validEmail,WebElement emailButton) {
         Utils.sendKeys(emailButton, validEmail);
     }
@@ -246,10 +248,23 @@ public abstract class BasePage {
         }
 
     }
-
-
-    public static class CommonElements {
-
+    public void clearEnterText(WebElement element, String inputText) {
+        element.clear();
+        element.sendKeys(inputText);
+    }
+    public static void switchToWindow1(String targetTitle) {
+        String origin = Driver.getDriver().getWindowHandle();
+        for (String handle :Driver.getDriver().getWindowHandles()) {
+            Driver.getDriver().switchTo().window(handle);
+            if (Driver.getDriver().getTitle().equals(targetTitle)) {
+                return;
+            }
+        }
+        Driver.getDriver().switchTo().window(origin);
+    }
+    public static void switchToWindowNew(int number) {
+        List<String> tumWindowHandles = new ArrayList<String>(Driver.getDriver().getWindowHandles());
+        Driver.getDriver().switchTo().window(tumWindowHandles.get(number));
     }
 
 
