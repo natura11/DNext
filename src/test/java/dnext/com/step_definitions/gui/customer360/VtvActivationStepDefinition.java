@@ -180,6 +180,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks the Order button on Customer{int} search page")
     public void userClicksTheOrderButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.orderButtonOnCustomer360Page);
+
     }
 
     @And("User sees the Order id of the selected product on Customer{int} search page")

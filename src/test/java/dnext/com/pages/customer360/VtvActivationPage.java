@@ -87,6 +87,7 @@ public class VtvActivationPage extends BasePage {
 
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
     public WebElement selectedProductInShoppingCart;
+
     @FindBy(xpath = "//span[normalize-space()='CHECKOUT']")
     public WebElement checkoutBtn;
 
@@ -101,10 +102,13 @@ public class VtvActivationPage extends BasePage {
 
     @FindBy(xpath = "//span[normalize-space()='Go back to Customer360']")
     public WebElement goBackToCustomer360Btn;
+
     @FindBy(xpath = "//*[@class=\"mat-tab-label-content\"][.='Order']")
     public WebElement orderButtonOnCustomer360Page;
+
     @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer-content/div/div/mat-table/mat-row[1]/mat-cell[1]/span")
     public WebElement orderIdField;
+
     @FindBy(xpath = "//mat-row[1]//mat-cell[2]//span[1]")
     public WebElement orderStatus;
 
@@ -131,9 +135,6 @@ public class VtvActivationPage extends BasePage {
         return this;
     }
 
-    @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer/div/div[2]/div[1]/mat-list/mat-list-item[6]/div/div[3]/div[2]/text()")
-    public VtvActivationPage orderStatusInsideOrderDetailPage;
-
     public VtvActivationPage switchToFaveoFromDnext() {
         clickField(dCaseButton);
         switchToWindowNew(1);
@@ -157,13 +158,12 @@ public class VtvActivationPage extends BasePage {
     }
 
     public VtvActivationPage verifyOrderAggrementIdMatchedInFiscalizationReceipt() {
-        List<WebElement> aggrementIds = Driver.getDriver().findElements(By.xpath("//*[@id=\"payments\"]/thead/tr/th[6]"));
+        List<WebElement> aggrementIds = Driver.getDriver().findElements(By.xpath("//*[@class='mat-cell cdk-cell cdk-column-agreementId mat-column-agreementId ng-star-inserted']"));
         List<String> agreementIdTexts = new ArrayList<>();
         for (WebElement agreementId : aggrementIds) {
             agreementIdTexts.add(agreementId.getText());
         }
         System.out.println("agreementIdTexts = " + agreementIdTexts);
-
         return this;
     }
 

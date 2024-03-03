@@ -26,7 +26,7 @@ Feature: Government Default Billing Address Updating
     And   User clicks Edit Button on DEFAULT_BILLING_ADDRESS Customer360 search page
 
   @updateDefaultBillingAddress
-  Scenario:As a user I want to update Default Billing Address with using CustomerId
+  Scenario Outline:As a user I want to update Default Billing Address with using CustomerId
     Given User clicks select search Type field on Customer360 search page
     And   User selects Customer Id options on Customer360 search page
     And   User fills in enter Customer Id field with valid "F52115451" id on Customer360 search page
@@ -41,3 +41,26 @@ Feature: Government Default Billing Address Updating
     And   User clicks Save Button on Customer360 search page
     Then  User should see this  "Address updated successfully!" pop up message top of screen on Customer360 search page
 
+    Given Get Authorization for API
+    When Create an endpoint component
+      | Type        | Value                                            | parameters        |
+      | endpoint    | /api/si-bpmn/camunda/start/BrmCustomerInfoUpdate |                   |
+      | requestType | POST                                             |                   |
+      | plainParam  | body                                             | <body>            |
+      | type1       | apiCamundaBaseURI                                | apiCamundaBaseURI |
+
+
+    When Send a request
+    Then Status code is 200
+    When Create an endpoint component
+      | Type          | Value           | parameters    |
+      | endpoint      | getFromPost     |               |
+      | requestType   | GET_RequestBill |               |
+      |               |                 |               |
+      | ApiBrmBaseURI | apiBrmBaseURI   | apiBrmBaseURI |
+
+    When Send a request
+    Then Status code is 200
+    Examples:
+      | body                        |
+      | {"customerId": "F52115451"} |

@@ -86,7 +86,8 @@ public class CommonSteps {
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("POST")){
             response = ApiBaseMethods.postRequest(fullEndpoint, token,body);
-          response.prettyPrint();           getOrderId= response.asString();
+          response.prettyPrint();
+          getOrderId= response.asString();
            System.out.println("getOrderId = " + getOrderId);
         }else if (requestType.equalsIgnoreCase("PUT")){
             response = ApiBaseMethods.putRequest(fullEndpoint, token,body);
