@@ -105,6 +105,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User selects Akses Fee per Dekoder Premium on Customer{int} search page")
     public void userSelectsAksesFeePerDekoderPremiumOnCustomerSearchPage(int arg0) {
+       Utils.waitForVisibility(vtvActivationPage.addIconForAkesFeePerDokoderPremium,10);
         clickField(vtvActivationPage.addIconForAkesFeePerDokoderPremium);
 
     }
