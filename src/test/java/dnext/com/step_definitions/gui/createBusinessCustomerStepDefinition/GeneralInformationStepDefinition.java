@@ -78,7 +78,7 @@ public class GeneralInformationStepDefinition extends BasePage {
         clickField(generalInformationPage.emailBtnOnGeneralInformationPage);
     }
 
-    @Given("User should see that background is red on general information page")
+    @Given("User should see that background is red")
     public void user_should_see_that_background_is_red() {
         generalInformationPage.warningBackgroundRedColor();
     }
