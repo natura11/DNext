@@ -27,7 +27,7 @@ public class CommonSteps {
     public  String token;
     public  String fullEndpoint;
     String requestType;
-   public  String body;
+    public  String body;
     ApiUtils apiUtils ;
     static List<Map<String,String>> rows;
     static  String ApiBaseURI= ConfigurationReader.getProperty("apiBaseURI");
