@@ -41,7 +41,7 @@ Feature:New Business Customer-General Information
   Scenario Outline: As a user I want to enter invalid and invalid  characters based email into email field
     Given User clicks email field on general information page
     And   User enters "<emails>" on general information page
-    And   User should see that background is red on general information page
+    And   User should see that background is red
     Given User enters valid "abc123@gmail.com" in to the email field on general information page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on general information page
 

@@ -1,0 +1,4 @@
+package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
+
+public class GeneralInformationNewIndividualCustomerStepDefinitions {
+}
