@@ -126,31 +126,32 @@ public class ApiBaseMethods {
         return r;
 
     }
+    static Response response;
     public static Response getRequestBillingAddressOnBrm(String endpoint, String token) {
+
+       Utils.waitFor(15);
         defaultParser = Parser.JSON;
         baseURI = endpoint;
-        Response r = null;
-        System.out.println("baseURI: " + baseURI);
-        try {
-            r = given().headers("Content-Type", " application/json", "Authorization", token)
-                    .when()
-                    .get(baseURI)
-                    .then()
-                   .statusCode(200)
-//                    .header("Date", notNullValue())
-//                   .and().body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street1", is("ISTANBUL"))
-//                   .body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street2", is("KARTAL-54"))
-//                  .body("data", notNullValue())
-//            .body("code", is("SUCCESS"))
-                    .and()
-                    .contentType("application/json;charset=UTF-8")
-                    .log().all()
-                    .extract().response();
 
+        System.out.println("baseURI with dynamic endpoint= " + baseURI);
+        System.out.println("token = " + token);
+
+        try {
+            response = given().log().all()
+                    .headers("Authorization", token)
+                    .accept(ContentType.JSON)
+                    .when()
+                    .get(baseURI);
+
+
+            System.out.println("r.prettyPrint() try catch = " + response.prettyPrint());
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
-        RestAssured.reset();
-        return r;
+        System.out.println("r.asPrettyString() = " + response.asPrettyString());
+
+        System.out.println("r.prettyPrint() = " + response.prettyPrint());
+        //RestAssured.reset();
+        return response;
     }
 }

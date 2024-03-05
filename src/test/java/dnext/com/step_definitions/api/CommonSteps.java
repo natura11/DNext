@@ -34,7 +34,7 @@ public class CommonSteps {
     static  String ApiCamundaBaseURI= ConfigurationReader.getProperty("apiCamundaBaseURI");
     static  String ApiBrmBaseURI= ConfigurationReader.getProperty("apiBrmBaseURI");
     static  String apiGeoAdressURI= ConfigurationReader.getProperty("apiGeoAdressURI");
-    static String  getOrderId;
+     String  getOrderId;
 
 
     @Given("Get Authorization for API")
@@ -50,7 +50,8 @@ public class CommonSteps {
         // second get is column name on the table
         String endpoint = rows.get(0).get("Value");
         if(endpoint.equalsIgnoreCase("getFromPost")){
-           endpoint=getOrderId;
+           endpoint= getOrderId;
+            System.out.println("endpoint = " + endpoint);
         }
         int lineSize = rows.size();
         System.out.println("lineSize = " + lineSize);
@@ -87,7 +88,8 @@ public class CommonSteps {
         }else if (requestType.equalsIgnoreCase("POST")){
             response = ApiBaseMethods.postRequest(fullEndpoint, token,body);
           response.prettyPrint();
-          getOrderId= response.asString();
+          //getOrderId= response.asString();
+            getOrderId= response.asPrettyString();
            System.out.println("getOrderId = " + getOrderId);
         }else if (requestType.equalsIgnoreCase("PUT")){
             response = ApiBaseMethods.putRequest(fullEndpoint, token,body);
@@ -96,9 +98,11 @@ public class CommonSteps {
             response = ApiBaseMethods.deleteRequest(fullEndpoint, token);
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("GET_RequestBill")){
+            System.out.println("fullEndpoint = " + fullEndpoint);
             response = ApiBaseMethods.getRequestBillingAddressOnBrm(fullEndpoint, token);
-            response.prettyPrint();
-    }
+
+
+        }
     }
 
     @Then("Status code is {int}")
