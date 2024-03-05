@@ -27,6 +27,11 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     @FindBy(xpath = "(//div[@class='mat-form-field-wrapper ng-tns-c108-19'])[1]")
     public WebElement picture;
 
+    @FindBy(xpath = "//*[text()='General Information']")
+    public WebElement generalInformationOnNewIndividualCustomer;
+
+
+
 
 
 

@@ -10,9 +10,11 @@ import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import io.restassured.path.json.exception.JsonPathException;
 import io.restassured.response.Response;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+
 public class ApiBaseMethods {
     public static Response getRequest(String endpoint, String token) {
         defaultParser = Parser.JSON;
@@ -65,7 +67,7 @@ public class ApiBaseMethods {
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
-        RestAssured.reset();
+        //  RestAssured.reset();
         return r;
 
     }
@@ -126,21 +128,25 @@ public class ApiBaseMethods {
         return r;
 
     }
+
+    static Response response;
+
     public static Response getRequestBillingAddressOnBrm(String endpoint, String token) {
+        Utils.waitFor(20);
         defaultParser = Parser.JSON;
         baseURI = endpoint;
-        Response r = null;
+        // Response r = null;
         System.out.println("baseURI: " + baseURI);
         try {
-            r = given().headers("Content-Type", " application/json", "Authorization", token)
+            response = given().headers("Content-Type", " application/json", "Authorization", token)
                     .when()
                     .get(baseURI)
                     .then()
-                   .statusCode(200)
+                    .statusCode(200)
 //                    .header("Date", notNullValue())
-                   .and()
-//                  .body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street1", is("ISTANBUL"))
-//                 .body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street2", is("KARTAL-54"))
+                    .and()
+                    .body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street1", is("ISTANBUL"))
+                    .body("[1].payload.relatedParty[0].contactMedium[0].characteristic.street2", is("KARTAL-54"))
                     .body("data", notNullValue())
 //            .body("code", is("SUCCESS"))
                     .and()
@@ -151,7 +157,7 @@ public class ApiBaseMethods {
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
-        RestAssured.reset();
-        return r;
+        // RestAssured.reset();
+        return response;
     }
 }

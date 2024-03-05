@@ -25,18 +25,18 @@ public class HooksUI {
 
 
 
-//    @After
-////    public void tearDown(Scenario scenario) {
-////        try {
-////            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-////            if (scenario.isFailed()) {
-////                scenario.attach(screenshot, "image/png", "screenshots");
-////            }
-////        } catch (Exception e) {
-////            e.printStackTrace();
-////        } finally {
-////            Driver.closeDriver();
-////        }
-////    }
+    @After
+  public void tearDown(Scenario scenario) {
+      try {
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+           if (scenario.isFailed()) {
+               scenario.attach(screenshot, "image/png", "screenshots");
+            }
+       } catch (Exception e) {
+            e.printStackTrace();
+       } finally {
+           Driver.closeDriver();
+        }
+   }
 
 }
