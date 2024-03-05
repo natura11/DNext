@@ -21,7 +21,7 @@ public class SearchIndividualPage extends BasePage {
     @FindBy(xpath = "//span[@class=\"mat-button-wrapper\"][.='Search ']")
     public WebElement searchBtnOnSearchIndividualHomePage;
 
-    @FindBy(xpath = "(//span[text()='Next'])[1]")
+    @FindBy(xpath = "(//span[contains(text(),'Next')])[1]")
     public WebElement nextBtnOnSearchIndividualHomePage;
 
     @FindBy(xpath = "//span[text()='Individual with this Identification Number already exist!']")

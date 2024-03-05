@@ -33,8 +33,8 @@ public class GovermentDefaultBillingAdressUpdateStepDefination extends BasePage 
     }
     @Given("User should  clicks Address button on Customer360 search page")
     public void user_should_clicks_address_button_on_customer360_search_page() {
-        Utils.waitFor(5);
-        clickField(govermentDefaultBillingAdressUpdatePage.adressFieldOnCustomerSerch);
+        Utils.waitFor(7);
+      clickField(govermentDefaultBillingAdressUpdatePage.adressFieldOnCustomerSerch);
     }
     @Given("User clicks on the three dots near the DEFAULT_BILLING_ADDRESS on Customer360 search page")
     public void user_clicks_on_the_dots_near_the_default_bıllıng_address_on_customer360_search_page() {
