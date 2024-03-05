@@ -1,4 +1,5 @@
 package dnext.com.step_definitions.gui.customer360;
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.GovermentDefaultBillingAdressUpdatePage;
 import io.cucumber.java.en.Given;
@@ -32,10 +33,12 @@ public class GovermentDefaultBillingAdressUpdateStepDefination extends BasePage 
     }
     @Given("User should  clicks Address button on Customer360 search page")
     public void user_should_clicks_address_button_on_customer360_search_page() {
+        Utils.waitFor(7);
       clickField(govermentDefaultBillingAdressUpdatePage.adressFieldOnCustomerSerch);
     }
     @Given("User clicks on the three dots near the DEFAULT_BILLING_ADDRESS on Customer360 search page")
     public void user_clicks_on_the_dots_near_the_default_bıllıng_address_on_customer360_search_page() {
+        Utils.waitFor(3);
         clickField(govermentDefaultBillingAdressUpdatePage.editIconForUndateBillingAdress);
     }
     @Given("User clicks Edit Button on DEFAULT_BILLING_ADDRESS Customer360 search page")

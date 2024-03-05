@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createIndividualCustomer.GeneralInformationNewIndividualCustomerPage;
 import dnext.com.pages.createIndividualCustomer.SearchIndividualPage;
@@ -34,17 +35,19 @@ public class SerchIndividualStepDefinition extends BasePage {
     @And("User clicks search button on Create Individual Customer page on Create Individual Customer page")
     public void userClicksSearchButtonOnCreateIndividualCustomerPageOnCreateIndividualCustomerPage() {
         clickField(searchIndividualPage.searchBtnOnSearchIndividualHomePage);
+
     }
 
     @Then("User should see {string} on Create Individual Customer page")
     public void userShouldSeeOnCreateIndividualCustomerPage(String message) {
-        warningMessage(message,searchIndividualPage.warningForExistingIdNumberOnSearchIndividualHomePage);
+        warningMessage(message, searchIndividualPage.warningForExistingIdNumberOnSearchIndividualHomePage);
     }
 
     @And("User clicks next Button on on Create Individual Customer page")
     public void userClicksNextButtonOnOnCreateIndividualCustomerPage() {
         clickField(searchIndividualPage.nextBtnOnSearchIndividualHomePage);
     }
+
 
     @And("User clicks Citizenship dropdown on Create Individual Customer page")
     public void userClicksCitizenshipDropdownOnCreateIndividualCustomerPage() {
@@ -60,7 +63,7 @@ public class SerchIndividualStepDefinition extends BasePage {
 
     @Given("User enters {string} identification ID for ALBANIAN to the identification number field on Create Individual Customer page")
     public void userEntersIdentificationIDForALBANIANToTheIdentificationNumberFieldOnCreateIndividualCustomerPage(String number) {
-        sendKeys(searchIndividualPage.identificationNumberBtnOnSearchIndividualHomePage,number);
+        sendKeys(searchIndividualPage.identificationNumberBtnOnSearchIndividualHomePage, number);
 
     }
 
@@ -70,3 +73,4 @@ public class SerchIndividualStepDefinition extends BasePage {
 
     }
 }
+
