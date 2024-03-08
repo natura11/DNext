@@ -1,4 +1,4 @@
-@regression @vtv
+@regression @vtv @regression
 Feature: TVT Activation
 
   Background:
@@ -54,7 +54,7 @@ Feature: TVT Activation
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-#    Then User should see the Order Status turned to completed  on Customer360 search page
+    Then User should see the Order Status turned to completed  on Customer360 search page
     When User get the Agreement Id from Order part on Customer360 search page
 #    And User clicks the Fiscalization Receipt on Customer360 search page
 #    And User get the Agreement Id from Fiscalization Receipts part on Customer360 search page

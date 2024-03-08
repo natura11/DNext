@@ -10,13 +10,13 @@ import org.openqa.selenium.support.FindBy;
 
 @Log4j2
 public class GeneralInformationNewIndividualCustomerPage extends BasePage {
-    @FindBy(xpath = "//input[@formcontrolname='firstName']")
+    @FindBy(xpath = "//*[@id=\"firstName\"]")
     public WebElement firstNameFieldOnGeneralInformationForNewIndividualCustomer;
 
-    @FindBy(xpath = "//input[@formcontrolname='lastName']")
+    @FindBy(xpath = "//*[@id=\"lastName\"]")
     public WebElement lastNameFieldOnGeneralInformationForNewIndividualCustomer;
 
-    @FindBy(xpath = "//input[@formcontrolname='secondaryName']")
+    @FindBy(xpath = "//*[@id=\"secondaryName\"]")
     public WebElement middleNameFieldOnGeneralInformationForNewIndividualCustomer;
 
     @FindBy(xpath = "//*[@formcontrolname='citizenShip']")
@@ -29,22 +29,23 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
 
     @FindBy(xpath = "//*[text()='General Information']")
     public WebElement generalInformationOnNewIndividualCustomer;
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[4]/mat-form-field[1]/div/div[1]/div[2]")
+    public WebElement firstNamePicture;
+
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[4]/mat-form-field[2]/div/div[1]/div[2]")
+    public  WebElement lastNamePicture;
 
 
 
-
-
-
-
-
-
+    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[5]/mat-form-field[1]/div/div[1]/div[2]")
+    public  WebElement middleNamePicture;
 
 
     public GeneralInformationNewIndividualCustomerPage warningBackgroundIsNotRedColor() {
         Utils.waitFor(1);
         try {
             String expectedRedColorCode = "#f44336";
-            String backgroundColor = picture.getCssValue("color");
+            String backgroundColor = firstNamePicture.getCssValue("color");
             org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
             String actualBackRoundColorCode = color.asHex();
             Assert.assertFalse(expectedRedColorCode.equals(actualBackRoundColorCode));
@@ -53,6 +54,8 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
         }
         return this;
     }
+
+
 
 
 
