@@ -1,4 +1,9 @@
 package com.utilities;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,15 +20,27 @@ public class DbUtils {
     private static Statement statement;
     private static ResultSet resultSet;
 
+
     public static void createConnection() {
-        String dbUrl = ConfigurationReader.getProperty("dbUrl");
-        String dbUsername = ConfigurationReader.getProperty("dbUsername");
-        String dbPassword = ConfigurationReader.getProperty("dbPassword");
-        try {
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+//        String dbUrl = ConfigurationReader.getProperty("dbUrl");
+//        String dbUsername = ConfigurationReader.getProperty("dbUsername");
+//        String dbPassword = ConfigurationReader.getProperty("dbPassword");
+//        try {
+//            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+       // }
+        String uri = "mongodb+srv://uat_dnri_db:d1UFLK1wuphl@mongo-dnext-uat.c3sg4.mongodb.net/test";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("dnri_db");
+            MongoCollection<Document> collection = database.getCollection("resource");
+            Document doc = collection.find().first();
+            if (doc != null) {
+                System.out.println(doc.toJson());
+            } else {
+                System.out.println("No matching documents found.");
+            }
         }
     }
 
@@ -35,92 +52,6 @@ public class DbUtils {
     public static Object getRowAgencyTypeId(String query) {
         return getQueryResultMap(query).get(0).get("id");
 
-    }
-
-    //todo:2.AllocateTypeController
-
-    public static Object getRowAllocateTypeIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    //todo:3.AppointmentController
-
-    public static Object getRowAppointmentIdApplicantQuery(String query) {
-        return getQueryResultMap(query).get(0).get("appointment_id");
-    }
-
-    public static Object getRowApplicantIdApplicantQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowAppointmentIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowSlotIdAppointmentQuery(String query) {
-        return getQueryResultMap(query).get(0).get("slot_id");
-    }
-
-    public static Object getRowApplicantIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowSlotTableBranchIdQuery(String query) {
-        //appointment ve slot controller'da kullanilacak
-        return getQueryResultMap(query).get(0).get("branch_id");
-    }
-
-    public static Object getRowSlotTableSlotIdQuery(String query) {
-        //appointment ve slot controller'da kullanilacak
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowDefinitionsTableApplicantTypeIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("code");
-    }
-
-    public static Object getRowApplicationTypeTableApplicationTypeIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowVisaCategoriesTableVisaTypeIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowCountryTableNationalityQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
-    }
-
-    public static Object getRowDefinitionsTableGenderIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("code");
-    }
-
-    public static Object getRowDefinitionsTableRelationshipIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("code");
-    }
-
-    public static Object getRowDefinitionsTableInsuranceTypeIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("code");
-    }
-
-    public static Object getRowAppointmentApplicantTableAppointmentIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("appointment_id");
-    }
-
-    public static Object getRowAppointmentApplicantTableBranchIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("branch_id");
-    }
-
-    public static Object getRowAppointmentApplicantTableNationalityIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("nationality_id");
-    }
-
-    public static Object getRowAppointmentApplicantTablePassportNumberQuery(String query) {
-        return getQueryResultMap(query).get(0).get("passport_number");
-    }
-
-    public static Object getRowAppointmentApplicantTableApplicantIdQuery(String query) {
-        return getQueryResultMap(query).get(0).get("id");
     }
 
     //todo:4.SlotController

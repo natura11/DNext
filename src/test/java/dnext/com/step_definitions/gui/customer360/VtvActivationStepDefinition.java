@@ -16,6 +16,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
+
 @AllArgsConstructor
 @Log4j2
 public class VtvActivationStepDefinition extends BasePage {
@@ -255,7 +257,13 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see the Order Status turned to completed  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusTurnedToCompletedOnCustomerSearchPage(int arg0) {
+        //Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        Utils.waitFor(12);
+        Driver.getDriver().navigate().refresh();
+        Utils.waitFor(12);
+        //Driver.getDriver().navigate().refresh();
         vtvActivationPage.verifyTheOrderStatusIsCompleted();
+
     }
 
 
