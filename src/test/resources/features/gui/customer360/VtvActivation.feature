@@ -1,4 +1,4 @@
-@regression @vtv @regression
+@vtv @regression
 Feature: TVT Activation
 
   Background:

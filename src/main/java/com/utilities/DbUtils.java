@@ -22,27 +22,27 @@ public class DbUtils {
 
 
     public static void createConnection() {
-//        String dbUrl = ConfigurationReader.getProperty("dbUrl");
-//        String dbUsername = ConfigurationReader.getProperty("dbUsername");
-//        String dbPassword = ConfigurationReader.getProperty("dbPassword");
-//        try {
-//            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-//        } catch (SQLException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-       // }
-        String uri = "mongodb+srv://uat_dnri_db:d1UFLK1wuphl@mongo-dnext-uat.c3sg4.mongodb.net/test";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("dnri_db");
-            MongoCollection<Document> collection = database.getCollection("resource");
-            Document doc = collection.find().first();
-            if (doc != null) {
-                System.out.println(doc.toJson());
-            } else {
-                System.out.println("No matching documents found.");
-            }
-        }
-    }
+        String dbUrl = ConfigurationReader.getProperty("dbUrl");
+        String dbUsername = ConfigurationReader.getProperty("dbUsername");
+        String dbPassword = ConfigurationReader.getProperty("dbPassword");
+        try {
+            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }}
+//        String uri = "mongodb+srv://uat_dnri_db:d1UFLK1wuphl@mongo-dnext-uat.c3sg4.mongodb.net/test";
+//        try (MongoClient mongoClient = MongoClients.create(uri)) {
+//            MongoDatabase database = mongoClient.getDatabase("dnri_db");
+//            MongoCollection<Document> collection = database.getCollection("resource");
+//            Document doc = collection.find().first();
+//            if (doc != null) {
+//                System.out.println(doc.toJson());
+//            } else {
+//                System.out.println("No matching documents found.");
+//            }
+//        }
+//    }
 
     //todo:1.AgencyController
     public static Object getRowAgencyId(String query) {
