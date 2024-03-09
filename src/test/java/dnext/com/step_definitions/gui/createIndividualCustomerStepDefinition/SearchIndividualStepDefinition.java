@@ -63,7 +63,6 @@ public class SearchIndividualStepDefinition extends BasePage {
     @Given("User enters {string} identification ID for ALBANIAN to the identification number field on Create Individual Customer page")
     public void userEntersIdentificationIDForALBANIANToTheIdentificationNumberFieldOnCreateIndividualCustomerPage(String number) {
         sendKeys(searchIndividualPage.identificationNumberBtnOnSearchIndividualHomePage, number);
-
     }
 
     @Then("User should see background is not red on Create Individual Customer page")
