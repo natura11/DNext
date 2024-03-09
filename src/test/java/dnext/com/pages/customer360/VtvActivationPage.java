@@ -95,7 +95,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//span[normalize-space()='CHECKOUT']")
     public WebElement checkoutBtn;
 
-    @FindBy(xpath = "//span[@class='mat-checkbox-label']")
+    @FindBy(xpath = "//span[@class='mat-checkbox-inner-container']")
     public WebElement collectedTickBeforeCompleteChecekout;
 
     @FindBy(xpath = "//span[normalize-space()='COMPLETE CHECKOUT']")
@@ -137,7 +137,7 @@ public class VtvActivationPage extends BasePage {
 
 
 
-//camunda
+    //camunda
     @FindBy(xpath = "//input[@id=\"Id\"]")
     public WebElement orderIdFieldOnCamundaHomePage;
 
@@ -189,24 +189,24 @@ public class VtvActivationPage extends BasePage {
             Assert.assertEquals(" completed ", orderStatus.getText());
 
         }else {
-        String OrderId   = orderIdField.getText();
-         Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-         //switchToWindowNew(1);
-         sendKeys(orderIdFieldOnCamundaHomePage,OrderId);
-         clickField(productOrderCamundaOnHomePage);
+            String OrderId   = orderIdField.getText();
+            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
+            //switchToWindowNew(1);
+            sendKeys(orderIdFieldOnCamundaHomePage,OrderId);
+            clickField(productOrderCamundaOnHomePage);
 
-         if(activeListOnCamundaOnPage.getFirst().getText().equalsIgnoreCase("ACTIVE")){
-             System.out.println(activeListOnCamundaOnPage.getFirst().getText());
+            if(activeListOnCamundaOnPage.getFirst().getText().equalsIgnoreCase("ACTIVE")){
+                System.out.println(activeListOnCamundaOnPage.getFirst().getText());
 
-             Utils.waitFor(3);
-             clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-             System.out.println("stayed without clicking");
-             clickField(variablesChoiceIconOnCamunda);
-             Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,15);
-             System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
-             log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
-             switchToWindowNew(0);
-         }
+                Utils.waitFor(3);
+                clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
+                System.out.println("stayed without clicking");
+                clickField(variablesChoiceIconOnCamunda);
+                Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,15);
+                System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
+                log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
+                switchToWindowNew(0);
+            }
 
         }
 
