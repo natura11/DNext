@@ -3,11 +3,11 @@ package dnext.com.pages;
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
-import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -172,6 +172,7 @@ public abstract class BasePage {
         Utils.click(element);
     }
 
+
     public static void enterValidFormatEmail(String validEmail,WebElement emailButton) {
         Utils.sendKeys(emailButton, validEmail);
     }
@@ -248,6 +249,13 @@ public abstract class BasePage {
         }
 
     }
+    public static String getValueByJS(String idOfElement) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        String text = js.executeScript("return document.getElementById('" + idOfElement + "').value").toString();
+        System.out.println("Value in Box: " + text);
+        return text;
+    }
+
     public void clearEnterText(WebElement element, String inputText) {
         element.clear();
         element.sendKeys(inputText);

@@ -16,6 +16,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
+
 @AllArgsConstructor
 @Log4j2
 public class VtvActivationStepDefinition extends BasePage {
@@ -105,6 +107,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User selects Akses Fee per Dekoder Premium on Customer{int} search page")
     public void userSelectsAksesFeePerDekoderPremiumOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.addIconForAkesFeePerDokoderPremium,10);
         clickField(vtvActivationPage.addIconForAkesFeePerDokoderPremium);
 
     }
@@ -136,6 +139,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
+        Utils.waitFor(5);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
 
     }
@@ -158,17 +162,22 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the Collected radio button on Customer{int} search page")
     public void userClicksTheCollectedRadioButtonOnCustomerSearchPage(int arg0) {
+        Utils.waitFor(5);
+        vtvActivationPage.collectedTickBeforeCompleteChecekout.isSelected();
         clickField(vtvActivationPage.collectedTickBeforeCompleteChecekout);
     }
 
     @And("User clicks the COMPLATE CHECKOUT button on Customer{int} search page")
     public void userClicksTheCOMPLATECHECKOUTButtonOnCustomerSearchPage(int arg0) {
+        Utils.waitFor(2);
         clickField(vtvActivationPage.completeChecekoutBtn);
     }
 
     @Then("user sees one pop up warning as {string} on Customer{int} search page")
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
+        Utils.waitFor(3);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
+        Utils.waitFor(20);
 
     }
 
@@ -227,6 +236,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the Change Status button on FAVEO page")
     public void userClicksTheChangeStatusButtonOnFAVEOPage() {
+        Utils.waitFor(10);
         Utils.clickWithJS(ticketDetailsPageOfFaveo.changeStatusBtnOnFaveoPage);
 
     }
@@ -250,13 +260,19 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
         vtvActivationPage.switchToDnextFromFaveo();
+        Utils.waitFor(60);
     }
 
     @Then("User should see the Order Status turned to completed  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusTurnedToCompletedOnCustomerSearchPage(int arg0) {
+//        //Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+//        Utils.waitFor(12);
+//        Driver.getDriver().navigate().refresh();
+//        Utils.waitFor(12);
+//        //Driver.getDriver().navigate().refresh();
         vtvActivationPage.verifyTheOrderStatusIsCompleted();
-    }
 
+    }
 
     @When("User get the Agreement Id from Order part on Customer{int} search page")
     public void userGetTheAgreementIdFromOrderPartOnCustomerSearchPage(int arg0) {

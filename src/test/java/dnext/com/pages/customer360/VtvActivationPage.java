@@ -1,8 +1,11 @@
 package dnext.com.pages.customer360;
 
 import com.github.javafaker.Faker;
+import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.camunda.HomePageCamunda;
 import lombok.extern.log4j.Log4j2;
 import org.bouncycastle.math.field.FiniteField;
 import org.bouncycastle.math.field.FiniteFields;
@@ -18,6 +21,7 @@ import java.util.List;
 @Log4j2
 public class VtvActivationPage extends BasePage {
     Faker faker = new Faker();
+
     @FindBy(xpath = "//*[@id=\"products\"]/div[2]/div[1]/div[1] ")
     public WebElement customerSearchIcon;
     @FindBy(xpath = "//mat-select[@panelclass=\"dropDown-overlay\"]")
@@ -91,7 +95,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//span[normalize-space()='CHECKOUT']")
     public WebElement checkoutBtn;
 
-    @FindBy(xpath = "//span[@class='mat-checkbox-label']")
+    @FindBy(xpath = "//span[@class='mat-checkbox-inner-container']")
     public WebElement collectedTickBeforeCompleteChecekout;
 
     @FindBy(xpath = "//span[normalize-space()='COMPLETE CHECKOUT']")
@@ -130,6 +134,37 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"payments\"]/thead/tr/th[6]")
     public List<WebElement> agreementIds;
 
+
+
+
+    //camunda
+    @FindBy(xpath = "//input[@id=\"Id\"]")
+    public WebElement orderIdFieldOnCamundaHomePage;
+
+    @FindBy(xpath = "//div[@id=\"devextreme1\"]")
+    public WebElement productOrderCamundaOnHomePage;
+
+    @FindBy(xpath = "//*[text()='ACTIVE']")
+    public List<WebElement> activeListOnCamundaOnPage;
+
+    @FindBy(xpath = "//*[@id=\"CamundaProcessGrid\"]/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td[1]/div")
+    public WebElement fullfillmentTypeFirstChoiceIconOnCamunda;
+
+    @FindBy(xpath = "//span[text()='Variables']")
+    public WebElement variablesChoiceIconOnCamunda;
+
+    @FindBy(xpath = "//td[@class='dx-cell-focus-disabled']")
+    public WebElement errorMessageOnVariablesOnCamunda;
+
+    @FindBy(xpath = "//*[.='getFlowVariables successful!']")
+    public  WebElement successfullMessageOnComunda;
+
+
+
+
+
+
+
     public VtvActivationPage casIdFromFaker() {
         sendKeys(cashIdForAkesFeePerDokoderPremium, faker.numerify("############"));
         return this;
@@ -149,6 +184,35 @@ public class VtvActivationPage extends BasePage {
     }
 
     public VtvActivationPage verifyTheOrderStatusIsCompleted() {
+
+        if (orderStatus.getText().equalsIgnoreCase(" completed ")){
+            Assert.assertEquals(" completed ", orderStatus.getText());
+
+        }else {
+            String OrderId   = orderIdField.getText();
+            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
+            //switchToWindowNew(1);
+            sendKeys(orderIdFieldOnCamundaHomePage,OrderId);
+            clickField(productOrderCamundaOnHomePage);
+
+            if(activeListOnCamundaOnPage.getFirst().getText().equalsIgnoreCase("ACTIVE")){
+                System.out.println(activeListOnCamundaOnPage.getFirst().getText());
+
+                Utils.waitFor(3);
+                clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
+                System.out.println("stayed without clicking");
+                clickField(variablesChoiceIconOnCamunda);
+                Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,15);
+                System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
+                log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
+                switchToWindowNew(0);
+            }
+
+        }
+
+
+
+
         try {
             Assert.assertEquals(" completed ", orderStatus.getText());
         } catch (Exception e) {

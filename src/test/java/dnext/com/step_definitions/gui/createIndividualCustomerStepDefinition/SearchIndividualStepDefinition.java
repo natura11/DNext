@@ -1,6 +1,5 @@
 package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createIndividualCustomer.GeneralInformationNewIndividualCustomerPage;
 import dnext.com.pages.createIndividualCustomer.SearchIndividualPage;
@@ -10,7 +9,7 @@ import io.cucumber.java.en.Then;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class SerchIndividualStepDefinition extends BasePage {
+public class SearchIndividualStepDefinition extends BasePage {
     SearchIndividualPage searchIndividualPage;
     GeneralInformationNewIndividualCustomerPage generalInformationNewIndividualCustomerPage;
 

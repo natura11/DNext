@@ -7,7 +7,10 @@ Feature:New Individual Customer -General Information
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
     Given  User clicks Create Individual Customer on Home page
-    #Given I click General Information on new business customer page
+    Given  I click General Information on new individual customer page
 
-    Scenario: As a user I want to enter numbers and special characters in to Firstname and Lastname fields
-      #Given I want to enter
+  Scenario: As a user I want to enter numbers and special characters in to Firstname and Lastname fields
+    Given User wants to enter numbers in to First Name field on new individual customer
+    Then  User should see First Name field must be empty
+    And   User wants to enter special characters in to First Name field on new individual customer
+    Then  User should see that background is red
