@@ -35,6 +35,4 @@ public class SearchIndividualPage extends BasePage {
         return this;
     }
 
-
-
 }
