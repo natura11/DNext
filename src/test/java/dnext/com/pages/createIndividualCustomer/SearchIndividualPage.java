@@ -27,12 +27,6 @@ public class SearchIndividualPage extends BasePage {
     @FindBy(xpath = "//span[text()='Individual with this Identification Number already exist!']")
     public WebElement warningForExistingIdNumberOnSearchIndividualHomePage;
 
-
-
-
-
-
-
     public  SearchIndividualPage verificationNewIndividualCustomerHeader(String header) {
         String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
         String expectedHeader = header;
@@ -40,10 +34,6 @@ public class SearchIndividualPage extends BasePage {
         Assert.assertEquals(header,actualHeader);
         return this;
     }
-
-
-
-
 
 
 }
