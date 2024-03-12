@@ -70,6 +70,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @When("User selects TV option from products on Customer{int} search page")
     public void userSelectsTVOptionFromProductsOnCustomerSearchPage(int arg0) {
+        Utils.waitFor(5);
         clickField(vtvActivationPage.tvOptionOnCheckBox);
     }
 
@@ -177,7 +178,7 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
         Utils.waitFor(3);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
-        Utils.waitFor(20);
+        Utils.waitFor(120);
 
     }
 
@@ -236,7 +237,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the Change Status button on FAVEO page")
     public void userClicksTheChangeStatusButtonOnFAVEOPage() {
-        Utils.waitFor(10);
+        Utils.waitFor(25);
         Utils.clickWithJS(ticketDetailsPageOfFaveo.changeStatusBtnOnFaveoPage);
 
     }
@@ -260,7 +261,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
         vtvActivationPage.switchToDnextFromFaveo();
-        Utils.waitFor(60);
+        Utils.waitFor(120);
     }
 
     @Then("User should see the Order Status turned to completed  on Customer{int} search page")

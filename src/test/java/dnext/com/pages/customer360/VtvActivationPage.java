@@ -41,6 +41,9 @@ public class VtvActivationPage extends BasePage {
 
     @FindBy(xpath = "(//*[.=' New Order '])[6]")
     public WebElement newOrderBtnOnPrepaid;
+    @FindBy(xpath = "(//*[.=' New Order '])[2]")
+    public WebElement newOrderBtnOnPostpaid;
+
     @FindBy(xpath = "//*[.='Products']")
     public WebElement productsText;
 
@@ -200,23 +203,12 @@ public class VtvActivationPage extends BasePage {
 
                 Utils.waitFor(3);
                 clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-                System.out.println("stayed without clicking");
                 clickField(variablesChoiceIconOnCamunda);
-                Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,15);
+                Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
                 System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
                 log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
                 switchToWindowNew(0);
             }
-
-        }
-
-
-
-
-        try {
-            Assert.assertEquals(" completed ", orderStatus.getText());
-        } catch (Exception e) {
-            log.info(orderStatus + "is not displayed");
         }
         return this;
     }

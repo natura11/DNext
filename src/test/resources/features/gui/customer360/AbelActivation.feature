@@ -1,5 +1,5 @@
-@VFALFT-22443 @vtv @regression
-Feature: TVT Activation
+@VFALFT-22442 @abel @regression
+Feature: Abel Activation
 
   Background:
     Given  I have opened the "Customer Management" application
