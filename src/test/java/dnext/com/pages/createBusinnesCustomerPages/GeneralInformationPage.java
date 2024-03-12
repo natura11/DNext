@@ -233,6 +233,11 @@ public class GeneralInformationPage extends BasePage {
         return this;
     }
 
+    public GeneralInformationPage inputValidMobilePhoneNumber(String phoneNumber) {
+        Utils.sendKeys(mobilePhoneNumberBox, phoneNumber);
+        return this;
+    }
+
     public GeneralInformationPage verifyDateFromCalendarOnGeneralInfo(String date) {
         clickField(issuingDateFieldOnGeneralInformationPage);
         verifyDateFromCalendar(date, issuingDateFieldOnGeneralInformationPage);

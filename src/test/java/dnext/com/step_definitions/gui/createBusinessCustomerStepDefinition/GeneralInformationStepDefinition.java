@@ -151,6 +151,11 @@ public class GeneralInformationStepDefinition extends BasePage {
         generalInformationPage.inputOtherMobilePhoneNumberExceptAlbanian();
     }
 
+    @And("User enters mobile valid phone number {string} on general information page")
+    public void userEntersMobileValidPhoneNumber(String arg0) {
+        generalInformationPage.inputValidMobilePhoneNumber(arg0);
+    }
+
     @Given("User clicks Issuing Date field and user selects {string} from calendar on general information page")
     public void userClicksIssuingDateFieldAndUserSelectsFromCalendarOnGeneralInformationPage(String date) {
         generalInformationPage.verifyDateFromCalendarOnGeneralInfo(date);
