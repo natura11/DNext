@@ -95,7 +95,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//span[normalize-space()='CHECKOUT']")
     public WebElement checkoutBtn;
 
-    @FindBy(xpath = "//span[@class='mat-checkbox-label']")
+    @FindBy(xpath = "//label[@for='mat-checkbox-103-input']")
     public WebElement collectedTickBeforeCompleteChecekout;
 
     @FindBy(xpath = "//span[normalize-space()='COMPLETE CHECKOUT']")
