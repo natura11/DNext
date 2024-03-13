@@ -9,12 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 @Log4j2
 public class InvoiceAccountPage extends BasePage {
@@ -96,6 +93,13 @@ public class InvoiceAccountPage extends BasePage {
 
     @FindBy(xpath = "//span[.='File size can not be bigger than 5 MB!']")
     public WebElement warningMessageForBiggerDocument;
+
+    @FindBy(xpath = "(//span[text()='Next'])[6]//ancestor::button")
+    public WebElement nextButtonOnInvoiceAccountPage;
+
+    @FindBy(xpath = "(//span[text()='Back'])[6]//ancestor::button")
+    public WebElement backButtonOnInvoiceAccountPage;
+
 
 
     public InvoiceAccountPage clickAdminInformationIcon() {
