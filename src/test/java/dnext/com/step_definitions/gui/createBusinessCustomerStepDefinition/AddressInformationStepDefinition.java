@@ -36,12 +36,12 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Address Line 1 textbox on Address Information Page")
     public void userEntersAValueInTheAddressLineTextbox(String address) {
-
+        addressInformationPage.fillBillingAddressLineOneField(address);
     }
 
     @And("User clears Address Line 1 Field on Address Information Page")
     public void userClearsAddressLineField() {
-
+        addressInformationPage.billingAddressLineOneInput.clear();
     }
 
     @Then("User sees the Address Line 1 is required on Address Information Page")
