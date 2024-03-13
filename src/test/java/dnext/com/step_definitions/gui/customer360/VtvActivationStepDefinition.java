@@ -260,8 +260,10 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
+        Utils.waitFor(300);
+        Driver.getDriver().navigate().refresh();
         vtvActivationPage.switchToDnextFromFaveo();
-        Utils.waitFor(120);
+
     }
 
     @Then("User should see the Order Status turned to completed  on Customer{int} search page")

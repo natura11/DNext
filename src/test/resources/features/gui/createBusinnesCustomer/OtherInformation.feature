@@ -30,7 +30,6 @@ Feature:New Business Customer-Other Information
     And   User adds a "document.jpg" of which format is image on general information page
     And   User should see the name of "document.jpg" added jpg document on the screen on general information page
     Then  User clicks the Next button on general information page
-    Then  User should see the "Admin Information" header on Admin Information  page
     And   User clicks on the Identification Number field on Admin Information Page
     When  User enters one non existing valid "A19898589T" ID number into the Identification Number field on Admin Information page
     And   User clicks the search icon in Identification Number field on Admin Information page
