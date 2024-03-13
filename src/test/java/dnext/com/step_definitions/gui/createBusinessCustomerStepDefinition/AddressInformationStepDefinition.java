@@ -4,6 +4,7 @@ import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.AddressInformationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -12,18 +13,38 @@ import lombok.extern.log4j.Log4j2;
 public class AddressInformationStepDefinition extends BasePage {
     private AddressInformationPage addressInformationPage;
 
-    @And("User clicks next Button on Address Information Page")
-    public void userClicksTheNextButtonOnAddressInformationPage() {
-        addressInformationPage.nextBtnClickAddressInformation();
+    @Given("User clicks the Address Information button")
+    public void userClicksTheAddressInformationButton() {
+        addressInformationPage.clickAddressInformationIcon();
     }
 
-    @Given("User enters valid {string} in to the Address Line 1 field on Address Information Page")
-    public void userEntersValidInToTheAddressLineFieldOnAddressInformationPage(String arg0) {
-        addressInformationPage.addressLine1Filled(arg0);
+
+    @Given("User is on the Address Information page")
+    public void userIsOnTheAddressInformationPage() {
+        addressInformationPage.verifyUserIsOnAddressInformationPage();
     }
 
-    @And("User selects Berat as City on Address Information Page")
-    public void userSelectsBeratAsCityOnAddressInformationPage() {
-        addressInformationPage.selectCityOnAddressInformationPage();
+    @Given("User should see the Address Line 1 textbox on Address Information Page")
+    public void userShouldSeeTheAddressLineTextbox() {
+        addressInformationPage.billingAddressLineOneDisplayed();
+    }
+
+    @And("User clicks Address Line 1 Field on Address Information Page")
+    public void userClicksAddressLineField() {
+        clickField(addressInformationPage.billingAddressLineOneInput);
+    }
+
+    @Then("User enters a value {string} in the Address Line 1 textbox on Address Information Page")
+    public void userEntersAValueInTheAddressLineTextbox(String address) {
+
+    }
+
+    @And("User clears Address Line 1 Field on Address Information Page")
+    public void userClearsAddressLineField() {
+
+    }
+
+    @Then("User sees the Address Line 1 is required on Address Information Page")
+    public void userSeesTheAddressLineIsRequired() {
     }
 }
