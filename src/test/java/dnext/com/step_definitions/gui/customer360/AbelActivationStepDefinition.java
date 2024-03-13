@@ -4,6 +4,7 @@ import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.AbelActivationPage;
 import dnext.com.pages.customer360.VtvActivationPage;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -54,7 +55,10 @@ public class AbelActivationStepDefinition extends BasePage {
     public void user_selects_all1500_12month_option_as_cash_method_for_tarife_instalimi_contract_duration_on_customer360_search_page() {
      clickField(abelActivationPage.contractALL150012MonthForTarifeInstalimi);
     }
-
+    @Then("User should see the Order Status of Abel turned to completed  on Customer{int} search page")
+    public void userShouldSeeTheOrderStatusOfAbelTurnedToCompletedOnCustomerSearchPage(int arg0) {
+        abelActivationPage.verifyTheOrderStatusIsCompleted();
+    }
 
 
 }

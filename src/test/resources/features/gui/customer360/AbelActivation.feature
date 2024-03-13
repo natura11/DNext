@@ -26,7 +26,7 @@ Feature: Abel Activation
     And User selects the Abel as TVInfrustructure on Customer360 search page
     And User clicks the Smart Card add button on Customer360 search page
     And User slelects the 12*ALLO option for Smart Card Contract Duration on Customer360 search page
-    And User enters "002001380357"as Smart Card Serial Number on Customer360 search page
+    And User enters "002001379151"as Smart Card Serial Number on Customer360 search page
     And User selects Akses Fee per Dekoder Basic on Customer360 search page
     And User selects the 12*ALLO option for Akses Fee per Dekoder Basic Contract Duration on Customer360 search page
     And User selects Tarife Instalimi from Purchasable Addons for Abel part on Customer360 search page
@@ -55,7 +55,7 @@ Feature: Abel Activation
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status turned to completed  on Customer360 search page
+    Then User should see the Order Status of Abel turned to completed  on Customer360 search page
 
 
 

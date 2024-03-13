@@ -156,7 +156,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//span[text()='Variables']")
     public WebElement variablesChoiceIconOnCamunda;
 
-    @FindBy(xpath = "//td[@class='dx-cell-focus-disabled']")
+    @FindBy(xpath = "/html/body/main/div[2]/div/div[6]/div/div/div[1]/div/table/tbody/tr[2]/td/div/div[2]/div/div/div[2]/div/div/div/div[6]/div/div/div[1]/div/table/tbody/tr[9]/td[3]")
     public WebElement errorMessageOnVariablesOnCamunda;
 
     @FindBy(xpath = "//*[.='getFlowVariables successful!']")
@@ -187,28 +187,24 @@ public class VtvActivationPage extends BasePage {
     }
 
     public VtvActivationPage verifyTheOrderStatusIsCompleted() {
-
         if (orderStatus.getText().equalsIgnoreCase(" completed ")){
+            System.out.println("orderStatus.getText() = " + orderStatus.getText());
             Assert.assertEquals(" completed ", orderStatus.getText());
-
         }else {
             String OrderId   = orderIdField.getText();
             Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
             //switchToWindowNew(1);
             sendKeys(orderIdFieldOnCamundaHomePage,OrderId);
             clickField(productOrderCamundaOnHomePage);
-
-            if(activeListOnCamundaOnPage.getFirst().getText().equalsIgnoreCase("ACTIVE")){
-                System.out.println(activeListOnCamundaOnPage.getFirst().getText());
-
-                Utils.waitFor(3);
+                Utils.waitFor(1);
                 clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
                 clickField(variablesChoiceIconOnCamunda);
-                Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
+                Utils.waitFor(2);
+                //Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
                 System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
                 log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
                 switchToWindowNew(0);
-            }
+
         }
         return this;
     }
