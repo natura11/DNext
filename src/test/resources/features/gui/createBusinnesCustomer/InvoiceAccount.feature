@@ -1,5 +1,5 @@
 @VFALFT-22208 @regression @invoiceAccount
-Feature:New Business Customer-General Information
+Feature:New Business Customer-Invoice Account
 
   Background:
     Given  I have opened the "Customer Management" application
