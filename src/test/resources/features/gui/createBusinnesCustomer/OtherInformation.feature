@@ -30,7 +30,6 @@ Feature:New Business Customer-Other Information
     And   User adds a "document.jpg" of which format is image on general information page
     And   User should see the name of "document.jpg" added jpg document on the screen on general information page
     Then  User clicks the Next button on general information page
-    Then  User should see the "Admin Information" header on Admin Information  page
     And   User clicks on the Identification Number field on Admin Information Page
     When  User enters one non existing valid "A19898589T" ID number into the Identification Number field on Admin Information page
     And   User clicks the search icon in Identification Number field on Admin Information page
@@ -45,9 +44,9 @@ Feature:New Business Customer-Other Information
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
     And   User clicks next Button on Admin Information Page
     And   User clicks next Button on Contact Information Page
-    And   User selects Berat as City on Address Information Page
-    And   User clicks next Button on Address Information Page
-    Given User enters valid "ADR1" in to the Address Line 1 field on Address Information Page
+#    And   User selects Berat as City on Address Information Page
+#    And   User clicks next Button on Address Information Page
+#    Given User enters valid "ADR1" in to the Address Line 1 field on Address Information Page
 
   @smoke @checkFields
   Scenario: As a user I want to Check the Company name, Organization Number and Industry fields

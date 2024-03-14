@@ -23,7 +23,7 @@ import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 public class GeneralInformationPage extends BasePage {
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
-    @FindBy(xpath = "//*[@id=\"name\"]")
+    @FindBy(xpath = "//input[@id=\"name\"]")
     public WebElement nameBox;
     @FindBy(xpath = "(//*[@formcontrolname=\"industry\"])[1]")
     public WebElement industryDropdown;

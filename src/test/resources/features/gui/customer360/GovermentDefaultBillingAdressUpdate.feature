@@ -25,7 +25,7 @@ Feature: Government Default Billing Address Updating
     And   User clicks on the three dots near the DEFAULT_BILLING_ADDRESS on Customer360 search page
     And   User clicks Edit Button on DEFAULT_BILLING_ADDRESS Customer360 search page
 
-  @updateDefaultBillingAddress @db
+  @updateDefaultBillingAddress
   Scenario Outline:As a user I want to update Default Billing Address with using CustomerId
     Given User clicks select search Type field on Customer360 search page
     And   User selects Customer Id options on Customer360 search page
