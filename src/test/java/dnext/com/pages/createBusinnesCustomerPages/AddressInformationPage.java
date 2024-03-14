@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "//div[contains(text(),'Address Information')]")
     public WebElement addressInformationButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Also Service Address')]//preceding-sibling::div/*[@role='switch']")
+    @FindBy(xpath = "//span[contains(text(),'Also Service Address')]//preceding-sibling::div")
     public WebElement alsoServiceAddressToggleSwitch;
 
     @FindBy(xpath = "//input[@formcontrolname='mediumType']")
@@ -30,6 +31,9 @@ public class AddressInformationPage extends BasePage{
 
     @FindBy(xpath = "//textarea[@id='street1']")
     public WebElement billingAddressLineOneInput;
+
+    @FindBy(xpath = "//textarea[@id='street1']/parent::div/preceding-sibling::div[1]")
+    public WebElement billingAddressLineOneInputDiv;
 
     @FindBy(xpath = "//textarea[@formcontrolname='street2']")
     public WebElement billingAddressLineTwoInput;
@@ -57,6 +61,9 @@ public class AddressInformationPage extends BasePage{
 
     @FindBy(xpath = "//textarea[@id='serviceStreet1']")
     public WebElement serviceAddressLineOneInput;
+
+    @FindBy(xpath = "//textarea[@id='serviceStreet1']//parent::div/preceding-sibling::div[1]")
+    public WebElement serviceAddressLineOneInputDiv;
 
     @FindBy(xpath = "//textarea[@formcontrolname='serviceStreet2']")
     public WebElement serviceAddressLineTwoInput;
@@ -89,30 +96,88 @@ public class AddressInformationPage extends BasePage{
 
     public AddressInformationPage verifyUserIsOnAddressInformationPage() {
         try {
-            if (billingAddressMediumType.isDisplayed())
-                log.info("Address field is displaying");
+            Assert.assertTrue(billingAddressMediumType.isDisplayed());
+            log.info("Address field is displaying");
         } catch (Throwable e) {
             log.info("Error message: Address field is  not displaying");
         }
         return this;
     }
-    public AddressInformationPage billingAddressLineOneDisplayed() {
+    public AddressInformationPage elementDisplayed(WebElement webElement) {
         Utils.waitFor(1);
-        Assert.assertTrue(billingAddressLineOneInput.isDisplayed());
-        log.info(billingAddressLineOneInput + "is displaying");
+        Assert.assertTrue(webElement.isDisplayed());
+        log.info(webElement + "is displaying");
         return this;
     }
 
-    public AddressInformationPage fillBillingAddressLineOneField(String addressLine1) {
+    public AddressInformationPage fillInputField(WebElement webElement, String text) {
         Utils.waitForPageToLoad();
-        billingAddressLineOneInput.sendKeys(addressLine1);
+        webElement.sendKeys(text);
         return this;
     }
 
-    public AddressInformationPage nextBtnClickAddressInformation() {
-        Utils.click(nextButtonOnAddressInformationPage);
-        Utils.waitFor(3);
+    public AddressInformationPage warningBackgroundRedColor(WebElement webElement) {
+        try {
+            String expectedRedColorCode = "#f44336";
+            String backgroundColor = webElement.getCssValue("color");
+            Color color = Color.fromString(backgroundColor);
+            String actualBackRoundColorCode = color.asHex();
+            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
+        } catch (Exception e) {
+            log.info("Error Message: Red Warning message is not displaying!!");
+        }
         return this;
     }
+
+    public AddressInformationPage verifyInputElementsNonEditable(WebElement webElement) {
+        String isReadOnly = webElement.getAttribute("readonly");
+        Assert.assertEquals("true", isReadOnly);
+        return this;
+    }
+
+    public AddressInformationPage verifyDropdownNonEditable(WebElement webElement) {
+        String isDisabled = webElement.getAttribute("aria-disabled");
+        Assert.assertEquals("true", isDisabled);
+        return this;
+    }
+
+    public AddressInformationPage verifyCountryHasDefaultValue(WebElement webElement, String value) {
+        List<WebElement> spanLists = webElement.findElements(By.xpath(".//span"));
+        for (WebElement element: spanLists) {
+            String actualCountry = element.getText();
+            if(actualCountry.equals(value)){
+                Assert.assertTrue(true);
+                return this;
+            }
+        }
+        Assert.fail();
+        return this;
+    }
+    public AddressInformationPage cityDropdownSelectable() {
+        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+        return this;
+    }
+    public AddressInformationPage selectAnOptionFromDropdown(String city) {
+        List<WebElement> options = Driver.getDriver()
+                .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
+        if (!options.isEmpty()) {
+            options.stream().filter(option -> option.getText().trim().equals(city))
+                    .findFirst()
+                    .ifPresent(WebElement::click);
+            log.info(city +  " option is selected!");
+        }
+        else {
+            log.info("No options found in the dropdown.");
+        }
+        return this;
+    }
+
+    public AddressInformationPage verifyServiceAddressValue() {
+        Utils.scrollToElement(serviceAddressContactType);
+        String contactType = getValueByMouseKeyboardAction(serviceAddressContactType);
+        Assert.assertEquals("Service Address", contactType);
+        return this;
+    }
+
 
 }

@@ -17,6 +17,7 @@ Feature:New Business Customer-Address Information
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
     And   User clears Address Line 1 Field on Address Information Page
     Then  User sees the Address Line 1 is required on Address Information Page
+    And   User clicks Address Line 1 Field on Address Information Page
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
 
   @fillingAddressLine2

@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import com.utilities.TestContext;
@@ -19,6 +20,8 @@ import dnext.com.step_definitions.gui.HooksUI;
 import org.openqa.selenium.support.PageFactory;
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +32,7 @@ import java.util.Random;
 
 import static com.utilities.Driver.getDriver;
 import static com.utilities.Utils.getElement;
+import static com.utilities.Utils.waitFor;
 
 @Log4j2
 @AllArgsConstructor
@@ -236,6 +240,36 @@ public abstract class BasePage {
             log.info("An error occurred: " + e.getMessage());
         }
     }
+
+    public static void selectSpecificOptionFromDropdown(String toBeSelectedOption) {
+        List<WebElement> options = Driver.getDriver()
+                .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
+        if (!options.isEmpty()) {
+            options.stream().filter(option -> option.getText().trim().equals(toBeSelectedOption))
+                    .findFirst()
+                    .ifPresent(WebElement::click);
+            log.info(toBeSelectedOption +  " option is selected!");
+        }
+        else {
+            log.info("No options found in the dropdown.");
+        }
+    }
+
+    public static String getValueByMouseKeyboardAction(WebElement webElement){
+        Actions actions = new Actions(Driver.getDriver());
+        actions.click(webElement)
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a")
+                .keyUp(Keys.CONTROL)
+                .keyDown(Keys.CONTROL)
+                .sendKeys("c")
+                .keyUp(Keys.CONTROL)
+                .perform();
+
+        waitFor(1);
+        return getClipboardText();
+    }
+
     //red warning example is at the "GeneralInformationPage warningBackgroundRedColor()" class
     public static void warningBackgroundRedColor(String colorCode,String propertyName,WebElement pictureButton) {
         try {
@@ -273,6 +307,16 @@ public abstract class BasePage {
     public static void switchToWindowNew(int number) {
         List<String> tumWindowHandles = new ArrayList<String>(Driver.getDriver().getWindowHandles());
         Driver.getDriver().switchTo().window(tumWindowHandles.get(number));
+    }
+
+    private static String getClipboardText() {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        try {
+            return (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
