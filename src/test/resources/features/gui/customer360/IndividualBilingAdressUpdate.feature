@@ -1,4 +1,4 @@
-@VFALFT-23475 @regression @individualBillingAddress
+@ @regression @individualBillingAddress
 Feature: Individual Billing Address Updating
 
   Background:
