@@ -32,7 +32,7 @@ Feature: TVT Activation
     And User clicks the ADD to Cart button on Customer360 search page
     Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
-    Then User sees the name of "Digitalb Premium Plus" which was selected product is in the Shopping Cart on Customer360 search page
+    Then User sees the name of "Digitalb Premium Plus" which was selected product on VTV is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
     And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page

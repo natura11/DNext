@@ -39,9 +39,9 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//div[text()='Account']")
     public WebElement accountButton;
 
-    @FindBy(xpath = "(//*[.=' New Order '])[6]")
+    @FindBy(xpath = "//mat-row[1]//mat-cell[7]//button[1]")
     public WebElement newOrderBtnOnPrepaid;
-    @FindBy(xpath = "(//*[.=' New Order '])[2]")
+    @FindBy(xpath = "//mat-row[2]//mat-cell[7]//button[1]//span[1]//span[1]")
     public WebElement newOrderBtnOnPostpaid;
 
     @FindBy(xpath = "//*[.='Products']")
@@ -187,9 +187,11 @@ public class VtvActivationPage extends BasePage {
     }
 
     public VtvActivationPage verifyTheOrderStatusIsCompleted() {
+        System.out.println("orderStatus.getText() = " + orderStatus.getText());
         if (orderStatus.getText().equalsIgnoreCase(" completed ")){
             System.out.println("orderStatus.getText() = " + orderStatus.getText());
             Assert.assertEquals(" completed ", orderStatus.getText());
+
         }else {
             String OrderId   = orderIdField.getText();
             Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
@@ -201,8 +203,7 @@ public class VtvActivationPage extends BasePage {
                 clickField(variablesChoiceIconOnCamunda);
                 Utils.waitFor(2);
                 //Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
-                System.out.println("errorMessageOnVariablesOnCamunda.getText() = " + errorMessageOnVariablesOnCamunda.getText());
-                log.info("Error message is " +errorMessageOnVariablesOnCamunda.getText());
+                log.error("Error message is " +errorMessageOnVariablesOnCamunda.getText());
                 switchToWindowNew(0);
 
         }
