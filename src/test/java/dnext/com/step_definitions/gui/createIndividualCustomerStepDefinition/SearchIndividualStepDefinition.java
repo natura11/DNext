@@ -7,7 +7,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @AllArgsConstructor
 public class SearchIndividualStepDefinition extends BasePage {
     SearchIndividualPage searchIndividualPage;

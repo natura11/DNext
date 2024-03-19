@@ -1,13 +1,10 @@
 package dnext.com.pages.createBusinnesCustomerPages;
 
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,7 +16,7 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "//div[contains(text(),'Address Information')]")
     public WebElement addressInformationButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Also Service Address')]//preceding-sibling::div/*[@role='switch']")
+    @FindBy(xpath = "//span[contains(text(),'Also Service Address')]//preceding-sibling::div")
     public WebElement alsoServiceAddressToggleSwitch;
 
     @FindBy(xpath = "//input[@formcontrolname='mediumType']")
@@ -30,6 +27,9 @@ public class AddressInformationPage extends BasePage{
 
     @FindBy(xpath = "//textarea[@id='street1']")
     public WebElement billingAddressLineOneInput;
+
+    @FindBy(xpath = "//textarea[@id='street1']/parent::div/preceding-sibling::div[1]")
+    public WebElement billingAddressLineOneInputDiv;
 
     @FindBy(xpath = "//textarea[@formcontrolname='street2']")
     public WebElement billingAddressLineTwoInput;
@@ -58,6 +58,9 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "//textarea[@id='serviceStreet1']")
     public WebElement serviceAddressLineOneInput;
 
+    @FindBy(xpath = "//textarea[@id='serviceStreet1']//parent::div/preceding-sibling::div[1]")
+    public WebElement serviceAddressLineOneInputDiv;
+
     @FindBy(xpath = "//textarea[@formcontrolname='serviceStreet2']")
     public WebElement serviceAddressLineTwoInput;
 
@@ -79,40 +82,56 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "(//span[text()='Next'])[5]//ancestor::button")
     public WebElement nextButtonOnAddressInformationPage;
 
-    @FindBy(xpath = "(//span[text()='Back'])[5]//ancestor::button")
+    @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnAddressInformationPage;
-
-    public AddressInformationPage clickAddressInformationIcon() {
-        Utils.click(addressInformationButton);
-        return this;
-    }
 
     public AddressInformationPage verifyUserIsOnAddressInformationPage() {
         try {
-            if (billingAddressMediumType.isDisplayed())
-                log.info("Address field is displaying");
+            Assert.assertTrue(billingAddressMediumType.isDisplayed());
+            log.info("Address field is displaying");
         } catch (Throwable e) {
             log.info("Error message: Address field is  not displaying");
         }
         return this;
     }
-    public AddressInformationPage billingAddressLineOneDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(billingAddressLineOneInput.isDisplayed());
-        log.info(billingAddressLineOneInput + "is displaying");
+
+    public AddressInformationPage fillInputField(WebElement webElement, String text) {
+        webElement.clear();
+        webElement.sendKeys(text);
         return this;
     }
 
-    public AddressInformationPage fillBillingAddressLineOneField(String addressLine1) {
-        Utils.waitForPageToLoad();
-        billingAddressLineOneInput.sendKeys(addressLine1);
+    public AddressInformationPage verifyInputElementsNonEditable(WebElement webElement) {
+        String isReadOnly = webElement.getAttribute("readonly");
+        Assert.assertEquals("true", isReadOnly);
         return this;
     }
 
-    public AddressInformationPage nextBtnClickAddressInformation() {
-        Utils.click(nextButtonOnAddressInformationPage);
-        Utils.waitFor(3);
+    public AddressInformationPage verifyDropdownNonEditable(WebElement webElement) {
+        String isDisabled = webElement.getAttribute("aria-disabled");
+        Assert.assertEquals("true", isDisabled);
         return this;
     }
+
+    public AddressInformationPage verifyCountryHasDefaultValue(WebElement webElement, String value) {
+        List<WebElement> spanLists = webElement.findElements(By.xpath(".//span"));
+        for (WebElement element: spanLists) {
+            String actualCountry = element.getText();
+            if(actualCountry.equals(value)){
+                Assert.assertTrue(true);
+                return this;
+            }
+        }
+        Assert.fail();
+        return this;
+    }
+
+    public AddressInformationPage verifyServiceAddressValue() {
+        Utils.scrollToElement(serviceAddressContactType);
+        String contactType = getValueByMouseKeyboardAction(serviceAddressContactType);
+        Assert.assertEquals("Service Address", contactType);
+        return this;
+    }
+
 
 }

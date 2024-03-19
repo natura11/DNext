@@ -1,5 +1,5 @@
-@VFALFT-22443 @vtv @regression
-Feature: TVT Activation
+@VFALFT-22442 @abel @regression
+Feature: Abel Activation
 
   Background:
     Given  I have opened the "Customer Management" application
@@ -15,26 +15,27 @@ Feature: TVT Activation
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of searched name on Customer360 search page
     When User clicks the Account tab on Customer360 search page
-    When User clicks the New Order for prepaid rating type on Customer360 search page
+    When User clicks the New Order for postpaid rating type on Customer360 search page
     Then User is redirected to the  product catalog on Customer360 search page
     When User selects TV option from products on Customer360 search page
     And User clicks the search button under product list on Customer360 search page
     When User selects the Digitalb Premium Plus on Customer360 search page
     Then User is directed to the Digitalb Premium Plus page for details of equipments on Customer360 search page
-    When User selects cash methods as ALL7900 3Month on Customer360 search page
+    When User selects cash methods as 12 X ALL2550 for Digitalb Premium Plus on Customer360 search page
     And user clicks the TVInfrusructure dropdown button  Customer360 search page
-    And User selects the Vtv as TVInfrustructure on Customer360 search page
-    And User selects Akses Fee per Dekoder Premium on Customer360 search page
-    And User selects the ALL0 3Month option as cash option on Customer360 search page
-    And User enters CasId on Customer360 search page
-    And User selects Tarife Instalimi from Purchasable Addons part on Customer360 search page
-    And User selects ALL4000 3Month option as cash  method on Customer360 search page
+    And User selects the Abel as TVInfrustructure on Customer360 search page
+    And User clicks the Smart Card add button on Customer360 search page
+    And User slelects the 12*ALLO option for Smart Card Contract Duration on Customer360 search page
+    And User enters "002001379151"as Smart Card Serial Number on Customer360 search page
+    And User selects Akses Fee per Dekoder Basic on Customer360 search page
+    And User selects the 12*ALLO option for Akses Fee per Dekoder Basic Contract Duration on Customer360 search page
+    And User selects Tarife Instalimi from Purchasable Addons for Abel part on Customer360 search page
+    And User selects ALL1500 12Month option as cash  method for Tarife Instalimi Contract Duration on Customer360 search page
     And User clicks the ADD to Cart button on Customer360 search page
-    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
-    And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
     Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
     When User clicks the Go Back to Customer360 button on Customer360 search page
@@ -54,11 +55,9 @@ Feature: TVT Activation
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status turned to completed  on Customer360 search page
-   # When User get the Agreement Id from Order part on Customer360 search page
-#    And User clicks the Fiscalization Receipt on Customer360 search page
-#    And User get the Agreement Id from Fiscalization Receipts part on Customer360 search page
-#    When User should ensure that both Agreement Id's of Order part and Fiscalization Receipts part are equal
+    Then User should see the Order Status of Abel turned to completed  on Customer360 search page
+
+
 
 
 

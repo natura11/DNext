@@ -14,8 +14,12 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement selectSearchTypeBtn;
     @FindBy(xpath = "//*[text()=' Customer ID ']")
     public WebElement selectSearchTypeWithCostomerId;
+
+    @FindBy(xpath = "(//*[text()=' Customer Name '])[2]")
+    public WebElement selectSearchTypeWithCostomerName;
     @FindBy(xpath = "//*[@placeholder=\"Enter Customer ID..\"]")
     public WebElement enterCustomerIdfield;
+
     @FindBy(xpath = "//span[text()='Search ']")
     public WebElement searchBtnOnCustomerSearch;
     @FindBy(xpath = "//*[@class=\"mat-autocomplete-panel custom-mat-autocomplete ng-star-inserted mat-autocomplete-visible\"]")
@@ -32,12 +36,19 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement editStreet1OnBillingAdress;
     @FindBy(xpath = "//*[@formcontrolname=\"street2\"]")
     public WebElement editStreet2OnBillingAdress;
-    @FindBy(xpath = "//*[@formcontrolname=\"postCode\"]")
+    @FindBy(xpath = "//input[@formcontrolname=\"postCode\"]")
     public WebElement editPostCodeOnBillingAdress;
-    @FindBy(xpath = "//button[@class=\"mat-focus-indicator accent mr-12 mat-stroked-button mat-button-base\"]")
+    @FindBy(xpath = "//*[@id=\"mat-dialog-0\"]/app-address-update-dialog/div/form/div[4]/button[1]")
     public WebElement saveBtnOnDefaultBillingAdress;
     @FindBy(xpath = "//span[.='Address updated successfully!']")
     public WebElement adressUpdatedSuccessfullyMessage;
+    @FindBy(xpath = "//*[*='cancel']")
+    public WebElement cancelButtonOnAddressPage;
+    @FindBy(xpath = "//*[@formcontrolname=\"city\"]")
+    public WebElement cityDropdownButtonOnAddressPage;
+    @FindBy(xpath = "(//*[.='BERAT'])[6]")
+    public WebElement cityBeratButtonOnAddressPage;
+
     public GovermentDefaultBillingAdressUpdatePage usingValidCustomerId(String validId) {
         Utils.waitForPageToLoad();
         enterCustomerIdfield.sendKeys(validId);

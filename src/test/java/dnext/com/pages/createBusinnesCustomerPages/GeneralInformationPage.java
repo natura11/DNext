@@ -25,7 +25,7 @@ public class GeneralInformationPage extends BasePage {
     public String companyNameFieldForEquals;
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
-    @FindBy(xpath = "//*[@id=\"name\"]")
+    @FindBy(xpath = "//input[@id=\"name\"]")
     public WebElement nameBox;
     @FindBy(xpath = "(//*[@formcontrolname=\"industry\"])[1]")
     public WebElement industryDropdown;
@@ -190,11 +190,6 @@ public class GeneralInformationPage extends BasePage {
 
     public GeneralInformationPage enterValidFormatEmail(String validEmail) {
         Utils.sendKeys(emailBtnOnGeneralInformationPage, validEmail);
-        return this;
-    }
-
-    public GeneralInformationPage verifyValidFormatEmail(String dotSign, String tagSign, String email) {
-        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
         return this;
     }
 
