@@ -3,13 +3,11 @@ package dnext.com.pages;
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
+import dnext.com.pages.createBusinnesCustomerPages.ContactInformationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
@@ -137,6 +135,21 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
     public WebElement arrowBackBtn;
 
+    public static void elementDisplayed(WebElement webElement) {
+        Utils.waitFor(2);
+        Assert.assertTrue(webElement.isDisplayed());
+        log.info(webElement.getTagName() +  " is displaying");
+    }
+
+    public static void elementNotDisplayed(WebElement webElement) {
+        Utils.waitForInvisibilityOf(webElement);
+        try {
+            Assert.assertFalse(webElement.isDisplayed());
+        }catch (NoSuchElementException exception){
+            log.info("WebElement is not displaying");
+        }
+    }
+
     public BasePage logout() {
         Utils.waitFor(3);
         log.info("User logs out from the page");
@@ -225,6 +238,11 @@ public abstract class BasePage {
             }
         }
     }
+
+    public static void isDropdownSelectableOne() {
+        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+    }
+
     public static void optionFromDropdown(By commonLocateDropdown) {
         try {
             List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
@@ -283,6 +301,21 @@ public abstract class BasePage {
         }
 
     }
+
+    public static void warningBackgroundRedColorOne(WebElement webElement, boolean isRed) {
+        Utils.waitFor(1);
+        try {
+            String expectedRedColorCode;
+            expectedRedColorCode  = (isRed) ? "#f44336" : "#000000";
+            String backgroundColor = webElement.getCssValue("color");
+            Color color = Color.fromString(backgroundColor);
+            String actualBackRoundColorCode = color.asHex();
+            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
+        } catch (Exception e) {
+            log.info("Error Message: Red Warning message is not displaying!!");
+        }
+    }
+
     public static String getValueByJS(String idOfElement) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         String text = js.executeScript("return document.getElementById('" + idOfElement + "').value").toString();
@@ -317,6 +350,10 @@ public abstract class BasePage {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void verifyValidFormatEmail(String dotSign, String tagSign, String email) {
+        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
     }
 
 
