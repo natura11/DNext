@@ -21,6 +21,8 @@ import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 
 @Log4j2
 public class GeneralInformationPage extends BasePage {
+
+    public String companyNameFieldForEquals;
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
     @FindBy(xpath = "//*[@id=\"name\"]")
@@ -134,6 +136,7 @@ public class GeneralInformationPage extends BasePage {
     }
 
     public GeneralInformationPage usingValidFormatName(String validName) {
+        companyNameFieldForEquals = validName;
         Utils.waitForPageToLoad();
         nameBox.sendKeys(validName);
         return this;
