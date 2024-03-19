@@ -1,7 +1,5 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
-import com.utilities.ConfigurationReader;
-import com.utilities.Driver;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.InvoiceAccountPage;
 import io.cucumber.java.en.And;
@@ -9,7 +7,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
