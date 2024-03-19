@@ -6,8 +6,6 @@ import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
@@ -86,13 +84,8 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "(//span[text()='Next'])[5]//ancestor::button")
     public WebElement nextButtonOnAddressInformationPage;
 
-    @FindBy(xpath = "(//span[text()='Back'])[5]//ancestor::button")
+    @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnAddressInformationPage;
-
-    public AddressInformationPage clickAddressInformationIcon() {
-        Utils.click(addressInformationButton);
-        return this;
-    }
 
     public AddressInformationPage verifyUserIsOnAddressInformationPage() {
         try {
@@ -103,29 +96,10 @@ public class AddressInformationPage extends BasePage{
         }
         return this;
     }
-    public AddressInformationPage elementDisplayed(WebElement webElement) {
-        Utils.waitFor(1);
-        Assert.assertTrue(webElement.isDisplayed());
-        log.info(webElement + "is displaying");
-        return this;
-    }
 
     public AddressInformationPage fillInputField(WebElement webElement, String text) {
-        Utils.waitForPageToLoad();
+        webElement.clear();
         webElement.sendKeys(text);
-        return this;
-    }
-
-    public AddressInformationPage warningBackgroundRedColor(WebElement webElement) {
-        try {
-            String expectedRedColorCode = "#f44336";
-            String backgroundColor = webElement.getCssValue("color");
-            Color color = Color.fromString(backgroundColor);
-            String actualBackRoundColorCode = color.asHex();
-            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
-        } catch (Exception e) {
-            log.info("Error Message: Red Warning message is not displaying!!");
-        }
         return this;
     }
 
@@ -151,24 +125,6 @@ public class AddressInformationPage extends BasePage{
             }
         }
         Assert.fail();
-        return this;
-    }
-    public AddressInformationPage cityDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-    public AddressInformationPage selectAnOptionFromDropdown(String city) {
-        List<WebElement> options = Driver.getDriver()
-                .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
-        if (!options.isEmpty()) {
-            options.stream().filter(option -> option.getText().trim().equals(city))
-                    .findFirst()
-                    .ifPresent(WebElement::click);
-            log.info(city +  " option is selected!");
-        }
-        else {
-            log.info("No options found in the dropdown.");
-        }
         return this;
     }
 
