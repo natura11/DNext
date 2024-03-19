@@ -43,7 +43,7 @@ Feature:New Business Customer-Other Information
     And   User adds "623456789" the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
     And   User clicks next Button on Admin Information Page
-    And   User clicks next Button on Contact Information Page
+    And   User clicks the Contact Information button
 #    And   User selects Berat as City on Address Information Page
 #    And   User clicks next Button on Address Information Page
 #    Given User enters valid "ADR1" in to the Address Line 1 field on Address Information Page
