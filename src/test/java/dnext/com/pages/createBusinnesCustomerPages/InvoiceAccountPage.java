@@ -43,6 +43,10 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='eBillEmail']")
     public WebElement eBillEmailInput;
 
+    @FindBy(xpath = "//input[@formcontrolname='eBillEmail']" +
+                    "/parent::div/preceding-sibling::div[1]")
+    public WebElement eBillEmailInputDiv;
+
     @FindBy(xpath = "//input[@formcontrolname='eBillEmail']/following::mat-error")
     public WebElement eBillEmailErrorText;
 
@@ -57,6 +61,10 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']")
     public WebElement eBillMobileNumberInput;
 
+    @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']" +
+                    "/parent::div/preceding-sibling::div[1]")
+    public WebElement eBillMobileNumberInputDiv;
+
     @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']/following::mat-error")
     public WebElement phoneNumberErrorText;
 
@@ -69,8 +77,8 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "//input[@value='E-Bill Document']/following::button")
     public WebElement documentAddButton;
 
-    @FindBy(xpath = "//mat-error/..//input[@id='fileInputGeneral']")
-    public WebElement fileInputGeneral;
+    @FindBy(xpath = "//input[@formcontrolname='eBillAttachment']/following-sibling::input")
+    public WebElement fileInputField;
 
     @FindBy(xpath = "//input[@value='E-Bill Document']/following::div[@id='file-label']")
     public WebElement eBillDocumentNameField;
@@ -97,67 +105,23 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "(//span[text()='Next'])[6]//ancestor::button")
     public WebElement nextButtonOnInvoiceAccountPage;
 
-    @FindBy(xpath = "(//span[text()='Back'])[6]//ancestor::button")
+    @FindBy(xpath = "(//span[text()='Back'])[5]//ancestor::button")
     public WebElement backButtonOnInvoiceAccountPage;
 
 
-
-    public InvoiceAccountPage clickAdminInformationIcon() {
-        Utils.click(invoiceAccountButton);
-        return this;
-    }
-
     public InvoiceAccountPage verifyUserIsOnInvoiceAccountPage() {
-
         try {
             if (postpaidAccountTitleLabel.isDisplayed())
                 log.info("Account title is displaying");
         } catch (Throwable e) {
             log.info("Error message: Account title is  not displaying");
         }
-
         return this;
     }
 
-    public InvoiceAccountPage postpaidCurrencyDropdownDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(postpaidCurrencyDropdown.isDisplayed());
-        log.info(postpaidCurrencyDropdown + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage currencyDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
-    public InvoiceAccountPage optionFromCurrencyDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
-    public InvoiceAccountPage postpaidDescriptionDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(postpaidDescriptionInput.isDisplayed());
-        log.info(postpaidDescriptionInput + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage fillDescriptionField(String descriptionText) {
-        Utils.waitForPageToLoad();
-        postpaidDescriptionInput.sendKeys(descriptionText);
-        return this;
-    }
-
-    public InvoiceAccountPage paymentMethodDropdownDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(paymentMethodDropdown.isDisplayed());
-        log.info(paymentMethodDropdown + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage paymentMethodDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+    public InvoiceAccountPage fillInputField(WebElement element, String text) {
+        element.clear();
+        Utils.sendKeys(element, text + Keys.TAB);
         return this;
     }
 
@@ -182,8 +146,9 @@ public class InvoiceAccountPage extends BasePage {
     public InvoiceAccountPage bankNameAndBankAccountDisplayed() {
         Utils.waitFor(1);
         Assert.assertTrue(bankNameDropdown.isDisplayed());
-        Assert.assertTrue(bankNameDropdown.isDisplayed());
-        log.info(bankNameDropdown + " " + bankNameDropdown + " is displaying");
+        Assert.assertTrue(bankAccountNoInput.isDisplayed());
+        log.info(bankNameDropdown.getTagName() + " " +
+                bankNameDropdown.getTagName() + " is displaying");
         return this;
     }
 
@@ -195,146 +160,24 @@ public class InvoiceAccountPage extends BasePage {
         }catch (NoSuchElementException exception){
             log.info("bankNameDropdown and bankAccountNoInput are not displaying");
         }
-
         return this;
     }
 
-    public InvoiceAccountPage optionFromBankNameDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+    public InvoiceAccountPage verifyInputErrorMessage(WebElement webElement, String message) {
+        elementDisplayed(webElement);
+        Assert.assertEquals(message, webElement.getText().trim());
         return this;
     }
 
-    public InvoiceAccountPage fillBankAccountNoField(String accountNo) {
-        Utils.waitForPageToLoad();
-        bankAccountNoInput.sendKeys(accountNo);
-        return this;
-    }
-
-    public InvoiceAccountPage eBillEmailTextBoxDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(eBillEmailInput.isDisplayed());
-        log.info(eBillEmailInput + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage eBillMobileNumberTextBoxDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(eBillMobileNumberInput.isDisplayed());
-        log.info(eBillMobileNumberInput + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage verifyEnterInvalidFormatEmail(String email, String message) {
-        Utils.sendKeys(eBillEmailInput, email + Keys.TAB);
-        Assert.assertEquals(message, eBillEmailErrorText.getText().trim());
-        return this;
-    }
-
-    public InvoiceAccountPage enterValidFormatEmail(String validEmail) {
-        Utils.sendKeys(eBillEmailInput, validEmail);
-        return this;
-    }
-
-    public InvoiceAccountPage verifyValidFormatEmail(String dotSign, String tagSign, String email) {
-        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
-        return this;
-    }
-
-    public InvoiceAccountPage verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {
-        Utils.sendKeys(eBillMobileNumberInput, mobile + Keys.TAB);
-        Assert.assertEquals(message, phoneNumberErrorText.getText().trim());
-        return this;
-    }
-
-    public InvoiceAccountPage leaveBlankMobileNumber(String message) {
-        Utils.sendKeys(eBillMobileNumberInput, "" + Keys.TAB);
-        Assert.assertEquals(message, phoneNumberErrorText.getText().trim());
-        return this;
-    }
-
-    public InvoiceAccountPage phoneNumberWarningMessageNotDisplayed(String message) {
-        Utils.waitFor(1);
-        try {
-            Assert.assertFalse(phoneNumberErrorText.isDisplayed());
-        }catch (NoSuchElementException exception){
-            log.info("phoneNumberErrorText is not displaying");
-        }
-
-        return this;
-    }
-
-    public InvoiceAccountPage fillOtherMobilePhoneNumberExceptAlbanian(String phoneNumber) {
-        Utils.sendKeys(eBillMobileNumberInput, phoneNumber);
-        return this;
-    }
-
-    public InvoiceAccountPage fillValidMobilePhoneNumber(String mobile) {
-        Utils.sendKeys(eBillMobileNumberInput, mobile + Keys.TAB);
-        return this;
-    }
-
-    public InvoiceAccountPage postpaidCreditRatingDropdownDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(postpaidCreditRatingDropdown.isDisplayed());
-        log.info(postpaidCreditRatingDropdown + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage postpaidCreditRatingDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
-    public InvoiceAccountPage optionFromPostpaidCreditRatingDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
 
     public InvoiceAccountPage verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
         try {
-            uploadFile(documentAddButton, fileInputGeneral, fileName);
+            uploadFile(documentAddButton, fileInputField, fileName);
             Assert.assertEquals(warning, warningMessageForBiggerDocument.getText());
         } catch (Exception e) {
             log.info("Warning message not shown!!!");
         }
         return this;
     }
-
-    public InvoiceAccountPage eBillDocumentNameDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(eBillDocumentNameField.isDisplayed());
-        log.info(eBillDocumentNameField + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage prepaidCurrencyDropdownDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(prepaidCurrencyDropdown.isDisplayed());
-        log.info(prepaidCurrencyDropdown + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage prepaidCurrencyDropdownNotSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
-    public InvoiceAccountPage prepaidCreditRatingDropdownDisplayed() {
-        Utils.waitFor(1);
-        Assert.assertTrue(prepaidCreditRatingDropdown.isDisplayed());
-        log.info(prepaidCreditRatingDropdown + "is displaying");
-        return this;
-    }
-
-    public InvoiceAccountPage prepaidCreditRatingDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
-    public InvoiceAccountPage optionFromPrepaidCreditRatingDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-
 
 }
