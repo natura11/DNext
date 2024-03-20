@@ -1,7 +1,5 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
-import com.utilities.ConfigurationReader;
-import com.utilities.Driver;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.InvoiceAccountPage;
 import io.cucumber.java.en.And;
@@ -9,7 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
 public class InvoiceAccountStepDefinition extends BasePage {
@@ -17,7 +16,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Given("User clicks the Invoice Account button")
     public void userClicksTheInvoiceAccountButton() {
-        invoiceAccountPage.clickAdminInformationIcon();
+        clickField(invoiceAccountPage.invoiceAccountButton);
     }
 
     @Given("User is on the Invoice Account page")
@@ -25,9 +24,29 @@ public class InvoiceAccountStepDefinition extends BasePage {
         invoiceAccountPage.verifyUserIsOnInvoiceAccountPage();
     }
 
+    @And("User clicks Next button on Invoice Account page")
+    public void userClicksNextButtonOnInvoiceAccountPage() {
+        clickField(invoiceAccountPage.nextButtonOnInvoiceAccountPage);
+    }
+
+    @And("User clicks Back button on Invoice Account page")
+    public void userClicksBackButtonOnInvoiceAccountPage() {
+        clickField(invoiceAccountPage.backButtonOnInvoiceAccountPage);
+    }
+
+    @Then("User sees the Ebill Email is required on Invoice Account page")
+    public void userSeesTheEbillEmailIsRequiredOnInvoiceAccountPage() {
+        warningBackgroundRedColorOne(invoiceAccountPage.eBillEmailInputDiv, true);
+    }
+
+    @Then("User sees the Ebill Mobile Number is required on Invoice Account page")
+    public void userSeesTheEbillMobileNumberIsRequiredOnInvoiceAccountPage() {
+        warningBackgroundRedColorOne(invoiceAccountPage.eBillMobileNumberInputDiv, true);
+    }
+
     @Given("User should see the Currency dropdown on Invoice Account page")
     public void userShouldSeeTheCurrencyDropdown() {
-        invoiceAccountPage.postpaidCurrencyDropdownDisplayed();
+        elementDisplayed(invoiceAccountPage.postpaidCurrencyDropdown);
     }
 
     @Given("User clicks Currency dropdown on Invoice Account page")
@@ -37,17 +56,17 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @And("User should ensure each options in Currency dropdown are selectable on Invoice Account page")
     public void userShouldEnsureEachOptionsInCurrencyDropdownAreSelectable() {
-        invoiceAccountPage.currencyDropdownSelectable();
+        isDropdownSelectableOne();
     }
 
     @Then("User should selects any option in the Currency dropdown on Invoice Account page")
     public void userShouldSelectsAnyOptionInTheCurrencyDropdown() {
-        invoiceAccountPage.optionFromCurrencyDropdown();
+        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
     }
 
     @Given("User should see the Description textbox on Invoice Account page")
     public void userShouldSeeTheDescriptionTextbox() {
-        invoiceAccountPage.postpaidDescriptionDisplayed();
+        elementDisplayed(invoiceAccountPage.postpaidDescriptionInput);
     }
 
     @And("User clicks Description Field on Invoice Account page")
@@ -57,12 +76,13 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Description textbox on Invoice Account page")
     public void userEntersAValueInTheDescriptionTextbox(String description) {
-        invoiceAccountPage.fillDescriptionField(description);
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.postpaidDescriptionInput, description);
     }
 
     @Given("User should see the Payment Method dropdown on Invoice Account page")
     public void userShouldSeeThePaymentMethodDropdown() {
-        invoiceAccountPage.paymentMethodDropdownDisplayed();
+        elementDisplayed(invoiceAccountPage.paymentMethodDropdown);
     }
 
     @Given("User clicks Payment Method dropdown on Invoice Account page")
@@ -72,7 +92,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @When("User should ensure each options in Payment Method dropdown are selectable on Invoice Account page")
     public void userShouldEnsureEachOptionsInPaymentMethodDropdownAreSelectable() {
-        invoiceAccountPage.paymentMethodDropdownSelectable();
+        isDropdownSelectableOne();
     }
 
     @And("User should select {string} option in the Payment Method dropdown on Invoice Account page")
@@ -97,7 +117,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User should selects any option in the Bank Name dropdown on Invoice Account page")
     public void userShouldSelectsAnyOptionInTheBankNameDropdown() {
-        invoiceAccountPage.optionFromBankNameDropdown();
+        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
     }
 
     @When("User clicks Bank Account No textbox on Invoice Account page")
@@ -107,12 +127,13 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User enters a value {string} Bank Account No textbox on Invoice Account page")
     public void userEntersAValueBankAccountNoTextbox(String accountNo) {
-        invoiceAccountPage.fillBankAccountNoField(accountNo);
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.bankAccountNoInput, accountNo);
     }
 
     @Given("User should see the E-Bill email textbox on Invoice Account page")
     public void userShouldSeeTheEBillEmailTextbox() {
-        invoiceAccountPage.eBillEmailTextBoxDisplayed();
+        elementDisplayed(invoiceAccountPage.eBillEmailInput);
     }
 
     @Given("User clicks email field on Invoice Account page")
@@ -120,25 +141,47 @@ public class InvoiceAccountStepDefinition extends BasePage {
         clickField(invoiceAccountPage.eBillEmailInput);
     }
 
-    @And("User enters invalid emails {string} and should see {string} under mobile phone number field on Invoice Account page")
-    public void userEntersInvalidEmailsAndShouldSeeUnderMobilePhoneNumberField(String invalidEmail, String warningMessage) {
-        invoiceAccountPage.verifyEnterInvalidFormatEmail(invalidEmail, warningMessage);
+    @And("User enters invalid emails {string} on Invoice Account Page")
+    public void userEntersInvalidEmailsOnInvoiceAccountPage(String email) {
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillEmailInput, email);
+    }
+
+    @Then("User should see {string} message under email field on Invoice Account page")
+    public void userShouldSeeMessageUnderEmailFieldOnInvoiceAccountPage(String message) {
+        invoiceAccountPage
+                .verifyInputErrorMessage(invoiceAccountPage.eBillEmailErrorText, message);
+    }
+
+    @Then("User should see that background is red for the email field on Invoice Account page")
+    public void userShouldSeeThatBackgroundIsRedForTheEmailFieldOnInvoiceAccountPage() {
+        warningBackgroundRedColorOne(invoiceAccountPage.eBillEmailInputDiv, true);
     }
 
     @Given("User enters valid {string} in to the email field on Invoice Account page")
-    public void userEntersValidInToTheEmailField(String email) {
-        invoiceAccountPage.enterValidFormatEmail(email);
-
+    public void userEntersValidInToTheEmailFieldOnInvoiceAccountPage(String email) {
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillEmailInput, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Invoice Account page")
     public void userShouldSeeAndAndInsideOfEmailStructure(String dotSign, String tagSign, String email) {
-        invoiceAccountPage.verifyValidFormatEmail(dotSign, tagSign, email);
+        verifyValidFormatEmail(dotSign, tagSign, email);
+    }
+
+    @Then("User should see that background is not red for the email field on Invoice Account Page")
+    public void userShouldSeeThatBackgroundIsNotRedForTheEmailFieldOnInvoiceAccountPage() {
+        warningBackgroundRedColorOne(invoiceAccountPage.eBillEmailInputDiv, false);
+    }
+
+    @Given("User should see Country Code dropdown on Invoice Account Page")
+    public void userShouldSeeCountryCodeDropdownOnInvoiceAccountPage() {
+        elementDisplayed(invoiceAccountPage.eBillCountryCodeDropdown);
     }
 
     @Given("User should see the E-Bill mobile number textbox on Invoice Account page")
     public void userShouldSeeTheEBillMobileNumberTextbox() {
-        invoiceAccountPage.eBillMobileNumberTextBoxDisplayed();
+        elementDisplayed(invoiceAccountPage.eBillMobileNumberInput);
     }
 
     @When("User clicks Country Code dropdown on Invoice Account page")
@@ -146,44 +189,57 @@ public class InvoiceAccountStepDefinition extends BasePage {
         clickField(invoiceAccountPage.eBillCountryCodeDropdown);
     }
 
-    @Then("User should selects +355 option from country code dropdown on Invoice Account page")
-    public void userShouldSelectsOptionFromCountryCodeDropdown() {
-        clickField(invoiceAccountPage.albanianCountryCode);
+    @Then("User should ensure each options in Country Code dropdown are selectable on Invoice Account page")
+    public void userShouldEnsureEachOptionsInCountryCodeDropdownAreSelectableOnInvoiceAccountPage() {
     }
 
-    @And("User clicks E-Bill mobile number field on Invoice Account page")
-    public void userClicksEBillMobileNumberField() {
+    @When("User selects {string} option in the Country Code dropdown on Invoice Account page")
+    public void userSelectsOptionInTheCountryCodeDropdownOnInvoiceAccountPage(String countryCode) {
+        selectSpecificOptionFromDropdown(countryCode);
+    }
+
+    @And("User clicks mobile phone number field on Invoice Account page")
+    public void userClicksMobilePhoneNumberFieldOnInvoiceAccountPage() {
         clickField(invoiceAccountPage.eBillMobileNumberInput);
     }
 
-    @And("User enters invalid {string} phone numbers and should see {string} under mobile phone number field on Invoice Account page")
-    public void userEntersInvalidPhoneNumbersAndShouldSeeUnderMobilePhoneNumberField(String invalidMobile, String warningMessage) {
-        invoiceAccountPage.verifyEnterInvalidFormatMobilePhoneNumber(invalidMobile, warningMessage);
+    @And("User leaves blank mobile phone number field on Invoice Account page")
+    public void userLeavesBlankMobilePhoneNumberFieldOnInvoiceAccountPage() {
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, "" + Keys.TAB);
     }
 
-    @Then("User should selects +213 option from country code dropdown except Albania and clicks mobile phone numbers field on Invoice Account page")
-    public void userShouldSelectsOptionFromCountryCodeDropdownExceptAlbaniaAndClicksMobilePhoneNumbersField() {
-        clickField(invoiceAccountPage.countryCodeExceptAlbanian);
-    }
-
-    @And("User leaves blank mobile phone number field and should see {string} warning message on phone field on Invoice Account page")
-    public void userLeavesBlankMobilePhoneNumberFieldAndShouldSeeWarningMessageOnPhoneFieldOnInvoiceAccountPage(String warningMessage) {
-        invoiceAccountPage.leaveBlankMobileNumber(warningMessage);
-    }
 
     @And("User enters mobile phone number {string} with other country code except Albania on Invoice Account page")
-    public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbania(String phoneNumber) {
-        invoiceAccountPage.fillOtherMobilePhoneNumberExceptAlbanian(phoneNumber);
+    public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbaniaOnInvoiceAccountPage(String phoneNumber) {
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
+    }
+
+    @And("User enters invalid {string} phone numbers on Invoice Account page")
+    public void userEntersInvalidPhoneNumbersOnInvoiceAccountPage(String phoneNumber) {
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
+    }
+
+    @Then("User should see {string} message under mobile phone number field on Invoice Account page")
+    public void userShouldSeeMessageUnderMobilePhoneNumberFieldOnInvoiceAccountPage(String message) {
+        invoiceAccountPage
+                .verifyInputErrorMessage(invoiceAccountPage.phoneNumberErrorText, message);
     }
 
 
     @And("User enters valid {string} into the phone number field on Invoice Account page")
     public void userEntersValidIntoThePhoneNumberFieldOnInvoiceAccountPage(String phoneNumber) {
-        invoiceAccountPage.fillValidMobilePhoneNumber(phoneNumber);
+        invoiceAccountPage
+                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
     }
 
-    @Then("User should not see {string} under mobile phone number field on Invoice Account page")
-    public void userShouldNotSeeUnderMobilePhoneNumberFieldOnInvoiceAccountPage(String warningMessage) {
-        invoiceAccountPage.phoneNumberWarningMessageNotDisplayed(warningMessage);
+    @Then("User should not see the warning message on phone field on Invoice Account page")
+    public void userShouldNotSeeTheWarningMessageOnPhoneFieldOnInvoiceAccountPage() {
+        elementNotDisplayed(invoiceAccountPage.phoneNumberErrorText);
     }
+
+
+
 }

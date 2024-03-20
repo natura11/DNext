@@ -1,22 +1,14 @@
 package dnext.com.pages.createBusinnesCustomerPages;
 
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import io.cucumber.datatable.DataTable;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Log4j2
@@ -245,11 +237,6 @@ public class AdminInformationPage extends BasePage {
         } catch (Exception e) {
             log.info("Error Message: Red Warning message is  displaying!!");
         }
-        return this;
-    }
-
-    public AdminInformationPage verifyValidFormatEmail(String dotSign, String tagSign, String email) {
-        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
         return this;
     }
 

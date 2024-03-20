@@ -190,11 +190,6 @@ public class GeneralInformationPage extends BasePage {
         return this;
     }
 
-    public GeneralInformationPage verifyValidFormatEmail(String dotSign, String tagSign, String email) {
-        Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
-        return this;
-    }
-
     public GeneralInformationPage communicationMethodDropdownSelectable() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
         return this;

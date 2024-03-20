@@ -13,23 +13,31 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Log4j2
 public class AddressInformationStepDefinition extends BasePage {
-    private AddressInformationPage addressInformationPage;
+    AddressInformationPage addressInformationPage;
 
     @Given("User clicks the Address Information button")
     public void userClicksTheAddressInformationButton() {
-        addressInformationPage.clickAddressInformationIcon();
+        clickField(addressInformationPage.addressInformationButton);
     }
 
-
-    @Given("User is on the Address Information page")
-    public void userIsOnTheAddressInformationPage() {
+    @Then("User is on the Address Information Page")
+    public void userShouldSeeTheAddressInformationPage() {
         addressInformationPage.verifyUserIsOnAddressInformationPage();
+    }
+
+    @And("User clicks Next button on Address Information Page")
+    public void userClicksNextButtonOnAddressInformationPage() {
+        clickField(addressInformationPage.nextButtonOnAddressInformationPage);
+    }
+
+    @And("User clicks Back button on Address Information Page")
+    public void userClicksBackButtonOnAddressInformationPage() {
+        clickField(addressInformationPage.backButtonOnAddressInformationPage);
     }
 
     @Given("User should see the Address Line 1 textbox on Address Information Page")
     public void userShouldSeeTheAddressLineOneTextbox() {
-        addressInformationPage
-                .elementDisplayed(addressInformationPage.billingAddressLineOneInput);
+        elementDisplayed(addressInformationPage.billingAddressLineOneInput);
     }
 
     @And("User clicks Address Line 1 Field on Address Information Page")
@@ -44,21 +52,19 @@ public class AddressInformationStepDefinition extends BasePage {
     }
 
     @And("User clears Address Line 1 Field on Address Information Page")
-    public void userClearsAddressLineField() {
+    public void userClearsAddressLineFieldOnAddressInformationPage() {
         addressInformationPage.billingAddressLineOneInput.clear();
     }
 
     @Then("User sees the Address Line 1 is required on Address Information Page")
     public void userSeesTheAddressLineIsRequired() {
         clickField(addressInformationPage.billingAddressMediumType);
-        addressInformationPage.
-                warningBackgroundRedColor(addressInformationPage.billingAddressLineOneInputDiv);
+        warningBackgroundRedColorOne(addressInformationPage.billingAddressLineOneInputDiv, true);
     }
 
     @Given("User should see the Address Line 2 textbox on Address Information Page")
     public void userShouldSeeTheAddressLineTwoTextbox() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingAddressLineTwoInput);
+        elementDisplayed(addressInformationPage.billingAddressLineTwoInput);
     }
 
     @And("User clicks Address Line 2 Field on Address Information Page")
@@ -74,8 +80,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Post Code textbox on Address Information Page")
     public void userShouldSeeThePostCodeTextbox() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingPostCodeInput);
+        elementDisplayed(addressInformationPage.billingPostCodeInput);
     }
 
     @And("User clicks Post Code Field on Address Information Page")
@@ -91,8 +96,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Medium Type textbox on Address Information Page")
     public void userShouldSeeTheMediumTypeTextbox() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingAddressMediumType);
+        elementDisplayed(addressInformationPage.billingAddressMediumType);
     }
 
     @Then("User see the Medium Type textbox is non-editable on Address Information Page")
@@ -103,8 +107,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Contact Type textbox on Address Information Page")
     public void userShouldSeeTheContactTypeTextbox() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingAddressContactType);
+        elementDisplayed(addressInformationPage.billingAddressContactType);
     }
 
     @Then("User see the Contact Type textbox is non-editable on Address Information Page")
@@ -115,8 +118,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Country dropdown on Address Information Page")
     public void userShouldSeeTheCountryDropdown() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingCountryDropdown);
+        elementDisplayed(addressInformationPage.billingCountryDropdown);
     }
 
     @Then("User see the Country dropdown is non-editable on Address Information Page")
@@ -133,8 +135,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the City dropdown on Address Information Page")
     public void userShouldSeeTheCityDropdown() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.billingCityDropdown);
+        elementDisplayed(addressInformationPage.billingCityDropdown);
     }
 
     @When("User clicks City dropdown on Address Information Page")
@@ -144,8 +145,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @And("User should ensure each options in City dropdown are selectable on Address Information Page")
     public void userShouldEnsureEachOptionsInCityDropdownAreSelectable() {
-        addressInformationPage.cityDropdownSelectable();
-        
+        isDropdownSelectableOne();
     }
 
     @Then("User should select {string} option in the City dropdown on Address Information Page")
@@ -155,8 +155,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Service Address slider on Address Information Page")
     public void userShouldSeeTheServiceAddressSlider() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.alsoServiceAddressToggleSwitch);
+        elementDisplayed(addressInformationPage.alsoServiceAddressToggleSwitch);
     }
 
     @When("User switch off the slider on Address Information Page")
@@ -172,8 +171,7 @@ public class AddressInformationStepDefinition extends BasePage {
     @Given("User should see the Address Line 1 textbox for Service Address on Address Information Page")
     public void userShouldSeeTheAddressLine1TextboxForServiceAddress() {
         Utils.scrollToElement(addressInformationPage.serviceAddressLineOneInput);
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.serviceAddressLineOneInput);
+        elementDisplayed(addressInformationPage.serviceAddressLineOneInput);
     }
 
     @And("User clicks Address Line 1 Field for Service Address on Address Information Page")
@@ -194,14 +192,12 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User sees the Address Line 1 is required for Service Address on Address Information Page")
     public void userSeesTheAddressLineIsRequiredForServiceAddress() {
-        addressInformationPage.
-                warningBackgroundRedColor(addressInformationPage.serviceAddressLineOneInputDiv);
+        warningBackgroundRedColorOne(addressInformationPage.serviceAddressLineOneInputDiv, true);
     }
 
     @Given("User should see the Address Line 2 textbox for Service Address on Address Information Page")
     public void userShouldSeeTheAddressLine2TextboxForServiceAddress() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.serviceAddressLineTwoInput);
+        elementDisplayed(addressInformationPage.serviceAddressLineTwoInput);
     }
 
     @And("User clicks Address Line 2 Field for Service Address on Address Information Page")
@@ -217,8 +213,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Post Code textbox for Service Address on Address Information Page")
     public void userShouldSeeThePostCodeTextboxForServiceAddress() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.servicePostCodeInput);
+        elementDisplayed(addressInformationPage.servicePostCodeInput);
     }
 
     @And("User clicks Post Code Field for Service Address on Address Information Page")
@@ -234,8 +229,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Given("User should see the Country dropdown for Service Address on Address Information Page")
     public void userShouldSeeTheCountryDropdownForServiceAddress() {
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.serviceCountryDropdown);
+        elementDisplayed(addressInformationPage.serviceCountryDropdown);
     }
 
     @Then("User see the Country dropdown is non-editable for Service Address on Address Information Page")
@@ -254,9 +248,7 @@ public class AddressInformationStepDefinition extends BasePage {
     @Given("User should see the City dropdown for Service Address on Address Information Page")
     public void userShouldSeeTheCityDropdownForServiceAddress() {
         Utils.scrollToElement(addressInformationPage.serviceCityDropdown);
-        addressInformationPage.
-                elementDisplayed(addressInformationPage.serviceCityDropdown);
-
+        elementDisplayed(addressInformationPage.serviceCityDropdown);
     }
 
     @When("User clicks City dropdown for Service Address on Address Information Page")
@@ -266,7 +258,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @And("User should ensure each options in City dropdown are selectable for Service Address on Address Information Page")
     public void userShouldEnsureEachOptionsInCityDropdownAreSelectableForServiceAddress() {
-        addressInformationPage.cityDropdownSelectable();
+        isDropdownSelectableOne();
     }
 
     @Then("User should select {string} option in the City dropdown for Service Address on Address Information Page")
@@ -274,8 +266,6 @@ public class AddressInformationStepDefinition extends BasePage {
         selectSpecificOptionFromDropdown(city);
     }
 
-    @And("User clicks next Button on Address Information Page")
-    public void userClicksNextButtonOnAddressInformationPage() {
-        clickField(addressInformationPage.nextButtonOnAddressInformationPage);
-    }
+
+
 }
