@@ -39,9 +39,9 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//div[text()='Account']")
     public WebElement accountButton;
 
-    @FindBy(xpath = "//mat-row[1]//mat-cell[7]//button[1]")
+    @FindBy(xpath = "(//span[.=' New Order '])[2]")
     public WebElement newOrderBtnOnPrepaid;
-    @FindBy(xpath = "//mat-row[2]//mat-cell[7]//button[1]//span[1]//span[1]")
+    @FindBy(xpath = "(//span[.=' New Order '])[4]")
     public WebElement newOrderBtnOnPostpaid;
 
     @FindBy(xpath = "//*[.='Products']")

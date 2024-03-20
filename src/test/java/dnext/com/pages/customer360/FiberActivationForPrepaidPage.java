@@ -66,6 +66,9 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement orderButtonOnCustomer360Page;
     @FindBy(xpath = "//div[contains(text(),'Fiscalization Receipts')]")
     public WebElement fiscalizationReceiptsButton;
+    @FindBy(css = ".mat-ripple.mat-tab-header-pagination.mat-tab-header-pagination-after.mat-elevation-z4")
+    public WebElement directionSignTofiscalizationReceiptsButton;
+
 
     public FiberActivationForPrepaidPage numbersCreationForSerialNumbers() {
         String[] numbers =
@@ -120,14 +123,25 @@ public class FiberActivationForPrepaidPage extends BasePage {
         return this;
         }
 
-        public FiberActivationForPrepaidPage activationFormClicking() throws AWTException {
+        public FiberActivationForPrepaidPage activationFormClicking()  {
         clickField(activationFormButtonAfterCheckout);
-            Utils.waitFor(3);
-            Robot robot = new Robot();
-            robot.keyPress(KeyEvent.VK_ESCAPE);
-            robot.keyRelease(KeyEvent.VK_ESCAPE);
-            switchToWindowNew(0);
-            Utils.waitFor(1);
+            Utils.waitFor(4);
+        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
+            if(Driver.getDriver().getWindowHandles().size()>1){
+                switchToWindowNew(1);
+                Utils.waitFor(3);
+                Robot robot = null;
+                try {
+                    robot = new Robot();
+                } catch (AWTException e) {
+                    throw new RuntimeException(e);
+                }
+                robot.keyPress(KeyEvent.VK_ESCAPE);
+                robot.keyRelease(KeyEvent.VK_ESCAPE);
+                Utils.waitFor(1);
+                Driver.getDriver().close();
+                switchToWindowNew(0);
+            }
             return this;
         }
 
@@ -138,15 +152,18 @@ public class FiberActivationForPrepaidPage extends BasePage {
 //      String orderDateOfFiscalizationReceipt="";
        clickField(orderButtonOnCustomer360Page);
        agrementIdOfOrder=aggreementIdOfOrder.getText();
+        System.out.println("agrementIdOfOrder is :"+ agrementIdOfOrder);
 //       orderDateOfOrderButton=orderDateOfOrder.getText();
-       clickField(fiscalizationReceiptsButton);
-       agrementIdOfFiscalizationReceipt=aggreementIdOfFiscalizationReceipt.getText();
+//       clickField(directionSignTofiscalizationReceiptsButton);
+        clickField(fiscalizationReceiptsButton);
+        agrementIdOfFiscalizationReceipt=aggreementIdOfFiscalizationReceipt.getText();
+        System.out.println("agrementIdOfFiscalizationReceipt is :"+ agrementIdOfFiscalizationReceipt);
 //       orderDateOfFiscalizationReceipt=invoiceDateOfFiscalizationReceipt.getText();
 //       System.out.println("orderDateOfOrderButton is "+ orderDateOfOrderButton);
 //       System.out.println("orderDateOfFiscalizationReceipt is " +orderDateOfFiscalizationReceipt);
 //       Assert.assertTrue(orderDateOfOrderButton.contains(orderDateOfFiscalizationReceipt));
-       System.out.println("agrementIdOfOrder is :"+ agrementIdOfOrder);
-       System.out.println("agrementIdOfFiscalizationReceipt is :"+ agrementIdOfFiscalizationReceipt);
+
+
        Assert.assertTrue(agrementIdOfOrder.contains(agrementIdOfFiscalizationReceipt));
        return this;
     }
