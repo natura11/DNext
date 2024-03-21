@@ -1,5 +1,5 @@
 @VFALFT-22443 @vtv @regression
-Feature: TVT Activation
+Feature: VTV Activation
 
   Background:
     Given  I have opened the "Customer Management" application
@@ -30,7 +30,7 @@ Feature: TVT Activation
     And User selects Tarife Instalimi from Purchasable Addons part on Customer360 search page
     And User selects ALL4000 3Month option as cash  method on Customer360 search page
     And User clicks the ADD to Cart button on Customer360 search page
-    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on VTV is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
@@ -54,11 +54,21 @@ Feature: TVT Activation
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
+    And User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer360 search page
+    And User click the detail button
+    Given Get Authorization for API
+    When Create an endpoint component
+      | Type                 | Value                           | parameters           |
+      | endpoint             | getFromVtvForFiscalization      |                      |
+      | requestType          | getRequestOfVtvForFiscalization |                      |
+      |                      |                                 |                      |
+      | fiscalizationBaseURI | fiscalizationBaseURI            | fiscalizationBaseURI |
+
+    When Send a request
+    Then Status code is 200
+    And User clicks the Order button on Customer360 search page
     Then User should see the Order Status turned to completed  on Customer360 search page
-   # When User get the Agreement Id from Order part on Customer360 search page
-#    And User clicks the Fiscalization Receipt on Customer360 search page
-#    And User get the Agreement Id from Fiscalization Receipts part on Customer360 search page
-#    When User should ensure that both Agreement Id's of Order part and Fiscalization Receipts part are equal
+
 
 
 

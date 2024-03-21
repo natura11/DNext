@@ -15,7 +15,7 @@ Feature: Fiber Activation for Prepaid
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of searched name on Customer360 search page
     When User clicks the Account tab on Customer360 search page
-    When User clicks the New Order for prepaid rating type on Customer360 search page
+    When User clicks the New Order for prepaid rating for the customer type on Customer360 search page
     Then User is redirected to the  product catalog on Customer360 search page
     When User selects Internet option from products on Customer360 search page
     And  User clicks the search button under product list on Customer360 search page
@@ -55,10 +55,23 @@ Feature: Fiber Activation for Prepaid
     And User clicks the Order button on Customer360 search page
     Then User should see the Order Status OF Fiber Activation turned to completed  on Customer360 search page
     And User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer360 search page
-   # When User get the Agreement Id from Order part on Customer360 search page
-#    And User clicks the Fiscalization Receipt on Customer360 search page
-#    And User get the Agreement Id from Fiscalization Receipts part on Customer360 search page
-#    When User should ensure that both Agreement Id's of Order part and Fiscalization Receipts part are equal
+    And User click the detail button
+    Given Get Authorization for API
+    When Create an endpoint component
+      | Type                 | Value                      | parameters           |
+      | endpoint             | getFromFiscalization       |                      |
+      | requestType          | getRequestForFiscalization |                      |
+      |                      |                            |                      |
+      | fiscalizationBaseURI | fiscalizationBaseURI       | fiscalizationBaseURI |
+    When Send a request
+    Then Status code is 200
+
+
+
+
+
+
+
 
 
 

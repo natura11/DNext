@@ -39,9 +39,9 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//div[text()='Account']")
     public WebElement accountButton;
 
-    @FindBy(xpath = "(//span[.=' New Order '])[2]")
-    public WebElement newOrderBtnOnPrepaid;
     @FindBy(xpath = "(//span[.=' New Order '])[4]")
+    public WebElement newOrderBtnOnPrepaid;
+    @FindBy(xpath = "(//span[.=' New Order '])[2]")
     public WebElement newOrderBtnOnPostpaid;
 
     @FindBy(xpath = "//*[.='Products']")
@@ -203,8 +203,9 @@ public class VtvActivationPage extends BasePage {
                 clickField(variablesChoiceIconOnCamunda);
                 Utils.waitFor(2);
                 //Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
-                log.error("Error message is " +errorMessageOnVariablesOnCamunda.getText());
-                switchToWindowNew(0);
+                log.error("Error message at Camunda is " +errorMessageOnVariablesOnCamunda.getText());
+            System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
+            switchToWindowNew(0);
 
         }
         return this;

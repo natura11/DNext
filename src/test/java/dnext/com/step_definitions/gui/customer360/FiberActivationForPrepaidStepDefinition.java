@@ -92,4 +92,14 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
     public void userComparesTheAgreementIdOnOrderWithAgreementIdOnFiscalizationReceiptsOnCustomerSearchPage(int arg0) {
         fiberActivationForPrepaidPage.verificationOfFiscalisationWithOrder();
     }
+
+    @And("User click the detail button")
+    public void userClickTheDetailButton() {
+        clickField(fiberActivationForPrepaidPage.detailFirstButtonOnFiscalization);
+    }
+
+    @When("User clicks the New Order for prepaid rating for the customer type on Customer{int} search page")
+    public void userClicksTheNewOrderForPrepaidRatingForTheCustomerTypeOnCustomerSearchPage(int arg0) {
+        clickField(fiberActivationForPrepaidPage.newOrderBtnOnPrepaid);
+    }
 }

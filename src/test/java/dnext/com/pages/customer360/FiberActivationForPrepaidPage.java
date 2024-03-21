@@ -68,6 +68,13 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement fiscalizationReceiptsButton;
     @FindBy(xpath = "(//div[@class='mat-tab-header-pagination-chevron'])[2]")
     public WebElement directionSignTofiscalizationReceiptsButton;
+    @FindBy(xpath = "(//span[.=' Detail '])[1]")
+    public WebElement detailFirstButtonOnFiscalization;
+    @FindBy(xpath = "(//span[.=' New Order '])[2]")
+    public WebElement newOrderBtnOnPrepaid;
+    @FindBy(xpath = "(//span[.=' New Order '])[4]")
+    public WebElement newOrderBtnOnPostpaid;
+
 
 
     public FiberActivationForPrepaidPage numbersCreationForSerialNumbers() {
@@ -129,7 +136,8 @@ public class FiberActivationForPrepaidPage extends BasePage {
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
         if (Driver.getDriver().getWindowHandles().size() > 1) {
             switchToWindowNew(1);
-            Utils.waitFor(3);
+            Utils.waitFor(5);
+
             Robot robot = null;
             try {
                 robot = new Robot();
@@ -138,6 +146,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
                 e.printStackTrace();
             }
             if (robot != null) {
+                robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyPress(KeyEvent.VK_ESCAPE);
                 robot.keyRelease(KeyEvent.VK_ESCAPE);
                 Utils.waitFor(1); // Adjust this wait time as needed
