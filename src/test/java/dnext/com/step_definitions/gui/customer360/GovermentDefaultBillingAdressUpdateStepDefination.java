@@ -2,6 +2,7 @@ package dnext.com.step_definitions.gui.customer360;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.GovermentDefaultBillingAdressUpdatePage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,6 +31,10 @@ public class GovermentDefaultBillingAdressUpdateStepDefination extends BasePage 
     @Given("User selects opened name of id on Customer360 search page")
     public void user_selects_opened_name_of_id_on_customer360_search_page() {
         clickField(govermentDefaultBillingAdressUpdatePage.idInfofield);
+    }
+    @And("User clicks the OK button for Consent Information Of This Customer warning on Customer{int} search page")
+    public void userClicksTheOKButtonForConsentInformationOfThisCustomerWarningOnCustomerSearchPage(int arg0) {
+     clickField(govermentDefaultBillingAdressUpdatePage.okButtonForConsentInformationOfThisCustomer);
     }
     @Given("User should  clicks Address button on Customer360 search page")
     public void user_should_clicks_address_button_on_customer360_search_page() {
@@ -65,5 +70,6 @@ public class GovermentDefaultBillingAdressUpdateStepDefination extends BasePage 
     public void user_should_see_this_pop_up_message_top_of_screen_on_customer360_search_page(String string) {
         govermentDefaultBillingAdressUpdatePage.verifyAddressupdatedsuccessfullyMessage(string);
     }
+
 
 }

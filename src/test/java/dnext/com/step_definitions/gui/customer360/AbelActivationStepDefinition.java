@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.junit.Assert;
 
 @Log4j2
 @AllArgsConstructor
@@ -35,9 +36,9 @@ public class AbelActivationStepDefinition extends BasePage {
     public void user_slelects_the_allo_option_for_smart_card_contract_duration_on_customer360_search_page(Integer int1) {
         clickField(abelActivationPage.contract12XALL0ForSmartCard);
     }
-    @And("User enters {string}as Smart Card Serial Number on Customer{int} search page")
-    public void userEntersAsSmartCardSerialNumberOnCustomerSearchPage(String number, int arg1) {
-        sendKeys(abelActivationPage.smartCardSerialNumberField,number);
+    @And("User enters  Smart Card Serial Number and  clicks the Add to Cart button on Customer{int} search page")
+    public void userEntersSmartCardSerialNumberAndClicksTheAddToCartButtonOnCustomerSearchPage(int arg0) {
+        abelActivationPage.serialNumbersCreation();
     }
     @When("User selects Akses Fee per Dekoder Basic on Customer360 search page")
     public void user_selects_akses_fee_per_dekoder_basic_on_customer360_search_page() {
@@ -55,10 +56,15 @@ public class AbelActivationStepDefinition extends BasePage {
     public void user_selects_all1500_12month_option_as_cash_method_for_tarife_instalimi_contract_duration_on_customer360_search_page() {
      clickField(abelActivationPage.contractALL150012MonthForTarifeInstalimi);
     }
+    @Then("User sees the name of {string} which was selected product on Abel is in the Shopping Cart on Customer{int} search page")
+    public void userSeesTheNameOfWhichWasSelectedProductOnAbelIsInTheShoppingCartOnCustomerSearchPage(String text, int arg1) {
+        Assert.assertEquals(text,abelActivationPage.selectedProductInShoppingCart.getText());
+    }
     @Then("User should see the Order Status of Abel turned to completed  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusOfAbelTurnedToCompletedOnCustomerSearchPage(int arg0) {
         abelActivationPage.verifyTheOrderStatusIsCompleted();
     }
+
 
 
 }

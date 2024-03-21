@@ -108,7 +108,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User selects Akses Fee per Dekoder Premium on Customer{int} search page")
     public void userSelectsAksesFeePerDekoderPremiumOnCustomerSearchPage(int arg0) {
-        Utils.waitForVisibility(vtvActivationPage.addIconForAkesFeePerDokoderPremium,10);
+        Utils.waitForVisibility(vtvActivationPage.addIconForAkesFeePerDokoderPremium, 10);
         clickField(vtvActivationPage.addIconForAkesFeePerDokoderPremium);
 
     }
@@ -140,7 +140,6 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitFor(5);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
 
     }
@@ -150,8 +149,8 @@ public class VtvActivationStepDefinition extends BasePage {
         clickField(vtvActivationPage.shoppingCartIcon);
     }
 
-    @Then("User sees the name of {string} which was selected product is in the Shopping Cart on Customer{int} search page")
-    public void userSeesTheNameOfWhichWasSelectedProductIsInTheShoppingCartOnCustomerSearchPage(String warning, int arg1) {
+    @Then("User sees the name of {string} which was selected product on VTV is in the Shopping Cart on Customer{int} search page")
+    public void userSeesTheNameOfWhichWasSelectedProductOnVTVIsInTheShoppingCartOnCustomerSearchPage(String warning, int arg1) {
         warningMessage(warning, vtvActivationPage.selectedProductInShoppingCart);
     }
 
@@ -268,11 +267,6 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see the Order Status turned to completed  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusTurnedToCompletedOnCustomerSearchPage(int arg0) {
-//        //Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-//        Utils.waitFor(12);
-//        Driver.getDriver().navigate().refresh();
-//        Utils.waitFor(12);
-//        //Driver.getDriver().navigate().refresh();
         vtvActivationPage.verifyTheOrderStatusIsCompleted();
 
     }
@@ -281,4 +275,6 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userGetTheAgreementIdFromOrderPartOnCustomerSearchPage(int arg0) {
         vtvActivationPage.verifyOrderAggrementIdMatchedInFiscalizationReceipt();
     }
+
+
 }
