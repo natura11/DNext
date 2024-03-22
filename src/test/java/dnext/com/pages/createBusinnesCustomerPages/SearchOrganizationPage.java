@@ -20,6 +20,7 @@ import java.util.NoSuchElementException;
 public class SearchOrganizationPage extends BasePage {
     Faker faker = new Faker();
 
+    public String nonExistenceNiptNumber;
     @FindBy(xpath = "//mat-icon[normalize-space()='create']")
     public WebElement searchOrganizationIcon;
     @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[1]/mat-form-field/div/div[1]/div[3]")
@@ -62,6 +63,13 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage usingExistenceNiptNumber(String number) {
+        Utils.waitForPageToLoad();
+        niptNumberField.sendKeys(number);
+        return this;
+    }
+
+    public SearchOrganizationPage usingNonExistenceNiptNumber(String number) {
+        nonExistenceNiptNumber = number;
         Utils.waitForPageToLoad();
         niptNumberField.sendKeys(number);
         return this;

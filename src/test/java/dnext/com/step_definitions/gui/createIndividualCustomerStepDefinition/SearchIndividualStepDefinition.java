@@ -33,8 +33,8 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     }
 
-    @And("User clicks search button on Create Individual Customer page on Create Individual Customer page")
-    public void userClicksSearchButtonOnCreateIndividualCustomerPageOnCreateIndividualCustomerPage() {
+    @And("User clicks search button on Create Individual Customer page")
+    public void userClicksSearchButtonOnCreateIndividualCustomerPage() {
         clickField(searchIndividualPage.searchBtnOnSearchIndividualHomePage);
 
     }
@@ -44,8 +44,8 @@ public class SearchIndividualStepDefinition extends BasePage {
         warningMessage(message, searchIndividualPage.warningForExistingIdNumberOnSearchIndividualHomePage);
     }
 
-    @And("User clicks next Button on on Create Individual Customer page")
-    public void userClicksNextButtonOnOnCreateIndividualCustomerPage() {
+    @And("User clicks next Button in Search Individual on Create Individual Customer page")
+    public void userClicksNextButtonInSearchIndividualOnCreateIndividualCustomerPage() {
         clickField(searchIndividualPage.nextBtnOnSearchIndividualHomePage);
     }
 
