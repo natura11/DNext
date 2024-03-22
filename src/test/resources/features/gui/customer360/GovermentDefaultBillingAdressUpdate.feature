@@ -6,25 +6,6 @@ Feature: Government Default Billing Address Updating
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
 
-  @accessId
-  Scenario: As a user I want to access default billing address by using customer id
-    Given User clicks select search Type field on Customer360 search page
-    And   User selects Customer Id options on Customer360 search page
-    And   User fills in enter Customer Id field with valid "F52115451" id on Customer360 search page
-    And   User clicks Search Button on Customer360 search page
-    And   User selects opened name of id on Customer360 search page
-
-  @accessAddress
-  Scenario:As a user I want to access Edit Button to update information
-    Given User clicks select search Type field on Customer360 search page
-    And   User selects Customer Id options on Customer360 search page
-    And   User fills in enter Customer Id field with valid "F52115451" id on Customer360 search page
-    And   User clicks Search Button on Customer360 search page
-    And   User selects opened name of id on Customer360 search page
-    And   User should  clicks Address button on Customer360 search page
-    And   User clicks on the three dots near the DEFAULT_BILLING_ADDRESS on Customer360 search page
-    And   User clicks Edit Button on DEFAULT_BILLING_ADDRESS Customer360 search page
-
   @updateDefaultBillingAddress
   Scenario Outline:As a user I want to update Default Billing Address with using CustomerId
     Given User clicks select search Type field on Customer360 search page

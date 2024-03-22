@@ -36,6 +36,7 @@ Feature: Fiber Activation for Prepaid
     And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
     Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
+    And User clicks the create receipt button
     When User clicks the Go Back to Customer360 button on Customer360 search page
     Then User is on the Customer360 page
     And User clicks the Order button on Customer360 search page

@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.customer360;
 
+import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.FiberActivationForPrepaidPage;
@@ -101,5 +102,10 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
     @When("User clicks the New Order for prepaid rating for the customer type on Customer{int} search page")
     public void userClicksTheNewOrderForPrepaidRatingForTheCustomerTypeOnCustomerSearchPage(int arg0) {
         clickField(fiberActivationForPrepaidPage.newOrderBtnOnPrepaid);
+    }
+
+    @And("User clicks the create receipt button")
+    public void userClicksTheCreateReceiptButton() {
+        fiberActivationForPrepaidPage.receipCreationForABCOM();
     }
 }

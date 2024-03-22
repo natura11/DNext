@@ -29,6 +29,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @Then("User is on the Customer360 page")
     public void user_is_on_the_customer360_page() {
         vtvActivationPage.customerSearchIcon.isDisplayed();
+        Utils.waitFor(1);
     }
 
 
@@ -177,7 +178,7 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
         Utils.waitFor(3);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
-        Utils.waitFor(120);
+        Utils.waitFor(40);
 
     }
 
@@ -259,7 +260,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(300);
+        Utils.waitFor(200);
         Driver.getDriver().navigate().refresh();
         vtvActivationPage.switchToDnextFromFaveo();
 

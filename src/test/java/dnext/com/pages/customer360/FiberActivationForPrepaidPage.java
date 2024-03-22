@@ -74,7 +74,8 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement newOrderBtnOnPrepaid;
     @FindBy(xpath = "(//span[.=' New Order '])[4]")
     public WebElement newOrderBtnOnPostpaid;
-
+    @FindBy(xpath = " //span[.=' Create the receipt ']")
+    public WebElement createReceiptButton;
 
 
     public FiberActivationForPrepaidPage numbersCreationForSerialNumbers() {
@@ -146,7 +147,6 @@ public class FiberActivationForPrepaidPage extends BasePage {
                 e.printStackTrace();
             }
             if (robot != null) {
-                robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyPress(KeyEvent.VK_ESCAPE);
                 robot.keyRelease(KeyEvent.VK_ESCAPE);
                 Utils.waitFor(1); // Adjust this wait time as needed
@@ -175,6 +175,16 @@ public class FiberActivationForPrepaidPage extends BasePage {
         System.out.println("orderDateOfOrderButton is " + orderDateOfOrderButton);
         System.out.println("orderDateOfFiscalizationReceipt is " + orderDateOfFiscalizationReceipt);
         Assert.assertEquals(agrementIdOfOrder,agrementIdOfFiscalizationReceipt);
+        return this;
+    }
+
+    public FiberActivationForPrepaidPage receipCreationForABCOM(){
+        clickField(createReceiptButton);
+        Utils.waitFor(2);
+        switchToWindowNew(1);
+        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
+        Driver.getDriver().close();
+        switchToWindowNew(0);
         return this;
     }
 

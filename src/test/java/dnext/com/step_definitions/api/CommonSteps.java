@@ -121,7 +121,7 @@ public class CommonSteps extends BasePage {
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestForFiscalization")) {
             response = ApiBaseMethods.getRequestForFiscalization(fullEndpoint, token);
-            response.prettyPrint();
+            //response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfVtvForFiscalization")) {
             response = ApiBaseMethods.getRequestOfVtvForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
