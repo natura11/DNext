@@ -38,7 +38,7 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement editStreet2OnBillingAdress;
     @FindBy(xpath = "//input[@formcontrolname=\"postCode\"]")
     public WebElement editPostCodeOnBillingAdress;
-    @FindBy(xpath = "//*[@id=\"mat-dialog-0\"]/app-address-update-dialog/div/form/div[4]/button[1]")
+    @FindBy(xpath = "//*[.='save']")
     public WebElement saveBtnOnDefaultBillingAdress;
     @FindBy(xpath = "//span[.='Address updated successfully!']")
     public WebElement adressUpdatedSuccessfullyMessage;
@@ -48,6 +48,9 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement cityDropdownButtonOnAddressPage;
     @FindBy(xpath = "(//*[.='BERAT'])[6]")
     public WebElement cityBeratButtonOnAddressPage;
+    @FindBy(xpath = "//span[.=' Ok ']")
+    public WebElement okButtonForConsentInformationOfThisCustomer;
+            ;
 
     public GovermentDefaultBillingAdressUpdatePage usingValidCustomerId(String validId) {
         Utils.waitForPageToLoad();
@@ -57,12 +60,14 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public GovermentDefaultBillingAdressUpdatePage usingNewDataForAddress1(String newStreet1) {
         Utils.waitForPageToLoad();
         editStreet1OnBillingAdress.clear();
+        Utils.waitFor(1);
         editStreet1OnBillingAdress.sendKeys(newStreet1);
         return this;
     }
     public GovermentDefaultBillingAdressUpdatePage usingNewDataForAddress2(String newStreet1) {
         Utils.waitForPageToLoad();
         editStreet2OnBillingAdress.clear();
+        Utils.waitFor(1);
         editStreet2OnBillingAdress.sendKeys(newStreet1);
         return this;
     }

@@ -32,6 +32,7 @@ Feature: Government Default Billing Address Updating
     And   User fills in enter Customer Id field with valid "F52115451" id on Customer360 search page
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of id on Customer360 search page
+    And User clicks the OK button for Consent Information Of This Customer warning on Customer360 search page
     And   User should  clicks Address button on Customer360 search page
     And   User clicks on the three dots near the DEFAULT_BILLING_ADDRESS on Customer360 search page
     And   User clicks Edit Button on DEFAULT_BILLING_ADDRESS Customer360 search page
