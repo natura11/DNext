@@ -95,10 +95,10 @@ public class ContactInformationPage extends BasePage {
     public WebElement sameContactTypeErrorText;
 
     @FindBy(xpath = "(//span[text()='Next'])[4]//ancestor::button")
-    public WebElement nextButtonOnAddressInformationPage;
+    public WebElement nextButtonOnContactInformationPage;
 
     @FindBy(xpath = "(//span[text()='Back'])[3]//ancestor::button")
-    public WebElement backButtonOnAddressInformationPage;
+    public WebElement backButtonOnContactInformationPage;
 
 
     public ContactInformationPage verifyUserIsOnContactInformationPage() {
