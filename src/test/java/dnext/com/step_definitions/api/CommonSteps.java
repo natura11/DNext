@@ -4,6 +4,8 @@ import com.utilities.ApiBaseMethods;
 import com.utilities.ApiTokenGenerator;
 import com.utilities.ApiUtils;
 import com.utilities.ConfigurationReader;
+import dnext.com.pages.BasePage;
+import dnext.com.pages.customer360.FiberActivationForPrepaidPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,14 +17,15 @@ import io.restassured.response.Response;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
 
 
-public class CommonSteps {
+
+public class CommonSteps extends BasePage {
 
     Response response;
     public String token;
@@ -34,8 +37,12 @@ public class CommonSteps {
     static String ApiBaseURI = ConfigurationReader.getProperty("apiBaseURI");
     static String ApiCamundaBaseURI = ConfigurationReader.getProperty("apiCamundaBaseURI");
     static String ApiBrmBaseURI = ConfigurationReader.getProperty("apiBrmBaseURI");
-    static String apiGeoAdressURI = ConfigurationReader.getProperty("apiGeoAdressURI");
+    static String FiscalizationBaseURI = ConfigurationReader.getProperty("fiscalizationBaseURI");
+    static String ApiGeoAdressURI = ConfigurationReader.getProperty("apiGeoAdressURI");
     static String getOrderId;
+
+
+
 
 
     @Given("Get Authorization for API")
@@ -53,7 +60,13 @@ public class CommonSteps {
         String endpoint = rows.get(0).get("Value");
         if (endpoint.equalsIgnoreCase("getFromPost")) {
             endpoint = getOrderId;
+        }else if (endpoint.equalsIgnoreCase("getFromFiscalization")){
+            endpoint = paymentIdForFiscalization.getAttribute("innerText");
+        }else if (endpoint.equalsIgnoreCase("getFromVtvForFiscalization")){
+            endpoint = paymentIdForFiscalization.getAttribute("innerText");
         }
+
+
         int lineSize = rows.size();
         System.out.println("lineSize = " + lineSize);
         if (lineSize > 4) {
@@ -67,6 +80,7 @@ public class CommonSteps {
                 }
             }
         }
+
         requestType = rows.get(1).get("Value");
         String baseURIParameter = rows.get(3).get("Value");
         if (baseURIParameter.equalsIgnoreCase("apiBaseURI")) {
@@ -76,8 +90,12 @@ public class CommonSteps {
         } else if (baseURIParameter.equalsIgnoreCase("apiBrmBaseURI")) {
             fullEndpoint = ApiBrmBaseURI + endpoint + paths;
         } else if (baseURIParameter.equalsIgnoreCase("apiGeoAdressURI")) {
-            fullEndpoint = ApiBrmBaseURI + endpoint + paths;
+            fullEndpoint = ApiGeoAdressURI + endpoint + paths;
+        }else if (baseURIParameter.equalsIgnoreCase("fiscalizationBaseURI")) {
+            fullEndpoint = FiscalizationBaseURI + endpoint + paths;
         }
+
+
     }
 
     @When("Send a request")
@@ -101,7 +119,15 @@ public class CommonSteps {
         } else if (requestType.equalsIgnoreCase("GET_RequestBill")) {
             response = ApiBaseMethods.getRequestBillingAddressOnBrm(fullEndpoint, token);
             response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestForFiscalization")) {
+            response = ApiBaseMethods.getRequestForFiscalization(fullEndpoint, token);
+            response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestOfVtvForFiscalization")) {
+            response = ApiBaseMethods.getRequestOfVtvForFiscalization(fullEndpoint, token);
+            //response.prettyPrint();
         }
+
+
     }
 
     @Then("Status code is {int}")

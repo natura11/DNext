@@ -36,9 +36,11 @@ import static com.utilities.Utils.waitFor;
 @AllArgsConstructor
 public abstract class BasePage {
     protected Faker faker;
+
     public BasePage(Faker faker) {
         this.faker = faker;
     }
+
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -135,17 +137,20 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
     public WebElement arrowBackBtn;
 
+    @FindBy(css = "mat-list:nth-child(1) mat-list-item:nth-child(1) div:nth-child(1) div:nth-child(3) div:nth-child(2)")
+    public WebElement paymentIdForFiscalization;
+
     public static void elementDisplayed(WebElement webElement) {
         Utils.waitFor(2);
         Assert.assertTrue(webElement.isDisplayed());
-        log.info(webElement.getTagName() +  " is displaying");
+        log.info(webElement.getTagName() + " is displaying");
     }
 
     public static void elementNotDisplayed(WebElement webElement) {
         Utils.waitForInvisibilityOf(webElement);
         try {
             Assert.assertFalse(webElement.isDisplayed());
-        }catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             log.info("WebElement is not displaying");
         }
     }
@@ -163,13 +168,15 @@ public abstract class BasePage {
         System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
         return this;
     }
-    public static void warningMessage(String message,WebElement element) {
+
+    public static void warningMessage(String message, WebElement element) {
         Utils.waitFor(3);
         String actualMessage = element.getText();
         String expectedMessage = message;
 
         Assert.assertEquals(expectedMessage, actualMessage);
     }
+
     public static void DropdownSelectable(By by) {
         List<WebElement> options = Driver.getDriver().findElements(by);
         System.out.println("options.size() = " + options.size());
@@ -181,8 +188,11 @@ public abstract class BasePage {
             }
         }
     }
-    public static void sendKeys(WebElement element, String data)
-    {getElement(element).sendKeys(data);}
+
+    public static void sendKeys(WebElement element, String data) {
+        getElement(element).sendKeys(data);
+    }
+
     public static void clickField(WebElement element) {
         Utils.waitFor(3);
         //Utils.waitForPageToLoad();
@@ -190,11 +200,12 @@ public abstract class BasePage {
     }
 
 
-    public static void enterValidFormatEmail(String validEmail,WebElement emailButton) {
+    public static void enterValidFormatEmail(String validEmail, WebElement emailButton) {
         Utils.sendKeys(emailButton, validEmail);
     }
-    public static void uploadFile(WebElement addElement,WebElement sendFieldElement,String fileName) {
-        String path = System.getProperty("user.dir") +"\\src\\test\\resources\\fotosAndDoc\\" + fileName;
+
+    public static void uploadFile(WebElement addElement, WebElement sendFieldElement, String fileName) {
+        String path = System.getProperty("user.dir") + "\\src\\test\\resources\\fotosAndDoc\\" + fileName;
         Utils.waitFor(3);
         addElement.click();
         sendFieldElement.sendKeys(path);
@@ -208,7 +219,8 @@ public abstract class BasePage {
         robot.keyPress(KeyEvent.VK_ESCAPE);
         robot.keyRelease(KeyEvent.VK_ESCAPE);
     }
-    public static void verifyDateFromCalendar(String date,WebElement issuingDateField ) {
+
+    public static void verifyDateFromCalendar(String date, WebElement issuingDateField) {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate givenDate = LocalDate.parse(date, formatter);
@@ -217,16 +229,18 @@ public abstract class BasePage {
             Utils.sendKeys(issuingDateField, date + Keys.TAB);
             log.info("The selected date is out of permitted range!!!");
         } else {
-            Utils.sendKeys(issuingDateField, date +Keys.TAB) ;
+            Utils.sendKeys(issuingDateField, date + Keys.TAB);
             log.info("The selected date is inside of permitted range");
         }
     }
-    public static void verifyTheUploadedBigger5MbSizeFile(String fileName, WebElement warningMsg,WebElement addBtn,WebElement sendFieldBtn,String warningTxt) {
+
+    public static void verifyTheUploadedBigger5MbSizeFile(String fileName, WebElement warningMsg, WebElement addBtn, WebElement sendFieldBtn, String warningTxt) {
         uploadFile(addBtn, sendFieldBtn, fileName);
         Utils.waitForVisibility(warningMsg, 10);
         log.info(warningMsg.getText());
         Assert.assertEquals(warningTxt, warningMsg.getText());
     }
+
     public static void isDropdownSelectable(By commonLocateDropdown) {
         List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
         System.out.println("options.size() = " + options.size());
@@ -266,14 +280,13 @@ public abstract class BasePage {
             options.stream().filter(option -> option.getText().trim().equals(toBeSelectedOption))
                     .findFirst()
                     .ifPresent(WebElement::click);
-            log.info(toBeSelectedOption +  " option is selected!");
-        }
-        else {
+            log.info(toBeSelectedOption + " option is selected!");
+        } else {
             log.info("No options found in the dropdown.");
         }
     }
 
-    public static String getValueByMouseKeyboardAction(WebElement webElement){
+    public static String getValueByMouseKeyboardAction(WebElement webElement) {
         Actions actions = new Actions(Driver.getDriver());
         actions.click(webElement)
                 .keyDown(Keys.CONTROL)
@@ -289,7 +302,7 @@ public abstract class BasePage {
     }
 
     //red warning example is at the "GeneralInformationPage warningBackgroundRedColor()" class
-    public static void warningBackgroundRedColor(String colorCode,String propertyName,WebElement pictureButton) {
+    public static void warningBackgroundRedColor(String colorCode, String propertyName, WebElement pictureButton) {
         try {
             String expectedRedColorCode = colorCode;
             String backgroundColor = pictureButton.getCssValue(propertyName);
@@ -306,7 +319,7 @@ public abstract class BasePage {
         Utils.waitFor(1);
         try {
             String expectedRedColorCode;
-            expectedRedColorCode  = (isRed) ? "#f44336" : "#000000";
+            expectedRedColorCode = (isRed) ? "#f44336" : "#000000";
             String backgroundColor = webElement.getCssValue("color");
             Color color = Color.fromString(backgroundColor);
             String actualBackRoundColorCode = color.asHex();
@@ -327,9 +340,10 @@ public abstract class BasePage {
         element.clear();
         element.sendKeys(inputText);
     }
+
     public static void switchToWindow1(String targetTitle) {
         String origin = Driver.getDriver().getWindowHandle();
-        for (String handle :Driver.getDriver().getWindowHandles()) {
+        for (String handle : Driver.getDriver().getWindowHandles()) {
             Driver.getDriver().switchTo().window(handle);
             if (Driver.getDriver().getTitle().equals(targetTitle)) {
                 return;
@@ -337,6 +351,7 @@ public abstract class BasePage {
         }
         Driver.getDriver().switchTo().window(origin);
     }
+
     public static void switchToWindowNew(int number) {
         List<String> tumWindowHandles = new ArrayList<String>(Driver.getDriver().getWindowHandles());
         Driver.getDriver().switchTo().window(tumWindowHandles.get(number));

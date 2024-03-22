@@ -21,6 +21,8 @@ import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 
 @Log4j2
 public class GeneralInformationPage extends BasePage {
+
+    public String companyNameFieldForEquals;
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
     @FindBy(xpath = "//input[@id=\"name\"]")
@@ -125,6 +127,14 @@ public class GeneralInformationPage extends BasePage {
     public WebElement fileInputGeneral;
     @FindBy(xpath = "//*[@id=\"file-label\"]/div[1]")
     public WebElement nameOfUploadedFileOnGeneral;
+    @FindBy(xpath = "//div[@id='cdk-step-content-0-1']//span[contains(text(),'Next')]")
+    public WebElement nextBtnOnGeneralInformation;
+
+    public GeneralInformationPage nextBtnClickGeneralInformation() {
+        Utils.waitFor(1);
+        Utils.click(nextBtnOnGeneralInformation);
+        return this;
+    }
 
     public GeneralInformationPage verificationOfNameBox() {
         Utils.waitFor(1);
@@ -134,6 +144,7 @@ public class GeneralInformationPage extends BasePage {
     }
 
     public GeneralInformationPage usingValidFormatName(String validName) {
+        companyNameFieldForEquals = validName;
         Utils.waitForPageToLoad();
         nameBox.sendKeys(validName);
         return this;
