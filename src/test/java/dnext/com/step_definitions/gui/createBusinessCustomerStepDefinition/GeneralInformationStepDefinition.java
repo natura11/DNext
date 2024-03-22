@@ -11,6 +11,11 @@ import org.junit.Assert;
 public class GeneralInformationStepDefinition extends BasePage {
     GeneralInformationPage generalInformationPage;
 
+    @And("User clicks the Next button on general information page")
+    public void userClicksTheNextButtonOnGeneralInformationPage() {
+        generalInformationPage.nextBtnClickGeneralInformation();
+    }
+
     @Given("User should see the Name box on the general information page on general information page")
     public void user_should_see_the_box_on_the_general_information_page() {
         generalInformationPage.verificationOfNameBox();
