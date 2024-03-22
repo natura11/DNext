@@ -8,13 +8,13 @@ Feature:New Business Customer-Other Information
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     ##giriş
-    When  User fills in the NIPT field with valid and non-existing  "R87347939Y" on Search Organization page
+    When  User fills in the NIPT field with valid and non-existing  "Y26105379H" on Search Organization page
     Then  User clicks the Search button on Search Organization page
     And   User clicks the Next button on Search Organization page
     Given User clicks Industry dropdown on general information page
     Then  User should selects any option in the Industry dropdown on general information page
     And   User clicks Name Field on general information page
-    Then  User enters a value "Jast Group" consisting of letters and special characters in the name box on general information page
+    Then  User enters a value "Leannon" consisting of letters and special characters in the name box on general information page
     Given User clicks Segment dropdown on general information page
     Then  User should selects any options in the Segment dropdown on general information page
     Given User enters valid "ABC@ABC.COM" in to the email field on general information page
@@ -26,10 +26,10 @@ Feature:New Business Customer-Other Information
     And   User adds a "document.jpg" of which format is image on general information page
     Then  User clicks the Next button on general information page
     And   User clicks on the Identification Number field on Admin Information Page
-    When  User enters one non existing valid "R25782801B" ID number into the Identification Number field on Admin Information page
+    When  User enters one non existing valid "Z03798271L" ID number into the Identification Number field on Admin Information page
     And   User clicks the search icon in Identification Number field on Admin Information page
-    And   User  clicks the First Name field and enters the  first name as "Griffin" into the First Name field on Admin Information Page
-    And   User  clicks the Last Name field and enters the  first name as "Heathcote" into the First Name field on Admin Information Page
+    And   User  clicks the First Name field and enters the  first name as "Judy" into the First Name field on Admin Information Page
+    And   User  clicks the Last Name field and enters the  first name as "Koch" into the First Name field on Admin Information Page
     Given User enters valid "ABC@ABC.COM" in to the email field on  Admin Information Page
     Given User Male option from gender on Admin Information Page
     And   User selects of valid birth date as "18/03/2006" on Admin Information Page
@@ -37,13 +37,14 @@ Feature:New Business Customer-Other Information
     And   User adds "623456789" the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
     And   User clicks next Button on Admin Information Page
-    And   User clicks next Button on Contact Information Page
-    And   User selects Berat as City on Address Information Page
+    And   User clicks Next button on Contact Information Page
+    When  User clicks City dropdown on Address Information Page
+    And   User should select "BERAT" option in the City dropdown on Address Information Page
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
-    And   User clicks next Button on Address Information Page
+    And   User clicks Next button on Address Information Page
     And User enters valid "612345678" into the phone number field on Invoice Account page
     Given User enters valid "ABC@ABC.COM" in to the email field on Invoice Account page
-    And   User clicks next Button on Invoice Account Page
+    And   User clicks Next button on Invoice Account page
 
   @checkFields
   Scenario: As a user I want to Check the Company name, Organization Number and Industry fields

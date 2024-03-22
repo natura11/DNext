@@ -127,6 +127,14 @@ public class GeneralInformationPage extends BasePage {
     public WebElement fileInputGeneral;
     @FindBy(xpath = "//*[@id=\"file-label\"]/div[1]")
     public WebElement nameOfUploadedFileOnGeneral;
+    @FindBy(xpath = "//div[@id='cdk-step-content-0-1']//span[contains(text(),'Next')]")
+    public WebElement nextBtnOnGeneralInformation;
+
+    public GeneralInformationPage nextBtnClickGeneralInformation() {
+        Utils.waitFor(1);
+        Utils.click(nextBtnOnGeneralInformation);
+        return this;
+    }
 
     public GeneralInformationPage verificationOfNameBox() {
         Utils.waitFor(1);

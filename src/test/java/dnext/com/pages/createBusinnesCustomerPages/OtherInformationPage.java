@@ -23,10 +23,6 @@ public class OtherInformationPage extends BasePage {
     public String seeCompanyName;
     public String seeNiptNumber;
     public String seeIndustry;
-    @FindBy(xpath = "//div[@id='cdk-step-content-0-1']//span[contains(text(),'Next')]")
-    public WebElement nextBtnOnGeneralInformation;
-    @FindBy(xpath = "(//span[text()='Next'])[6]//ancestor::button")
-    public WebElement nextButtonOnInvoiceAccountPage;
     @FindBy(xpath = "//input[@formcontrolname='companyName']")
     public WebElement companyNameOnOtherInformation;
     @FindBy(xpath = "//input[@formcontrolname='nipt']")
@@ -52,17 +48,7 @@ public class OtherInformationPage extends BasePage {
     @FindBy(xpath = "//div[@fxlayoutalign='space-between']//div[@id='file-label']")
     public WebElement nameOfUploadedFileOnOther;
 
-    public OtherInformationPage nextBtnClickGeneralInformation() {
-        Utils.waitFor(1);
-        Utils.click(nextBtnOnGeneralInformation);
-        return this;
-    }
 
-    public OtherInformationPage nextBtnClickInvoiceAccount() {
-        Utils.waitFor(1);
-        Utils.click(nextButtonOnInvoiceAccountPage);
-        return this;
-    }
 
     public OtherInformationPage seeIndustryFields() {
         seeIndustry = industryOnOtherInformation.getAttribute("value");
@@ -77,6 +63,7 @@ public class OtherInformationPage extends BasePage {
         expectedIndustryNumber = expectedIndustryNumber.replace(" ", "_");
         expectedIndustryNumber = expectedIndustryNumber.replace("&", "");
         expectedIndustryNumber = expectedIndustryNumber.replace("__", "_");
+        expectedIndustryNumber = expectedIndustryNumber.replace("-", "EMPTY_SOURCE");
         log.info("generalInofrmation seçilen industry değer => " + expectedIndustryNumber);
         Utils.waitFor(1);
         Utils.click(otherInformationTab);
@@ -92,8 +79,8 @@ public class OtherInformationPage extends BasePage {
 
     public OtherInformationPage checkCompanyName(String expectedCompanyName) {
         Utils.waitFor(1);
-        log.info("generalInformation girilen company değer => " + expectedCompanyName);
-        Assert.assertEquals(seeCompanyName, expectedCompanyName);
+        log.info("generalInformation girilen company değer => " + expectedCompanyName.toUpperCase(Locale.ENGLISH));
+        Assert.assertEquals(seeCompanyName, expectedCompanyName.toUpperCase(Locale.ENGLISH));
         return this;
     }
 
@@ -128,7 +115,7 @@ public class OtherInformationPage extends BasePage {
         }
         Assert.assertTrue(pageSize);
         switchToWindowNew(0);
-        Utils.waitFor(5);
+        Utils.waitFor(2);
         return this;
     }
 

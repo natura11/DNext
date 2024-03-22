@@ -23,11 +23,6 @@ public class OtherInformationStepDefinition extends BasePage {
     private GeneralInformationPage generalInformationPage;
     private SearchOrganizationPage searchOrganizationPage;
 
-    @And("User clicks the Next button on general information page")
-    public void userClicksTheNextButtonOnGeneralInformationPage() {
-        otherInformationPage.nextBtnClickGeneralInformation();
-    }
-
     @Then("User should see the values previously entered in the Organization Number field on Other Information Page")
     public void userShouldSeeTheValuesPreviouslyEnteredInTheCompanyNameAndOrganizationNumberAndIndustryFieldsFieldsOnOtherInformationPage() {
         String nonExistenceNiptNumberOnOtherInformation = searchOrganizationPage.nonExistenceNiptNumber;
@@ -63,11 +58,6 @@ public class OtherInformationStepDefinition extends BasePage {
     @When("User click Generate Form button on the Other Information page")
     public void userClickGenerateFormButtonOnTheOtherInformationPage() {
         otherInformationPage.clickGenerateButton();
-    }
-
-    @And("User clicks next Button on Invoice Account Page")
-    public void userClicksNextButtonOnInvoiceAccountPage() {
-        otherInformationPage.nextBtnClickInvoiceAccount();
     }
 
     @When("User adds a {string} of which format is image on Other Information page")
