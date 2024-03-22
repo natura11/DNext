@@ -30,12 +30,12 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User clicks Next button on Contact Information Page")
     public void userClicksNextButtonOnContactInformationPage() {
-        clickField(contactInformationPage.nextButtonOnAddressInformationPage);
+        clickField(contactInformationPage.nextButtonOnContactInformationPage);
     }
 
     @And("User clicks Back button on Contact Information Page")
     public void userClicksBackButtonOnContactInformationPage() {
-        clickField(contactInformationPage.backButtonOnAddressInformationPage);
+        clickField(contactInformationPage.backButtonOnContactInformationPage);
     }
 
     @Then("User should see the Admin Information Page")
