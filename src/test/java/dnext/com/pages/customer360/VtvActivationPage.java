@@ -188,11 +188,12 @@ public class VtvActivationPage extends BasePage {
 
     public VtvActivationPage verifyTheOrderStatusIsCompleted() {
         System.out.println("orderStatus.getText() = " + orderStatus.getText());
-        if (orderStatus.getText().equalsIgnoreCase(" completed ")){
+        if (orderStatus.getText().equalsIgnoreCase("completed")){
             System.out.println("orderStatus.getText() = " + orderStatus.getText());
-            Assert.assertEquals(" completed ", orderStatus.getText());
+            Assert.assertEquals("completed", orderStatus.getText());
 
         }else {
+            System.out.println("OrderStatus  is= " + orderStatus.getText());
             String OrderId   = orderIdField.getText();
             Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
             //switchToWindowNew(1);

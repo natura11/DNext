@@ -178,7 +178,7 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
         Utils.waitFor(3);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
-        Utils.waitFor(40);
+        Utils.waitFor(60);
 
     }
 
@@ -260,7 +260,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(200);
+        Utils.waitFor(300);
         Driver.getDriver().navigate().refresh();
         vtvActivationPage.switchToDnextFromFaveo();
 

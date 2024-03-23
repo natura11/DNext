@@ -66,6 +66,7 @@ public class AbelActivationPage extends BasePage {
             System.out.println("orderStatus.getText() = " + orderStatus.getText());
             Assert.assertEquals("completed", orderStatus.getText());
         } else {
+            System.out.println("OrderStatus is= " + orderStatus.getText());
             String OrderId = orderIdField.getText();
             Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
             sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
