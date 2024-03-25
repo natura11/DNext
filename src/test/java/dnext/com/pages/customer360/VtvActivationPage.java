@@ -89,7 +89,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "//span[.='Shopping cart created successfully!']")
     public WebElement shoppingCartCreatedSuccesfullyMessage;
 
-    @FindBy(xpath = "//*[@class='mat-icon notranslate mat-badge mat-badge-warn material-icons mat-icon-no-color mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small']")
+    @FindBy(xpath = "//*[@matbadgecolor='warn']")
     public WebElement shoppingCartIcon;
 
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")

@@ -93,12 +93,12 @@ public class VtvActivationStepDefinition extends BasePage {
     @When("User selects cash methods as ALL{int} {int}Month on Customer{int} search page")
     public void userSelectsCashMethodsAsALLMonthOnCustomerSearchPage(int arg0, int arg1, int arg2) {
         clickField(vtvActivationPage.paymentOptionALL79003Month);
-        Utils.waitFor(7);
+        Utils.waitFor(3);
     }
 
     @And("user clicks the TVInfrusructure dropdown button  Customer{int} search page")
     public void userClicksTheTVInfrusructureDropdownButtonCustomerSearchPage(int arg0) {
-        Utils.waitFor(3);
+        Utils.waitFor(1);
         clickField(vtvActivationPage.dropdownForVtvOptions);
     }
 
@@ -141,12 +141,14 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
+        Utils.waitFor(1);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
-
+        Utils.waitFor(1);
     }
 
     @When("User clicks the Shopping Cart icon on Customer{int} search page")
     public void userClicksTheShoppingCartIconOnCustomerSearchPage(int arg0) {
+        Utils.waitFor(2);
         clickField(vtvActivationPage.shoppingCartIcon);
     }
 

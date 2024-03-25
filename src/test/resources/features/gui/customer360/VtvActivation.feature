@@ -7,7 +7,7 @@ Feature: VTV Activation
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
 
-  Scenario:As a user, I want complete TVT Activation process successfully  on Customer360 search page
+  Scenario:As a user, I want complete VTV Activation process successfully  on Customer360 search page
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
