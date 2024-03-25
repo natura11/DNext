@@ -10,19 +10,19 @@ Feature:New Individual Customer-Contact Information
     Given User clicks the Contact Information button for Individual
     Given User is on the Individual Contact Information page
 
-  @continueWithoutAddingContactForIndividual
+  @continueWithoutAddingContactForIndividualContact
   Scenario: As a user I want to continue without adding any Contact on Contact Information Page for Individual
     Given User is on the Individual Contact Information page
     And   User clicks Next button on Individual Contact Information Page
     Then  User is on the Individual Invoice Account page
 
-  @backToPreviousPageWithoutAddingContactForIndividual
+  @backToPreviousPageWithoutAddingContactForIndividualContact
   Scenario: As a user I want to go previous page without adding any Contact on Contact Information Page for Individual
     Given User is on the Individual Contact Information page
     And   User clicks Back button on Individual Contact Information Page
     Then  User should see the Individual Address Information Page
 
-  @addLegalCustodianWithExistingPersonForIndividual
+  @addLegalCustodianWithExistingPersonForIndividualContact
   Scenario:As a user I want to add random type of Authorization with existing person on Individual Contact Information Page
     Given User should see the Type of Authorization dropdown on Individual Contact Information Page
     And   User clicks Type of Authorization dropdown on Individual Contact Information Page
@@ -66,7 +66,7 @@ Feature:New Individual Customer-Contact Information
     Then  User is on the Individual Invoice Account page
 
 
-  @addDifferentTypeOfAuthorizationForIndividual
+  @addDifferentTypeOfAuthorizationForIndividualContact
   Scenario Outline: As a user I want to add different type of Authorizations on Individual Contact Information Page
     Given User should see the Type of Authorization dropdown on Individual Contact Information Page
     And   User clicks Type of Authorization dropdown on Individual Contact Information Page
@@ -108,7 +108,7 @@ Feature:New Individual Customer-Contact Information
       | Authorized Person   |      ABC7124458CBA     |  Virve      |  Turunen  |  14/03/2000 | FEMALE  |  FINNISH     |
 
 
-  @addDifferentTypeOfContactsForIndividual
+  @addDifferentTypeOfContactsForIndividualContact
   Scenario Outline: As a user I want to add different type of Contacts on Individual Contact Information Page
     Given User should see the Type of Contact dropdown on Individual Contact Information Page
     And   User clicks Type of Contact dropdown on Individual Contact Information Page

@@ -109,23 +109,21 @@ public class InvoiceAccountPage extends BasePage {
     public WebElement backButtonOnInvoiceAccountPage;
 
 
-    public InvoiceAccountPage verifyUserIsOnInvoiceAccountPage() {
+    public void verifyUserIsOnInvoiceAccountPage() {
         try {
             if (postpaidAccountTitleLabel.isDisplayed())
                 log.info("Account title is displaying");
         } catch (Throwable e) {
             log.info("Error message: Account title is  not displaying");
         }
-        return this;
     }
 
-    public InvoiceAccountPage fillInputField(WebElement element, String text) {
+    public void fillInputField(WebElement element, String text) {
         element.clear();
         Utils.sendKeys(element, text + Keys.TAB);
-        return this;
     }
 
-    public InvoiceAccountPage selectAnOptionFromDropdown(String paymentMethod) {
+    public void selectAnOptionFromDropdown(String paymentMethod) {
         List<WebElement> options = Driver.getDriver()
                 .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
         if (!options.isEmpty()) {
@@ -140,19 +138,17 @@ public class InvoiceAccountPage extends BasePage {
         } else {
             log.info("No options found in the dropdown.");
         }
-        return this;
     }
 
-    public InvoiceAccountPage bankNameAndBankAccountDisplayed() {
+    public void bankNameAndBankAccountDisplayed() {
         Utils.waitFor(1);
         Assert.assertTrue(bankNameDropdown.isDisplayed());
         Assert.assertTrue(bankAccountNoInput.isDisplayed());
         log.info(bankNameDropdown.getTagName() + " " +
                 bankNameDropdown.getTagName() + " is displaying");
-        return this;
     }
 
-    public InvoiceAccountPage bankNameAndBankAccountNotDisplayed() {
+    public void bankNameAndBankAccountNotDisplayed() {
         Utils.waitFor(1);
         try {
             Assert.assertFalse(bankNameDropdown.isDisplayed());
@@ -160,24 +156,11 @@ public class InvoiceAccountPage extends BasePage {
         }catch (NoSuchElementException exception){
             log.info("bankNameDropdown and bankAccountNoInput are not displaying");
         }
-        return this;
     }
 
-    public InvoiceAccountPage verifyInputErrorMessage(WebElement webElement, String message) {
+    public void verifyInputErrorMessage(WebElement webElement, String message) {
         elementDisplayed(webElement);
         Assert.assertEquals(message, webElement.getText().trim());
-        return this;
-    }
-
-
-    public InvoiceAccountPage verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
-        try {
-            uploadFile(documentAddButton, fileInputField, fileName);
-            Assert.assertEquals(warning, warningMessageForBiggerDocument.getText());
-        } catch (Exception e) {
-            log.info("Warning message not shown!!!");
-        }
-        return this;
     }
 
 }

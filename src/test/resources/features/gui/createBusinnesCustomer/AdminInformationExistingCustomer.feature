@@ -12,7 +12,7 @@ Feature: Existing Customer-Admin Information-Existing Customer
     And   User clicks on the Identification Number field on Admin Information Page
     When  User enters one existing "M12345678C" ID number into the Identification Number field on Admin Information page
 
-  @smoke @existingIDusage
+  @smoke @existingIDusageForBusinessAdmin
   Scenario: As a user,I want to enter existing ID number into the Identification Number field on Admin Information Page
     Then  User should see "Please click search icon!" warning under the Identification Number field on Admin Information Page
     And   User clicks the search icon in Identification Number field on Admin Information page
@@ -29,13 +29,13 @@ Feature: Existing Customer-Admin Information-Existing Customer
       | Mobile Phone Number   |            |
     Then User should see the "Phone number must be like 6XXXXXXXX !"warning message  under number field on Admin Information Page
 
-  @smoke @addingEmailPhoneNumber
+  @smoke @addingEmailPhoneNumberForBusinessAdmin
   Scenario: As a user ,I want to add email and mobile phone number into the fields on Admin Information Page
     Given User clicks the search icon in Identification Number field on Admin Information page
     And   User enters "alibaba11@gmail.com" on email field  and "624687659" to the phone number field
 
 
-  @smoke @addingFile
+  @smoke @addingFileForBusinessAdmin
   Scenario:As a user I want to add only one file which could be pdf and image format with smaller than 5MB on Admin Information page
     Given User clicks the search icon in Identification Number field on Admin Information page
     Then  User should see this "You have to add customers ID document!" warning message near to add button on Admin Information Page
@@ -45,7 +45,7 @@ Feature: Existing Customer-Admin Information-Existing Customer
     And   User deletes already added valid pdf documentation Admin Information Page
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
 
-  @smoke @nextToContactPage
+  @smoke @nextToContactPageForBusinessAdmin
   Scenario: As a user I want to click next button and pass to Contact Information Page
     Given User clicks the search icon in Identification Number field on Admin Information page
     And   User add "smaller5MB.pdf" and should see the name of file  on the screen on Admin Information Page
