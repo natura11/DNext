@@ -1,4 +1,4 @@
-@VFALFT-22209 @regression @otherInformation
+@VFALFT-22209 @regression @otherInformationForBusiness
 Feature:New Business Customer-Other Information
 
   Background:
@@ -46,7 +46,7 @@ Feature:New Business Customer-Other Information
     Given User enters valid "ABC@ABC.COM" in to the email field on Invoice Account page
     And   User clicks Next button on Invoice Account page
 
-  @checkFields
+  @checkFieldsForBusinessOther
   Scenario: As a user I want to Check the Company name, Organization Number and Industry fields
     When User checks the Company Name field on the Other Information page
     Then User should see the values previously entered in the Company Name field on Other Information Page
@@ -55,14 +55,14 @@ Feature:New Business Customer-Other Information
     When User checks the Industry field on the Other Information page
     Then User should see the values previously entered in the Industry field on Other Information Page
 
-  @clickGenerateForm
+  @clickGenerateFormForBusinessOther
   Scenario: As a user I want to Check and Download the Generate Form
     When User click Generate Form button on the Other Information page
     Then User should see the Generate Form open in a new window
     When User adds a "document.jpg" of which format is image on Other Information page
     Then User should see the name of "document.jpg" added jpg document on the screen on Other Information page
 
-  @createNewUser
+  @createNewUserForBusinessOther
   Scenario: As a user I want to Create New User
     When User click Save button on Other Information Page
     Then User should see Customer Create popup on customer360

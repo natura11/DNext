@@ -155,18 +155,16 @@ public abstract class BasePage {
         }
     }
 
-    public BasePage logout() {
+    public void logout() {
         Utils.waitFor(3);
         log.info("User logs out from the page");
         Utils.click(profileSignDropdownArrowBtnOnPage);
         Utils.click(logoutBtnInDropdownOnHomePage);
-        return this;
     }
 
-    public BasePage isShownEmailOfUserOnHomePage() {
+    public void isShownEmailOfUserOnHomePage() {
         emailOfUserOnHomePage.isDisplayed();
         System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
-        return this;
     }
 
     public static void warningMessage(String message, WebElement element) {
@@ -336,7 +334,7 @@ public abstract class BasePage {
         return text;
     }
 
-    public void clearEnterText(WebElement element, String inputText) {
+    public static void clearEnterText(WebElement element, String inputText) {
         element.clear();
         element.sendKeys(inputText);
     }
