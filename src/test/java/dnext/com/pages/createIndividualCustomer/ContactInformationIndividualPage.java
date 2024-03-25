@@ -140,70 +140,62 @@ public class ContactInformationIndividualPage extends BasePage{
     @FindBy(xpath = "(//span[text()='Back'])[3]//ancestor::button")
     public WebElement backButtonOnContactInformationPage;
 
-    public ContactInformationIndividualPage verifyUserIsOnContactInformationPage() {
+    public void verifyUserIsOnContactInformationPage() {
         try {
             Assert.assertTrue(typeOfAuthorizationDropdown.isDisplayed());
             log.info("Type of Authorization is displaying");
         } catch (Throwable e) {
             log.info("Error message: Type of Authorization field is  not displaying");
         }
-        return this;
     }
 
-    public ContactInformationIndividualPage verifyCitizenshipStatus(boolean enabled) {
+    public void verifyCitizenshipStatus(boolean enabled) {
         String isDisabled = citizenshipDropdown.getAttribute("aria-disabled");
         if (!enabled){
             Assert.assertEquals("true", isDisabled);
         }else {
             Assert.assertEquals("false", isDisabled);
         }
-        return this;
     }
 
-    public ContactInformationIndividualPage verifyErrorMessage(WebElement webElement, String message) {
+    public void verifyErrorMessage(WebElement webElement, String message) {
         elementDisplayed(webElement);
         Assert.assertEquals(message, webElement.getText().trim());
-        return this;
     }
 
-    public ContactInformationIndividualPage fillInput(WebElement element, String text){
+    public void fillInput(WebElement element, String text){
         element.clear();
         Utils.sendKeys(element, text + Keys.TAB);
-        return this;
     }
 
-    public ContactInformationIndividualPage verifyFetchedPersonData(Map<String, String> personData) {
+    public void verifyFetchedPersonData(Map<String, String> personData) {
         Assert.assertEquals(personData.get("Identification Number"), getValueByMouseKeyboardAction(identificationNumberInputWithName));
         Assert.assertEquals(personData.get("First Name"), getValueByMouseKeyboardAction(firstNameInput));
         Assert.assertEquals(personData.get("Last Name"), getValueByMouseKeyboardAction(lastNameInput));
         Assert.assertEquals(personData.get("Birth Date"), getValueByMouseKeyboardAction(birthDateInput));
         Assert.assertEquals(personData.get("Gender"), selectedGenderOption.getText().split(" ")[1].trim());
         Assert.assertEquals(personData.get("Citizenship"), selectedCitizenship.getText());
-        return this;
     }
 
-    public ContactInformationIndividualPage uploadLetterOfAttorneyDocument(String fileName) {
+    public void uploadLetterOfAttorneyDocument(String fileName) {
         try {
             uploadFile(documentAddButton,documentUploadField, fileName);
         }catch (Exception e) {
             log.error("Error uploading file: " + e.getMessage());
             throw new RuntimeException(e);
         }
-        return this;
     }
 
-    public ContactInformationIndividualPage verifyUploadedLetterOfAttorneyDocument(String fileName) {
+    public void verifyUploadedLetterOfAttorneyDocument(String fileName) {
         Assert.assertEquals("AttorneyLetter-" + fileName, documentNameText.getText().trim());
-        return this;
     }
 
-    public ContactInformationIndividualPage verifyPersonIsNewParty() {
+    public void verifyPersonIsNewParty() {
         identificationNumberInputWithName.click();
         Assert.assertTrue(getValueByMouseKeyboardAction(identificationNumberInputWithName).contains("New Party"));
-        return this;
     }
 
-    public ContactInformationIndividualPage selectSpecificGenderFromDropdown(String toBeSelectedOption) {
+    public void selectSpecificGenderFromDropdown(String toBeSelectedOption) {
         List<WebElement> options = Driver.getDriver()
                 .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
         if (!options.isEmpty()) {
@@ -215,7 +207,6 @@ public class ContactInformationIndividualPage extends BasePage{
         else {
             log.info("No options found in the dropdown.");
         }
-        return this;
     }
 
 }

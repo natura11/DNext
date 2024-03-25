@@ -1,4 +1,4 @@
-@VFALFT-22204 @regression @generalInformation
+@VFALFT-22204 @regression @generalInformationForBusinessCustomer
 Feature:New Business Customer-General Information
 
   Background:
@@ -13,31 +13,31 @@ Feature:New Business Customer-General Information
     And    User clicks the Next button on Search Organization page
     Then   User should see the "General Information" header on General Information  page
 
-  @selectionOptionFrmIndustryDrop
+  @selectionOptionFrmIndustryDropForBusinessGeneral
   Scenario: As a user I want to select one option from Industry dropdown
     Given User clicks Industry dropdown on general information page
     And   User should ensure each options in industry dropdown are selectable on general information page
     Then  User should selects any option in the Industry dropdown on general information page
 
-  @insertingName
+  @insertingNameForBusinessGeneral
   Scenario: As a user I want to enter name into name field
     Given User should see the Name box on the general information page on general information page
     And   User clicks Name Field on general information page
     Then  User enters a value ",,,Fer-rari.." consisting of letters and special characters in the name box on general information page
 
-  @selectionOptionSegmentDrop
+  @selectionOptionSegmentDropForBusinessGeneral
   Scenario: As a user I want to select one option from Segment dropdown
     Given User clicks Segment dropdown on general information page
     And   User should ensure each options in Segment dropdown are selectable on general information page
     Then  User should selects any options in the Segment dropdown on general information page
 
-  @selectionOptionTaxExemptDrop
+  @selectionOptionTaxExemptDropForBusinessGeneral
   Scenario: As a user I want to select one option from Tax Exempt dropdown
     Given User clicks Tax Exempt dropdown on general information page
     And   User should ensure each options in Tax Exempt dropdown are selectable on general information page
     Then  User should selects any option in the Tax Exempt dropdown on general information page
 
-  @invalidEmailInsert
+  @invalidEmailInsertForBusinessGeneral
   Scenario Outline: As a user I want to enter invalid and invalid  characters based email into email field
     Given User clicks email field on general information page
     And   User enters "<emails>" on general information page
@@ -51,13 +51,13 @@ Feature:New Business Customer-General Information
       | emails@com   |
       | emails@123.c |
 
-  @communicationMethodDrp
+  @communicationMethodDrpForBusinessGeneral
   Scenario: As a user I want to select one option from Communication Method dropdown
     Given User clicks Communication Method dropdown on general information page
     And   User should ensure each options in Communication Method dropdown ara selectable on general information page
     Then  User should selects SMS option in the Tax Exempt dropdown on general information page
 
-  @selectOptionCountryDrpAlbania
+  @selectOptionCountryDrpAlbaniaForBusinessGeneral
   Scenario Outline: As a user I want to select one option from Country dropdown with Albania number and numbers except Albanian numbers
     Given User clicks Country Code dropdown on general information page
     Then  User should selects +355 option from country code dropdown on general information page
@@ -74,11 +74,11 @@ Feature:New Business Customer-General Information
       | 512345678     |
       | 41234567      |
 
-  @issuingDateGeneralInformation
+  @issuingDateGeneralInformationForBusinessGeneral
   Scenario: As a user I want to fill in the Issuing date field to ensure that the selected date is enabled and selectable on general information page
     Given User clicks Issuing Date field and user selects "15/10/2023" from calendar on general information page
 
-  @fileFormatsGeneralInformat
+  @fileFormatsGeneralInformatForBusinessGeneral
   Scenario: As a user I want to add file which could be different format and different sizes
     Given User should see this "You have to add Extract QKR document!" warning message near to add button on general information page
     And   User adds a "document.jpg" of which format is image on general information page

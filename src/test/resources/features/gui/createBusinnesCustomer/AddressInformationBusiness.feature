@@ -1,4 +1,4 @@
-@VFALFT-22207 @regression @addressInformation
+@VFALFT-22207 @regression @addressInformationForBusiness
 Feature:New Business Customer-Address Information
 
   Background:
@@ -10,20 +10,20 @@ Feature:New Business Customer-Address Information
     Given User clicks the Address Information button
     Given User is on the Address Information Page
 
-  @continueWithoutAddingAddress
+  @continueWithoutAddingAddressForBusinessAddress
   Scenario: As a user I want to continue without adding any Address on Address Information Page
     Given User is on the Address Information Page
     And   User clicks Next button on Address Information Page
     Then  User is on the Address Information Page
     Then  User sees the Address Line 1 is required on Address Information Page
 
-  @backToPreviousPageWithoutAddingAddress
+  @backToPreviousPageWithoutAddingAddressForBusinessAddress
   Scenario: As a user I want to go previous page without adding any Address on Address Information Page
     Given User is on the Address Information Page
     And   User clicks Back button on Address Information Page
     Then  User is on the Contact Information page
 
-  @fillingAddressLine1
+  @fillingAddressLine1ForBusinessAddress
   Scenario: As a user I want to fill Address Line 1 on Address Information Page
     Given User should see the Address Line 1 textbox on Address Information Page
     When  User clicks Address Line 1 Field on Address Information Page
@@ -33,19 +33,19 @@ Feature:New Business Customer-Address Information
     And   User clicks Address Line 1 Field on Address Information Page
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
 
-  @fillingAddressLine2
+  @fillingAddressLine2ForBusinessAddress
   Scenario: As a user I want to fill Address Line 2 on Address Information Page
     Given User should see the Address Line 2 textbox on Address Information Page
     And   User clicks Address Line 2 Field on Address Information Page
     Then  User enters a value "SECOND ADDRESS" in the Address Line 2 textbox on Address Information Page
 
-  @fillingPostCode
+  @fillingPostCodeForBusinessAddress
   Scenario: As a user I want to fill Post Code on Address Information Page
     Given User should see the Post Code textbox on Address Information Page
     And   User clicks Post Code Field on Address Information Page
     Then  User enters a value "1234" in the Post Code textbox on Address Information Page
 
-  @notEditingOtherFields
+  @notEditingOtherFieldsForBusinessAddress
   Scenario: As a user I want to see the other fields are non-editable on Address Information Page
     Given User should see the Medium Type textbox on Address Information Page
     Then  User see the Medium Type textbox is non-editable on Address Information Page
@@ -55,7 +55,7 @@ Feature:New Business Customer-Address Information
     Then  User see the Country dropdown is non-editable on Address Information Page
     Then  User see the ALBANIA value on the Country dropdown on Address Information Page
 
-  @selectionOptionFromCityDropdown
+  @selectionOptionFromCityDropdownForBusinessAddress
   Scenario: As a user I want to select a City option from City dropdown
     Given User should see the City dropdown on Address Information Page
     When User clicks City dropdown on Address Information Page
@@ -64,7 +64,7 @@ Feature:New Business Customer-Address Information
     When User clicks City dropdown on Address Information Page
     Then  User should select "BERAT" option in the City dropdown on Address Information Page
 
-  @FillingRequiredFieldsForAddress
+  @FillingRequiredFieldsForAddressForBusinessAddress
   Scenario: As a user I want to enter a billing address with required fields on Address Information Page
     Given User should see the Address Line 1 textbox on Address Information Page
     Given User should see the City dropdown on Address Information Page
@@ -75,7 +75,7 @@ Feature:New Business Customer-Address Information
     And   User clicks Next button on Address Information Page
     Then  User is on the Invoice Account page
 
-  @enteringDifferentServiceAddress
+  @enteringDifferentServiceAddressForBusinessAddress
   Scenario: As a user I want to enter a different service address on Address Information Page
     Given User should see the Service Address slider on Address Information Page
     When User switch off the slider on Address Information Page
