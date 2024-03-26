@@ -89,13 +89,12 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @Then("User should see {string} warning message on phone field on Contact Information page")
     public void userShouldSeeWarningMessageOnPhoneField(String errorMessage) {
-        contactInformationPage.verifyEmptyInputErrorMessage(errorMessage);
+        verifyInputErrorMessage(contactInformationPage.phoneNumberErrorText, errorMessage);
     }
 
     @And("User enters mobile phone number {string} with other country code except Albania on Contact Information page")
     public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbania(String phoneNumber) {
-        contactInformationPage
-                .fillInput(contactInformationPage.phoneNumberInput, phoneNumber);
+        fillInputWithTab(contactInformationPage.phoneNumberInput, phoneNumber);
     }
 
     @Then("User should not see the warning message on phone field on Contact Information page")
@@ -105,19 +104,17 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User enters invalid {string} phone numbers on Contact Information Page")
     public void userEntersInvalidPhoneNumbers(String phoneNumber){
-        contactInformationPage
-                .fillInput(contactInformationPage.phoneNumberInput, phoneNumber);
+        fillInputWithTab(contactInformationPage.phoneNumberInput, phoneNumber);
     }
 
     @Then("User should see {string} message under mobile phone number field on Contact Information page")
     public void userShouldSeeMessageUnderMobilePhoneNumberField(String errorMessage) {
-        contactInformationPage.verifyEmptyInputErrorMessage(errorMessage);
+        verifyInputErrorMessage(contactInformationPage.phoneNumberErrorText, errorMessage);
     }
 
     @And("User enters valid {string} into the phone number field on Contact Information page")
     public void userEntersValidIntoThePhoneNumberField(String phoneNumber) {
-        contactInformationPage
-                .fillInput(contactInformationPage.phoneNumberInput, phoneNumber);
+        fillInputWithTab(contactInformationPage.phoneNumberInput, phoneNumber);
     }
 
     @Then("User should see Email textbox on Contact Information Page")
@@ -132,8 +129,7 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User enters invalid emails {string} on Contact Information Page")
     public void userEntersInvalidEmails(String email) {
-        contactInformationPage
-                .fillInput(contactInformationPage.emailInput, email);
+        fillInputWithTab(contactInformationPage.emailInput, email);
     }
 
     @Then("User should see that background is red for the email field on Contact Information Page")
@@ -143,8 +139,7 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User enters valid {string} in to the email field on Contact Information Page")
     public void userEntersValidInToTheEmailField(String email) {
-        contactInformationPage
-                .fillInput(contactInformationPage.emailInput, email);
+        fillInputWithTab(contactInformationPage.emailInput, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Contact Information Page")
@@ -239,8 +234,7 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User enters valid {string} into the additional phone number field on Contact Information page")
     public void userEntersValidIntoTheAdditionalPhoneNumberField(String phoneNumber) {
-        contactInformationPage
-                .fillInput(contactInformationPage.additionalPhoneNumberInput, phoneNumber);
+        fillInputWithTab(contactInformationPage.additionalPhoneNumberInput, phoneNumber);
     }
 
     @Then("User should not see the additional warning message on phone field on Contact Information page")
@@ -255,8 +249,7 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User enters valid {string} in to the additional email field on Contact Information Page")
     public void userEntersValidInToTheAdditionalEmailField(String email) {
-        contactInformationPage
-                .fillInput(contactInformationPage.additionalEmailInput, email);
+        fillInputWithTab(contactInformationPage.additionalEmailInput, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of additional email structure on Contact Information Page")

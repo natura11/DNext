@@ -110,14 +110,4 @@ public class ContactInformationPage extends BasePage {
         }
     }
 
-    public void verifyEmptyInputErrorMessage(String message) {
-        elementDisplayed(phoneNumberErrorText);
-        Assert.assertEquals(message, phoneNumberErrorText.getText().trim());
-    }
-
-    public void fillInput(WebElement element, String text){
-        element.clear();
-        Utils.sendKeys(element, text + Keys.TAB);
-    }
-
 }
