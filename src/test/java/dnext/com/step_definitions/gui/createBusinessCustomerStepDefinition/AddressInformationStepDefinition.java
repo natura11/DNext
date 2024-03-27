@@ -47,8 +47,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Address Line 1 textbox on Address Information Page")
     public void userEntersAValueInTheAddressLineOneTextbox(String address) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.billingAddressLineOneInput,address);
+        fillInput(addressInformationPage.billingAddressLineOneInput,address);
     }
 
     @And("User clears Address Line 1 Field on Address Information Page")
@@ -74,8 +73,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Address Line 2 textbox on Address Information Page")
     public void userEntersAValueInTheAddressLineTwoTextbox(String address) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.billingAddressLineTwoInput,address);
+        fillInput(addressInformationPage.billingAddressLineTwoInput,address);
     }
 
     @Given("User should see the Post Code textbox on Address Information Page")
@@ -90,8 +88,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Post Code textbox on Address Information Page")
     public void userEntersAValueInThePostCodeTextbox(String postCode) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.billingPostCodeInput,postCode);
+        fillInput(addressInformationPage.billingPostCodeInput,postCode);
     }
 
     @Given("User should see the Medium Type textbox on Address Information Page")
@@ -181,8 +178,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Address Line 1 textbox for Service Address on Address Information Page")
     public void userEntersAValueInTheAddressLineTextboxForServiceAddress(String address) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.serviceAddressLineOneInput,address);
+        fillInput(addressInformationPage.serviceAddressLineOneInput,address);
     }
 
     @And("User clears Address Line 1 Field for Service Address on Address Information Page")
@@ -207,8 +203,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Address Line 2 textbox for Service Address on Address Information Page")
     public void userEntersAValueInTheAddressLine2TextboxForServiceAddress(String address) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.serviceAddressLineTwoInput,address);
+        fillInput(addressInformationPage.serviceAddressLineTwoInput,address);
     }
 
     @Given("User should see the Post Code textbox for Service Address on Address Information Page")
@@ -223,8 +218,7 @@ public class AddressInformationStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Post Code textbox for Service Address on Address Information Page")
     public void userEntersAValueInThePostCodeTextboxForServiceAddress(String postCode) {
-        addressInformationPage
-                .fillInputField(addressInformationPage.servicePostCodeInput,postCode);
+        fillInput(addressInformationPage.servicePostCodeInput,postCode);
     }
 
     @Given("User should see the Country dropdown for Service Address on Address Information Page")

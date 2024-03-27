@@ -88,7 +88,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @Then("User sees the search icon turns into the cancel icon")
     public void user_sees_the_search_icon_turns_into_the_cancel_icon() {
-        adminInformationPage.cancelIconInIdentificationField.isDisplayed();
+        elementDisplayed(adminInformationPage.cancelIconInIdentificationField);
     }
 
     @And("User adds {string} the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page")
@@ -106,4 +106,8 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
         adminInformationPage.cancelButtonOnDateOfbirthField.click();
     }
 
+    @And("User clicks the search icon in Identification Number field after Organization Search on Admin Information page")
+    public void userClicksTheSearchIconInIdentificationNumberFieldAfterOrganizationSearchOnAdminInformationPage() {
+        clickField(adminInformationPage.searchIconInIdentificationFieldAfterOrganizationSearch);
+    }
 }

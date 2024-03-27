@@ -85,6 +85,7 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     }
 
     public GeneralInformationNewIndividualCustomerPage selectMaleOptionFromGenderDropdownOnIndividual() {
+        elementDisplayed(genderDropdown);
         genderDropdown.click();
         maleOptionOfGender.click();
         return this;

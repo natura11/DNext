@@ -158,16 +158,6 @@ public class ContactInformationIndividualPage extends BasePage{
         }
     }
 
-    public void verifyErrorMessage(WebElement webElement, String message) {
-        elementDisplayed(webElement);
-        Assert.assertEquals(message, webElement.getText().trim());
-    }
-
-    public void fillInput(WebElement element, String text){
-        element.clear();
-        Utils.sendKeys(element, text + Keys.TAB);
-    }
-
     public void verifyFetchedPersonData(Map<String, String> personData) {
         Assert.assertEquals(personData.get("Identification Number"), getValueByMouseKeyboardAction(identificationNumberInputWithName));
         Assert.assertEquals(personData.get("First Name"), getValueByMouseKeyboardAction(firstNameInput));
@@ -187,10 +177,12 @@ public class ContactInformationIndividualPage extends BasePage{
     }
 
     public void verifyUploadedLetterOfAttorneyDocument(String fileName) {
+        Utils.waitForVisibility(documentNameText, 3);
         Assert.assertEquals("AttorneyLetter-" + fileName, documentNameText.getText().trim());
     }
 
     public void verifyPersonIsNewParty() {
+        Utils.waitFor(3);
         identificationNumberInputWithName.click();
         Assert.assertTrue(getValueByMouseKeyboardAction(identificationNumberInputWithName).contains("New Party"));
     }

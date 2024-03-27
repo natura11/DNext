@@ -1,5 +1,6 @@
 package dnext.com.pages.createIndividualCustomer;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.CreateBusinessCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +29,7 @@ public class SearchIndividualPage extends BasePage {
     public WebElement warningForExistingIdNumberOnSearchIndividualHomePage;
 
     public  SearchIndividualPage verificationNewIndividualCustomerHeader(String header) {
+        elementDisplayed(newIndividualCustomerHeaderOnHomePage);
         String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
         String expectedHeader = header;
         System.out.println("header = " + header);
