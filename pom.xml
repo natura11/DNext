@@ -105,16 +105,11 @@
         </dependency>
 
 
-
-
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-driver-sync</artifactId>
-                <version>5.0.0</version>
-            </dependency>
-
-
-
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>5.0.0</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
@@ -153,7 +148,7 @@
 
                     <includes>
                         <include>/FailedTestRunner.java</include>
-<!--                        <include>/ApiRunner.java</include>-->
+                        <!--                        <include>/ApiRunner.java</include>-->
                         <include>/CukesRunner.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>

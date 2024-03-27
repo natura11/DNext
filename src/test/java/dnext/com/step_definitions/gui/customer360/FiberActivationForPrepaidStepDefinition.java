@@ -29,7 +29,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User selects the Vodafone Gigafibra {int} Mbps on Customer360 search page")
     public void user_selects_the_vodafone_gigafibra_mbps_on_customer360_search_page(Integer int1) {
-        clickField(fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
+        clickField(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
     }
 
     @Then("User is directed to the Vodafone GigaFibra {int} Mbps page for details of equipments on Customer360 search page")
@@ -75,7 +75,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User clicks the activation form on top of the opened screen on Customer360 search page")
     public void user_clicks_the_activation_form_on_top_of_the_opened_screen_on_customer360_search_page() throws AWTException {
-       fiberActivationForPrepaidPage.activationFormClicking();
+       FiberActivationForPrepaidPage.activationFormClicking();
     }
     @Then("User sees the name of {string} which was selected product on Fiber is in the Shopping Cart on Customer{int} search page")
     public void userSeesTheNameOfWhichWasSelectedProductOnFiberIsInTheShoppingCartOnCustomerSearchPage(String warningMessage, int arg1) {

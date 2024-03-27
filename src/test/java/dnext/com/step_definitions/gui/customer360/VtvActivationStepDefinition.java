@@ -143,12 +143,12 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
         Utils.waitFor(1);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
-        Utils.waitFor(1);
+        Utils.waitFor(2);
     }
 
     @When("User clicks the Shopping Cart icon on Customer{int} search page")
     public void userClicksTheShoppingCartIconOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(2);
+        Utils.waitFor(3);
         clickField(vtvActivationPage.shoppingCartIcon);
     }
 

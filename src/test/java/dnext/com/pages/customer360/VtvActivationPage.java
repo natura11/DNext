@@ -5,16 +5,12 @@ import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.camunda.HomePageCamunda;
 import lombok.extern.log4j.Log4j2;
-import org.bouncycastle.math.field.FiniteField;
-import org.bouncycastle.math.field.FiniteFields;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,10 +77,10 @@ public class VtvActivationPage extends BasePage {
     public WebElement addIconForTarifeInstalimi;
 
     @FindBy(xpath = "//mat-basic-chip[normalize-space()='ALL4000 3Month']")
-    public WebElement allMonthsOptionForTarifeInstalimi;
+    static public WebElement allMonthsOptionForTarifeInstalimi;
 
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
-    public WebElement addToCartBtn;
+    static public WebElement addToCartBtn;
 
     @FindBy(xpath = "//span[.='Shopping cart created successfully!']")
     public WebElement shoppingCartCreatedSuccesfullyMessage;
