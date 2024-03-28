@@ -272,6 +272,13 @@ public abstract class BasePage {
         }
     }
 
+    public static void performKeyboardAction(Keys keys) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(keys)
+                .perform();
+        waitFor(1);
+    }
+
     public static String getValueByMouseKeyboardAction(WebElement webElement) {
         Actions actions = new Actions(Driver.getDriver());
         actions.click(webElement)

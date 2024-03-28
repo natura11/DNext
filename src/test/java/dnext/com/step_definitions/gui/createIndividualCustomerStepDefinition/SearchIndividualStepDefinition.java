@@ -6,6 +6,7 @@ import dnext.com.pages.createIndividualCustomer.SearchIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -70,6 +71,16 @@ public class SearchIndividualStepDefinition extends BasePage {
     public void userShouldSeeBackgroundIsNotRedOnCreateIndividualCustomerPage() {
         generalInformationNewIndividualCustomerPage.warningBackgroundIsNotRedColor();
 
+    }
+
+    @When("User clicks the Search Individual button for Individual")
+    public void userClicksTheSearchIndividualButtonForIndividual() {
+        clickField(searchIndividualPage.searchIndividualButton);
+    }
+
+    @Then("User is on the Individual Search Individual page")
+    public void userIsOnTheIndividualSearchIndividualPage() {
+        searchIndividualPage.verifyUserIsOnSearchIndividualPage();
     }
 }
 
