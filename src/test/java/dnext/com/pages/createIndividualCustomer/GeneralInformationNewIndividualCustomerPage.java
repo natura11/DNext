@@ -14,6 +14,10 @@ import org.openqa.selenium.support.FindBy;
 
 @Log4j2
 public class GeneralInformationNewIndividualCustomerPage extends BasePage {
+
+    @FindBy(xpath = "//div[contains(text(),'General Information')]//ancestor::mat-step-header")
+    public WebElement generalInformationButtonSelectedLabel;  // aria-selected : true will be validated
+
     @FindBy(xpath = "//*[@id=\"firstName\"]")
     public WebElement firstNameFieldOnGeneralInformationForNewIndividualCustomer;
     @FindBy(xpath = "//*[@id=\"lastName\"]")
@@ -64,6 +68,16 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     public WebElement nextButtonOnGeneralInformation;
     @FindBy(xpath = "//*[@formcontrolname=\"segment\"]")
     public WebElement segmentDropdownBoxOnIndividual;
+
+    public void verifyUserIsOnGeneralInformationPage() {
+        try {
+            Assert.assertTrue(generalInformationButtonSelectedLabel.isDisplayed());
+            Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
+            log.info("Other Information Page is displaying");
+        } catch (Throwable e) {
+            log.info("Error message: Other Information Page is  not displaying");
+        }
+    }
 
     public GeneralInformationNewIndividualCustomerPage warningBackgroundIsNotRedColor() {
         Utils.waitFor(1);

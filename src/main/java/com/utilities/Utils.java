@@ -166,8 +166,13 @@ public class Utils {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", getElement(element), attributeName, attributeValue);
     }
 
-    public static void selectCheckBox(WebElement element, boolean check) {
-        if(element.isSelected() != check) click(element);
+    public static void selectCheckBox(WebElement element) {
+        if(!element.isSelected()) click(element);
+    }
+
+    public static boolean isElementSelected(WebElement element) {
+        waitFor(1);
+        return element.isSelected();
     }
 
     public static void switchToWindowByOrder(int order) {
