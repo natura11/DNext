@@ -140,8 +140,9 @@ public class FiberActivationForPrepaidPage extends BasePage {
 
 
     static public void activationFormClicking() {
+        Utils.waitFor(1);
         clickField(activationFormButtonAfterCheckout);
-        Utils.waitFor(5); // Adjust this wait time as needed
+        Utils.waitFor(10);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
         if (Driver.getDriver().getWindowHandles().size() > 1) {
             switchToWindowNew(1);

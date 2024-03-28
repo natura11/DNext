@@ -141,7 +141,6 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitFor(1);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
         Utils.waitFor(2);
     }
@@ -172,13 +171,13 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the COMPLATE CHECKOUT button on Customer{int} search page")
     public void userClicksTheCOMPLATECHECKOUTButtonOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(2);
+        Utils.waitFor(3);
         clickField(vtvActivationPage.completeChecekoutBtn);
+        Utils.waitFor(1);
     }
 
     @Then("user sees one pop up warning as {string} on Customer{int} search page")
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitFor(3);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
         Utils.waitFor(60);
 

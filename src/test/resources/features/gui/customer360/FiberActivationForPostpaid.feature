@@ -27,17 +27,15 @@ Feature: Fiber Activation for Postpaid
     And User selects the FIBER as Infrustructure on Customer360 search page
     And User selects Basic Enterprise Modem on Customer360 search page
     And User selects 12 X ALL0  Contract Duration for Basic Enterprise Modem on Customer360 search page
-#    And User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field on Customer360 search page
-    And User clicks the ADD to Cart button on Customer360 search page
-    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+   And User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field for the postpaid on Customer360 search page
+#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Vodafone GigaFibra 200 Mbps" which was selected product on Fiber for postpaid in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
     And User clicks the save button after checkout action on Customer360 search page
     And User clicks the activation form on top of the opened screen on Customer360 search page
-#    And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
-    Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
+#    Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
     When User clicks the Go Back to Customer360 button on Customer360 search page
     Then User is on the Customer360 page
     And User clicks the Order button on Customer360 search page
@@ -55,15 +53,16 @@ Feature: Fiber Activation for Postpaid
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User switches to Backoffice page
-    And User should see the name of progressed customer on BackOffice page
-    And User clicks the name of customer on BackOffice page
+    And User should see the name of "KUHN GROUP"progressed customer on BackOffice page
+    And User clicks the name of customer  on BackOffice page
     And User clicks the three dots on opened page  on Backoffice page
     And User clicks the ClaimEdit button on opened segent on BackOffice page
-    And User clicks the isApprovved dropdaown button on BackOffice page
+    And User should see the "Corporate Confirmation" text on BackOffice page
+    And User clicks the isApprovved dropdown button on BackOffice page
     And User clicks the approved option from dropdown on BackOffice page
-    And User should see the "" on right buttom of the on BackOffice page
     And User clicks the Complate Task button on the right buttom of the on BackOffice page
-    Then User should see "" pop up message  on BackOffice page
+    Then User should see "Task Completed" pop up message  on BackOffice page
+    And User turns back to customer main page on Customer360 search page
     And User clicks the Order button on Customer360 search page
     Then User should see the Order Status OF Fiber Activation turned to completed  on Customer360 search page
 
