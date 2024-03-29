@@ -22,7 +22,7 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     public WebElement middleNameFieldOnGeneralInformationForNewIndividualCustomer;
     @FindBy(xpath = "//*[@formcontrolname='citizenShip']")
     public WebElement citizenShipFieldOnNewIndividualCustomer;
-    @FindBy(xpath = "//*[text()=' ALBANIAN '] ")
+    @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='ALBANIAN']")
     public WebElement albanianOptionOnNewIndividualCustomer;
     @FindBy(xpath = "(//div[@class='mat-form-field-wrapper ng-tns-c108-19'])[1]")
     public WebElement picture;
@@ -64,6 +64,8 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     public WebElement nextButtonOnGeneralInformation;
     @FindBy(xpath = "//*[@formcontrolname=\"segment\"]")
     public WebElement segmentDropdownBoxOnIndividual;
+    @FindBy(xpath = "//div[contains(text(),'General Information')]//ancestor::*[@aria-selected='true']")
+    public WebElement selectedGeneralInformationOnIndividual;
 
     public GeneralInformationNewIndividualCustomerPage warningBackgroundIsNotRedColor() {
         Utils.waitFor(1);
