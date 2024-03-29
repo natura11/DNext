@@ -3,7 +3,6 @@ package dnext.com.pages;
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
-import dnext.com.pages.createBusinnesCustomerPages.ContactInformationPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
@@ -29,50 +28,12 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.utilities.Driver.getDriver;
-import static com.utilities.Utils.getElement;
-import static com.utilities.Utils.waitFor;
+import static com.utilities.Utils.*;
 
 @Log4j2
 @AllArgsConstructor
 public abstract class BasePage {
     protected Faker faker;
-
-    public BasePage(Faker faker) {
-        this.faker = faker;
-    }
-
-    public BasePage() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
-    public static ThreadLocal<List<TestContext>> testContext = new InheritableThreadLocal<>();
-
-    public void setTestData(String key, String value) {
-        testContext.get().add(new TestContext(HooksUI.scenarioName.get(), Map.of(key, value)));
-    }
-
-    public String getTestDate(String key, String scenarioName) {
-        return testContext.get().stream()
-                .filter(n -> n.scenarioName().equals(scenarioName))
-                .map(n -> n.testData().get(key))
-                .toList().getFirst();
-    }
-
-    public String getTestDate(String key) {
-        return testContext.get().stream()
-                .filter(n -> n.testData().containsKey(key))
-                .toList().getFirst().testData().get(key);
-    }
-
-    public <T> void openPage(Class<T> className) {
-        getDriver().get(ConfigurationReader.getProperty(className.getAnnotation(DefaultUrl.class).value()));
-        Utils.waitForPageToLoad();
-    }
-
-    public void refreshPage() {
-        Utils.refreshThePage();
-    }
-
 
     @FindBy(xpath = "//span[normalize-space()='Customer360']")
     public WebElement customer360btn;
@@ -140,6 +101,43 @@ public abstract class BasePage {
     @FindBy(css = "mat-list:nth-child(1) mat-list-item:nth-child(1) div:nth-child(1) div:nth-child(3) div:nth-child(2)")
     public WebElement paymentIdForFiscalization;
 
+
+    public BasePage(Faker faker) {
+        this.faker = faker;
+    }
+
+    public BasePage() {
+        PageFactory.initElements(getDriver(), this);
+    }
+
+    public static ThreadLocal<List<TestContext>> testContext = new InheritableThreadLocal<>();
+
+    public void setTestData(String key, String value) {
+        testContext.get().add(new TestContext(HooksUI.scenarioName.get(), Map.of(key, value)));
+    }
+
+    public String getTestDate(String key, String scenarioName) {
+        return testContext.get().stream()
+                .filter(n -> n.scenarioName().equals(scenarioName))
+                .map(n -> n.testData().get(key))
+                .toList().getFirst();
+    }
+
+    public String getTestDate(String key) {
+        return testContext.get().stream()
+                .filter(n -> n.testData().containsKey(key))
+                .toList().getFirst().testData().get(key);
+    }
+
+    public <T> void openPage(Class<T> className) {
+        getDriver().get(ConfigurationReader.getProperty(className.getAnnotation(DefaultUrl.class).value()));
+        Utils.waitForPageToLoad();
+    }
+
+    public void refreshPage() {
+        Utils.refreshThePage();
+    }
+
     public static void elementDisplayed(WebElement webElement) {
         Utils.waitFor(2);
         Assert.assertTrue(webElement.isDisplayed());
@@ -150,23 +148,22 @@ public abstract class BasePage {
         Utils.waitForInvisibilityOf(webElement);
         try {
             Assert.assertFalse(webElement.isDisplayed());
-        } catch (NoSuchElementException exception) {
             log.info("WebElement is not displaying");
+        } catch (NoSuchElementException exception) {
+            log.info("WebElement is displaying");
         }
     }
 
-    public BasePage logout() {
+    public void logout() {
         Utils.waitFor(3);
         log.info("User logs out from the page");
         Utils.click(profileSignDropdownArrowBtnOnPage);
         Utils.click(logoutBtnInDropdownOnHomePage);
-        return this;
     }
 
-    public BasePage isShownEmailOfUserOnHomePage() {
+    public void isShownEmailOfUserOnHomePage() {
         emailOfUserOnHomePage.isDisplayed();
         System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
-        return this;
     }
 
     public static void warningMessage(String message, WebElement element) {
@@ -177,17 +174,6 @@ public abstract class BasePage {
         Assert.assertEquals(expectedMessage, actualMessage);
     }
 
-    public static void DropdownSelectable(By by) {
-        List<WebElement> options = Driver.getDriver().findElements(by);
-        System.out.println("options.size() = " + options.size());
-        for (WebElement option : options) {
-            if (option.isDisplayed()) {
-                log.info("Option '" + option.getText() + "' is selectable.");
-            } else {
-                log.info("Option '" + option.getText() + "' is not selectable.");
-            }
-        }
-    }
 
     public static void sendKeys(WebElement element, String data) {
         getElement(element).sendKeys(data);
@@ -286,6 +272,13 @@ public abstract class BasePage {
         }
     }
 
+    public static void performKeyboardAction(Keys keys) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(keys)
+                .perform();
+        waitFor(1);
+    }
+
     public static String getValueByMouseKeyboardAction(WebElement webElement) {
         Actions actions = new Actions(Driver.getDriver());
         actions.click(webElement)
@@ -336,7 +329,7 @@ public abstract class BasePage {
         return text;
     }
 
-    public void clearEnterText(WebElement element, String inputText) {
+    public static void clearEnterText(WebElement element, String inputText) {
         element.clear();
         element.sendKeys(inputText);
     }
@@ -369,6 +362,26 @@ public abstract class BasePage {
 
     public static void verifyValidFormatEmail(String dotSign, String tagSign, String email) {
         Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
+    }
+
+    public static void fillInput(WebElement element, String text){
+        element.clear();
+        Utils.sendKeys(element, text);
+    }
+
+    public static void fillInputWithTab(WebElement element, String text){
+        element.clear();
+        Utils.sendKeys(element, text + Keys.TAB);
+    }
+
+    public static void verifyInputErrorMessage(WebElement webElement, String message) {
+        elementDisplayed(webElement);
+        Assert.assertEquals(message, webElement.getText().trim());
+    }
+
+    public static void verifyPageErrorMessage(WebElement webElement, String message) {
+        elementDisplayed(webElement);
+        Assert.assertEquals(message, webElement.getText().trim());
     }
 
 

@@ -26,8 +26,11 @@ public class AdminInformationPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[2]/span")
     public WebElement warningForClickingSearchIcon;
 
-    @FindBy(xpath = "//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color'][normalize-space()='search']")
+    @FindBy(xpath = "(//div[text()='Admin Information']/following::mat-icon[text()='search'])[2]")
     public WebElement searchIconInIdentificationField;
+
+    @FindBy(xpath = "//div[text()='Admin Information']/following::mat-icon[text()='search']")
+    public WebElement searchIconInIdentificationFieldAfterOrganizationSearch;
 
     @FindBy(css = "[formcontrolname = 'firstName']")
     public WebElement firstName;
@@ -146,7 +149,6 @@ public class AdminInformationPage extends BasePage {
     }
 
     public AdminInformationPage clickSearchIconInIdentificationField() {
-        Utils.waitForPageToLoad();
         Utils.click(searchIconInIdentificationField);
         return this;
     }
@@ -174,6 +176,7 @@ public class AdminInformationPage extends BasePage {
             } else {
                 uploadFile(addBtn, txtFileInput, fileName);
                 //Assert.assertEquals("AdminDoc-" + fileName, nameOfUploadedFile.getText());
+                elementDisplayed(nameOfUploadedFile);
                 System.out.println("nameOfUploadedFile.getText() = " + nameOfUploadedFile.getText());
             }
         } catch (Exception e) {
@@ -253,7 +256,7 @@ public class AdminInformationPage extends BasePage {
 
     public AdminInformationPage selectPlaceOfBirthFromDropdown() {
         placeOfBirthField.click();
-        beratCityFromPlaceOfBirthDropdown.click();
+        selectSpecificOptionFromDropdown("BERAT");
         return this;
     }
 

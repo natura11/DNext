@@ -1,5 +1,6 @@
 package dnext.com.pages.createIndividualCustomer;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinnesCustomerPages.CreateBusinessCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +16,12 @@ public class SearchIndividualPage extends BasePage {
     @FindBy(xpath = "//*[text()=' New Individual Customer ']")
     public WebElement newIndividualCustomerHeaderOnHomePage;
 
+    @FindBy(xpath = "//div[contains(text(),'Search Individual')]")
+    public WebElement searchIndividualButton;
+
+    @FindBy(xpath = "//div[contains(text(),'Search Individual')]//ancestor::mat-step-header")
+    public WebElement searchIndividualButtonSelectedLabel;
+
     @FindBy(xpath = "//input[@name=\"personalNumber\"]")
     public WebElement identificationNumberBtnOnSearchIndividualHomePage;
 
@@ -28,11 +35,22 @@ public class SearchIndividualPage extends BasePage {
     public WebElement warningForExistingIdNumberOnSearchIndividualHomePage;
 
     public  SearchIndividualPage verificationNewIndividualCustomerHeader(String header) {
+        elementDisplayed(newIndividualCustomerHeaderOnHomePage);
         String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
         String expectedHeader = header;
         System.out.println("header = " + header);
         Assert.assertEquals(header,actualHeader);
         return this;
+    }
+
+    public void verifyUserIsOnSearchIndividualPage() {
+        try {
+            Assert.assertTrue(searchIndividualButtonSelectedLabel.isDisplayed());
+            Assert.assertEquals("true", searchIndividualButtonSelectedLabel.getAttribute("aria-selected"));
+            log.info("Other Information Page is displaying");
+        } catch (Throwable e) {
+            log.info("Error message: Other Information Page is  not displaying");
+        }
     }
 
 

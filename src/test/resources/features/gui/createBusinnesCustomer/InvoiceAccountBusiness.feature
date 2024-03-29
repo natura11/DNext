@@ -1,4 +1,4 @@
-@VFALFT-22208 @regression @invoiceAccount
+@VFALFT-22208 @regression @invoiceAccountForBusiness
 Feature:New Business Customer-Invoice Account
 
   Background:
@@ -10,7 +10,7 @@ Feature:New Business Customer-Invoice Account
     Given User clicks the Invoice Account button
     Given User is on the Invoice Account page
 
-  @continueWithoutAddingInvoiceAccount
+  @continueWithoutAddingInvoiceAccountForBusinessInvoice
   Scenario: As a user I want to continue without adding any Account on Invoice Account Page
     Given User is on the Invoice Account page
     And   User clicks Next button on Invoice Account page
@@ -18,26 +18,26 @@ Feature:New Business Customer-Invoice Account
     Then  User sees the Ebill Email is required on Invoice Account page
     Then  User sees the Ebill Mobile Number is required on Invoice Account page
 
-  @backToPreviousPageWithoutInvoiceAccount
+  @backToPreviousPageWithoutInvoiceAccountForBusinessInvoice
   Scenario: As a user I want to go previous page without adding any Account on Invoice Account Page
     Given User is on the Invoice Account page
     And   User clicks Back button on Invoice Account page
     Then  User is on the Address Information Page
 
-  @selectionOptionFromCurrencyDrop
+  @selectionOptionFromCurrencyDropForBusinessInvoice
   Scenario: As a user I want to select one option from Currency dropdown
     Given User should see the Currency dropdown on Invoice Account page
     When  User clicks Currency dropdown on Invoice Account page
     And   User should ensure each options in Currency dropdown are selectable on Invoice Account page
     Then  User should selects any option in the Currency dropdown on Invoice Account page
 
-  @writingDescription
+  @writingDescriptionForBusinessInvoice
   Scenario: As a user I want to enter description into description field
     Given User should see the Description textbox on Invoice Account page
     And   User clicks Description Field on Invoice Account page
     Then  User enters a value "Business Test Description 123" in the Description textbox on Invoice Account page
 
-  @selectionOptionFromPaymentMethodDrop
+  @selectionOptionFromPaymentMethodDropForBusinessInvoice
   Scenario: As a user I want to select Cash and Direct Debit options from Payment Method dropdown
     Given User should see the Payment Method dropdown on Invoice Account page
     When User clicks Payment Method dropdown on Invoice Account page
@@ -55,7 +55,7 @@ Feature:New Business Customer-Invoice Account
     And  User should select "Cash" option in the Payment Method dropdown on Invoice Account page
     Then User should not see the Bank Name and Bank Account No fields
 
-  @writingInvalidAndValidEmailForEBill
+  @writingInvalidAndValidEmailForEBillForBusinessInvoice
   Scenario: As a user I want to enter invalid and valid characters based email into email field
     Given User should see the E-Bill email textbox on Invoice Account page
     When  User clicks email field on Invoice Account page
@@ -72,7 +72,7 @@ Feature:New Business Customer-Invoice Account
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Invoice Account page
     Then  User should see that background is not red for the email field on Invoice Account Page
 
-  @fillPhoneNumberWithDifferentCountry
+  @fillPhoneNumberWithDifferentCountryForBusinessInvoice
   Scenario: As a user I want to select different country and numbers except Albanian numbers on Invoice Account Page
     Given User should see Country Code dropdown on Invoice Account Page
     Given User should see the E-Bill mobile number textbox on Invoice Account page
@@ -85,7 +85,7 @@ Feature:New Business Customer-Invoice Account
     And   User enters mobile phone number "12346678910" with other country code except Albania on Invoice Account page
     Then  User should not see the warning message on phone field on Invoice Account page
 
-  @fillInvalidPhoneNumberWithAlbaniaCountry
+  @fillInvalidPhoneNumberWithAlbaniaCountryForBusinessInvoice
   Scenario: As a user I want to select Albania and enter invalid numbers on Invoice Account Page
     Given User should see Country Code dropdown on Invoice Account Page
     Then  User should see the E-Bill mobile number textbox on Invoice Account page
@@ -99,7 +99,7 @@ Feature:New Business Customer-Invoice Account
     And   User enters invalid "41234567" phone numbers on Invoice Account page
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Invoice Account page
 
-  @fillValidPhoneNumberWithAlbaniaCountry
+  @fillValidPhoneNumberWithAlbaniaCountryForBusinessInvoice
   Scenario: As a user I want to select Albania and enter valid numbers on Invoice Account Page
     Given User should see Country Code dropdown on Invoice Account Page
     Then  User should see the E-Bill mobile number textbox on Invoice Account page

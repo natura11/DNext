@@ -76,8 +76,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User enters a value {string} in the Description textbox on Invoice Account page")
     public void userEntersAValueInTheDescriptionTextbox(String description) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.postpaidDescriptionInput, description);
+        fillInput(invoiceAccountPage.postpaidDescriptionInput, description);
     }
 
     @Given("User should see the Payment Method dropdown on Invoice Account page")
@@ -127,8 +126,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User enters a value {string} Bank Account No textbox on Invoice Account page")
     public void userEntersAValueBankAccountNoTextbox(String accountNo) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.bankAccountNoInput, accountNo);
+        fillInput(invoiceAccountPage.bankAccountNoInput, accountNo);
     }
 
     @Given("User should see the E-Bill email textbox on Invoice Account page")
@@ -143,14 +141,12 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @And("User enters invalid emails {string} on Invoice Account Page")
     public void userEntersInvalidEmailsOnInvoiceAccountPage(String email) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillEmailInput, email);
+        fillInputWithTab(invoiceAccountPage.eBillEmailInput, email);
     }
 
     @Then("User should see {string} message under email field on Invoice Account page")
     public void userShouldSeeMessageUnderEmailFieldOnInvoiceAccountPage(String message) {
-        invoiceAccountPage
-                .verifyInputErrorMessage(invoiceAccountPage.eBillEmailErrorText, message);
+        verifyInputErrorMessage(invoiceAccountPage.eBillEmailErrorText, message);
     }
 
     @Then("User should see that background is red for the email field on Invoice Account page")
@@ -160,8 +156,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Given("User enters valid {string} in to the email field on Invoice Account page")
     public void userEntersValidInToTheEmailFieldOnInvoiceAccountPage(String email) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillEmailInput, email);
+        fillInputWithTab(invoiceAccountPage.eBillEmailInput, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Invoice Account page")
@@ -191,6 +186,7 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @Then("User should ensure each options in Country Code dropdown are selectable on Invoice Account page")
     public void userShouldEnsureEachOptionsInCountryCodeDropdownAreSelectableOnInvoiceAccountPage() {
+        isDropdownSelectableOne();
     }
 
     @When("User selects {string} option in the Country Code dropdown on Invoice Account page")
@@ -205,41 +201,33 @@ public class InvoiceAccountStepDefinition extends BasePage {
 
     @And("User leaves blank mobile phone number field on Invoice Account page")
     public void userLeavesBlankMobilePhoneNumberFieldOnInvoiceAccountPage() {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, "" + Keys.TAB);
+        fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, "" + Keys.TAB);
     }
 
 
     @And("User enters mobile phone number {string} with other country code except Albania on Invoice Account page")
     public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbaniaOnInvoiceAccountPage(String phoneNumber) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
+        fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
     }
 
     @And("User enters invalid {string} phone numbers on Invoice Account page")
     public void userEntersInvalidPhoneNumbersOnInvoiceAccountPage(String phoneNumber) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
+        fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
     }
 
     @Then("User should see {string} message under mobile phone number field on Invoice Account page")
     public void userShouldSeeMessageUnderMobilePhoneNumberFieldOnInvoiceAccountPage(String message) {
-        invoiceAccountPage
-                .verifyInputErrorMessage(invoiceAccountPage.phoneNumberErrorText, message);
+        verifyInputErrorMessage(invoiceAccountPage.phoneNumberErrorText, message);
     }
-
 
     @And("User enters valid {string} into the phone number field on Invoice Account page")
     public void userEntersValidIntoThePhoneNumberFieldOnInvoiceAccountPage(String phoneNumber) {
-        invoiceAccountPage
-                .fillInputField(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
+        fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
     }
 
     @Then("User should not see the warning message on phone field on Invoice Account page")
     public void userShouldNotSeeTheWarningMessageOnPhoneFieldOnInvoiceAccountPage() {
         elementNotDisplayed(invoiceAccountPage.phoneNumberErrorText);
     }
-
-
 
 }

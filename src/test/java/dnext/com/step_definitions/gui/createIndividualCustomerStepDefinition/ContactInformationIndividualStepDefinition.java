@@ -136,8 +136,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see the document {string} warning message on Individual Contact Information Page")
     public void userShouldSeeTheWarningMessage(String message) {
-        contactInformationIndividualPage
-                .verifyErrorMessage(contactInformationIndividualPage.documentErrorText, message);
+        verifyPageErrorMessage(contactInformationIndividualPage.documentErrorText, message);
     }
 
     @When("User clicks Identification Number textbox on Contact Information Page")
@@ -147,8 +146,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters {string} for the Identification Number textbox on Individual Contact Information Page")
     public void userEntersForTheIdentificationNumberTextbox(String text) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.identificationNumberInput, text);
+        fillInput(contactInformationIndividualPage.identificationNumberInput, text);
     }
 
     @And("User clicks search button on Individual Contact Information Page")
@@ -210,8 +208,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters {string} for the First Name textbox on Individual Contact Information Page")
     public void userEntersForTheFirstNameTextbox(String firstName) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.firstNameInput, firstName);
+        fillInputWithTab(contactInformationIndividualPage.firstNameInput, firstName);
     }
 
     @Then("User should see that background is not red for the First Name textbox on Individual Contact Information Page")
@@ -226,8 +223,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters {string} for the Last Name textbox on Individual Contact Information Page")
     public void userEntersForTheLastNameTextbox(String lastName) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.lastNameInput, lastName);
+        fillInputWithTab(contactInformationIndividualPage.lastNameInput, lastName);
     }
 
     @Then("User should see that background is not red for the Last Name textbox on Individual Contact Information Page")
@@ -242,8 +238,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters {string} for the Birth Date input on Individual Contact Information Page")
     public void userEntersForTheBirthDateInput(String birthDate) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.birthDateInput, birthDate);
+        fillInputWithTab(contactInformationIndividualPage.birthDateInput, birthDate);
     }
 
     @Then("User should see that background is not red for the Birth Date input on Individual Contact Information Page")
@@ -328,8 +323,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters valid {string} into the phone number field on Individual Contact Information page")
     public void userEntersValidIntoThePhoneNumberField(String phoneNumber) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.phoneNumberInput, phoneNumber);
+        fillInputWithTab(contactInformationIndividualPage.phoneNumberInput, phoneNumber);
     }
 
     @Then("User should not see the warning background on phone field on Individual Contact Information page")
@@ -344,8 +338,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters valid {string} in to the email field on Individual Contact Information Page")
     public void userEntersValidInToTheEmailField(String email) {
-        contactInformationIndividualPage
-                .fillInput(contactInformationIndividualPage.emailInput, email);
+        fillInputWithTab(contactInformationIndividualPage.emailInput, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Individual Contact Information Page")

@@ -101,26 +101,13 @@ public class ContactInformationPage extends BasePage {
     public WebElement backButtonOnContactInformationPage;
 
 
-    public ContactInformationPage verifyUserIsOnContactInformationPage() {
+    public void verifyUserIsOnContactInformationPage() {
         try {
             Assert.assertTrue(typeOfContactDropdown.isDisplayed());
             log.info("Type of Contact is displaying");
         } catch (Throwable e) {
             log.info("Error message: Type of Contact field is  not displaying");
         }
-        return this;
-    }
-
-    public ContactInformationPage verifyEmptyInputErrorMessage(String message) {
-        elementDisplayed(phoneNumberErrorText);
-        Assert.assertEquals(message, phoneNumberErrorText.getText().trim());
-        return this;
-    }
-
-    public ContactInformationPage fillInput(WebElement element, String text){
-        element.clear();
-        Utils.sendKeys(element, text + Keys.TAB);
-        return this;
     }
 
 }

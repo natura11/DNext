@@ -18,7 +18,7 @@ public class HooksUI {
     @Before
     public void before_all() {
         Driver.getDriver().manage().timeouts().getPageLoadTimeout();
-        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        //Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
     }
 

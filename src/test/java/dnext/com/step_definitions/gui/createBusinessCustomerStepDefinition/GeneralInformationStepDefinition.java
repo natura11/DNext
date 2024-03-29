@@ -210,6 +210,7 @@ public class GeneralInformationStepDefinition extends BasePage {
 
     @And("User should see the name of {string} added pdf document on the screen on general information page")
     public void userShouldSeeTheNameOfAddedPdfDocumentOnTheScreenOnGeneralInformationPage(String fileNameOfPdf) {
+        elementDisplayed(generalInformationPage.nameOfUploadedFileOnGeneral);
         Assert.assertEquals("DOCUMENT-" + fileNameOfPdf, generalInformationPage.nameOfUploadedFileOnGeneral.getText());
     }
 }

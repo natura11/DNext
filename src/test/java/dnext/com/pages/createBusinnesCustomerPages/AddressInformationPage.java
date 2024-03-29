@@ -85,52 +85,42 @@ public class AddressInformationPage extends BasePage{
     @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnAddressInformationPage;
 
-    public AddressInformationPage verifyUserIsOnAddressInformationPage() {
+    public void verifyUserIsOnAddressInformationPage() {
         try {
             Assert.assertTrue(billingAddressMediumType.isDisplayed());
             log.info("Address field is displaying");
         } catch (Throwable e) {
             log.info("Error message: Address field is  not displaying");
         }
-        return this;
     }
 
-    public AddressInformationPage fillInputField(WebElement webElement, String text) {
-        webElement.clear();
-        webElement.sendKeys(text);
-        return this;
-    }
 
-    public AddressInformationPage verifyInputElementsNonEditable(WebElement webElement) {
+    public void verifyInputElementsNonEditable(WebElement webElement) {
         String isReadOnly = webElement.getAttribute("readonly");
         Assert.assertEquals("true", isReadOnly);
-        return this;
     }
 
-    public AddressInformationPage verifyDropdownNonEditable(WebElement webElement) {
+    public void verifyDropdownNonEditable(WebElement webElement) {
         String isDisabled = webElement.getAttribute("aria-disabled");
         Assert.assertEquals("true", isDisabled);
-        return this;
     }
 
-    public AddressInformationPage verifyCountryHasDefaultValue(WebElement webElement, String value) {
+    public void verifyCountryHasDefaultValue(WebElement webElement, String value) {
         List<WebElement> spanLists = webElement.findElements(By.xpath(".//span"));
         for (WebElement element: spanLists) {
             String actualCountry = element.getText();
             if(actualCountry.equals(value)){
                 Assert.assertTrue(true);
-                return this;
+                return;
             }
         }
         Assert.fail();
-        return this;
     }
 
-    public AddressInformationPage verifyServiceAddressValue() {
+    public void verifyServiceAddressValue() {
         Utils.scrollToElement(serviceAddressContactType);
         String contactType = getValueByMouseKeyboardAction(serviceAddressContactType);
         Assert.assertEquals("Service Address", contactType);
-        return this;
     }
 
 

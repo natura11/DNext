@@ -259,4 +259,9 @@ public class GeneralInformationNewIndividualCustomerStepDefinitions extends Base
     public void userShouldSelectsAnyOptionsInTheSegmentDropdownOnNewIndividualCustomerPage() {
         generalInformationNewIndividualCustomerPage.segmentOptionFromDropdownOnIndividual();
     }
+
+    @Then("User is on the Individual Genaral Information page")
+    public void userIsOnTheIndividualGenaralInformationPage() {
+        generalInformationNewIndividualCustomerPage.verifyUserIsOnGeneralInformationPage();
+    }
 }

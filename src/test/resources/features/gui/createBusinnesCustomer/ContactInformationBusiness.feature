@@ -10,19 +10,19 @@ Feature:New Business Customer-Contact Information
     Given User clicks the Contact Information button
     Given User is on the Contact Information page
 
-  @continueWithoutAddingContact
+  @continueWithoutAddingContactForBusinessContact
   Scenario: As a user I want to continue without adding any Contact on Contact Information Page
     Given User is on the Contact Information page
     And   User clicks Next button on Contact Information Page
     Then  User is on the Address Information Page
 
-  @backToPreviousPageWithoutAddingContact
+  @backToPreviousPageWithoutAddingContactForBusinessContact
   Scenario: As a user I want to go previous page without adding any Contact on Contact Information Page
     Given User is on the Contact Information page
     And   User clicks Back button on Contact Information Page
     Then  User should see the Admin Information Page
 
-  @fillPhoneNumberWithDifferentCountry
+  @fillPhoneNumberWithDifferentCountryForBusinessContact
   Scenario: As a user I want to select different country and numbers except Albanian numbers on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
@@ -38,7 +38,7 @@ Feature:New Business Customer-Contact Information
     And   User enters mobile phone number "12346678910" with other country code except Albania on Contact Information page
     Then  User should not see the warning message on phone field on Contact Information page
 
-  @fillInvalidPhoneNumberWithAlbaniaCountry
+  @fillInvalidPhoneNumberWithAlbaniaCountryForBusinessContact
   Scenario: As a user I want to select Albania and enter invalid numbers on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
@@ -56,7 +56,7 @@ Feature:New Business Customer-Contact Information
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Contact Information page
 
 
-  @fillValidPhoneNumberWithAlbaniaCountry
+  @fillValidPhoneNumberWithAlbaniaCountryForBusinessContact
   Scenario: As a user I want to select Albania and enter valid numbers on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
@@ -69,7 +69,7 @@ Feature:New Business Customer-Contact Information
     And   User enters valid "628641593" into the phone number field on Contact Information page
     Then  User should not see the warning message on phone field on Contact Information page
 
-  @writingInvalidAndValidEmailForContactType
+  @writingInvalidAndValidEmailForContactTypeForBusinessContact
   Scenario: As a user I want to enter invalid and valid characters based email into email field on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
@@ -87,7 +87,7 @@ Feature:New Business Customer-Contact Information
     Then  User should see that background is not red for the email field on Contact Information Page
 
 
-  @addDifferentTypeOfContacts
+  @addDifferentTypeOfContactsForBusinessContact
   Scenario Outline: As a user I want to add different type of Contacts on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
@@ -114,7 +114,7 @@ Feature:New Business Customer-Contact Information
       | Payment Responsible |
       | Technical Contact   |
 
-  @addMultipleContact
+  @addMultipleContactForBusinessContact
   Scenario: As a user I want to add Multiple Contacts on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
