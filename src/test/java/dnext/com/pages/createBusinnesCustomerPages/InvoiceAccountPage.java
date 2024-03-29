@@ -118,11 +118,6 @@ public class InvoiceAccountPage extends BasePage {
         }
     }
 
-    public void fillInputField(WebElement element, String text) {
-        element.clear();
-        Utils.sendKeys(element, text + Keys.TAB);
-    }
-
     public void selectAnOptionFromDropdown(String paymentMethod) {
         List<WebElement> options = Driver.getDriver()
                 .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
@@ -154,13 +149,8 @@ public class InvoiceAccountPage extends BasePage {
             Assert.assertFalse(bankNameDropdown.isDisplayed());
             Assert.assertFalse(bankAccountNoInput.isDisplayed());
         }catch (NoSuchElementException exception){
-            log.info("bankNameDropdown and bankAccountNoInput are not displaying");
+            log.info("bankNameDropdown and bankAccountNoInput are displaying");
         }
-    }
-
-    public void verifyInputErrorMessage(WebElement webElement, String message) {
-        elementDisplayed(webElement);
-        Assert.assertEquals(message, webElement.getText().trim());
     }
 
 }

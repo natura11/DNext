@@ -8,7 +8,7 @@ Feature:New Business Customer-Other Information
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     ##giriş
-    When  User fills in the NIPT field with valid and non-existing  "Y26105379H" on Search Organization page
+    When  User fills in the NIPT field with valid and non-existing  "Y26105375H" on Search Organization page
     Then  User clicks the Search button on Search Organization page
     And   User clicks the Next button on Search Organization page
     Given User clicks Industry dropdown on general information page
@@ -27,12 +27,14 @@ Feature:New Business Customer-Other Information
     Then  User clicks the Next button on general information page
     And   User clicks on the Identification Number field on Admin Information Page
     When  User enters one non existing valid "Z03798271L" ID number into the Identification Number field on Admin Information page
-    And   User clicks the search icon in Identification Number field on Admin Information page
+    Then  User should see "Please click search icon!" warning under the Identification Number field on Admin Information Page
+    And   User clicks the search icon in Identification Number field after Organization Search on Admin Information page
     And   User  clicks the First Name field and enters the  first name as "Judy" into the First Name field on Admin Information Page
     And   User  clicks the Last Name field and enters the  first name as "Koch" into the First Name field on Admin Information Page
     Given User enters valid "ABC@ABC.COM" in to the email field on  Admin Information Page
     Given User Male option from gender on Admin Information Page
     And   User selects of valid birth date as "18/03/2006" on Admin Information Page
+    And   User selects the country as Albania as country of birth on Admin Information Page
     And   User selects Berat as place of birth on Admin Information Page
     And   User adds "623456789" the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page
     And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page

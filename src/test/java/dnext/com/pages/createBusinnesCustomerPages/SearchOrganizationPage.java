@@ -69,6 +69,7 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage usingNonExistenceNiptNumber(String number) {
+        elementDisplayed(niptNumberField);
         nonExistenceNiptNumber = number;
         Utils.waitForPageToLoad();
         niptNumberField.sendKeys(number);
@@ -90,6 +91,7 @@ public class SearchOrganizationPage extends BasePage {
     }
 
     public SearchOrganizationPage openCreateBusinessCustomerPage() {
+        elementDisplayed(dnextlogoOnNavbar);
         Utils.hover(dnextlogoOnNavbar);
         Utils.waitFor(3);
        //Utils.waitForVisibility(createBusinessCustomerBtn,15);

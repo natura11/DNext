@@ -94,10 +94,6 @@ public class AddressInformationPage extends BasePage{
         }
     }
 
-    public void fillInputField(WebElement webElement, String text) {
-        webElement.clear();
-        webElement.sendKeys(text);
-    }
 
     public void verifyInputElementsNonEditable(WebElement webElement) {
         String isReadOnly = webElement.getAttribute("readonly");
@@ -115,6 +111,7 @@ public class AddressInformationPage extends BasePage{
             String actualCountry = element.getText();
             if(actualCountry.equals(value)){
                 Assert.assertTrue(true);
+                return;
             }
         }
         Assert.fail();
