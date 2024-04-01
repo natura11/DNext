@@ -64,7 +64,8 @@ public class GeneralInformationNewIndividualCustomerStepDefinitions extends Base
 
     @Then("User should see that background is red of the firstname picture on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOfTheFirstnamePictureOnNewIndividualCustomerPage() {
-        warningBackgroundRedColor("#f44336", "color", generalInformationNewIndividualCustomerPage.firstNamePicture);
+        warningBackgroundRedColorOne(generalInformationNewIndividualCustomerPage.firstNamePicture,true);
+
     }
 
     @And("User wants to enter {string} as surname with characters in to the lastname  field on New Individual Customer page")
@@ -74,7 +75,7 @@ public class GeneralInformationNewIndividualCustomerStepDefinitions extends Base
 
     @Then("User should see that background is red of the lastname picture on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOfTheLastnamePictureOnNewIndividualCustomerPage() {
-        warningBackgroundRedColor("#f44336", "color", generalInformationNewIndividualCustomerPage.lastNamePicture);
+        warningBackgroundRedColorOne(generalInformationNewIndividualCustomerPage.lastNamePicture,true);
     }
 
     @Given("User wants to enter {string} as firstname with one space at the beginning on New Individual Customer page")
@@ -140,7 +141,7 @@ public class GeneralInformationNewIndividualCustomerStepDefinitions extends Base
 
     @Then("User should see that background is red of middle name  picture on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOfMiddleNamePictureOnNewIndividualCustomerPage() {
-        warningBackgroundRedColor("#f44336", "color", generalInformationNewIndividualCustomerPage.middleNamePicture);
+        warningBackgroundRedColorOne(generalInformationNewIndividualCustomerPage.middleNamePicture,true);
     }
 
     @And("User deletes the entered middle name with characters {string}  on New Individual Customer page")
@@ -171,7 +172,6 @@ public class GeneralInformationNewIndividualCustomerStepDefinitions extends Base
 
     @And("User should see that background is red on email field on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOnEmailFieldOnNewIndividualCustomerPage() {
-        //warningBackgroundRedColor("#f44336", "color", generalInformationNewIndividualCustomerPage.emailFieldPicture);
         warningBackgroundRedColorOne(generalInformationNewIndividualCustomerPage.emailFieldPicture,true);
     }
 

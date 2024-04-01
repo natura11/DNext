@@ -1,5 +1,5 @@
-@VFALFT-22443 @vtv @regression
-Feature: VTV Activation
+@VFALFT-22441 @cryptoguard @regression
+Feature: Cryptoguard Activation
 
   Background:
     Given  I have opened the "Customer Management" application
@@ -7,7 +7,7 @@ Feature: VTV Activation
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
 
-  Scenario:As a user, I want complete VTV Activation process successfully  on Customer360 search page
+  Scenario:As a user, I want complete TVT Cryptoguard process successfully  on Customer360 search page
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
@@ -23,20 +23,22 @@ Feature: VTV Activation
     Then User is directed to the Digitalb Premium Plus page for details of equipments on Customer360 search page
     When User selects cash methods as ALL7900 3Month on Customer360 search page
     And user clicks the TVInfrusructure dropdown button  Customer360 search page
-    And User selects the Vtv as TVInfrustructure on Customer360 search page
-    And User selects Akses Fee per Dekoder Premium on Customer360 search page
-    And User selects the ALL0 3Month option as cash option on Customer360 search page
-    And User enters CasId on Customer360 search page
-    And User selects Tarife Instalimi from Purchasable Addons part on Customer360 search page
+    And User selects the Cryptoguard  as TVInfrustructure on Customer360 search page
+    And User clicks the Smart Card add button for cryptoguard on Customer360 search page
+    And User selects the ALL0 3Month option for Smart Card Contract Duration on Customer360 search page
+    And User selects Akses Fee per Dekoder Basic add button on Customer360 search page
+    And User selects the ALL0 3Month option of Akses Fee per Dekoder Premium as cash option on Customer360 search page
+    And User selects Tarife Instalimi from Purchasable Addons for Cryptoguard part on Customer360 search page
     And User selects ALL4000 3Month option as cash  method on Customer360 search page
-    And User clicks the ADD to Cart button on Customer360 search page
-    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    And User enters SmartCardSerialNumber on Customer360 search page
+#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
-    Then User sees the name of "Digitalb Premium Plus" which was selected product on VTV is in the Shopping Cart on Customer360 search page
+    Then User sees the name of "Digitalb Premium Plus" which was selected product on Cryptoguard is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
     And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
     Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
+    And User clicks the create receipt button
     When User clicks the Go Back to Customer360 button on Customer360 search page
     Then User is on the Customer360 page
     And User clicks the Order button on Customer360 search page
@@ -58,16 +60,15 @@ Feature: VTV Activation
     And User click the detail button
     Given Get Authorization for API
     When Create an endpoint component
-      | Type                 | Value                           | parameters           |
-      | endpoint             | getFromVtvForFiscalization      |                      |
-      | requestType          | getRequestOfVtvForFiscalization |                      |
-      |                      |                                 |                      |
-      | fiscalizationBaseURI | fiscalizationBaseURI            | fiscalizationBaseURI |
-
+      | Type                 | Value                                   | parameters           |
+      | endpoint             | getCryptoguard_ForFiscalization         |                      |
+      | requestType          | getRequestOfCryptoguardForFiscalization |                      |
+      |                      |                                         |                      |
+      | fiscalizationBaseURI | fiscalizationBaseURI                    | fiscalizationBaseURI |
     When Send a request
     Then Status code is 200
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status turned to completed  on Customer360 search page
+    Then User should see the Order Status turned to completed for the Cryptoguard  on Customer360 search page
 
 
 

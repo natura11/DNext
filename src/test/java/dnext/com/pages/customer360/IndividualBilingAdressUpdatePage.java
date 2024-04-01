@@ -22,9 +22,8 @@ public class IndividualBilingAdressUpdatePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"mat-tab-content-1-1\"]/div/app-address-tab/div/table/tbody/tr[2]/td[5]")
     public WebElement addressLineCityNameOnDefoultAddressPage;
 
-public IndividualBilingAdressUpdatePage randomPostCodeCreation(){
+public void randomPostCodeCreation(){
     sendKeys(editPostCodeOnBillingAdress,faker.numerify("####"));
-    return this;
 }
 
 }

@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.customer360;
 
+import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.FiberActivationForPrepaidPage;
@@ -28,12 +29,13 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User selects the Vodafone Gigafibra {int} Mbps on Customer360 search page")
     public void user_selects_the_vodafone_gigafibra_mbps_on_customer360_search_page(Integer int1) {
-        clickField(fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
+        clickField(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
     }
 
     @Then("User is directed to the Vodafone GigaFibra {int} Mbps page for details of equipments on Customer360 search page")
     public void user_is_directed_to_the_vodafone_giga_fibra_mbps_page_for_details_of_equipments_on_customer360_search_page(Integer int1) {
-        Assert.assertEquals("Vodafone GigaFibra 200 Mbps", fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts.getText());
+        warningMessage("Vodafone GigaFibra 200 Mbps", fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts);
+
     }
 
     @When("User selects cash methods as ALL12600 6Month for Vodafone Gigafibra {int} Mbpson Customer360 search page")
@@ -74,17 +76,18 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User clicks the activation form on top of the opened screen on Customer360 search page")
     public void user_clicks_the_activation_form_on_top_of_the_opened_screen_on_customer360_search_page() throws AWTException {
-       fiberActivationForPrepaidPage.activationFormClicking();
+        FiberActivationForPrepaidPage.activationFormClicking();
     }
+
     @Then("User sees the name of {string} which was selected product on Fiber is in the Shopping Cart on Customer{int} search page")
     public void userSeesTheNameOfWhichWasSelectedProductOnFiberIsInTheShoppingCartOnCustomerSearchPage(String warningMessage, int arg1) {
-    warningMessage(warningMessage,fiberActivationForPrepaidPage.selectedProductInShoppingCart);
+        warningMessage(warningMessage, fiberActivationForPrepaidPage.selectedProductInShoppingCart);
     }
 
 
     @Then("User should see the Order Status OF Fiber Activation turned to completed  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusOFFiberActivationTurnedToCompletedOnCustomerSearchPage(int arg0) {
-        fiberActivationForPrepaidPage.verifyTheOrderStatusIsCompleted();
+        FiberActivationForPrepaidPage.verifyTheOrderStatusIsCompleted();
     }
 
 
@@ -95,11 +98,18 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @And("User click the detail button")
     public void userClickTheDetailButton() {
+        Utils.waitFor(1);
         clickField(fiberActivationForPrepaidPage.detailFirstButtonOnFiscalization);
     }
 
     @When("User clicks the New Order for prepaid rating for the customer type on Customer{int} search page")
     public void userClicksTheNewOrderForPrepaidRatingForTheCustomerTypeOnCustomerSearchPage(int arg0) {
         clickField(fiberActivationForPrepaidPage.newOrderBtnOnPrepaid);
+    }
+
+    @And("User clicks the create receipt button")
+    public void userClicksTheCreateReceiptButton() {
+        Utils.waitFor(1);
+        fiberActivationForPrepaidPage.receipCreationForABCOM();
     }
 }

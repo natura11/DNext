@@ -7,7 +7,7 @@ Feature: Abel Activation
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
 
-  Scenario:As a user, I want complete TVT Activation process successfully  on Customer360 search page
+  Scenario:As a user, I want complete Abel Activation process successfully  on Customer360 search page
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
@@ -31,7 +31,7 @@ Feature: Abel Activation
     And User selects Tarife Instalimi from Purchasable Addons for Abel part on Customer360 search page
     And User selects ALL1500 12Month option as cash  method for Tarife Instalimi Contract Duration on Customer360 search page
     And User enters  Smart Card Serial Number and  clicks the Add to Cart button on Customer360 search page
-#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+#   Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Abel is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
