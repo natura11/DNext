@@ -86,7 +86,7 @@ public class AdminInformationPage extends BasePage {
     public WebElement warningOfDocCustomerIdDocument;
     @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[7]/div[1]/div/button")
     public WebElement addBtn;
-    @FindBy(xpath = "//mat-error/..//input[@id='fileInput']")
+    @FindBy(xpath = "//mat-error/..//input[@id='adminFileInput']")
     public WebElement txtFileInput;
 
     @FindBy(xpath = "//*[.='File size can not be bigger than 5 MB!']")
@@ -186,12 +186,11 @@ public class AdminInformationPage extends BasePage {
         return this;
     }
 
-    public AdminInformationPage verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
+    public void verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
         uploadFile(addBtn, txtFileInput, fileName);
         Utils.waitForVisibility(warningBiggerSizeFile, 10);
         log.info(warningBiggerSizeFile.getText());
         Assert.assertEquals(warning, warningBiggerSizeFile.getText());
-        return this;
     }
 
     public AdminInformationPage inputEmailAndMobilePhoneNumberOnAdminInfoPage(String email, String phoneNumber) {

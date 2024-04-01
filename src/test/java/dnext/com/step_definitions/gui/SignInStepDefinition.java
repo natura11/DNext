@@ -36,7 +36,7 @@ public class SignInStepDefinition extends BasePage {
 
     @Then("I should be seeing that the {string} is shown on opened home page")
     public void i_should_be_seeing_that_the_is_shown_on_opened_home_page(String email) {
-        isShownEmailOfUserOnHomePage();
+        warningMessage(email,emailOfUserOnHomePage);
     }
 
     @When("I have log out into the system on the home page.")

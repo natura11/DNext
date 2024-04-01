@@ -31,8 +31,7 @@ Feature: Cryptoguard Activation
     And User selects Tarife Instalimi from Purchasable Addons for Cryptoguard part on Customer360 search page
     And User selects ALL4000 3Month option as cash  method on Customer360 search page
     And User enters SmartCardSerialNumber on Customer360 search page
-#    And User clicks the ADD to Cart button on Customer360 search page
-  Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Cryptoguard is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page

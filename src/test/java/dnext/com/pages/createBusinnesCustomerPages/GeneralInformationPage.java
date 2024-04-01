@@ -123,7 +123,7 @@ public class GeneralInformationPage extends BasePage {
     public WebElement issuingDateFieldOnGeneralInformationPage;
     @FindBy(xpath = "(//*[.=' You have to add Extract QKR document!'])[1]")
     public WebElement warningOfAddExtractQKRdocumentMessage;
-    @FindBy(xpath = "//mat-error/..//input[@id='fileInputGeneral']")
+    @FindBy(xpath = "//mat-error/..//input[@id='generalFileInput']")
     public WebElement fileInputGeneral;
     @FindBy(xpath = "//*[@id=\"file-label\"]/div[1]")
     public WebElement nameOfUploadedFileOnGeneral;

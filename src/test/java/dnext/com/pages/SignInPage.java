@@ -1,16 +1,11 @@
 package dnext.com.pages;
 
-import com.utilities.ConfigurationReader;
-import com.utilities.Driver;
-import com.utilities.Driver;
 import com.utilities.Utils;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import com.utilities.anotations.DefaultUrl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 @DefaultUrl("signin.page.url")
@@ -32,39 +27,32 @@ public class SignInPage extends BasePage {
     @FindBy(id = "kc-page-title")
     public WebElement titleOfSignInOnSignInPage;
 
-    public SignInPage fillUserNameInput(String username) {
+    public void fillUserNameInput(String username) {
         usernameFieldOnSignInPage.sendKeys(username);
-        return this;
     }
 
-    public SignInPage fillPasswordInput(String password) {
+    public void fillPasswordInput(String password) {
         log.info("Password is inserting");
         passwordFieldOnSignInPage.sendKeys(password);
-        return this;
     }
 
-    public SignInPage signInBtn() {
+    public void signInBtn() {
         Utils.waitForPageToLoad();
         Utils.click(signInBtnOnSignInPage);
-        return this;
     }
 
-    public SignInPage warningMessageAssertionOnSignIn(String warningMessage) {
+    public void warningMessageAssertionOnSignIn(String warningMessage) {
         log.info("Warning message is shown in Sign in page");
         String actualresult = invalidUsernameOrPasswordWarningOnSignInPage.getText();
-        String expectedResult = warningMessage;
         Assert.assertEquals(warningMessage, actualresult);
         System.out.println("warningMessage = " + warningMessage);
-        return this;
     }
 
-    public SignInPage verificationTitleOnSignIn(String title) {
+    public void verificationTitleOnSignIn(String title) {
         String actualTitle = titleOfSignInOnSignInPage.getText();
         System.out.println("actualTitle = " + actualTitle);
         System.out.println("title = " + title);
-        String expectedTitle = title;
-        Assert.assertTrue(expectedTitle.equals(actualTitle));
-        return this;
+        Assert.assertEquals(title, actualTitle);
     }
 
 

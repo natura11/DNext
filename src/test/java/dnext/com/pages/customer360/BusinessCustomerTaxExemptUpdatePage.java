@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 public class BusinessCustomerTaxExemptUpdatePage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'General')]")
     public WebElement generalButtonOnCustomerSearch;
-
     @FindBy(xpath = "//*[.='Organization updated successfully!']")
     public WebElement warningMessageAfterUpdatingCustomerInfo;
     @FindBy(xpath = "(//mat-icon[normalize-space()='more_vert'])[1]")

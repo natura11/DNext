@@ -71,7 +71,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement createReceiptButton;
 
 
-    public FiberActivationForPrepaidPage numbersCreationForSerialNumbers() {
+    public void numbersCreationForSerialNumbers() {
         String[] numbers =
                 {"4857544313F18C92", "4857544314170A9D", "4857544314191E9D", "4857544314228925", "485754431423CD25",
                         "485754431424C025", "4857544314269425", "485754431428B925", "48575443142B2625", "48575443144CC225",
@@ -115,7 +115,6 @@ public class FiberActivationForPrepaidPage extends BasePage {
                 break;
             }
         }
-        return this;
     }
 
     static public void verifyTheOrderStatusIsCompleted() {
@@ -171,23 +170,28 @@ public class FiberActivationForPrepaidPage extends BasePage {
         String orderDateOfOrderButton = "";
         String orderDateOfFiscalizationReceipt = "";
         clickField(orderButtonOnCustomer360Page);
+        Utils.waitFor(1);
         agrementIdOfOrder = aggreementIdOfOrder.getText();
         System.out.println("agrementIdOfOrder is :" + agrementIdOfOrder);
         orderDateOfOrderButton = orderDateOfOrder.getText();
         clickField(directionSignTofiscalizationReceiptsButton);
+        Utils.waitFor(2);
         clickField(directionSignTofiscalizationReceiptsButton);
+        Utils.waitFor(2);
         clickField(fiscalizationReceiptsButton);
+        Utils.waitFor(3);
         agrementIdOfFiscalizationReceipt = aggreementIdOfFiscalizationReceipt.getText();
         System.out.println("agrementIdOfFiscalizationReceipt is :" + agrementIdOfFiscalizationReceipt);
         orderDateOfFiscalizationReceipt = invoiceDateOfFiscalizationReceipt.getText();
         System.out.println("orderDateOfOrderButton is " + orderDateOfOrderButton);
         System.out.println("orderDateOfFiscalizationReceipt is " + orderDateOfFiscalizationReceipt);
+        Utils.waitFor(1);
         Assert.assertEquals(agrementIdOfOrder,agrementIdOfFiscalizationReceipt);
     }
 
     public void receipCreationForABCOM(){
         clickField(createReceiptButton);
-        Utils.waitFor(2);
+        Utils.waitFor(3);
         switchToWindowNew(1);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
         Driver.getDriver().close();

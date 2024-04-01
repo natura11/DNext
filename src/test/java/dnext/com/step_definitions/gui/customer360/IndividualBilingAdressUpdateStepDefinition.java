@@ -65,18 +65,18 @@ public class IndividualBilingAdressUpdateStepDefinition extends BasePage {
 
     @Then("User should see Address Line one as {string} on Address page")
     public void userShouldSeeAddressLineOneAsOnAddressPage(String addressName1) {
-        Assert.assertEquals(addressName1, individualBilingAdressUpdatePage.addressLine1OnDefoultAddressPage.getText());
+        warningMessage(addressName1,individualBilingAdressUpdatePage.addressLine1OnDefoultAddressPage);
         Utils.waitFor(1);
     }
 
     @Then("User should see Address Line two as {string} on Address page")
     public void userShouldSeeAddressLineTwoAsOnAddressPage(String addressName2) {
-        Assert.assertEquals(addressName2, individualBilingAdressUpdatePage.addressLine2OnDefoultAddressPage.getText());
+        warningMessage(addressName2,individualBilingAdressUpdatePage.addressLine2OnDefoultAddressPage);
     }
 
     @Then("User should see City  as BERAT on Address page")
     public void userShouldSeeCityAsBERATOnAddressPage() {
-        Assert.assertEquals("BERAT", individualBilingAdressUpdatePage.addressLineCityNameOnDefoultAddressPage.getText());
+        warningMessage("BERAT", individualBilingAdressUpdatePage.addressLineCityNameOnDefoultAddressPage);
     }
 
 }

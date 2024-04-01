@@ -1,12 +1,13 @@
 package dnext.com.pages.customer360;
 
+import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import static dnext.com.pages.backofficePage.BackofficeHomePage.claimEditButton;
 import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.*;
 import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
 
@@ -78,6 +79,22 @@ public class FiberActivationForPostpaidPage extends BasePage {
             }
         }
         return this;
+    }
+
+    public void claimEditButtonUsage(){
+        clickField(claimEditButton);
+        Utils.waitFor(3);
+        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
+        switchToWindowNew(2);
+    }
+
+    public void approveButton(){
+        clickField(approvedButtonOnCorporateConfirmationPage);
+        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
+    }
+    public void assertionOfBackOfficePage(String text){
+        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
+        warningMessage(text, corporateConfirmationTextOnCorporateConfirmationPage);
     }
 
 

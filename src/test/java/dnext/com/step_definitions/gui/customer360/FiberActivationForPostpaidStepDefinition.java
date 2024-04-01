@@ -22,22 +22,26 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
     public void user_clicks_the_new_order_for_postpaid_rating_for_the_customer_type_on_customer360_search_page() {
         clickField(fiberActivationForPostpaidPage.newOrderBtnOnPostpaidOnFiber);
     }
+
     @Then("User clicks the Recurring Products on Customer360 search page")
     public void user_clicks_the_recurring_products_on_customer360_search_page() {
         Utils.waitFor(1);
         clickField(fiberActivationForPostpaidPage.recurringProductsOnFiber);
     }
+
     @When("User selects Contract Duration as  {int} X ALL2000  for Vodafone Gigafibra {int} Mbpson Customer360 search page")
     public void user_selects_contract_duration_as_x_all2000_for_vodafone_gigafibra_mbpson_customer360_search_page(Integer int1, Integer int2) {
         clickField(fiberActivationForPostpaidPage.contractDurationOf12XALL2000ForVodafoneGigaFibra200Mbps);
     }
+
     @When("User selects {int} X ALL0  Contract Duration for Basic Enterprise Modem on Customer360 search page")
     public void user_selects_x_all0_contract_duration_for_basic_enterprise_modem_on_customer360_search_page(Integer int1) {
         clickField(fiberActivationForPostpaidPage.contractDurationOf12XALLForBasicEnterpriseModem);
     }
+
     @Then("User sees the name of {string} which was selected product on Fiber for postpaid in the Shopping Cart on Customer360 search page")
     public void user_sees_the_name_of_which_was_selected_product_on_fiber_for_postpaid_in_the_shopping_cart_on_customer360_search_page(String text) {
-    warningMessage(text,fiberActivationForPostpaidPage.selectedProductInShoppingCart);
+        warningMessage(text, fiberActivationForPostpaidPage.selectedProductInShoppingCart);
     }
 
 
@@ -48,17 +52,17 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @When("User selects the Vodafone Gigafibra {int} Mbps for Postpaid on Customer{int} search page")
     public void userSelectsTheVodafoneGigafibraMbpsForPostpaidOnCustomerSearchPage(int arg0, int arg1) {
-    Utils.clickWithJS(fiberActivationForPostpaidPage.vodafoneGigaFibra200MbpsOptionForPostpaid);
-
+        Utils.clickWithJS(fiberActivationForPostpaidPage.vodafoneGigaFibra200MbpsOptionForPostpaid);
     }
 
     @And("User switches to Backoffice page")
     public void userSwitchesToBackofficePage() {
         Driver.getDriver().get("https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks");
     }
+
     @And("User should see the name of {string}progressed customer on BackOffice page")
     public void userShouldSeeTheNameOfProgressedCustomerOnBackOfficePage(String nameOfCustomer) {
-        warningMessage(nameOfCustomer,backofficeHomePage.nameOfCustomerOnMyGroupTasks);
+        warningMessage(nameOfCustomer, backofficeHomePage.nameOfCustomerOnMyGroupTasks);
     }
 
     @And("User clicks the name of customer  on BackOffice page")
@@ -73,23 +77,18 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User clicks the ClaimEdit button on opened segent on BackOffice page")
     public void userClicksTheClaimEditButtonOnOpenedSegentOnBackOfficePage() {
-        clickField(backofficeHomePage.claimEditButton);
-        Utils.waitFor(3);
-        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
-        switchToWindowNew(2);
+        fiberActivationForPostpaidPage.claimEditButtonUsage();
     }
 
     @And("User clicks the isApprovved dropdown button on BackOffice page")
     public void userClicksTheIsApprovvedDropdaownButtonOnBackOfficePage() {
         Utils.clickWithJS(fiberActivationForPostpaidPage.isApprovedDropdownButtonOnCorporateConfirmationPage);
-//        clickField(fiberActivationForPostpaidPage.isApprovedDropdownButtonOnCorporateConfirmationPage);
+
     }
 
     @And("User clicks the approved option from dropdown on BackOffice page")
     public void userClicksTheApprovedOptionFromDropdownOnBackOfficePage() {
-        clickField(fiberActivationForPostpaidPage.approvedButtonOnCorporateConfirmationPage);
-        System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
-
+       fiberActivationForPostpaidPage.approveButton();
     }
 
 
@@ -100,7 +99,7 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @Then("User should see {string} pop up message  on BackOffice page")
     public void userShouldSeePopUpMessageOnBackOfficePage(String messageOnScreen) {
-        warningMessage(messageOnScreen,fiberActivationForPostpaidPage.taskCompletedPopUpMessageOnCorporateConfirmationPage);
+        warningMessage(messageOnScreen, fiberActivationForPostpaidPage.taskCompletedPopUpMessageOnCorporateConfirmationPage);
     }
 
 
@@ -117,8 +116,7 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User should see the {string} text on BackOffice page")
     public void userShouldSeeTheTextOnBackOfficePage(String text) {
-        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
-        warningMessage(text,fiberActivationForPostpaidPage.corporateConfirmationTextOnCorporateConfirmationPage);
+        fiberActivationForPostpaidPage.assertionOfBackOfficePage(text);
     }
 }
 

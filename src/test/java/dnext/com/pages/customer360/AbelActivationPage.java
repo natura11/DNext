@@ -5,10 +5,11 @@ import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.util.List;
+import static com.utilities.Utils.waitFor;
+import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
 @Log4j2
 public class AbelActivationPage extends BasePage {
@@ -27,7 +28,7 @@ public class AbelActivationPage extends BasePage {
     public WebElement smartCardSerialNumberField;
     @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[1]")
     public WebElement aksesFeePerDekoderBasicAddSign;
-    @FindBy(xpath = "//mat-chip-list[@id='mat-chip-list-20']//mat-basic-chip[@role='option'][normalize-space()='12 X ALL0']")
+    @FindBy(xpath = "(//*[@class='mat-chip mat-focus-indicator mat-primary mat-basic-chip ng-star-inserted'][.=' 12 X ALL0 '])[2]")
     public WebElement contract12XALL0ForAksesFeePerDekoderBasic;
     @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[2]")
     public WebElement addIconForTarifeInstalimi;
@@ -41,27 +42,13 @@ public class AbelActivationPage extends BasePage {
     public WebElement warningForAlreadyUsedSerialNumber;
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
     public WebElement selectedProductInShoppingCart;
-
-    //!!!!!!!!!!!!!!!!!!!!!camunda**********************
-    @FindBy(xpath = "//input[@id=\"Id\"]")
-    public WebElement orderIdFieldOnCamundaHomePage;
-    @FindBy(xpath = "//div[@id=\"devextreme1\"]")
-    public WebElement productOrderCamundaOnHomePage;
-    @FindBy(xpath = "//*[text()='ACTIVE']")
-    public List<WebElement> activeListOnCamundaOnPage;
-    @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer-content/div/div/mat-table/mat-row[1]/mat-cell[1]/span")
-    public WebElement orderIdField;
-    @FindBy(xpath = "//*[@id=\"CamundaProcessGrid\"]/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td[1]/div")
-    public WebElement fullfillmentTypeFirstChoiceIconOnCamunda;
-    @FindBy(xpath = "//span[text()='Variables']")
-    public WebElement variablesChoiceIconOnCamunda;
-    @FindBy(xpath = "/html/body/main/div[2]/div/div[6]/div/div/div[1]/div/table/tbody/tr[2]/td/div/div[2]/div/div/div[2]/div/div/div/div[6]/div/div/div[1]/div/table/tbody/tr[16]/td[3]")
-    public WebElement errorMessageOnVariablesOnCamunda;
-    @FindBy(xpath = "//*[.='getFlowVariables successful!']")
-    public WebElement successfullMessageOnComunda;
+    @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
+     public WebElement warningForAlreadyOnGoingSerialNumber;
+    @FindBy(xpath = "//*[.='One of the product already in use by another customer!!']")
+     public WebElement warningForAlreadyInUsedSerialNumber;
 
 
-    public AbelActivationPage verifyTheOrderStatusIsCompleted() {
+    public void verifyTheOrderStatusIsCompleted() {
         if (orderStatus.getText().equalsIgnoreCase("completed")) {
             System.out.println("orderStatus.getText() = " + orderStatus.getText());
             Assert.assertEquals("completed", orderStatus.getText());
@@ -71,22 +58,18 @@ public class AbelActivationPage extends BasePage {
             Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
             sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
             clickField(productOrderCamundaOnHomePage);
-            Utils.waitFor(1);
+            waitFor(1);
             clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
             clickField(variablesChoiceIconOnCamunda);
-            Utils.waitFor(2);
+            waitFor(2);
             log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
             switchToWindowNew(0);
         }
-        return this;
     }
 
-    public AbelActivationPage serialNumbersCreation() {
+    public void serialNumbersCreation() {
         String[] numbers =
                 {
-
-
-                        "002001379185","002001380225", "002001380233", "002001380241", "002001380258", "002001380266", "002001380274", "002001380282",
                         "002001380290", "002001380308", "002001380316", "002001380324", "002001380332", "002001380340", "002001380357",
                         "002001380365", "002001380373", "002001380381", "002001380399", "002001380407", "002001380415", "002001380423",
                         "002001380431", "002001380449", "002001380456", "002001380464", "002001380472", "002001380480", "002001380498",
@@ -94,34 +77,55 @@ public class AbelActivationPage extends BasePage {
                         "002001380571", "002001380589", "002001380597", "002001380605", "002001380613", "002001379003", "002001379011",
                         "002001379029", "002001379037", "002001379045", "002001379052", "002001379060", "002001379078", "002001379086",
                         "002001379094", "002001379102", "002001379110", "002001379128", "002001379136", "002001379144", "002001379151",
-                        "002001379169", "002001379177",  "002001379193", "002001379201", "002001379219", "002001379227",
-                };
+                        "002001379169", "002001379177", "002001379193", "002001379201", "002001379219", "002001379227", "002001380282",};
+        outerLoop:
         for (String number : numbers) {
-
             smartCardSerialNumberField.clear();
+            waitFor(1);
             smartCardSerialNumberField.sendKeys(number);
-            smartCardSerialNumberField.sendKeys(Keys.RETURN);
-            Utils.waitFor(2);
+            waitFor(1);
             addToCartBtn.click();
-            Utils.waitFor(2);
+            waitFor(1);
 
-            boolean isWarningVisible = false;
+
             try {
-                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
-                isWarningVisible = true;
-            } catch (Exception e) {
-                isWarningVisible = false;
+                Utils.waitForVisibility(warningForAlreadyOnGoingSerialNumber, 20);
+                System.out.println("Serial number " + number + " is already in progress.");
+                continue outerLoop;
+            } catch (TimeoutException e) {
+
             }
-            if (isWarningVisible) {
-                System.out.println(number + "number has already been used.");
-                continue;
-            } else {
-                System.out.println(number + " number has accepted successfully.");
-                break;
+            try {
+                if (warningForAlreadyInUsedSerialNumber.isDisplayed()) {
+                    System.out.println("One of the products is already in use by another customer!!");
+                    continue outerLoop;
+                }
+            } catch (Exception e) {
+                System.out.println("Serial number " + number + " has been processed.");
+                break ;
             }
         }
-        return this;
+    }
     }
 
 
-}
+//            boolean isWarningVisible = false;
+//            try {
+//                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
+//                isWarningVisible = true;
+//            } catch (Exception e) {
+//                isWarningVisible = false;
+//            }
+//            if (isWarningVisible) {
+//                System.out.println(number + "number has already been used.");
+//                continue;
+//            } else {
+//                System.out.println(number + " number has accepted successfully.");
+//                break;
+//            }
+//        }
+//        return this;
+//    }
+
+
+
