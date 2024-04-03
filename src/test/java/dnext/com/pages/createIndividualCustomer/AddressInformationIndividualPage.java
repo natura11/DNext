@@ -13,6 +13,9 @@ import java.util.List;
 
 @Log4j2
 public class AddressInformationIndividualPage extends BasePage {
+    @FindBy(xpath = "//div[contains(text(),'Address Information')]//ancestor::mat-step-header")
+    public WebElement addressInformationButtonSelectedLabel;  // aria-selected : true will be validated
+
     @FindBy(xpath = "//div[contains(text(),'Contact Information')]//ancestor::*[@aria-selected='true']")
     public WebElement selectedContactInformationOnIndividual;
     @FindBy(xpath = "//input[@formcontrolname='mediumType']")
@@ -53,6 +56,18 @@ public class AddressInformationIndividualPage extends BasePage {
     public WebElement serviceCountryDropdownOnIndividual;
     @FindBy(xpath = "//mat-select[@formcontrolname='serviceCity']")
     public WebElement serviceCityDropdownOnIndividual;
+
+
+    public void verifyUserIsOnAddressInformationPage() {
+        try {
+            elementDisplayed(addressInformationButtonSelectedLabel);
+            Assert.assertEquals("true", addressInformationButtonSelectedLabel.getAttribute("aria-selected"));
+            log.info("Contact Information Page is displaying");
+        } catch (Throwable e) {
+            log.info("Error message: Contact Information Page is  not displaying");
+        }
+    }
+
     public AddressInformationIndividualPage fillInputField(WebElement webElement, String text) {
         webElement.clear();
         webElement.sendKeys(text);

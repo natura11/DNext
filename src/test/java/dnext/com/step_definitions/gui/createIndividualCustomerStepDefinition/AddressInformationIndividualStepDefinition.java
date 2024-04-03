@@ -3,20 +3,20 @@ package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createIndividualCustomer.AddressInformationIndividualPage;
-import dnext.com.pages.createIndividualCustomer.ContactInformationIndividualPage;
-import dnext.com.pages.createIndividualCustomer.GeneralInformationNewIndividualCustomerPage;
+import dnext.com.pages.createIndividualCustomer.GeneralInformationIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 
 @AllArgsConstructor
 @Log4j2
 public class AddressInformationIndividualStepDefinition extends BasePage {
     AddressInformationIndividualPage addressInformationIndividualPage;
-    GeneralInformationNewIndividualCustomerPage generalInformationNewIndividualCustomerPage;
+    GeneralInformationIndividualPage generalInformationIndividualPage;
 
     @Given("User is in the Address Information on Create Individual Customer page")
     public void userIsInTheAddressInformationOnCreateIndividualCustomerPage() {
@@ -42,7 +42,7 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @Then("User is in the General Information on Create Individual Customer page")
     public void userIsInTheGeneralInformationOnCreateIndividualCustomerPage() {
-        generalInformationNewIndividualCustomerPage.selectedGeneralInformationOnIndividual.isDisplayed();
+        generalInformationIndividualPage.selectedGeneralInformationOnIndividual.isDisplayed();
     }
 
     @Given("User should see the Address Line 1 textbox in Address Information on Create Individual Customer page")
@@ -260,5 +260,10 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
     @Then("User should select {string} option in the City dropdown for Service Address in Address Information on Create Individual Customer page")
     public void userShouldSelectOptionInTheCityDropdownForServiceAddressInAddressInformationOnCreateIndividualCustomerPage(String city) {
         selectSpecificOptionFromDropdown(city);
+    }
+
+    @And("User selects random city on Individual Address Information page")
+    public void userSelectsRandomCityOnIndividualAddressInformationPage() {
+        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
     }
 }

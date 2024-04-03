@@ -2,6 +2,7 @@ package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.createIndividualCustomer.AddressInformationIndividualPage;
 import dnext.com.pages.createIndividualCustomer.ContactInformationIndividualPage;
 import dnext.com.pages.createIndividualCustomer.InvoiceAccountIndividualPage;
 import io.cucumber.java.en.And;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class ContactInformationIndividualStepDefinition extends BasePage {
     ContactInformationIndividualPage contactInformationIndividualPage;
     InvoiceAccountIndividualPage invoiceAccountIndividualPage;
-//    AddressInformationIndividualPage addressInformationIndividualPage;
+    AddressInformationIndividualPage addressInformationIndividualPage;
 
     @Given("User clicks the Contact Information button for Individual")
     public void userClicksTheContactInformationButton() {
@@ -46,7 +47,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see the Individual Address Information Page")
     public void userShouldSeeTheIndividualAddressInformationPage() {
-//        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
+        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
     }
 
     @Given("User should see the Type of Authorization dropdown on Individual Contact Information Page")

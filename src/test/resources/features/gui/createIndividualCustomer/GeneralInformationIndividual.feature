@@ -81,4 +81,4 @@ Feature:New Individual Customer - General Information
     Given User clicks Communication Method dropdown on New Individual Customer page
     And   User should ensure each options in Communication Method dropdown ara selectable on New Individual Customer page
     Then  User should selects SMS option in the Communication Method dropdown on New Individual Customer page
-#    And   User clicks next Button in General Information on New Individual Customer page
+#    And   User clicks Next button on Individual General Information Page

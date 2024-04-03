@@ -176,4 +176,21 @@ public class OtherInformationIndividualStepDefinition extends BasePage {
         Utils.waitFor(2);
         otherInformationIndividualPage.verifyFetchedPersonData(table);
     }
+
+    @Then("User should see the random customer data is fetched to input fields on Individual Other Information Page")
+    public void userShouldSeeTheRandomCustomerDataIsFetchedToInputFields() {
+        Utils.waitFor(2);
+        otherInformationIndividualPage.verifyFetchedRandomPersonData();
+    }
+
+    @When("User clicks Save button on Individual Other Information page")
+    public void userClicksSaveButton() {
+        clickField(otherInformationIndividualPage.saveButtonOnOtherInformationPage);
+    }
+
+    @Then("User should see the {string} snake message")
+    public void userShouldSeeTheSnakeMessage(String message) {
+        otherInformationIndividualPage.verifyCustomerCreateSuccessMessage(message);
+    }
+
 }
