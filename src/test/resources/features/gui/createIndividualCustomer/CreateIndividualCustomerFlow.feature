@@ -74,8 +74,8 @@ Feature:New Individual Customer-Customer Creation
     When  User clicks the Generate Form button on Individual Other Information Page
     Then  User should see the Generate Form open in a new window on Individual Other Information Page
     And   User go back to Individual Other Information Page
-    And   User adds a valid "2smaller5MB.pdf" document for Consent Form on Individual Other Information Page
-    Then  User should see the name of "2smaller5MB.pdf" added pdf document on Individual Other Information Page
+    And   User adds a valid "gdprForm.pdf" document for Consent Form on Individual Other Information Page
+    Then  User should see the name of "gdprForm.pdf" added pdf document on Individual Other Information Page
     When  User clicks Save button on Individual Other Information page
     Then  User should see the "Customer created successfully" snake message
     Then  User should be  General part  under  Main page  button on Customer360 search page
