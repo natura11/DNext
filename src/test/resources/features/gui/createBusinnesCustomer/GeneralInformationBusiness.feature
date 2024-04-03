@@ -89,8 +89,3 @@ Feature:New Business Customer-General Information
     Then  User should see "Only image and pdf files are accepted!" warning message on top of  the screen for unmatched format on general information page
     And   User adds a valid "smaller5MB.pdf" document  on general information page
     And   User should see the name of "smaller5MB.pdf" added pdf document on the screen on general information page
-
-
-
-
-

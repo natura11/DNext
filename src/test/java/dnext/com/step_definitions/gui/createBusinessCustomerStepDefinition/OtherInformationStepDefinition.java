@@ -18,7 +18,6 @@ import java.awt.*;
 @AllArgsConstructor
 @Log4j2
 public class OtherInformationStepDefinition extends BasePage {
-
     private OtherInformationPage otherInformationPage;
     private GeneralInformationPage generalInformationPage;
     private SearchOrganizationPage searchOrganizationPage;

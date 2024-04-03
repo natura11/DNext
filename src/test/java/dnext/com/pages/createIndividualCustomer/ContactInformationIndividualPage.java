@@ -15,128 +15,94 @@ import java.util.List;
 import java.util.Map;
 
 @Log4j2
-public class ContactInformationIndividualPage extends BasePage{
-
+public class ContactInformationIndividualPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Contact Information')]")
     public WebElement contactInformationButton;
-
+    @FindBy(xpath = "//div[contains(text(),'Contact Information')]//ancestor::*[@aria-selected='true']")
+    public WebElement selectedContactInformationOnIndividual;
     @FindBy(xpath = "(//mat-icon[text()='add'])[1]")
     public WebElement addAdditionalTypeOfAuthorizationButton;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='PartyRole']")
     public WebElement typeOfAuthorizationDropdown;
-
     @FindBy(xpath = "//input[@formcontrolname='IdentificationId']")
     public WebElement identificationNumberInput;
-
     @FindBy(xpath = "//input[@formcontrolname='PersonalIdWithName']")
     public WebElement identificationNumberInputWithName;
-
     @FindBy(xpath = "//input[@formcontrolname='IdentificationId']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement identificationNumberInputDiv;
-
     @FindBy(xpath = "//input[@formcontrolname='IdentificationId']" +
-                    "/following::*[text()='search']")
+            "/following::*[text()='search']")
     public WebElement identificationNumberSearchIcon;
-
     @FindBy(xpath = "//span[contains(text(), 'MECNUN CINAR')]")
     public WebElement idPersonOptionInList;
-
     @FindBy(xpath = "//input[@formcontrolname='GivenName']")
     public WebElement firstNameInput;
-
     @FindBy(xpath = "//input[@formcontrolname='GivenName']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement firstNameInputDiv;
-
     @FindBy(xpath = "//input[@formcontrolname='FamilyName']")
     public WebElement lastNameInput;
-
     @FindBy(xpath = "//input[@formcontrolname='FamilyName']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement lastNameInputDiv;
-
     @FindBy(xpath = "(//input[@formcontrolname='birthDate'])[2]")
     public WebElement birthDateInput;
-
     @FindBy(xpath = "(//input[@formcontrolname='birthDate'])[2]" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement birthDateInputDiv;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='gender'])[2]")
     public WebElement genderDropdown;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='gender'])[2]//span/span")
     public WebElement selectedGenderOption;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='gender'])[2]" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement genderDropdownDiv;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='citizenShip'])[2]")
     public WebElement citizenshipDropdown;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='citizenShip'])[2]//span/span")
     public WebElement selectedCitizenship;
-
     @FindBy(xpath = "(//mat-select[@formcontrolname='citizenShip'])[2]" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement citizenshipDropdownDiv;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='authDocType']")
     public WebElement documentTypeDropdown;
-
     @FindBy(xpath = "//button[@aria-label='Add Document']")
     public WebElement documentAddButton;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='authDocType']/following::mat-error")
     public WebElement documentErrorText;
-
     @FindBy(xpath = "//input[@id='fileInput']")
     public WebElement documentUploadField;
-
-    @FindBy (xpath = "//p[contains(text(), 'Attorney Letter for ID')]/following-sibling::div/div[1]")
+    @FindBy(xpath = "//p[contains(text(), 'Attorney Letter for ID')]/following-sibling::div/div[1]")
     public WebElement documentNameText;
-
     @FindBy(xpath = "(//mat-icon[text()='add'])[2]")
     public WebElement addAdditionalContactButton;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']")
     public WebElement typeOfContactDropdown;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "//following::*[@formcontrolname='phoneCode']")
+            "//following::*[@formcontrolname='phoneCode']")
     public WebElement countryCodeDropdown;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "//following::*[@formcontrolname='phoneNumber']")
+            "//following::*[@formcontrolname='phoneNumber']")
     public WebElement phoneNumberInput;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "//following::*[@formcontrolname='phoneNumber']/following::mat-error")
+            "//following::*[@formcontrolname='phoneNumber']/following::mat-error")
     public WebElement phoneNumberErrorText;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "//following::*[@formcontrolname='phoneNumber']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "//following::*[@formcontrolname='phoneNumber']" +
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement phoneNumberInputDiv;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "//following::*[@formcontrolname='email']")
+            "//following::*[@formcontrolname='email']")
     public WebElement emailInput;
-
     @FindBy(xpath = "//mat-select[@formcontrolname='contactType']" +
-                    "/following::*[@formcontrolname='email']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/following::*[@formcontrolname='email']" +
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement emailInputDiv;
-
     @FindBy(xpath = "//mat-icon[text()='remove']")
     public WebElement removeAdditionalContactButton;
-
     @FindBy(xpath = "(//span[text()='Next'])[4]//ancestor::button")
     public WebElement nextButtonOnContactInformationPage;
-
     @FindBy(xpath = "(//span[text()='Back'])[3]//ancestor::button")
     public WebElement backButtonOnContactInformationPage;
 
@@ -151,9 +117,9 @@ public class ContactInformationIndividualPage extends BasePage{
 
     public void verifyCitizenshipStatus(boolean enabled) {
         String isDisabled = citizenshipDropdown.getAttribute("aria-disabled");
-        if (!enabled){
+        if (!enabled) {
             Assert.assertEquals("true", isDisabled);
-        }else {
+        } else {
             Assert.assertEquals("false", isDisabled);
         }
     }
@@ -169,8 +135,8 @@ public class ContactInformationIndividualPage extends BasePage{
 
     public void uploadLetterOfAttorneyDocument(String fileName) {
         try {
-            uploadFile(documentAddButton,documentUploadField, fileName);
-        }catch (Exception e) {
+            uploadFile(documentAddButton, documentUploadField, fileName);
+        } catch (Exception e) {
             log.error("Error uploading file: " + e.getMessage());
             throw new RuntimeException(e);
         }
@@ -194,11 +160,9 @@ public class ContactInformationIndividualPage extends BasePage{
             options.stream().filter(option -> option.getText().trim().split(" ")[1].trim().equals(toBeSelectedOption))
                     .findFirst()
                     .ifPresent(WebElement::click);
-            log.info(toBeSelectedOption +  " option is selected!");
-        }
-        else {
+            log.info(toBeSelectedOption + " option is selected!");
+        } else {
             log.info("No options found in the dropdown.");
         }
     }
-
 }

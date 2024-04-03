@@ -12,42 +12,31 @@ import org.openqa.selenium.support.PageFactory;
 
 @Log4j2
 public class CreateBusinessCustomerCommonPage extends BasePage {
-
-
     @FindBy(xpath = "//div[contains(@class,'h2')]")
     public WebElement newBusinessCustomerHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Search Organization')]")
     public WebElement searchOrganisationHeader;
-
     @FindBy(xpath = "//div[contains(text(),'General Information')]")
     public WebElement generalInformationHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Admin Information')]")
     public WebElement adminInformationHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Contact Information')]")
     public WebElement contactInformationHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Address Information')]")
     public WebElement adressInformationHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Invoice Account')]")
     public WebElement invoiceAccountHeader;
-
     @FindBy(xpath = "//div[contains(text(),'Other Information')]")
     public WebElement otherInformationHeader;
 
-
-    public CreateBusinessCustomerCommonPage VerificationNewBusinessCustomerHeader(String header) {
+    public void VerificationNewBusinessCustomerHeader(String header) {
         String actualHeader = newBusinessCustomerHeader.getText();
         String expectedHeader = header;
         System.out.println("header = " + header);
         Assert.assertTrue(header.equals(actualHeader));
-        return this;
     }
 
-    public CreateBusinessCustomerCommonPage controlTab(String tabName) {
+    public void controlTab(String tabName) {
         switch (tabName) {
             case "Search Organization":
                 Assert.assertTrue(tabName.equals(searchOrganisationHeader.getText()));
@@ -79,10 +68,6 @@ public class CreateBusinessCustomerCommonPage extends BasePage {
                 log.info(tabName + " is same with " + otherInformationHeader.getText());
                 break;
             default:
-
         }
-        return this;
     }
-
-
 }
