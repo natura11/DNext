@@ -13,8 +13,8 @@ import java.util.List;
 
 @Log4j2
 public class AddressInformationIndividualPage extends BasePage {
-    @FindBy(xpath = "//div[contains(text(),'Other Information')]//ancestor::mat-step-header")
-    public WebElement contactInformationButtonSelectedLabel;  // aria-selected : true will be validated
+    @FindBy(xpath = "//div[contains(text(),'Address Information')]//ancestor::mat-step-header")
+    public WebElement addressInformationButtonSelectedLabel;  // aria-selected : true will be validated
 
     @FindBy(xpath = "//div[contains(text(),'Contact Information')]//ancestor::*[@aria-selected='true']")
     public WebElement selectedContactInformationOnIndividual;
@@ -60,8 +60,8 @@ public class AddressInformationIndividualPage extends BasePage {
 
     public void verifyUserIsOnAddressInformationPage() {
         try {
-            elementDisplayed(contactInformationButtonSelectedLabel);
-            Assert.assertEquals("true", contactInformationButtonSelectedLabel.getAttribute("aria-selected"));
+            elementDisplayed(addressInformationButtonSelectedLabel);
+            Assert.assertEquals("true", addressInformationButtonSelectedLabel.getAttribute("aria-selected"));
             log.info("Contact Information Page is displaying");
         } catch (Throwable e) {
             log.info("Error message: Contact Information Page is  not displaying");
