@@ -163,7 +163,7 @@ public class OtherInformationIndividualPage extends BasePage{
         }
     }
     public void verifyGenerateFormInNewTab() {
-        Utils.waitFor(4);
+        Utils.waitFor(6);
         try {
             Runtime.getRuntime().exec(
                     System.getProperty("user.dir") + "\\src\\test\\resources\\autoItScripts\\cancelDownloadWindow.exe");
