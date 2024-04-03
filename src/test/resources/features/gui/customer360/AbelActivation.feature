@@ -30,8 +30,10 @@ Feature: Abel Activation
     And User selects the 12*ALLO option for Akses Fee per Dekoder Basic Contract Duration on Customer360 search page
     And User selects Tarife Instalimi from Purchasable Addons for Abel part on Customer360 search page
     And User selects ALL1500 12Month option as cash  method for Tarife Instalimi Contract Duration on Customer360 search page
-    And User enters  Smart Card Serial Number and  clicks the Add to Cart button on Customer360 search page
-#   Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    When  User enters random Abel number to Smart Card field on Product Offering Page
+    And   User clicks the ADD to Cart button on Product Offering Page
+    And   User checks the Abel Number is available for Sale on Product Offering Page
+    Then  User should see the Abel Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Abel is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
