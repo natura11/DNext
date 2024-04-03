@@ -1,8 +1,7 @@
-package dnext.com.pages.createIndividualCustomer;
+package dnext.com.pages.createIndividualCustomerPages;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinnesCustomerPages.AddressInformationPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -26,8 +25,6 @@ public class AddressInformationIndividualPage extends BasePage {
     public WebElement backButtonOnAddressInformationOnIndividual;
     @FindBy(xpath = "//textarea[@id='street1']/parent::div/preceding-sibling::div[1]")
     public WebElement billingAddressLineOneInputDiv;
-    @FindBy(xpath = "//div[contains(text(),'Address Information')]//ancestor::*[@aria-selected='true']")
-    public WebElement selectedAddressInformationOnIndividual;
     @FindBy(xpath = "//textarea[@id='street1']")
     public WebElement billingAddressLineOneInputOnIndividual;
     @FindBy(xpath = "//textarea[@formcontrolname='street2']")
@@ -68,37 +65,31 @@ public class AddressInformationIndividualPage extends BasePage {
         }
     }
 
-    public AddressInformationIndividualPage fillInputField(WebElement webElement, String text) {
+    public void fillInputField(WebElement webElement, String text) {
         webElement.clear();
         webElement.sendKeys(text);
-        return this;
     }
-    public AddressInformationIndividualPage verifyInputElementsNonEditableOnIndividual(WebElement webElement) {
+    public void verifyInputElementsNonEditableOnIndividual(WebElement webElement) {
         String isReadOnly = webElement.getAttribute("readonly");
         Assert.assertEquals("true", isReadOnly);
-        return this;
     }
-    public AddressInformationIndividualPage verifyDropdownNonEditableOnIndividual(WebElement webElement) {
+    public void verifyDropdownNonEditableOnIndividual(WebElement webElement) {
         String isDisabled = webElement.getAttribute("aria-disabled");
         Assert.assertEquals("true", isDisabled);
-        return this;
     }
-    public AddressInformationIndividualPage verifyCountryHasDefaultValueOnIndividual(WebElement webElement, String value) {
+    public void verifyCountryHasDefaultValueOnIndividual(WebElement webElement, String value) {
         List<WebElement> spanLists = webElement.findElements(By.xpath(".//span"));
         for (WebElement element: spanLists) {
             String actualCountry = element.getText();
             if(actualCountry.equals(value)){
                 Assert.assertTrue(true);
-                return this;
             }
         }
         Assert.fail();
-        return this;
     }
-    public AddressInformationIndividualPage verifyServiceAddressValueOnIndividual() {
+    public void verifyServiceAddressValueOnIndividual() {
         Utils.scrollToElement(serviceAddressContactTypeOnIndividual);
         String contactType = getValueByMouseKeyboardAction(serviceAddressContactTypeOnIndividual);
         Assert.assertEquals("Service Address", contactType);
-        return this;
     }
 }

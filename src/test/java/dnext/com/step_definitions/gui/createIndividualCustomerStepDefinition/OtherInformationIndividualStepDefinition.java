@@ -2,15 +2,12 @@ package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.OtherInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.OtherInformationIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.junit.Assert;
-
-import java.util.Map;
 
 
 @AllArgsConstructor
@@ -171,16 +168,10 @@ public class OtherInformationIndividualStepDefinition extends BasePage {
         otherInformationIndividualPage.verifyUploadedConsentFormDocument(fileName);
     }
 
-    @Then("User should see the customer data is fetched to input fields on Individual Other Information Page")
-    public void userShouldSeeTheCustomerDataIsFetchedToInputFieldsOnIndividualOtherInformationPage(Map<String, String> table) {
-        Utils.waitFor(2);
-        otherInformationIndividualPage.verifyFetchedPersonData(table);
-    }
-
     @Then("User should see the random customer data is fetched to input fields on Individual Other Information Page")
     public void userShouldSeeTheRandomCustomerDataIsFetchedToInputFields() {
         Utils.waitFor(2);
-        otherInformationIndividualPage.verifyFetchedRandomPersonData();
+        otherInformationIndividualPage.verifyFetchedPersonData();
     }
 
     @When("User clicks Save button on Individual Other Information page")

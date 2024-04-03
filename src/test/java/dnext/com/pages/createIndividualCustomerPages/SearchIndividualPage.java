@@ -1,10 +1,9 @@
-package dnext.com.pages.createIndividualCustomer;
+package dnext.com.pages.createIndividualCustomerPages;
 
 import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinnesCustomerPages.CreateBusinessCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -42,12 +41,11 @@ public class SearchIndividualPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public  SearchIndividualPage verificationNewIndividualCustomerHeader(String header) {
+    public  void verificationNewIndividualCustomerHeader(String header) {
         elementDisplayed(newIndividualCustomerHeaderOnHomePage);
         String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
         System.out.println("header = " + header);
         Assert.assertEquals(header,actualHeader);
-        return this;
     }
 
     public void verifyUserIsOnSearchIndividualPage() {

@@ -1,4 +1,4 @@
-package dnext.com.pages.createIndividualCustomer;
+package dnext.com.pages.createIndividualCustomerPages;
 
 import com.utilities.Driver;
 import com.utilities.Utils;
@@ -6,14 +6,10 @@ import dnext.com.pages.BasePage;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -145,16 +141,6 @@ public class OtherInformationIndividualPage extends BasePage{
         }
     }
 
-    public void verifyFetchedPersonData(Map<String, String> personData) {
-        Assert.assertEquals(personData.get("First Name") + " " + personData.get("Last Name"),
-                            getValueByMouseKeyboardAction(firstLastNameInput));
-        Assert.assertEquals("+355" + personData.get("Mobile Phone Number"), getValueByMouseKeyboardAction(mobileNumberInput));
-        Assert.assertEquals(personData.get("Email"), getValueByMouseKeyboardAction(emailInput));
-        Assert.assertEquals(personData.get("Identification Number"), getValueByMouseKeyboardAction(identificationNumberInput));
-        Assert.assertEquals(personData.get("Birth Date"),getValueByMouseKeyboardAction(birthDateInput) );
-        Assert.assertEquals(personData.get("Gender"), getValueByMouseKeyboardAction(genderInput));
-    }
-
     public void verifyCheckboxStatus(WebElement webElement, boolean isChecked){
         if(isChecked){
             Assert.assertTrue(webElement.getAttribute("class").contains("mat-checkbox-checked"));
@@ -163,7 +149,7 @@ public class OtherInformationIndividualPage extends BasePage{
         }
     }
     public void verifyGenerateFormInNewTab() {
-        Utils.waitFor(6);
+        Utils.waitFor(5);
         try {
             Runtime.getRuntime().exec(
                     System.getProperty("user.dir") + "\\src\\test\\resources\\autoItScripts\\cancelDownloadWindow.exe");
@@ -210,7 +196,7 @@ public class OtherInformationIndividualPage extends BasePage{
         return dataMap;
     }
 
-    public void verifyFetchedRandomPersonData(){
+    public void verifyFetchedPersonData(){
         Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
 
         clickField(otherInformationButton);

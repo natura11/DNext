@@ -1,23 +1,16 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
 import com.github.javafaker.Faker;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.jcajce.provider.asymmetric.X509;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.NoSuchElementException;
 
 @Log4j2
-public class SearchOrganizationPage extends BasePage {
+public class SearchOrganizationBusinessPage extends BasePage {
     Faker faker = new Faker();
     public String nonExistenceNiptNumber;
     @FindBy(xpath = "//mat-icon[normalize-space()='create']")

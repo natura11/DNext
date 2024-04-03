@@ -1,8 +1,9 @@
 package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.GeneralInformationIndividualPage;
-import dnext.com.pages.createIndividualCustomer.SearchIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.GeneralInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.SearchIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,6 +19,7 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @Given("User clicks Create Individual Customer on Home page")
     public void user_opens_create_ındividual_customer_on_home_page() {
+        Utils.waitFor(3);
         elementDisplayed(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
         clickField(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
 
@@ -53,13 +55,13 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @And("User clicks Citizenship dropdown on Create Individual Customer page")
     public void userClicksCitizenshipDropdownOnCreateIndividualCustomerPage() {
-        clickField(generalInformationIndividualPage.citizenShipFieldOnNewIndividualCustomer);
+        clickField(generalInformationIndividualPage.citizenShipField);
 
     }
 
     @And("User selects ALBANIAN citizenship from dropdown on Create Individual Customer page")
     public void userSelectsALBANIANCitizenshipFromDropdownOnCreateIndividualCustomerPage() {
-        clickField(generalInformationIndividualPage.albanianOptionOnNewIndividualCustomer);
+        clickField(generalInformationIndividualPage.albanianOptionForCitizenship);
 
     }
 
@@ -70,8 +72,7 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @Then("User should see background is not red on Create Individual Customer page")
     public void userShouldSeeBackgroundIsNotRedOnCreateIndividualCustomerPage() {
-        generalInformationIndividualPage.warningBackgroundIsNotRedColor();
-
+        warningBackgroundRedColorOne(generalInformationIndividualPage.firstNamePicture, false);
     }
 
     @When("User clicks the Search Individual button for Individual")

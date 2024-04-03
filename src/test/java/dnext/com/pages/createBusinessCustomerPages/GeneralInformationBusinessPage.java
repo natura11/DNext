@@ -1,28 +1,18 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.List;
-import java.util.Random;
-
 import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 
 @Log4j2
-public class GeneralInformationPage extends BasePage {
+public class GeneralInformationBusinessPage extends BasePage {
     public String companyNameFieldForEquals;
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
@@ -149,27 +139,27 @@ public class GeneralInformationPage extends BasePage {
     }
 
     public void industryDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+        isDropdownSelectable();
     }
 
     public void optionFromIndustryDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     public void segmentDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+        isDropdownSelectable();
     }
 
     public void segmentOptionFromDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     public void taxExemptDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+        isDropdownSelectable();
     }
 
     public void taxExemptOptionFromDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     public void enterInvalidFormatEmails(String email) {
@@ -193,11 +183,11 @@ public class GeneralInformationPage extends BasePage {
     }
 
     public void communicationMethodDropdownSelectable() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
+        isDropdownSelectable();
     }
 
     public void communicationMethodOptionFromDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     public void verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {

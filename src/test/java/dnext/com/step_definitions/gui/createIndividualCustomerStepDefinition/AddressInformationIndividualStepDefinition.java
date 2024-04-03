@@ -2,15 +2,14 @@ package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.AddressInformationIndividualPage;
-import dnext.com.pages.createIndividualCustomer.GeneralInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.AddressInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.GeneralInformationIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 
 @AllArgsConstructor
 @Log4j2
@@ -20,8 +19,7 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @Given("User is in the Address Information on Create Individual Customer page")
     public void userIsInTheAddressInformationOnCreateIndividualCustomerPage() {
-        //addressInformationIndividualPage.verifyUserIsOnAddressInformationPageOnIndividual();
-        addressInformationIndividualPage.selectedAddressInformationOnIndividual.isDisplayed();
+        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
     }
 
     @And("User clicks Next button in Address Information on Create Individual Customer page")
@@ -142,7 +140,7 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in City dropdown are selectable in Address Information on Create Individual Customer page")
     public void userShouldEnsureEachOptionsInCityDropdownAreSelectableInAddressInformationOnCreateIndividualCustomerPage() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @Then("User should select {string} option in the City dropdown in Address Information on Create Individual Customer page")
@@ -254,7 +252,7 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in City dropdown are selectable for Service Address in Address Information on Create Individual Customer page")
     public void userShouldEnsureEachOptionsInCityDropdownAreSelectableForServiceAddressInAddressInformationOnCreateIndividualCustomerPage() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @Then("User should select {string} option in the City dropdown for Service Address in Address Information on Create Individual Customer page")
@@ -264,6 +262,6 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @And("User selects random city on Individual Address Information page")
     public void userSelectsRandomCityOnIndividualAddressInformationPage() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 }

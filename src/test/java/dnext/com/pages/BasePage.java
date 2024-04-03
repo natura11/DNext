@@ -139,7 +139,7 @@ public abstract class BasePage {
     }
 
     public static void elementDisplayed(WebElement webElement) {
-        Utils.waitForVisibility(webElement, 3);
+        Utils.waitForVisibility(webElement, 5);
         Assert.assertTrue(webElement.isDisplayed());
         log.info(webElement.getTagName() + " is displaying");
     }
@@ -221,8 +221,8 @@ public abstract class BasePage {
         Assert.assertEquals(warningTxt, warningMsg.getText());
     }
 
-    public static void isDropdownSelectable(By commonLocateDropdown) {
-        List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
+    public static void isDropdownSelectable() {
+        List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));
         System.out.println("options.size() = " + options.size());
         for (WebElement option : options) {
             if (option.isDisplayed()) {
@@ -233,14 +233,10 @@ public abstract class BasePage {
         }
     }
 
-    public static void isDropdownSelectableOne() {
-        isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-    }
-
-    public static void optionFromDropdown(By commonLocateDropdown) {
+    public static void randomOptionFromDropdown() {
         try {
-            List<WebElement> options = Driver.getDriver().findElements(commonLocateDropdown);
-            if (options.size() > 0) {
+            List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));
+            if (!options.isEmpty()) {
                 Random random = new Random();
                 int randomIndex = random.nextInt(options.size());
                 options.get(randomIndex).click();
@@ -275,7 +271,8 @@ public abstract class BasePage {
 
     public static String getValueByMouseKeyboardAction(WebElement webElement) {
         Actions actions = new Actions(Driver.getDriver());
-        actions.click(webElement)
+        actions.moveToElement(webElement)
+                .click(webElement)
                 .keyDown(Keys.CONTROL)
                 .sendKeys("a")
                 .keyUp(Keys.CONTROL)
@@ -288,18 +285,6 @@ public abstract class BasePage {
         return getClipboardText();
     }
 
-    //red warning example is at the "GeneralInformationPage warningBackgroundRedColor()" class
-    public static void BackgroundColorOfPicture(String colorCode, String propertyName, WebElement pictureButton) {
-        try {
-            String backgroundColor = pictureButton.getCssValue(propertyName);
-            org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
-            String actualBackRoundColorCode = color.asHex();
-            Assert.assertEquals(colorCode, actualBackRoundColorCode);
-        } catch (Exception e) {
-            log.info("Error Message: Picture color is not displaying!!");
-        }
-
-    }
 
     public static void warningBackgroundRedColorOne(WebElement webElement, boolean isRed) {
         Utils.waitFor(1);

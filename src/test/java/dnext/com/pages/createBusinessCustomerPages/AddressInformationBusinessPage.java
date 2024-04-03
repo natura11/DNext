@@ -1,4 +1,4 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 @Log4j2
-public class AddressInformationPage extends BasePage {
+public class AddressInformationBusinessPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Address Information')]")
     public WebElement addressInformationButton;
     @FindBy(xpath = "//span[contains(text(),'Also Service Address')]//preceding-sibling::div")
