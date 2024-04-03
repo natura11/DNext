@@ -1,10 +1,12 @@
-package dnext.com.pages.createIndividualCustomer;
+package dnext.com.pages.createIndividualCustomerPages;
 
+import com.utilities.CustomerFakerDataCreator;
+import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinnesCustomerPages.CreateBusinessCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,8 +24,11 @@ public class SearchIndividualPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Search Individual')]//ancestor::mat-step-header")
     public WebElement searchIndividualButtonSelectedLabel;
 
-    @FindBy(xpath = "//input[@name=\"personalNumber\"]")
+    @FindBy(xpath = "//input[@name='personalNumber']")
     public WebElement identificationNumberBtnOnSearchIndividualHomePage;
+
+    @FindBy(xpath = "//input[@name='personalNumberWithName']")
+    public WebElement identificationNumberInputNewCustomer;
 
     @FindBy(xpath = "//span[@class=\"mat-button-wrapper\"][.='Search ']")
     public WebElement searchBtnOnSearchIndividualHomePage;
@@ -34,13 +39,13 @@ public class SearchIndividualPage extends BasePage {
     @FindBy(xpath = "//span[text()='Individual with this Identification Number already exist!']")
     public WebElement warningForExistingIdNumberOnSearchIndividualHomePage;
 
-    public  SearchIndividualPage verificationNewIndividualCustomerHeader(String header) {
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
+
+    public  void verificationNewIndividualCustomerHeader(String header) {
         elementDisplayed(newIndividualCustomerHeaderOnHomePage);
         String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
-        String expectedHeader = header;
         System.out.println("header = " + header);
         Assert.assertEquals(header,actualHeader);
-        return this;
     }
 
     public void verifyUserIsOnSearchIndividualPage() {
@@ -51,6 +56,31 @@ public class SearchIndividualPage extends BasePage {
         } catch (Throwable e) {
             log.info("Error message: Other Information Page is  not displaying");
         }
+    }
+
+    public void fillIDFieldWithRandomNumber(){
+        sendKeys(identificationNumberBtnOnSearchIndividualHomePage,
+                customerFakerDataCreator.identificationNumberFromFaker());
+    }
+
+    public void checkNumberIsExistsOrNot(){
+        String warningMessageXpath = "//span[text()='Individual with this Identification Number already exist!']";
+        boolean isNumberUnique = false;
+        do {
+            Utils.waitFor(3);
+            if(!Driver.getDriver().findElements(By.xpath(warningMessageXpath)).isEmpty()){
+                identificationNumberBtnOnSearchIndividualHomePage.clear();
+                fillIDFieldWithRandomNumber();
+                clickField(searchBtnOnSearchIndividualHomePage);
+            }else {
+                isNumberUnique = true;
+            }
+        }while (!isNumberUnique);
+
+    }
+
+    public void verifyCustomerIsNew(){
+        Assert.assertTrue(getValueByMouseKeyboardAction(identificationNumberInputNewCustomer).contains("New Customer"));
     }
 
 

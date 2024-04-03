@@ -1,13 +1,12 @@
 package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.InvoiceAccountIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.InvoiceAccountIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.openqa.selenium.By;
 
 
 @AllArgsConstructor
@@ -51,12 +50,12 @@ public class InvoiceAccountIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in Currency dropdown are selectable on Individual Invoice Account page")
     public void userShouldEnsureEachOptionsInCurrencyDropdownAreSelectable() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @Then("User should selects any option in the Currency dropdown on Individual Invoice Account page")
     public void userShouldSelectsAnyOptionInTheCurrencyDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     @Given("User should see the Description textbox on Individual Invoice Account page")
@@ -86,7 +85,7 @@ public class InvoiceAccountIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in Payment Method dropdown are selectable on Individual Invoice Account page")
     public void userShouldEnsureEachOptionsInPaymentMethodDropdownAreSelectable() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @And("User should select {string} option in the Payment Method dropdown on Individual Invoice Account page")
@@ -116,7 +115,7 @@ public class InvoiceAccountIndividualStepDefinition extends BasePage {
 
     @Then("User should selects any option in the Bank Name dropdown on Individual Invoice Account page")
     public void userShouldSelectsAnyOptionInTheBankNameDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+        randomOptionFromDropdown();
     }
 
     @When("User clicks Bank Account No textbox on Individual Invoice Account page")
@@ -222,5 +221,45 @@ public class InvoiceAccountIndividualStepDefinition extends BasePage {
     @Then("User should not see the warning message on phone field on Individual Invoice Account page")
     public void userShouldNotSeeTheWarningMessageOnPhoneField() {
         elementNotDisplayed(invoiceAccountIndividualPage.phoneNumberErrorText);
+    }
+
+    @And("User enters random Ebill email on Individual Invoice Account page")
+    public void userEntersRandomEbillEmail() {
+        invoiceAccountIndividualPage.fillEBillEmailWithRandomEmail();
+    }
+
+    @And("User enters random Ebill mobile number on Individual Invoice Account page")
+    public void userEntersRandomEbillMobileNumber() {
+        invoiceAccountIndividualPage.fillEBillPhoneNumberWithRandomNumber();
+    }
+
+    @And("User clicks credit rating postpaid dropdown on Individual Invoice Account page")
+    public void userClicksCreditRatingPostpaidDropdown() {
+        clickField(invoiceAccountIndividualPage.postpaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for postpaid on Individual Invoice Account page")
+    public void userSelectsRandomCreditRationForPostpaid() {
+        randomOptionFromDropdown();
+    }
+
+    @And("User adds a valid {string} document for Ebill document on Individual Invoice Account page")
+    public void userAddsAValidDocumentForEbillDocument(String document) {
+        invoiceAccountIndividualPage.uploadEBillDocument(document);
+    }
+
+    @Then("User should see the name of {string} added Ebill document on Individual Invoice Account page")
+    public void userShouldSeeTheNameOfAddedEbillDocument(String documentName) {
+        invoiceAccountIndividualPage.verifyUploadedEBillDocument(documentName);
+    }
+
+    @And("User clicks credit rating prepaid dropdown on Individual Invoice Account page")
+    public void userClicksCreditRatingPrepaidDropdown() {
+        clickField(invoiceAccountIndividualPage.prepaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for prepaid on Individual Invoice Account page")
+    public void userSelectsRandomCreditRationForPrepaid() {
+        randomOptionFromDropdown();
     }
 }

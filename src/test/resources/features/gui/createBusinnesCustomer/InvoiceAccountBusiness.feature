@@ -108,6 +108,3 @@ Feature:New Business Customer-Invoice Account
     And   User clicks mobile phone number field on Invoice Account page
     And   User enters valid "628641593" into the phone number field on Invoice Account page
     Then  User should not see the warning message on phone field on Invoice Account page
-
-
-

@@ -2,14 +2,14 @@ package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.ContactInformationIndividualPage;
-import dnext.com.pages.createIndividualCustomer.InvoiceAccountIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.AddressInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.ContactInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.InvoiceAccountIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.openqa.selenium.By;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import java.util.Map;
 public class ContactInformationIndividualStepDefinition extends BasePage {
     ContactInformationIndividualPage contactInformationIndividualPage;
     InvoiceAccountIndividualPage invoiceAccountIndividualPage;
-//    AddressInformationIndividualPage addressInformationIndividualPage;
+    AddressInformationIndividualPage addressInformationIndividualPage;
 
     @Given("User clicks the Contact Information button for Individual")
     public void userClicksTheContactInformationButton() {
@@ -46,7 +46,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see the Individual Address Information Page")
     public void userShouldSeeTheIndividualAddressInformationPage() {
-//        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
+        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
     }
 
     @Given("User should see the Type of Authorization dropdown on Individual Contact Information Page")
@@ -61,7 +61,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should ensure each options in Type of Authorization dropdown are selectable on Individual Contact Information Page")
     public void userShouldEnsureEachOptionsInTypeOfAuthorizationDropdownAreSelectable() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @Then("User should see Identification Number textbox on Individual Contact Information Page")
@@ -283,7 +283,7 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should ensure each options in Type of Contact dropdown are selectable on Individual  Contact Information Page")
     public void userShouldEnsureEachOptionsInTypeOfContactDropdownAreSelectable() {
-        isDropdownSelectableOne();
+        isDropdownSelectable();
     }
 
     @And("User selects {string} option in the Contact dropdown on Individual Contact Information Page")

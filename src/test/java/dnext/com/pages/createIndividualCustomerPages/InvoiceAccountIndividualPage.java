@@ -1,20 +1,19 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createIndividualCustomerPages;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 @Log4j2
-public class InvoiceAccountPage extends BasePage {
+public class InvoiceAccountIndividualPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(text(),'Invoice Account')]")
     public WebElement invoiceAccountButton;
@@ -44,25 +43,20 @@ public class InvoiceAccountPage extends BasePage {
     public WebElement eBillEmailInput;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillEmail']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement eBillEmailInputDiv;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillEmail']/following::mat-error")
     public WebElement eBillEmailErrorText;
 
-    @FindBy(xpath = "//mat-select[@formcontrolname='eBillPhoneCode']")
+    @FindBy(xpath = "//input[@placeholder='Country Code']")
     public WebElement eBillCountryCodeDropdown;
-
-    @FindBy(xpath = "//span[.=' +355 ']")
-    public WebElement albanianCountryCode;
-    @FindBy(xpath = "//span[.=' +213 ']")
-    public WebElement countryCodeExceptAlbanian;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']")
     public WebElement eBillMobileNumberInput;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']" +
-                    "/parent::div/preceding-sibling::div[1]")
+            "/parent::div/preceding-sibling::div[1]")
     public WebElement eBillMobileNumberInputDiv;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillMobileNumber']/following::mat-error")
@@ -74,17 +68,21 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "//input[@value='E-Bill Document']")
     public WebElement eBillDocumentTypeField;
 
-    @FindBy(xpath = "//input[@value='E-Bill Document']/following::button")
+    @FindBy(xpath = "//input[@value='E-Bill Document']" +
+            "/following::button[@aria-label='Add Document']")
     public WebElement documentAddButton;
 
     @FindBy(xpath = "//input[@formcontrolname='eBillAttachment']/following-sibling::input")
     public WebElement fileInputField;
 
-    @FindBy(xpath = "//input[@value='E-Bill Document']/following::div[@id='file-label']")
+    @FindBy(xpath = "//p[contains(text(), 'E-Bill Document')]/following-sibling::div/div[1]")
     public WebElement eBillDocumentNameField;
 
     @FindBy(xpath = "//input[@value='E-Bill Document']/following::a[@title='Delete']")
     public WebElement eBillCancelButton;
+
+    @FindBy(xpath = "//input[@formcontrolname='owner']")
+    public WebElement ownerInput;
 
     @FindBy(xpath = "//h2[contains(text(), 'PREPAID ACCOUNT')]")
     public WebElement prepaidAccountTitleLabel;
@@ -98,16 +96,16 @@ public class InvoiceAccountPage extends BasePage {
     @FindBy(xpath = "//mat-select[@formcontrolname='creditRatingForPrepaid']")
     public WebElement prepaidCreditRatingDropdown;
 
-
     @FindBy(xpath = "//span[.='File size can not be bigger than 5 MB!']")
     public WebElement warningMessageForBiggerDocument;
 
-    @FindBy(xpath = "(//span[text()='Next'])[6]//ancestor::button")
+    @FindBy(xpath = "(//span[text()='Next'])[5]//ancestor::button")
     public WebElement nextButtonOnInvoiceAccountPage;
 
-    @FindBy(xpath = "(//span[text()='Back'])[5]//ancestor::button")
+    @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnInvoiceAccountPage;
 
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
     public void verifyUserIsOnInvoiceAccountPage() {
         try {
@@ -144,13 +142,41 @@ public class InvoiceAccountPage extends BasePage {
     }
 
     public void bankNameAndBankAccountNotDisplayed() {
-        Utils.waitFor(1);
-        try {
-            Assert.assertFalse(bankNameDropdown.isDisplayed());
-            Assert.assertFalse(bankAccountNoInput.isDisplayed());
-        }catch (NoSuchElementException exception){
-            log.info("bankNameDropdown and bankAccountNoInput are displaying");
+        elementNotDisplayed(bankNameDropdown);
+        elementNotDisplayed(bankAccountNoInput);
+    }
+
+    public void verifyCountryCodeStatus(boolean enabled) {
+        String isDisabled = eBillCountryCodeDropdown.getAttribute("disabled");
+        if (!enabled) {
+            Assert.assertEquals("true", isDisabled);
+            Assert.assertEquals("+355", eBillCountryCodeDropdown.getAttribute("value"));
+        } else {
+            log.info("Country code not disabled");
         }
     }
 
+    public void fillEBillEmailWithRandomEmail(){
+        sendKeys(eBillEmailInput,
+                "BILL" + customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillEBillPhoneNumberWithRandomNumber(){
+        sendKeys(eBillMobileNumberInput,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public void uploadEBillDocument(String fileName) {
+        try {
+            uploadFile(documentAddButton,fileInputField, fileName);
+        }catch (Exception e) {
+            log.error("Error uploading file: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void verifyUploadedEBillDocument(String fileName) {
+        Utils.waitForVisibility(eBillDocumentNameField, 5);
+        Assert.assertEquals("EBillDocument-" + fileName, eBillDocumentNameField.getText().trim());
+    }
 }

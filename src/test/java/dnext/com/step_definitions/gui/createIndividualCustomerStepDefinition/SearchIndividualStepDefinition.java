@@ -1,8 +1,9 @@
 package dnext.com.step_definitions.gui.createIndividualCustomerStepDefinition;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createIndividualCustomer.GeneralInformationNewIndividualCustomerPage;
-import dnext.com.pages.createIndividualCustomer.SearchIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.GeneralInformationIndividualPage;
+import dnext.com.pages.createIndividualCustomerPages.SearchIndividualPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,10 +15,12 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 public class SearchIndividualStepDefinition extends BasePage {
     SearchIndividualPage searchIndividualPage;
-    GeneralInformationNewIndividualCustomerPage generalInformationNewIndividualCustomerPage;
+    GeneralInformationIndividualPage generalInformationIndividualPage;
 
     @Given("User clicks Create Individual Customer on Home page")
     public void user_opens_create_ındividual_customer_on_home_page() {
+        Utils.waitFor(3);
+        elementDisplayed(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
         clickField(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
 
     }
@@ -52,13 +55,13 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @And("User clicks Citizenship dropdown on Create Individual Customer page")
     public void userClicksCitizenshipDropdownOnCreateIndividualCustomerPage() {
-        clickField(generalInformationNewIndividualCustomerPage.citizenShipFieldOnNewIndividualCustomer);
+        clickField(generalInformationIndividualPage.citizenShipField);
 
     }
 
     @And("User selects ALBANIAN citizenship from dropdown on Create Individual Customer page")
     public void userSelectsALBANIANCitizenshipFromDropdownOnCreateIndividualCustomerPage() {
-        clickField(generalInformationNewIndividualCustomerPage.albanianOptionOnNewIndividualCustomer);
+        clickField(generalInformationIndividualPage.albanianOptionForCitizenship);
 
     }
 
@@ -69,8 +72,7 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @Then("User should see background is not red on Create Individual Customer page")
     public void userShouldSeeBackgroundIsNotRedOnCreateIndividualCustomerPage() {
-        generalInformationNewIndividualCustomerPage.warningBackgroundIsNotRedColor();
-
+        warningBackgroundRedColorOne(generalInformationIndividualPage.firstNamePicture, false);
     }
 
     @When("User clicks the Search Individual button for Individual")
@@ -81,6 +83,21 @@ public class SearchIndividualStepDefinition extends BasePage {
     @Then("User is on the Individual Search Individual page")
     public void userIsOnTheIndividualSearchIndividualPage() {
         searchIndividualPage.verifyUserIsOnSearchIndividualPage();
+    }
+
+    @When("User enters random identification ID for ALBANIAN to the identification number field on Search Individual page")
+    public void userEntersRandomIdentificationIDForALBANIANToTheIdentificationNumberField() {
+        searchIndividualPage.fillIDFieldWithRandomNumber();
+    }
+
+    @And("User checks the identification ID is already exists or not on Search Individual page")
+    public void userChecksTheIdentificationIDIsAlreadyExistsOrNot() {
+        searchIndividualPage.checkNumberIsExistsOrNot();
+    }
+
+    @Then("User should see the random identification ID is new for ALBANIAN on Search Individual page")
+    public void userShouldSeeTheRandomIdentificationIDIsNewForALBANIAN() {
+        searchIndividualPage.verifyCustomerIsNew();
     }
 }
 

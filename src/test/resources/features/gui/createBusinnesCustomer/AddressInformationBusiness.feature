@@ -103,11 +103,3 @@ Feature:New Business Customer-Address Information
     Then  User should select "BERAT" option in the City dropdown for Service Address on Address Information Page
     And   User clicks Next button on Address Information Page
     Then  User is on the Invoice Account page
-
-
-
-
-
-
-
-
