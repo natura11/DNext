@@ -1,5 +1,6 @@
 package dnext.com.pages.customer360;
 
+import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
+import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
 @Log4j2
 public class FiberActivationForPrepaidPage extends BasePage {
@@ -69,6 +72,8 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement newOrderBtnOnPostpaid;
     @FindBy(xpath = " //span[.=' Create the receipt ']")
     public WebElement createReceiptButton;
+    @FindBy(css = "div[class='list-item'] div[class='center']")
+    public WebElement orderStatusButtonInOrderDetail;
 
 
     public void numbersCreationForSerialNumbers() {
@@ -117,22 +122,22 @@ public class FiberActivationForPrepaidPage extends BasePage {
         }
     }
 
-    static public void verifyTheOrderStatusIsCompleted() {
+     public static void verifyTheOrderStatusIsCompleted() {
         if (orderStatus.getText().equalsIgnoreCase("completed")) {
             System.out.println("OrderStatus is = " + orderStatus.getText());
             Assert.assertEquals("completed", orderStatus.getText());
         } else {
             System.out.println("OrderStatus is = " + orderStatus.getText());
-//            String OrderId = orderIdField.getText();
-//            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-//            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
-//            clickField(productOrderCamundaOnHomePage);
-//            Utils.waitFor(1);
-//            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-//            clickField(variablesChoiceIconOnCamunda);
-//            Utils.waitFor(2);
-//            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-//            switchToWindowNew(0);
+            String OrderId = orderIdField.getText();
+            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
+            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
+            clickField(productOrderCamundaOnHomePage);
+            Utils.waitFor(1);
+            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
+            clickField(variablesChoiceIconOnCamunda);
+            Utils.waitFor(2);
+            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
+            switchToWindowNew(0);
         }
     }
 

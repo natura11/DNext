@@ -36,7 +36,7 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "(//span[.=' New Order '])[2]")
     public WebElement newOrderBtnOnPostpaid;
     @FindBy(xpath = "//*[.='Products']")
-    public WebElement productsText;
+    static public WebElement productsText;
     @FindBy(xpath = "//*[.='Digitalb Premium Plus']")
     public WebElement digitalbPremiumPlusText;
     @FindBy(xpath = "//label[@for='mat-checkbox-23-input']//span[@class='mat-checkbox-inner-container']")

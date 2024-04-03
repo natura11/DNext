@@ -143,14 +143,14 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitForVisibility(vtvActivationPage.shoppingCartCreatedSuccesfullyMessage, 10);
+        Utils.waitForVisibility(vtvActivationPage.shoppingCartCreatedSuccesfullyMessage, 20);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
         Utils.waitFor(2);
     }
 
     @When("User clicks the Shopping Cart icon on Customer{int} search page")
     public void userClicksTheShoppingCartIconOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(5);
+        Utils.waitFor(2);
         clickField(vtvActivationPage.shoppingCartIcon);
         Utils.waitFor(3);
     }
@@ -194,6 +194,8 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks the Order button on Customer{int} search page")
     public void userClicksTheOrderButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.orderButtonOnCustomer360Page);
+        Utils.waitForPageToLoad();
+        Utils.waitFor(2);
 
     }
 
@@ -223,6 +225,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks Load Tickets button on Customer{int} search page")
     public void userClicksLoadTicketsButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.loadTicketsOnTroubleTickets);
+        Utils.waitFor(3);
     }
 
     @And("User cliks three dots right of opened block on Customer{int} search page")

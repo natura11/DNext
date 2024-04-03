@@ -66,8 +66,9 @@ public class CommonSteps extends BasePage {
             endpoint = paymentIdForFiscalization.getAttribute("innerText");
         }else if (endpoint.equalsIgnoreCase("getCryptoguard_ForFiscalization")){
             endpoint = paymentIdForFiscalization.getAttribute("innerText");
-        }
-
+        }else if (endpoint.equalsIgnoreCase("getOrderDetailForCoaxialPostpaid")){
+            endpoint = orderIdForCoaxial.getAttribute("innerText");
+}
 
 
 
@@ -136,7 +137,11 @@ public class CommonSteps extends BasePage {
         }else if (requestType.equalsIgnoreCase("getRequestOfCryptoguardForFiscalization")) {
             response = ApiBaseMethods.getRequestOfCryptoguardForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestOfCoaxialBrmOrder")) {
+            response = ApiBaseMethods.getRequestOfCoaxialBrmOrder(fullEndpoint, token);
+            //response.prettyPrint();
         }
+
 
 
 

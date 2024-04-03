@@ -29,11 +29,13 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User selects the Vodafone Gigafibra {int} Mbps on Customer360 search page")
     public void user_selects_the_vodafone_gigafibra_mbps_on_customer360_search_page(Integer int1) {
-        clickField(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
+        Utils.clickWithJS(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
+
     }
 
     @Then("User is directed to the Vodafone GigaFibra {int} Mbps page for details of equipments on Customer360 search page")
     public void user_is_directed_to_the_vodafone_giga_fibra_mbps_page_for_details_of_equipments_on_customer360_search_page(Integer int1) {
+        Utils.waitForVisibility(fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts,20);
         warningMessage("Vodafone GigaFibra 200 Mbps", fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts);
 
     }

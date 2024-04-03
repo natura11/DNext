@@ -62,6 +62,7 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User should see the name of {string}progressed customer on BackOffice page")
     public void userShouldSeeTheNameOfProgressedCustomerOnBackOfficePage(String nameOfCustomer) {
+        Utils.waitForVisibility(backofficeHomePage.nameOfCustomerOnMyGroupTasks,15);
         warningMessage(nameOfCustomer, backofficeHomePage.nameOfCustomerOnMyGroupTasks);
     }
 

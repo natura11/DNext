@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import static dnext.com.pages.backofficePage.BackofficeHomePage.claimEditButton;
 import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.*;
 import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
+import static dnext.com.pages.customer360.VtvActivationPage.productsText;
 
 @Log4j2
 public class FiberActivationForPostpaidPage extends BasePage {
@@ -37,13 +38,13 @@ public class FiberActivationForPostpaidPage extends BasePage {
     public WebElement taskCompletedPopUpMessageOnCorporateConfirmationPage;
     @FindBy(xpath = "//*[.=' Corporate Confirmation '] ")
     public WebElement corporateConfirmationTextOnCorporateConfirmationPage;
+    @FindBy(xpath = "//*[@id=\"catalog-component-wrapper\"]/div/mat-card[2]/h4")
+    public WebElement textForConfirmation;
 
-    public FiberActivationForPostpaidPage numbersCreationForSerialNumbers() {
+
+    public void numbersCreationForSerialNumbers() {
         String[] numbers =
-                {
-
-                          "485754436BD0711F", "485754436BD16B1F",
-                        "485754436BD1BB1F", "485754436BD1F71F", "485754436BD2331F", "485754436BD2511F",
+                       {"485754436BD1BB1F", "485754436BD1F71F", "485754436BD2331F", "485754436BD2511F",
                         "485754436BD28D1F", "485754436BD2E71F", "485754436BD44E32", "485754436BD4631F",
                         "485754436BD48B1F", "485754436BD49F1F", "485754436BD55583", "4485754431F02C9A",
                         "448575443A2F0F9B", "4854544351AD279B", "485754430003CE76", "485754430009099A",
@@ -56,33 +57,42 @@ public class FiberActivationForPostpaidPage extends BasePage {
         for (String number : numbers) {
             pPPoEUserInputField.clear();
             oNTSerialNumberInputField.clear();
+            Utils.waitFor(2);
             pPPoEUserInputField.sendKeys(number);
-            pPPoEUserInputField.sendKeys(Keys.RETURN);
             oNTSerialNumberInputField.sendKeys(number);
-            oNTSerialNumberInputField.sendKeys(Keys.RETURN);
             Utils.waitFor(2);
             addToCartBtn.click();
-            Utils.waitFor(2);
-            boolean isWarningVisible = false;
-            try {
-                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
-                isWarningVisible = true;
-            } catch (Exception e) {
-                isWarningVisible = false;
+            Utils.waitFor(8);
+            boolean c1=textForConfirmation.isDisplayed();
+            System.out.println("textForConfirmation.isDisplayed() = " + textForConfirmation.isDisplayed());
+            try{
+                if(c1){
+                    System.out.println("The selected serial number "+ number + "is being used!!");
+                    throw new Exception();
+                }
+            }catch (Exception e){
+                log.info("No more available numbers!!!");
             }
-            if (isWarningVisible) {
-                System.out.println(number + "number has already been used.");
-                continue;
-            } else {
-                System.out.println(number + " number has accepted successfully.");
-                break;
-            }
+
+//            boolean isWarningVisible = false;
+//            try {
+//                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
+//                isWarningVisible = true;
+//            } catch (Exception e) {
+//                isWarningVisible = false;
+//            }
+//            if (isWarningVisible) {
+//                System.out.println(number + "number has already been used.");
+//                continue;
+//            } else {
+//                System.out.println(number + " number has accepted successfully.");
+//                break;
+//            }
         }
-        return this;
     }
 
     public void claimEditButtonUsage(){
-        clickField(claimEditButton);
+        Utils.clickWithJS(claimEditButton);
         Utils.waitFor(3);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
         switchToWindowNew(2);

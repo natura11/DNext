@@ -29,7 +29,7 @@ public class CryptoguardActivationPage extends BasePage {
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
     public WebElement addToCartBtn;
     @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-   static public WebElement warningForAlreadyOnGoingSerialNumber;
+    static public WebElement warningForAlreadyOnGoingSerialNumber;
     @FindBy(xpath = "//*[.='One of the product already in use by another customer!!']")
     static public WebElement warningForAlreadyInUsedSerialNumber;
     @FindBy(xpath = "(//mat-basic-chip[normalize-space()='ALL0 3Month'])[1]")

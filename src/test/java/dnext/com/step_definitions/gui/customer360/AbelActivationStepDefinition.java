@@ -45,7 +45,7 @@ public class AbelActivationStepDefinition extends BasePage {
     @And("User enters  Smart Card Serial Number and  clicks the Add to Cart button on Customer{int} search page")
     public void userEntersSmartCardSerialNumberAndClicksTheAddToCartButtonOnCustomerSearchPage(int arg0) {
         abelActivationPage.serialNumbersCreation();
-        Utils.waitFor(2);
+        Utils.waitFor(10);
     }
 
     @When("User selects Akses Fee per Dekoder Basic on Customer360 search page")

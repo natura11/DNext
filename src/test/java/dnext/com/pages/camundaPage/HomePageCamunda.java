@@ -17,11 +17,11 @@ public  class HomePageCamunda extends BasePage {
     @FindBy(xpath = "//*[@id=\"payments\"]/thead/tr/th[6]")
     public List<WebElement> agreementIds;
     @FindBy(xpath = "//input[@id=\"Id\"]")
-    static public WebElement orderIdFieldOnCamundaHomePage;
+    public static WebElement orderIdFieldOnCamundaHomePage;
     @FindBy(xpath = "//div[@id=\"devextreme1\"]")
-    static public WebElement productOrderCamundaOnHomePage;
+    public static WebElement productOrderCamundaOnHomePage;
     @FindBy(xpath = "//*[text()='ACTIVE']")
-    static public List<WebElement> activeListOnCamundaOnPage;
+    public static List<WebElement> activeListOnCamundaOnPage;
     @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer-content/div/div/mat-table/mat-row[1]/mat-cell[1]/span")
     static public WebElement orderIdField;
     @FindBy(xpath = "//*[@id=\"CamundaProcessGrid\"]/div/div[6]/div/div/div[1]/div/table/tbody/tr[1]/td[1]/div")

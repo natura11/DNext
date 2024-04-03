@@ -5,9 +5,16 @@ import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import static com.utilities.Utils.waitFor;
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
@@ -46,7 +53,8 @@ public class AbelActivationPage extends BasePage {
      public WebElement warningForAlreadyOnGoingSerialNumber;
     @FindBy(xpath = "//*[.='One of the product already in use by another customer!!']")
      public WebElement warningForAlreadyInUsedSerialNumber;
-
+    @FindBy(xpath = "//button[@class='mat-focus-indicator mat-shadow mat-flat-button mat-button-base ng-star-inserted']")
+    public WebElement addButtonForConfirmation;
 
     public void verifyTheOrderStatusIsCompleted() {
         if (orderStatus.getText().equalsIgnoreCase("completed")) {
@@ -78,54 +86,24 @@ public class AbelActivationPage extends BasePage {
                         "002001379029", "002001379037", "002001379045", "002001379052", "002001379060", "002001379078", "002001379086",
                         "002001379094", "002001379102", "002001379110", "002001379128", "002001379136", "002001379144", "002001379151",
                         "002001379169", "002001379177", "002001379193", "002001379201", "002001379219", "002001379227", "002001380282",};
-        outerLoop:
+
         for (String number : numbers) {
             smartCardSerialNumberField.clear();
-            waitFor(1);
             smartCardSerialNumberField.sendKeys(number);
-            waitFor(1);
+            Utils.waitFor(2);
             addToCartBtn.click();
-            waitFor(1);
+            Utils.waitFor(10);
+            System.out.println("number = " + number);
 
 
-            try {
-                Utils.waitForVisibility(warningForAlreadyOnGoingSerialNumber, 20);
-                System.out.println("Serial number " + number + " is already in progress.");
-                continue outerLoop;
-            } catch (TimeoutException e) {
-
-            }
-            try {
-                if (warningForAlreadyInUsedSerialNumber.isDisplayed()) {
-                    System.out.println("One of the products is already in use by another customer!!");
-                    continue outerLoop;
-                }
-            } catch (Exception e) {
-                System.out.println("Serial number " + number + " has been processed.");
-                break ;
-            }
         }
-    }
-    }
+    }}
 
 
-//            boolean isWarningVisible = false;
-//            try {
-//                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
-//                isWarningVisible = true;
-//            } catch (Exception e) {
-//                isWarningVisible = false;
-//            }
-//            if (isWarningVisible) {
-//                System.out.println(number + "number has already been used.");
-//                continue;
-//            } else {
-//                System.out.println(number + " number has accepted successfully.");
-//                break;
-//            }
-//        }
-//        return this;
-//    }
+
+
+
+
 
 
 

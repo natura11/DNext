@@ -101,6 +101,8 @@ public abstract class BasePage {
     @FindBy(css = "mat-list:nth-child(1) mat-list-item:nth-child(1) div:nth-child(1) div:nth-child(3) div:nth-child(2)")
     public WebElement paymentIdForFiscalization;
 
+    @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer/div/div[2]/div[1]/mat-list/mat-list-item[1]/div/div[3]/div[2]")
+    public WebElement orderIdForCoaxial;
 
     public BasePage(Faker faker) {
         this.faker = faker;
