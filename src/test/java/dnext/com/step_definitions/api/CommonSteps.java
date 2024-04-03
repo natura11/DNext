@@ -64,7 +64,11 @@ public class CommonSteps extends BasePage {
             endpoint = paymentIdForFiscalization.getAttribute("innerText");
         }else if (endpoint.equalsIgnoreCase("getFromVtvForFiscalization")){
             endpoint = paymentIdForFiscalization.getAttribute("innerText");
+        }else if (endpoint.equalsIgnoreCase("getCryptoguard_ForFiscalization")){
+            endpoint = paymentIdForFiscalization.getAttribute("innerText");
         }
+
+
 
 
         int lineSize = rows.size();
@@ -96,7 +100,11 @@ public class CommonSteps extends BasePage {
         }
 
 
+
+
     }
+
+
 
     @When("Send a request")
     public void send_a_request() throws JsonProcessingException {
@@ -121,11 +129,18 @@ public class CommonSteps extends BasePage {
             response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestForFiscalization")) {
             response = ApiBaseMethods.getRequestForFiscalization(fullEndpoint, token);
-            response.prettyPrint();
+            //response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfVtvForFiscalization")) {
             response = ApiBaseMethods.getRequestOfVtvForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestOfCryptoguardForFiscalization")) {
+            response = ApiBaseMethods.getRequestOfCryptoguardForFiscalization(fullEndpoint, token);
+            //response.prettyPrint();
         }
+
+
+
+
 
 
     }

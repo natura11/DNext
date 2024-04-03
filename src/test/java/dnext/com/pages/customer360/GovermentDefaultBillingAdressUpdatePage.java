@@ -14,12 +14,10 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement selectSearchTypeBtn;
     @FindBy(xpath = "//*[text()=' Customer ID ']")
     public WebElement selectSearchTypeWithCostomerId;
-
     @FindBy(xpath = "(//*[text()=' Customer Name '])[2]")
     public WebElement selectSearchTypeWithCostomerName;
     @FindBy(xpath = "//*[@placeholder=\"Enter Customer ID..\"]")
     public WebElement enterCustomerIdfield;
-
     @FindBy(xpath = "//span[text()='Search ']")
     public WebElement searchBtnOnCustomerSearch;
     @FindBy(xpath = "//*[@class=\"mat-autocomplete-panel custom-mat-autocomplete ng-star-inserted mat-autocomplete-visible\"]")
@@ -50,41 +48,37 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement cityBeratButtonOnAddressPage;
     @FindBy(xpath = "//span[.=' Ok ']")
     public WebElement okButtonForConsentInformationOfThisCustomer;
-            ;
 
-    public GovermentDefaultBillingAdressUpdatePage usingValidCustomerId(String validId) {
+
+    public void usingValidCustomerId(String validId) {
         Utils.waitForPageToLoad();
         enterCustomerIdfield.sendKeys(validId);
-        return this;
     }
-    public GovermentDefaultBillingAdressUpdatePage usingNewDataForAddress1(String newStreet1) {
+    public void usingNewDataForAddress1(String newStreet1) {
         Utils.waitForPageToLoad();
         editStreet1OnBillingAdress.clear();
         Utils.waitFor(1);
         editStreet1OnBillingAdress.sendKeys(newStreet1);
-        return this;
     }
-    public GovermentDefaultBillingAdressUpdatePage usingNewDataForAddress2(String newStreet1) {
+    public void usingNewDataForAddress2(String newStreet1) {
         Utils.waitForPageToLoad();
         editStreet2OnBillingAdress.clear();
         Utils.waitFor(1);
         editStreet2OnBillingAdress.sendKeys(newStreet1);
-        return this;
     }
-    public GovermentDefaultBillingAdressUpdatePage usingNewDataForPostCode(String rondomPostCode) {
+    public void usingNewDataForPostCode(String rondomPostCode) {
        Faker faker1= new Faker();
         Utils.waitForPageToLoad();
         editPostCodeOnBillingAdress.clear();
         editPostCodeOnBillingAdress.sendKeys(faker1.address().zipCode());
-        return this;
     }
-    public GovermentDefaultBillingAdressUpdatePage verifyAddressupdatedsuccessfullyMessage( String message) {
+    public void verifyAddressupdatedsuccessfullyMessage(String message) {
         try {
             Utils.waitFor(3);
             Assert.assertEquals(message, adressUpdatedSuccessfullyMessage.getText());
         }catch(Exception e){
             log.info(message + "is not matched");
-        }return this;
+        }
 
     }
 

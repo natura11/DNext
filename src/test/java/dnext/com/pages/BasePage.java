@@ -86,7 +86,7 @@ public abstract class BasePage {
     @FindBy(xpath = "//button[3]")
     public WebElement logoutBtnInDropdownOnHomePage;
 
-    @FindBy(xpath = "//*[@id=\"container-1\"]/fuse-sidebar/navbar/navbar-vertical-style-1/div[2]/div[1]/div[2]")
+    @FindBy(xpath = "//span[@class='username mr-12']")
     public WebElement emailOfUserOnHomePage;
 
     @FindBy(xpath = "//*[@id=\"container-3\"]/toolbar/mat-toolbar/div/div[2]/button[2]/span/div/span")
@@ -161,17 +161,10 @@ public abstract class BasePage {
         Utils.click(logoutBtnInDropdownOnHomePage);
     }
 
-    public void isShownEmailOfUserOnHomePage() {
-        emailOfUserOnHomePage.isDisplayed();
-        System.out.println("emailOfUserOnHomePage.getText() = " + emailOfUserOnHomePage.getText());
-    }
-
     public static void warningMessage(String message, WebElement element) {
         Utils.waitFor(3);
         String actualMessage = element.getText();
-        String expectedMessage = message;
-
-        Assert.assertEquals(expectedMessage, actualMessage);
+        Assert.assertEquals(message, actualMessage);
     }
 
 
@@ -296,15 +289,14 @@ public abstract class BasePage {
     }
 
     //red warning example is at the "GeneralInformationPage warningBackgroundRedColor()" class
-    public static void warningBackgroundRedColor(String colorCode, String propertyName, WebElement pictureButton) {
+    public static void BackgroundColorOfPicture(String colorCode, String propertyName, WebElement pictureButton) {
         try {
-            String expectedRedColorCode = colorCode;
             String backgroundColor = pictureButton.getCssValue(propertyName);
             org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
             String actualBackRoundColorCode = color.asHex();
-            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
+            Assert.assertEquals(colorCode, actualBackRoundColorCode);
         } catch (Exception e) {
-            log.info("Error Message: Red Warning message is not displaying!!");
+            log.info("Error Message: Picture color is not displaying!!");
         }
 
     }
@@ -365,12 +357,12 @@ public abstract class BasePage {
         Assert.assertTrue(String.valueOf(email.contains(dotSign)), email.contains(tagSign));
     }
 
-    public static void fillInput(WebElement element, String text){
+    public static void fillInput(WebElement element, String text) {
         element.clear();
         Utils.sendKeys(element, text);
     }
 
-    public static void fillInputWithTab(WebElement element, String text){
+    public static void fillInputWithTab(WebElement element, String text) {
         element.clear();
         Utils.sendKeys(element, text + Keys.TAB);
     }
