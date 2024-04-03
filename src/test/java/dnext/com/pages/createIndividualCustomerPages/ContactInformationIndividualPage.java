@@ -1,4 +1,4 @@
-package dnext.com.pages.createIndividualCustomer;
+package dnext.com.pages.createIndividualCustomerPages;
 
 import com.utilities.Driver;
 import dnext.com.pages.BasePage;

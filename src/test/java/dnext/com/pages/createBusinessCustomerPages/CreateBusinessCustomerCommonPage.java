@@ -1,14 +1,10 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
-import com.utilities.Driver;
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 @Log4j2
 public class CreateBusinessCustomerCommonPage extends BasePage {

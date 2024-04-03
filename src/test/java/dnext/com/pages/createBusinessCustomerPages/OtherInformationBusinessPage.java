@@ -1,15 +1,11 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
 import com.github.javafaker.Faker;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition.GeneralInformationStepDefinition;
 import lombok.extern.log4j.Log4j2;
-import net.bytebuddy.dynamic.scaffold.TypeWriter;
-import org.apache.hc.core5.net.WWWFormCodec;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.Locale;
 
 @Log4j2
-public class OtherInformationPage extends BasePage {
+public class OtherInformationBusinessPage extends BasePage {
     Faker faker = new Faker();
     public String seeCompanyName;
     public String seeNiptNumber;

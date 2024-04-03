@@ -55,6 +55,8 @@ Feature:New Individual Customer-Other Information
     Then  User is on the Individual Search Individual page
     When  User enters "K12365478P" identification ID for ALBANIAN to the identification number field on Create Individual Customer page
     And   User clicks search button on Create Individual Customer page
+    And   User checks the identification ID is already exists or not on Search Individual page
+    Then  User should see the random identification ID is new for ALBANIAN on Search Individual page
     And   User clicks next Button in Search Individual on Create Individual Customer page
     Then  User is on the Individual General Information page
     When  User wants to enter "KUCUK" as firstname on New Individual Customer page
@@ -68,16 +70,9 @@ Feature:New Individual Customer-Other Information
     And   User adds "612312312" the Mobile Phone Number into the Mobile Phone Number on New Individual Customer page
     And   User clicks the Other Information button for Individual
     Then  User is on the Individual Other Information page
-    Then  User should see the customer data is fetched to input fields on Individual Other Information Page
-
-      | First Name            | KUCUK                |
-      | Last Name             | PRENS                |
-      | Mobile Phone Number   | 612312312            |
-      | Email                 | KUCUKPRENS@ABC.COM   |
-      | Identification Number | K12365478P           |
-      | Birth Date            | 2005/07/06           |
-      | Gender                | MALE                 |
-
+    When  User clicks the General Information button for Individual
+    Then  User is on the Individual General Information page
+    Then  User should see the random customer data is fetched to input fields on Individual Other Information Page
     Then  User should see the first checkbox is selected on Individual Other Information Page
     Then  User should see the second checkbox is selected on Individual Other Information Page
     Then  User should see the Message checkbox is selected on Individual Other Information Page

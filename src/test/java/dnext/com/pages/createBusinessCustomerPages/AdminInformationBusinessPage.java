@@ -1,4 +1,4 @@
-package dnext.com.pages.createBusinnesCustomerPages;
+package dnext.com.pages.createBusinessCustomerPages;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Map;
 
 @Log4j2
-public class AdminInformationPage extends BasePage {
+public class AdminInformationBusinessPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Admin Information')]")
     public WebElement adminInformationButton;
     @FindBy(xpath = "//div[@class='mat-step-icon mat-step-icon-state-edit mat-step-icon-selected']")
