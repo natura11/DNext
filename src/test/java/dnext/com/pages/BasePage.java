@@ -139,7 +139,7 @@ public abstract class BasePage {
     }
 
     public static void elementDisplayed(WebElement webElement) {
-        Utils.waitFor(2);
+        Utils.waitForVisibility(webElement, 3);
         Assert.assertTrue(webElement.isDisplayed());
         log.info(webElement.getTagName() + " is displaying");
     }
@@ -190,7 +190,8 @@ public abstract class BasePage {
         Utils.sendKeys(emailButton, validEmail);
     }
 
-    public static void uploadFile(WebElement addElement, WebElement sendFieldElement, String fileName) {
+    public static void
+    uploadFile(WebElement addElement, WebElement sendFieldElement, String fileName) {
         String path = System.getProperty("user.dir") + "\\src\\test\\resources\\fotosAndDoc\\" + fileName;
         Utils.waitFor(3);
         addElement.click();
@@ -261,7 +262,7 @@ public abstract class BasePage {
 
     public static void selectSpecificOptionFromDropdown(String toBeSelectedOption) {
         List<WebElement> options = Driver.getDriver()
-                .findElements(By.xpath("//*[@class=\"mat-option-text\"]"));
+                .findElements(By.xpath("//*[@class='mat-option-text']"));
         if (!options.isEmpty()) {
             options.stream().filter(option -> option.getText().trim().equals(toBeSelectedOption))
                     .findFirst()
@@ -274,7 +275,7 @@ public abstract class BasePage {
 
     public static void performKeyboardAction(Keys keys) {
         Actions actions = new Actions(Driver.getDriver());
-        actions.sendKeys(keys)
+        actions.keyDown(keys)
                 .perform();
         waitFor(1);
     }

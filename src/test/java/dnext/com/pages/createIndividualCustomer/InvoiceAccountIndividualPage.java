@@ -1,13 +1,12 @@
 package dnext.com.pages.createIndividualCustomer;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -76,7 +75,7 @@ public class InvoiceAccountIndividualPage extends BasePage {
     @FindBy(xpath = "//input[@formcontrolname='eBillAttachment']/following-sibling::input")
     public WebElement fileInputField;
 
-    @FindBy(xpath = "//input[@value='E-Bill Document']/following::div[@id='file-label']")
+    @FindBy(xpath = "//p[contains(text(), 'E-Bill Document')]/following-sibling::div/div[1]")
     public WebElement eBillDocumentNameField;
 
     @FindBy(xpath = "//input[@value='E-Bill Document']/following::a[@title='Delete']")
@@ -105,6 +104,8 @@ public class InvoiceAccountIndividualPage extends BasePage {
 
     @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnInvoiceAccountPage;
+
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
     public InvoiceAccountIndividualPage verifyUserIsOnInvoiceAccountPage() {
         try {
@@ -154,5 +155,29 @@ public class InvoiceAccountIndividualPage extends BasePage {
         } else {
             log.info("Country code not disabled");
         }
+    }
+
+    public void fillEBillEmailWithRandomEmail(){
+        sendKeys(eBillEmailInput,
+                "BILL" + customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillEBillPhoneNumberWithRandomNumber(){
+        sendKeys(eBillMobileNumberInput,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public void uploadEBillDocument(String fileName) {
+        try {
+            uploadFile(documentAddButton,fileInputField, fileName);
+        }catch (Exception e) {
+            log.error("Error uploading file: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void verifyUploadedEBillDocument(String fileName) {
+        Utils.waitForVisibility(eBillDocumentNameField, 3);
+        Assert.assertEquals("EBillDocument-" + fileName, eBillDocumentNameField.getText().trim());
     }
 }

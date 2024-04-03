@@ -6,11 +6,9 @@ import lombok.extern.log4j.Log4j2;
 import com.utilities.Utils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import javax.xml.xpath.XPath;
 import java.util.List;
 import java.util.Map;
 

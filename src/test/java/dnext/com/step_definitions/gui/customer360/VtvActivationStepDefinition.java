@@ -208,8 +208,9 @@ public class VtvActivationStepDefinition extends BasePage {
     }
 
 
-    @When("User should be  General part  under  Main page  button on Customer{int} search page")
-    public void userShouldBeGeneralPartUnderMainPageButtonOnCustomerSearchPage(int arg0) {
+    @When("User should be  General part  under  Main page  button on Customer360 search page")
+    public void userShouldBeGeneralPartUnderMainPageButtonOnCustomerSearchPage() {
+        Utils.waitForVisibility(vtvActivationPage.customerInformationTxtOnGeneral, 10);
         vtvActivationPage.customerInformationTxtOnGeneral.isDisplayed();
     }
 
