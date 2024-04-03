@@ -55,7 +55,6 @@ Feature:New Business Customer-Contact Information
     And   User enters invalid "41234567" phone numbers on Contact Information Page
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Contact Information page
 
-
   @fillValidPhoneNumberWithAlbaniaCountryForBusinessContact
   Scenario: As a user I want to select Albania and enter valid numbers on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
@@ -85,7 +84,6 @@ Feature:New Business Customer-Contact Information
     And   User enters valid "abc123@gmail.com" in to the email field on Contact Information Page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Contact Information Page
     Then  User should see that background is not red for the email field on Contact Information Page
-
 
   @addDifferentTypeOfContactsForBusinessContact
   Scenario Outline: As a user I want to add different type of Contacts on Contact Information Page
@@ -132,10 +130,8 @@ Feature:New Business Customer-Contact Information
     And   User enters valid "abc123@gmail.com" in to the email field on Contact Information Page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Contact Information Page
     Then  User should see that background is not red for the email field on Contact Information Page
-
     And   User clicks Add+ button to add Additional Contact on Contact Information Page
     Then  User should see the new Contact Type section
-
     Given User should see the additional Type of Contact dropdown on Contact Information Page
     And   User clicks additional Type of Contact dropdown on Contact Information Page
     Then  User should ensure each options in additional Type of Contact dropdown are selectable on Contact Information Page
@@ -158,6 +154,3 @@ Feature:New Business Customer-Contact Information
     Then  User should see that additional background is not red for the email field on Contact Information Page
     And   User clicks Next button on Contact Information Page
     Then  User is on the Address Information Page
-
-
-

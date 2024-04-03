@@ -63,7 +63,6 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
     @And("User selects of invalid birth date as {string} on Admin Information Page")
     public void userSelectsOfBirthDateAsOnAdminInformationPage(String invalidDate) {
         adminInformationPage.selectDateOfBirth(invalidDate);
-
     }
 
     @And("User selects the country as Albania as country of birth on Admin Information Page")
@@ -93,7 +92,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @And("User adds {string} the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page")
     public void userAddsTheMobilePhoneNumberIntoTheMobilePhoneNumberOnAdminInformationPage(String mobilePhoneNumber) {
-        sendKeys(adminInformationPage.mobilePhoneNumberField,mobilePhoneNumber);
+        sendKeys(adminInformationPage.mobilePhoneNumberField, mobilePhoneNumber);
     }
 
     @And("User selects of valid birth date as {string} on Admin Information Page")

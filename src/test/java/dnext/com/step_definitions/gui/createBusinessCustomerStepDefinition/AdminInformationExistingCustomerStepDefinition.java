@@ -24,7 +24,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     AdminInformationPage adminInformationPage;
     SearchOrganizationPage searchOrganizationPage;
 
-
     @Given("User clicks the Admin Information button")
     public void userClicksTheAdminInformationButton() {
         adminInformationPage.clickAdminInformationIcon();
@@ -39,7 +38,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     public void userClicksOnTheIdentificationNumberField() {
         adminInformationPage.clickIdentificationNumberField();
     }
-
 
     @When("User enters one existing {string} ID number into the Identification Number field on Admin Information page")
     public void user_enters_one_existing_id_number_into_the_identification_number_field_on_admin_information_page(String existingNumber) {
@@ -59,14 +57,11 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     @Given("User sees some ID related information were fetched on Admin Information Page")
     public void user_sees_some_id_related_information_were_fetched(Map<String, String> table) {
         adminInformationPage.verifyOfExistenceNumberInformation(table);
-
     }
 
     @Then("User should see the {string}warning message  under number field on Admin Information Page")
     public void userShouldSeeTheWarningMessageUnderNumberField(String warningMsg) {
         warningMessage(warningMsg, adminInformationPage.warningOfMobilePhoneNumber);
-
-
     }
 
     @Given("User should see this {string} warning message near to add button on Admin Information Page")
@@ -82,7 +77,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     @And("User adds {string}  which are image or pdf  which is bigger than five MB and should see {string} warning on Admin Information Page")
     public void userAddsWhichAreImageOrPdfWhichIsBiggerThanFiveMBAndShouldSeeWarningOnAdminInformationPage(String fileName, String warning) {
         adminInformationPage.verifyTheUploadedBigger5MbSizeFile(fileName, warning);
-
     }
 
     @And("User add {string} and should see the name of {string} on the screen on Admin Information Page")
@@ -98,8 +92,7 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     @And("User deletes already added valid pdf documentation Admin Information Page")
     public void userDeletesAlreadyAddedValidPrfDocumentationAdminInformationPage() {
         adminInformationPage.cancelButton.click();
-
-}
+    }
 
     @And("User add the {string} and should see the name of file on the screen on Admin Information Page")
     public void userAddTheAndShouldSeeTheNameOfFileOnTheScreenOnAdminInformationPage(String fileName) {
@@ -118,6 +111,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
 
     @Then("User should be on the Contact Information Page")
     public void userShouldBeOnTheContactInformationPage() {
-    adminInformationPage.verifyContactInfoPageIsOpened();
+        adminInformationPage.verifyContactInfoPageIsOpened();
     }
 }

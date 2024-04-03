@@ -204,7 +204,6 @@ public class InvoiceAccountStepDefinition extends BasePage {
         fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, "" + Keys.TAB);
     }
 
-
     @And("User enters mobile phone number {string} with other country code except Albania on Invoice Account page")
     public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbaniaOnInvoiceAccountPage(String phoneNumber) {
         fillInputWithTab(invoiceAccountPage.eBillMobileNumberInput, phoneNumber);
@@ -229,5 +228,4 @@ public class InvoiceAccountStepDefinition extends BasePage {
     public void userShouldNotSeeTheWarningMessageOnPhoneFieldOnInvoiceAccountPage() {
         elementNotDisplayed(invoiceAccountPage.phoneNumberErrorText);
     }
-
 }

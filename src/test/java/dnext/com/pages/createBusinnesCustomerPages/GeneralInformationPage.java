@@ -1,4 +1,5 @@
 package dnext.com.pages.createBusinnesCustomerPages;
+
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -9,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
@@ -21,7 +23,6 @@ import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 
 @Log4j2
 public class GeneralInformationPage extends BasePage {
-
     public String companyNameFieldForEquals;
     @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
     public WebElement organizationNumberBox;
@@ -130,60 +131,52 @@ public class GeneralInformationPage extends BasePage {
     @FindBy(xpath = "//div[@id='cdk-step-content-0-1']//span[contains(text(),'Next')]")
     public WebElement nextBtnOnGeneralInformation;
 
-    public GeneralInformationPage nextBtnClickGeneralInformation() {
+    public void nextBtnClickGeneralInformation() {
         Utils.waitFor(1);
         Utils.click(nextBtnOnGeneralInformation);
-        return this;
     }
 
-    public GeneralInformationPage verificationOfNameBox() {
+    public void verificationOfNameBox() {
         Utils.waitFor(1);
         Assert.assertTrue(nameBox.isDisplayed());
         log.info(nameBox + "is displyaing");
-        return this;
     }
 
-    public GeneralInformationPage usingValidFormatName(String validName) {
+    public void usingValidFormatName(String validName) {
         companyNameFieldForEquals = validName;
         Utils.waitForPageToLoad();
         nameBox.sendKeys(validName);
-        return this;
     }
 
-    public GeneralInformationPage industryDropdownSelectable() {
+    public void industryDropdownSelectable() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage optionFromIndustryDropdown() {
+    public void optionFromIndustryDropdown() {
         optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage segmentDropdownSelectable() {
+    public void segmentDropdownSelectable() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
-    }
-    public GeneralInformationPage segmentOptionFromDropdown() {
-        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage taxExemptDropdownSelectable() {
+    public void segmentOptionFromDropdown() {
+        optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
+    }
+
+    public void taxExemptDropdownSelectable() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage taxExemptOptionFromDropdown() {
+    public void taxExemptOptionFromDropdown() {
         optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage enterInvalidFormatEmails(String email) {
+    public void enterInvalidFormatEmails(String email) {
         Utils.sendKeys(emailBtnOnGeneralInformationPage, email + Keys.TAB);
-        return this;
     }
-    public GeneralInformationPage warningBackgroundRedColor() {
+
+    public void warningBackgroundRedColor() {
         try {
             String expectedRedColorCode = "#f44336";
             String backgroundColor = emailPictureBtnOnGeneralInformationPage.getCssValue("color");
@@ -193,70 +186,58 @@ public class GeneralInformationPage extends BasePage {
         } catch (Exception e) {
             log.info("Error Message: Red Warning message is not displaying!!");
         }
-        return this;
     }
 
-    public GeneralInformationPage enterValidFormatEmail(String validEmail) {
+    public void enterValidFormatEmail(String validEmail) {
         Utils.sendKeys(emailBtnOnGeneralInformationPage, validEmail);
-        return this;
     }
 
-    public GeneralInformationPage communicationMethodDropdownSelectable() {
+    public void communicationMethodDropdownSelectable() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage communicationMethodOptionFromDropdown() {
+    public void communicationMethodOptionFromDropdown() {
         optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
-        return this;
     }
 
-    public GeneralInformationPage verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {
+    public void verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {
         Utils.sendKeys(mobilePhoneNumberBox, mobile + Keys.TAB);
         Assert.assertEquals(message, warningMessageTextForInvalidAlbanianPhoneNumber.getText());
-        return this;
     }
 
-
-    public GeneralInformationPage enteringOtherNumbers() {
+    public void enteringOtherNumbers() {
         Utils.click(countryCodeExceptAlbanian);
         Utils.click(mobilePhoneNumberBox);
-        return this;
     }
 
-    public GeneralInformationPage verifyEnteringOtherNumbers(String message) {
+    public void verifyEnteringOtherNumbers(String message) {
         try {
             Utils.sendKeys(mobilePhoneNumberBox, "" + Keys.TAB);
             Assert.assertEquals(message, warningMessageForEmptyMobilePhoneNumber.getText());
         } catch (Exception e) {
             log.info(message + "is not displaying");
         }
-        return this;
     }
 
-    public GeneralInformationPage inputOtherMobilePhoneNumberExceptAlbanian() {
+    public void inputOtherMobilePhoneNumberExceptAlbanian() {
         Utils.sendKeys(mobilePhoneNumberBox, "012345678901234");
-        return this;
     }
 
-    public GeneralInformationPage inputValidMobilePhoneNumber(String phoneNumber) {
+    public void inputValidMobilePhoneNumber(String phoneNumber) {
         Utils.sendKeys(mobilePhoneNumberBox, phoneNumber);
-        return this;
     }
 
-    public GeneralInformationPage verifyDateFromCalendarOnGeneralInfo(String date) {
+    public void verifyDateFromCalendarOnGeneralInfo(String date) {
         clickField(issuingDateFieldOnGeneralInformationPage);
         verifyDateFromCalendar(date, issuingDateFieldOnGeneralInformationPage);
-        return this;
     }
 
-    public GeneralInformationPage verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
+    public void verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
         try {
             uploadFile(addDocumentButtonOnNewBusinessCustomer, fileInputGeneral, fileName);
             Assert.assertEquals(warning, warningMessageForBiggerDocument.getText());
         } catch (Exception e) {
             log.info("Warning message not shown!!!");
         }
-        return this;
     }
 }

@@ -103,9 +103,9 @@ Feature:New Individual Customer-Contact Information
     Then  User is on the Individual Invoice Account page
 
     Examples:
-      | Authorization Type  | Identification Numbers |  First Name | Last Name | Birth Date  | Gender  | Citizenship  |
-      | Legal Custodian     |      H34296055D        |  Tauno      |   Aalto   |  14/03/2000 |  MALE   |  ALBANIAN    |
-      | Authorized Person   |      ABC7124458CBA     |  Virve      |  Turunen  |  14/03/2000 | FEMALE  |  FINNISH     |
+      | Authorization Type | Identification Numbers | First Name | Last Name | Birth Date | Gender | Citizenship |
+      | Legal Custodian    | H34296055D             | Tauno      | Aalto     | 14/03/2000 | MALE   | ALBANIAN    |
+      | Authorized Person  | ABC7124458CBA          | Virve      | Turunen   | 14/03/2000 | FEMALE | FINNISH     |
 
 
   @addDifferentTypeOfContactsForIndividualContact

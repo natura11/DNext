@@ -72,6 +72,7 @@ public class ContactInformationStepDefinition extends BasePage {
     public void userShouldEnsureEachOptionsInCountryCodeDropdownAreSelectable() {
         isDropdownSelectableOne();
     }
+
     @When("User selects {string} option in the Country Code dropdown on Contact Information page")
     public void userSelectsOptionInTheCountryCodeDropdown(String countryCode) {
         selectSpecificOptionFromDropdown(countryCode);
@@ -84,7 +85,7 @@ public class ContactInformationStepDefinition extends BasePage {
 
     @And("User leaves blank mobile phone number field on Contact Information page")
     public void userLeavesBlankMobilePhoneNumberField() {
-        Utils.sendKeys(contactInformationPage.phoneNumberInput,"" + Keys.TAB);
+        Utils.sendKeys(contactInformationPage.phoneNumberInput, "" + Keys.TAB);
     }
 
     @Then("User should see {string} warning message on phone field on Contact Information page")
@@ -103,7 +104,7 @@ public class ContactInformationStepDefinition extends BasePage {
     }
 
     @And("User enters invalid {string} phone numbers on Contact Information Page")
-    public void userEntersInvalidPhoneNumbers(String phoneNumber){
+    public void userEntersInvalidPhoneNumbers(String phoneNumber) {
         fillInputWithTab(contactInformationPage.phoneNumberInput, phoneNumber);
     }
 

@@ -14,10 +14,8 @@ import org.openqa.selenium.Keys;
 @AllArgsConstructor
 @Log4j2
 public class SearchOrganizationStepDefinition extends BasePage {
-
     private SearchOrganizationPage searchOrganizationPage;
     private CreateBusinessCustomerCommonPage createBusinessCustomerCommonPage;
-
 
     @Given("User opens Create Business Customer page on Home page")
     public void user_opens_create_business_customer_page_on_home_page() throws InterruptedException {
@@ -57,7 +55,6 @@ public class SearchOrganizationStepDefinition extends BasePage {
     @When("User fills in the NIPT field with invalid format  {string} on Search Organization page")
     public void userFillsInTheNIPTFieldWithInvalidFormatOnSearchOrganizationPage(String invalidInput) {
         searchOrganizationPage.negativNiptInput(invalidInput);
-
     }
 
     @Then("User sees {string} under the NIPT field on Search Organization page")
@@ -92,14 +89,11 @@ public class SearchOrganizationStepDefinition extends BasePage {
 
     @When("User fills in the NIPT field with  NIPT numbers on Search Organization page")
     public void userFillsInTheNIPTFieldWithNIPTNumbersOnSearchOrganizationPage() {
-        searchOrganizationPage.inputNiptForForeignCustomer().nextBtnOnSearchOrganizationPage.click();
+        searchOrganizationPage.inputNiptForForeignCustomer();
     }
-
 
     @Then("User should see the {string} text on General Information page")
     public void userShouldSeeTheTextOnGeneralInformationPage(String header) {
         createBusinessCustomerCommonPage.controlTab(header);
     }
-
-
 }

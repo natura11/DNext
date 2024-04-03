@@ -15,6 +15,7 @@ Feature:New Individual Customer -Search Individual
     Given User enters "AA050FC6046ECC1" existing identification ID in to identification number field on Create Individual Customer page
     And   User clicks search button on Create Individual Customer page
     Then  User should see "Individual with this Identification Number already exist!" on Create Individual Customer page
+
   @searchIndividualForIndividualCustomer
   Scenario: As a user I want to enter identification numberID that doesn't valid for Albanian Customer ID
     Given User enters "AA050456046ECC1" existing identification ID in to identification number field on Create Individual Customer page
@@ -31,6 +32,3 @@ Feature:New Individual Customer -Search Individual
     And   User clicks Citizenship dropdown on Create Individual Customer page
     And   User selects ALBANIAN citizenship from dropdown on Create Individual Customer page
     Then  User should see background is not red on Create Individual Customer page
-
-
-
