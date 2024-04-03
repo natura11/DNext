@@ -3,18 +3,25 @@ package dnext.com.pages.createIndividualCustomer;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.VtvActivationPage;
-import io.cucumber.java.bs.A;
+
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+
 
 @Log4j2
 public class OtherInformationIndividualPage extends BasePage{
@@ -82,10 +89,10 @@ public class OtherInformationIndividualPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(),'Generate Form')]/following::mat-icon[text()='add']")
     public WebElement addConsentFormButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Generate Form')]/following::input[@id='fileInput']")
+    @FindBy(xpath = "//span[contains(text(),'Generate Form')]/following::input[@id='consentFileInput']")
     public WebElement consentFormUploadField;
 
-    @FindBy(xpath = "//div[@class='text-right attachment-buttons']/preceding-sibling::div")
+    @FindBy(xpath = "(//p[contains(text(),'Consent Form')]/following::div/div)[1]")
     public WebElement consentFormNameText;
 
     @FindBy(xpath = "//span[contains(text(),'Generate Form')]/following::mat-icon[text()='visibility")
@@ -100,9 +107,37 @@ public class OtherInformationIndividualPage extends BasePage{
     @FindBy(xpath = "//span[text()='Save']//ancestor::button")
     public WebElement saveButtonOnOtherInformationPage;
 
+    @FindBy(xpath = "//simple-snack-bar/span")
+    public WebElement successSnakeMessage;
+
+/***
+    Below XPaths will be used for General Information Page objects
+    to compare and verify on Other Information page
+ */
+    @FindBy(xpath = "//div[contains(text(),'General Information')]")
+    public WebElement generalInformationButton;
+
+    @FindBy(xpath = "//input[@formcontrolname='firstName']")
+    public WebElement firstNameField;
+
+    @FindBy(xpath = "//input[@formcontrolname='lastName']")
+    public WebElement lastNameField;
+
+    @FindBy(xpath = "//input[@formcontrolname='phoneNumber']")
+    public WebElement phoneNumberField;
+
+    @FindBy(xpath = "//input[@formcontrolname='email']")
+    public WebElement emailField;
+
+    @FindBy(xpath = "//input[@formcontrolname='personalNumber']")
+    public WebElement personalNumberField;
+
+    @FindBy(xpath = "//input[@formcontrolname='birthDate']")
+    public WebElement birthDateField;
+
     public void verifyUserIsOnOtherInformationPage() {
         try {
-            Assert.assertTrue(otherInformationButtonSelectedLabel.isDisplayed());
+            elementDisplayed(otherInformationButtonSelectedLabel);
             Assert.assertEquals("true", otherInformationButtonSelectedLabel.getAttribute("aria-selected"));
             log.info("Other Information Page is displaying");
         } catch (Throwable e) {
@@ -128,8 +163,14 @@ public class OtherInformationIndividualPage extends BasePage{
         }
     }
     public void verifyGenerateFormInNewTab() {
-        Utils.waitFor(3);
-        performKeyboardAction(Keys.ESCAPE);
+        Utils.waitFor(4);
+        try {
+            Runtime.getRuntime().exec(
+                    System.getProperty("user.dir") + "\\src\\test\\resources\\autoItScripts\\cancelDownloadWindow.exe");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Utils.waitFor(1);
         Assert.assertEquals(2, Driver.getDriver().getWindowHandles().size());
         switchToWindowNew(1);
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("blob"));
@@ -150,9 +191,59 @@ public class OtherInformationIndividualPage extends BasePage{
     }
 
     public void verifyUploadedConsentFormDocument(String fileName) {
-        Utils.waitForVisibility(consentFormNameText, 3);
+        elementDisplayed(consentFormNameText);
         Assert.assertEquals("ConsentForm-" + fileName, consentFormNameText.getText().trim());
     }
 
+    private Map<String, String> pickPersonalData() {
+        clickField(generalInformationButton);
+        Map<String, String> dataMap = new HashMap<>();
+
+        String firstName =  getValueByMouseKeyboardAction(firstNameField);
+        String lastName = getValueByMouseKeyboardAction(lastNameField);
+        dataMap.put("FirstAndLastName", firstName + " " + lastName);
+        dataMap.put("Phone Number", getValueByMouseKeyboardAction(phoneNumberField));
+        dataMap.put("Email", getValueByMouseKeyboardAction(emailField));
+        dataMap.put("ID Number", getValueByMouseKeyboardAction(personalNumberField));
+        dataMap.put("Birth Date", getValueByMouseKeyboardAction(birthDateField));
+
+        return dataMap;
+    }
+
+    public void verifyFetchedRandomPersonData(){
+        Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
+
+        clickField(otherInformationButton);
+        verifyUserIsOnOtherInformationPage();
+        Utils.waitFor(1);
+        Assert.assertEquals(fetchedDataMap.get("FirstAndLastName"),
+                getValueByMouseKeyboardAction(firstLastNameInput));
+        Assert.assertEquals("+355" + fetchedDataMap.get("Phone Number"),
+                getValueByMouseKeyboardAction(mobileNumberInput));
+        Assert.assertEquals(fetchedDataMap.get("Email"),
+                getValueByMouseKeyboardAction(emailInput));
+        Assert.assertEquals(fetchedDataMap.get("ID Number"),
+                getValueByMouseKeyboardAction(identificationNumberInput));
+
+
+        DateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        String inputDate = fetchedDataMap.get("Birth Date");
+        Date date;
+        try {
+            date = inputFormat.parse(inputDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        String outputDate = outputFormat.format(date);
+        Assert.assertEquals(outputDate,getValueByMouseKeyboardAction(birthDateInput) );
+
+    }
+
+    public void verifyCustomerCreateSuccessMessage(String message) {
+        Utils.waitForVisibility(successSnakeMessage, 8);
+        Assert.assertEquals(message, successSnakeMessage.getText());
+    }
 
 }

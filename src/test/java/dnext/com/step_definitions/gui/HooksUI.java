@@ -35,7 +35,7 @@ public class HooksUI {
        } catch (Exception e) {
             e.printStackTrace();
        } finally {
-          // Driver.closeDriver();
+           Driver.closeDriver();
         }
    }
 

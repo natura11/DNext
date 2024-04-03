@@ -1,9 +1,8 @@
 package dnext.com.pages.createIndividualCustomer;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinnesCustomerPages.AdminInformationPage;
-import dnext.com.pages.createBusinnesCustomerPages.GeneralInformationPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -13,10 +12,13 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 @Log4j2
-public class GeneralInformationNewIndividualCustomerPage extends BasePage {
+public class GeneralInformationIndividualPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(text(),'General Information')]//ancestor::mat-step-header")
     public WebElement generalInformationButtonSelectedLabel;  // aria-selected : true will be validated
+
+    @FindBy(xpath = "//input[@formcontrolname='personalNumber']")
+    public WebElement identificationNumberField;
 
     @FindBy(xpath = "//*[@id=\"firstName\"]")
     public WebElement firstNameFieldOnGeneralInformationForNewIndividualCustomer;
@@ -71,9 +73,11 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'General Information')]//ancestor::*[@aria-selected='true']")
     public WebElement selectedGeneralInformationOnIndividual;
 
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
+
     public void verifyUserIsOnGeneralInformationPage() {
         try {
-            Assert.assertTrue(generalInformationButtonSelectedLabel.isDisplayed());
+            elementDisplayed(generalInformationButtonSelectedLabel);
             Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
             log.info("Other Information Page is displaying");
         } catch (Throwable e) {
@@ -81,7 +85,7 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
         }
     }
 
-    public GeneralInformationNewIndividualCustomerPage warningBackgroundIsNotRedColor() {
+    public GeneralInformationIndividualPage warningBackgroundIsNotRedColor() {
         Utils.waitFor(1);
         try {
             String expectedRedColorCode = "#f44336";
@@ -95,53 +99,115 @@ public class GeneralInformationNewIndividualCustomerPage extends BasePage {
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage enterInvalidFormatEmailsOnIndividual(String email) {
+    public GeneralInformationIndividualPage enterInvalidFormatEmailsOnIndividual(String email) {
         Utils.sendKeys(emailFieldOnIndividual, email + Keys.TAB);
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage selectMaleOptionFromGenderDropdownOnIndividual() {
+    public GeneralInformationIndividualPage selectMaleOptionFromGenderDropdownOnIndividual() {
         elementDisplayed(genderDropdown);
         genderDropdown.click();
         maleOptionOfGender.click();
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage selectDateOfBirthOnIndividual(String date) {
+    public void selectRandomGender() {
+        elementDisplayed(genderDropdown);
+        genderDropdown.click();
+        optionFromDropdown(By.xpath("//*[@class='mat-option-text']"));
+    }
+
+    public GeneralInformationIndividualPage selectDateOfBirthOnIndividual(String date) {
         clickField(birthDateField);
         sendKeys(birthDateField, date + Keys.TAB);
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage selectAlbaniaFromDropdownOnIndividual() {
+    public GeneralInformationIndividualPage selectAlbaniaFromDropdownOnIndividual() {
         clickField(countryOfBirthField);
         clickField(albaniaOptionFromCountryDropdown);
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage selectPlaceOfBirthFromDropdownOnIndividual() {
+    public GeneralInformationIndividualPage selectPlaceOfBirthFromDropdownOnIndividual() {
         placeOfBirthField.click();
         beratCityFromPlaceOfBirthDropdown.click();
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage communicationMethodDropdownSelectableOnIndividual() {
+    public GeneralInformationIndividualPage communicationMethodDropdownSelectableOnIndividual() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage communicationMethodOptionFromDropdownOnIndividual() {
+    public GeneralInformationIndividualPage communicationMethodOptionFromDropdownOnIndividual() {
         optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage segmentDropdownSelectableOnIndividual() {
+    public GeneralInformationIndividualPage segmentDropdownSelectableOnIndividual() {
         isDropdownSelectable(By.xpath("//*[@class=\"mat-option-text\"]"));
         return this;
     }
 
-    public GeneralInformationNewIndividualCustomerPage segmentOptionFromDropdownOnIndividual() {
+    public GeneralInformationIndividualPage segmentOptionFromDropdownOnIndividual() {
         optionFromDropdown(By.xpath("//*[@class=\"mat-option-text\"]"));
         return this;
+    }
+
+    public void fillFirstNameWithRandomString(){
+        sendKeys(firstNameFieldOnGeneralInformationForNewIndividualCustomer,
+                customerFakerDataCreator.firstNameFromFaker());
+    }
+
+    public void fillLastNameWithRandomString(){
+        sendKeys(lastNameFieldOnGeneralInformationForNewIndividualCustomer,
+                customerFakerDataCreator.lastNameFromFaker() + " AUTOMATION");
+    }
+
+    public void fillEmailWithRandomEmail(){
+        sendKeys(emailFieldOnIndividual,
+                customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillBirthDateWithRandomDate(){
+        sendKeys(birthDateField,
+                customerFakerDataCreator.birthDateFromFaker());
+    }
+
+    public void fillPhoneNumberWithRandomNumber(){
+        sendKeys(mobilePhoneNumberField,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public String getFirstAndLastName(){
+        clickField(generalInformationButtonSelectedLabel);
+        verifyUserIsOnGeneralInformationPage();
+         return getValueByMouseKeyboardAction(firstNameFieldOnGeneralInformationForNewIndividualCustomer) + " " +
+                 getValueByMouseKeyboardAction(lastNameFieldOnGeneralInformationForNewIndividualCustomer);
+    }
+
+    public String getMobileNumber(){
+        clickField(generalInformationButtonSelectedLabel);
+        verifyUserIsOnGeneralInformationPage();
+        return getValueByMouseKeyboardAction(mobilePhoneNumberField);
+    }
+
+    public String getEmail(){
+        clickField(generalInformationButtonSelectedLabel);
+        verifyUserIsOnGeneralInformationPage();
+        return getValueByMouseKeyboardAction(emailFieldOnIndividual);
+    }
+
+    public String getIdentificationNumber(){
+        clickField(generalInformationButtonSelectedLabel);
+        verifyUserIsOnGeneralInformationPage();
+        return getValueByMouseKeyboardAction(identificationNumberField);
+    }
+
+    public String getBirthDate(){
+        clickField(generalInformationButtonSelectedLabel);
+        verifyUserIsOnGeneralInformationPage();
+        return getValueByMouseKeyboardAction(birthDateField);
     }
 }

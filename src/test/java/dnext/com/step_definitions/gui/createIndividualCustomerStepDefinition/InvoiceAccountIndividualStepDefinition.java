@@ -223,4 +223,44 @@ public class InvoiceAccountIndividualStepDefinition extends BasePage {
     public void userShouldNotSeeTheWarningMessageOnPhoneField() {
         elementNotDisplayed(invoiceAccountIndividualPage.phoneNumberErrorText);
     }
+
+    @And("User enters random Ebill email on Individual Invoice Account page")
+    public void userEntersRandomEbillEmail() {
+        invoiceAccountIndividualPage.fillEBillEmailWithRandomEmail();
+    }
+
+    @And("User enters random Ebill mobile number on Individual Invoice Account page")
+    public void userEntersRandomEbillMobileNumber() {
+        invoiceAccountIndividualPage.fillEBillPhoneNumberWithRandomNumber();
+    }
+
+    @And("User clicks credit rating postpaid dropdown on Individual Invoice Account page")
+    public void userClicksCreditRatingPostpaidDropdown() {
+        clickField(invoiceAccountIndividualPage.postpaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for postpaid on Individual Invoice Account page")
+    public void userSelectsRandomCreditRationForPostpaid() {
+        optionFromDropdown(By.xpath("//*[@class='mat-option-text']"));
+    }
+
+    @And("User adds a valid {string} document for Ebill document on Individual Invoice Account page")
+    public void userAddsAValidDocumentForEbillDocument(String document) {
+        invoiceAccountIndividualPage.uploadEBillDocument(document);
+    }
+
+    @Then("User should see the name of {string} added Ebill document on Individual Invoice Account page")
+    public void userShouldSeeTheNameOfAddedEbillDocument(String documentName) {
+        invoiceAccountIndividualPage.verifyUploadedEBillDocument(documentName);
+    }
+
+    @And("User clicks credit rating prepaid dropdown on Individual Invoice Account page")
+    public void userClicksCreditRatingPrepaidDropdown() {
+        clickField(invoiceAccountIndividualPage.prepaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for prepaid on Individual Invoice Account page")
+    public void userSelectsRandomCreditRationForPrepaid() {
+        optionFromDropdown(By.xpath("//*[@class='mat-option-text']"));
+    }
 }

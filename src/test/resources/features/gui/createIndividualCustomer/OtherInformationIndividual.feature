@@ -56,7 +56,7 @@ Feature:New Individual Customer-Other Information
     When  User enters "K12365478P" identification ID for ALBANIAN to the identification number field on Create Individual Customer page
     And   User clicks search button on Create Individual Customer page
     And   User clicks next Button in Search Individual on Create Individual Customer page
-    Then  User is on the Individual Genaral Information page
+    Then  User is on the Individual General Information page
     When  User wants to enter "KUCUK" as firstname on New Individual Customer page
     And   User wants to enter "PRENS" as lastname into the lastname field on New Individual Customer page
     And   User enters valid "KUCUKPRENS@ABC.COM" in to the email field on New Individual Customer page
