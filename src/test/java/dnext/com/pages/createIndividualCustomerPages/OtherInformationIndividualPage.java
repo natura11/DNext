@@ -228,7 +228,7 @@ public class OtherInformationIndividualPage extends BasePage{
     }
 
     public void verifyCustomerCreateSuccessMessage(String message) {
-        Utils.waitForVisibility(successSnakeMessage, 8);
+        elementDisplayed(successSnakeMessage);
         Assert.assertEquals(message, successSnakeMessage.getText());
     }
 

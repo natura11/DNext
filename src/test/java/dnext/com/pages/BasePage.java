@@ -139,9 +139,14 @@ public abstract class BasePage {
     }
 
     public static void elementDisplayed(WebElement webElement) {
-        Utils.waitForVisibility(webElement, 5);
+        Utils.waitForVisibility(webElement, 10);
         Assert.assertTrue(webElement.isDisplayed());
         log.info(webElement.getTagName() + " is displaying");
+    }
+
+    public static boolean isElementDisplayed(WebElement webElement) {
+        Utils.waitForVisibility(webElement, 10);
+        return webElement.isDisplayed();
     }
 
     public static void elementNotDisplayed(WebElement webElement) {
@@ -361,6 +366,5 @@ public abstract class BasePage {
         elementDisplayed(webElement);
         Assert.assertEquals(message, webElement.getText().trim());
     }
-
 
 }
