@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
-
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
 @Log4j2
@@ -36,8 +35,8 @@ public class VtvActivationPage extends BasePage {
     @FindBy(xpath = "(//span[.=' New Order '])[2]")
     public WebElement newOrderBtnOnPostpaid;
     @FindBy(xpath = "//*[.='Products']")
-    public WebElement productsText;
-    @FindBy(xpath = "//*[.='Digitalb Premium Plus']")
+    static public WebElement productsText;
+    @FindBy(xpath = "(//*[.='Digitalb Premium Plus'])[2]")
     public WebElement digitalbPremiumPlusText;
     @FindBy(xpath = "//label[@for='mat-checkbox-23-input']//span[@class='mat-checkbox-inner-container']")
     public WebElement tvOptionOnCheckBox;
@@ -99,7 +98,6 @@ public class VtvActivationPage extends BasePage {
     public List<WebElement> agreementIds;
 
 
-
     public void casIdFromFaker() {
         sendKeys(cashIdForAkesFeePerDokoderPremium, faker.numerify("############"));
     }
@@ -132,7 +130,6 @@ public class VtvActivationPage extends BasePage {
                 clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
                 clickField(variablesChoiceIconOnCamunda);
                 Utils.waitFor(2);
-                //Utils.waitForVisibility(errorMessageOnVariablesOnCamunda,25);
                 log.error("Error message at Camunda is " +errorMessageOnVariablesOnCamunda.getText());
             System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
             switchToWindowNew(0);
@@ -148,7 +145,6 @@ public class VtvActivationPage extends BasePage {
         }
         System.out.println("agreementIdTexts = " + agreementIdTexts);
     }
-
     public void turningBackToCustomerManagementPage(){
         Utils.waitFor(300);
         Driver.getDriver().navigate().refresh();

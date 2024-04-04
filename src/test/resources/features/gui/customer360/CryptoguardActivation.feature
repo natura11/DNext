@@ -30,8 +30,10 @@ Feature: Cryptoguard Activation
     And User selects the ALL0 3Month option of Akses Fee per Dekoder Premium as cash option on Customer360 search page
     And User selects Tarife Instalimi from Purchasable Addons for Cryptoguard part on Customer360 search page
     And User selects ALL4000 3Month option as cash  method on Customer360 search page
-    And User enters SmartCardSerialNumber on Customer360 search page
-#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
+    And   User clicks the ADD to Cart button on Product Offering Page
+    And   User checks the Cryptoguard Number is available for Sale on Product Offering Page
+    Then  User should see the  Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Cryptoguard is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
@@ -68,7 +70,9 @@ Feature: Cryptoguard Activation
     When Send a request
     Then Status code is 200
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status turned to completed for the Cryptoguard  on Customer360 search page
+    And User clicks Order status button on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page
+
 
 
 

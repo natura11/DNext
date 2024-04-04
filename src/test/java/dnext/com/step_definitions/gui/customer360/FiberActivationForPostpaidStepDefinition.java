@@ -29,11 +29,6 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
         clickField(fiberActivationForPostpaidPage.recurringProductsOnFiber);
     }
 
-    @When("User selects Contract Duration as  {int} X ALL2000  for Vodafone Gigafibra {int} Mbpson Customer360 search page")
-    public void user_selects_contract_duration_as_x_all2000_for_vodafone_gigafibra_mbpson_customer360_search_page(Integer int1, Integer int2) {
-        clickField(fiberActivationForPostpaidPage.contractDurationOf12XALL2000ForVodafoneGigaFibra200Mbps);
-    }
-
     @When("User selects {int} X ALL0  Contract Duration for Basic Enterprise Modem on Customer360 search page")
     public void user_selects_x_all0_contract_duration_for_basic_enterprise_modem_on_customer360_search_page(Integer int1) {
         clickField(fiberActivationForPostpaidPage.contractDurationOf12XALLForBasicEnterpriseModem);
@@ -41,18 +36,13 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @Then("User sees the name of {string} which was selected product on Fiber for postpaid in the Shopping Cart on Customer360 search page")
     public void user_sees_the_name_of_which_was_selected_product_on_fiber_for_postpaid_in_the_shopping_cart_on_customer360_search_page(String text) {
-        warningMessage(text, fiberActivationForPostpaidPage.selectedProductInShoppingCart);
+        warningMessage(text, fiberActivationForPostpaidPage.vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText);
     }
 
 
     @When("User selects Internet option from products for Postpaid on Customer{int} search page")
     public void userSelectsInternetOptionFromProductsForPostpaidOnCustomerSearchPage(int arg0) {
         clickField(fiberActivationForPostpaidPage.internetOptionOnFiberForPostpaid);
-    }
-
-    @When("User selects the Vodafone Gigafibra {int} Mbps for Postpaid on Customer{int} search page")
-    public void userSelectsTheVodafoneGigafibraMbpsForPostpaidOnCustomerSearchPage(int arg0, int arg1) {
-        Utils.clickWithJS(fiberActivationForPostpaidPage.vodafoneGigaFibra200MbpsOptionForPostpaid);
     }
 
     @And("User switches to Backoffice page")
@@ -62,6 +52,7 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User should see the name of {string}progressed customer on BackOffice page")
     public void userShouldSeeTheNameOfProgressedCustomerOnBackOfficePage(String nameOfCustomer) {
+        Utils.waitForVisibility(backofficeHomePage.nameOfCustomerOnMyGroupTasks,15);
         warningMessage(nameOfCustomer, backofficeHomePage.nameOfCustomerOnMyGroupTasks);
     }
 
@@ -102,12 +93,6 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
         warningMessage(messageOnScreen, fiberActivationForPostpaidPage.taskCompletedPopUpMessageOnCorporateConfirmationPage);
     }
 
-
-    @And("User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field for the postpaid on Customer{int} search page")
-    public void userEntersPPPoEUserAndONTSerialNumberIntoThePPPoEUserAndONTSerialNumberFieldForThePostpaidOnCustomerSearchPage(int arg0) {
-        fiberActivationForPostpaidPage.numbersCreationForSerialNumbers();
-    }
-
     @And("User turns back to customer main page on Customer{int} search page")
     public void userTurnsBackToCustomerMainPageOnCustomerSearchPage(int arg0) {
         Driver.getDriver().get("https://dcm-ui.uat.dnext.al.vodafone.com/customer360/search?customerId=F21366901");
@@ -117,6 +102,33 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
     @And("User should see the {string} text on BackOffice page")
     public void userShouldSeeTheTextOnBackOfficePage(String text) {
         fiberActivationForPostpaidPage.assertionOfBackOfficePage(text);
+    }
+
+    @When("User enters random Fiber Postpaid number to Smart Card field on Product Offering Page")
+    public void userEntersRandomFiberPostpaidNumberToSmartCardFieldOnProductOfferingPage() {
+        fiberActivationForPostpaidPage.fillFiberPostpaidCardNumber();
+    }
+
+    @And("User checks the Fiber Postpaid Number is available for Sale on Product Offering Page")
+    public void userChecksTheFiberPostpaidNumberIsAvailableForSaleOnProductOfferingPage() {
+        fiberActivationForPostpaidPage.checkFiberPostpaidNumberIsAvailableOrNot();
+    }
+
+    @When("User selects Contract Duration as  {int} X ALL{int}  for Vodafone Gigafibra {int} Mbpson Customer{int} search page")
+    public void userSelectsContractDurationAsXALLForVodafoneGigafibraMbpsonCustomerSearchPage(int arg0, int arg1, int arg2, int arg3) {
+        Utils.clickWithJS(fiberActivationForPostpaidPage.aLL12XALL3000MonthCashOption);
+        //clickField(fiberActivationForPostpaidPage.aLL12XALL3000MonthCashOption);
+    }
+
+    @When("User selects the Vodafone GigaFibra Pro fifty twenty Mbps Mbps for Postpaid on Customer search page")
+    public void userSelectsTheVodafoneGigaFibraProFiftyTwentyMbpsMbpsForPostpaidOnCustomerSearchPage() {
+        Utils.waitForVisibility(fiberActivationForPostpaidPage.vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid,15);
+        Utils.clickWithJS(fiberActivationForPostpaidPage.vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid);
+    }
+
+    @Then("User is directed to the Vodafone GigaFibra fifty twenty Mbps page for details of equipments on Customer{int} search page")
+    public void userIsDirectedToTheVodafoneGigaFibraFiftyTwentyMbpsPageForDetailsOfEquipmentsOnCustomerSearchPage(int arg0) {
+        warningMessage("GigaFibra Pro 50-20 Mbps",fiberActivationForPostpaidPage.vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText);
     }
 }
 

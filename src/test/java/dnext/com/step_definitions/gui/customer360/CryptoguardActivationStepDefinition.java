@@ -24,10 +24,6 @@ public class CryptoguardActivationStepDefinition extends BasePage {
         clickField(cryptoguardActivationPage.all03MonthsOptionForSmartCardCashOption);
     }
 
-    @When("User enters SmartCardSerialNumber on Customer360 search page")
-    public void user_enters_smart_card_serial_number_on_customer360_search_page() {
-        cryptoguardActivationPage.numbersCreationForSerialNumbers();
-    }
 
     @When("User selects the ALL0 3Month option of Akses Fee per Dekoder Premium as cash option on Customer360 search page")
     public void user_selects_the_all0_3month_option_of_akses_fee_per_dekoder_premium_as_cash_option_on_customer360_search_page() {
@@ -58,5 +54,15 @@ public class CryptoguardActivationStepDefinition extends BasePage {
     @Then("User should see the Order Status turned to completed for the Cryptoguard  on Customer{int} search page")
     public void userShouldSeeTheOrderStatusTurnedToCompletedForTheCryptoguardOnCustomerSearchPage(int arg0) {
         cryptoguardActivationPage.verifyTheOrderStatusIsCompleted();
+    }
+
+    @When("User enters random Cryptoguard number to Smart Card field on Product Offering Page")
+    public void userEntersRandomCryptoguardNumberToSmartCardFieldOnProductOfferingPage() {
+        cryptoguardActivationPage.cryptoguardNumbersCreationForSerialNumbers();
+    }
+
+    @And("User checks the Cryptoguard Number is available for Sale on Product Offering Page")
+    public void userChecksTheCryptoguardNumberIsAvailableForSaleOnProductOfferingPage() {
+        cryptoguardActivationPage.checkCryptoguardNumberIsAvailableOrNot();
     }
 }
