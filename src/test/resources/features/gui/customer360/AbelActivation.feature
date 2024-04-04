@@ -33,7 +33,7 @@ Feature: Abel Activation
     When  User enters random Abel number to Smart Card field on Product Offering Page
     And   User clicks the ADD to Cart button on Product Offering Page
     And   User checks the Abel Number is available for Sale on Product Offering Page
-    Then  User should see the Abel Number is available for Sale on Product Offering Page
+    Then  User should see the  Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Abel is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
@@ -56,14 +56,5 @@ Feature: Abel Activation
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status of Abel turned to completed  on Customer360 search page
-
-
-
-
-
-
-
-
-
-
+    And User clicks Order status button on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page

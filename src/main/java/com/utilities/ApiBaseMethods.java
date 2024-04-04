@@ -182,8 +182,8 @@ public class ApiBaseMethods {
 //                    .contentType("application/json;charset=UTF-8")
                     //.log().all()
                     .extract().response();
-            log.info("Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
-            log.info("Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
+            log.info("!!!!!!!!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
+            log.info("!!!!!!!!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
@@ -214,8 +214,8 @@ public class ApiBaseMethods {
 //                    .contentType("application/json;charset=UTF-8")
                     //.log().all()
                     .extract().response();
-            log.info("Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
-            log.info("Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
@@ -237,8 +237,8 @@ public class ApiBaseMethods {
                     .and()
                     //.log().all()
                     .extract().response();
-            log.info("Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
-            log.info("Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
+            log.info("!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
+            log.info("!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }
@@ -260,7 +260,7 @@ public class ApiBaseMethods {
                     .and()
                     //.log().all()
                     .extract().response();
-            log.info("!!!!!Exception at BRM for Status is = " + r.getBody().jsonPath().getString("[4].status"));
+            log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Exception at BRM for Status is = " + r.getBody().jsonPath().getString("[4].status"));
         } catch (Exception e) {
             throw new JsonPathException("Failed to parse the JSON document", e);
         }

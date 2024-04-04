@@ -35,7 +35,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @Then("User is directed to the Vodafone GigaFibra {int} Mbps page for details of equipments on Customer360 search page")
     public void user_is_directed_to_the_vodafone_giga_fibra_mbps_page_for_details_of_equipments_on_customer360_search_page(Integer int1) {
-        Utils.waitForVisibility(fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts,20);
+        Utils.waitForVisibility(fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts, 20);
         warningMessage("Vodafone GigaFibra 200 Mbps", fiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsTextOnProducts);
 
     }
@@ -65,11 +65,6 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
         clickField(fiberActivationForPrepaidPage.aLL06MonthCashOption);
     }
 
-    @And("User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field on Customer{int} search page")
-    public void userEntersPPPoEUserAndONTSerialNumberIntoThePPPoEUserAndONTSerialNumberFieldOnCustomerSearchPage(int arg0) {
-        fiberActivationForPrepaidPage.numbersCreationForSerialNumbers();
-    }
-
     @When("User clicks the save button after checkout action on Customer360 search page")
     public void user_clicks_the_save_button_after_checkout_action_on_customer360_search_page() {
         clickField(fiberActivationForPrepaidPage.saveButtonAfterCheckout);
@@ -85,13 +80,6 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
     public void userSeesTheNameOfWhichWasSelectedProductOnFiberIsInTheShoppingCartOnCustomerSearchPage(String warningMessage, int arg1) {
         warningMessage(warningMessage, fiberActivationForPrepaidPage.selectedProductInShoppingCart);
     }
-
-
-    @Then("User should see the Order Status OF Fiber Activation turned to completed  on Customer{int} search page")
-    public void userShouldSeeTheOrderStatusOFFiberActivationTurnedToCompletedOnCustomerSearchPage(int arg0) {
-        FiberActivationForPrepaidPage.verifyTheOrderStatusIsCompleted();
-    }
-
 
     @And("User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer{int} search page")
     public void userComparesTheAgreementIdOnOrderWithAgreementIdOnFiscalizationReceiptsOnCustomerSearchPage(int arg0) {
@@ -113,5 +101,15 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
     public void userClicksTheCreateReceiptButton() {
         Utils.waitFor(1);
         fiberActivationForPrepaidPage.receipCreationForABCOM();
+    }
+
+    @When("User enters random Fiber Prepaid number to Smart Card field on Product Offering Page")
+    public void userEntersRandomFiberPrepaidNumberToSmartCardFieldOnProductOfferingPage() {
+        fiberActivationForPrepaidPage.fillFiberPrepaidCardNumber();
+    }
+
+    @And("User checks the Fiber Prepaid Number is available for Sale on Product Offering Page")
+    public void userChecksTheFiberPrepaidNumberIsAvailableForSaleOnProductOfferingPage() {
+        fiberActivationForPrepaidPage.checkFiberPrepaidNumberIsAvailableOrNot();
     }
 }

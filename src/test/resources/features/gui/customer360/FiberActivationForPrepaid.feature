@@ -1,4 +1,4 @@
-@VFALFT-22389 @fiber @regression
+@VFALFT-22389 @fiberPrepaid @regression
 Feature: Fiber Activation for Prepaid
 
   Background:
@@ -19,15 +19,17 @@ Feature: Fiber Activation for Prepaid
     Then User is redirected to the  product catalog on Customer360 search page
     When User selects Internet option from products on Customer360 search page
     And  User clicks the search button under product list on Customer360 search page
-    When User selects the Vodafone Gigafibra 200 Mbps on Customer360 search page
-    Then User is directed to the Vodafone GigaFibra 200 Mbps page for details of equipments on Customer360 search page
-    When User selects cash methods as ALL12600 6Month for Vodafone Gigafibra 100 Mbpson Customer360 search page
+    When User selects the Vodafone GigaFibra Pro fifty twenty Mbps Mbps for Postpaid on Customer search page
+    Then User is directed to the Vodafone GigaFibra fifty twenty Mbps page for details of equipments on Customer360 search page
+    When User selects Contract Duration as  12 X ALL3000  for Vodafone Gigafibra 200 Mbpson Customer360 search page
     And User clicks the Infrusructure dropdown button  Customer360 search page
     And User selects the FIBER as Infrustructure on Customer360 search page
     And User selects Basic Enterprise Modem on Customer360 search page
     And User selects ALL0 6Month  cash method from Akses Fee per Modem Basic on Customer360 search page
-    And User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field on Customer360 search page
-    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    When  User enters random Fiber Prepaid number to Smart Card field on Product Offering Page
+    And   User clicks the ADD to Cart button on Product Offering Page
+    And   User checks the Fiber Prepaid Number is available for Sale on Product Offering Page
+   Then  User should see the  Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Basic Enterprise Modem" which was selected product on Fiber is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
@@ -54,7 +56,8 @@ Feature: Fiber Activation for Prepaid
     And User should see "Ticket status changed successfully!!" warning on FAVEO page
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status OF Fiber Activation turned to completed  on Customer360 search page
+    And User clicks Order status button on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page
     And User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer360 search page
     And User click the detail button
     Given Get Authorization for API

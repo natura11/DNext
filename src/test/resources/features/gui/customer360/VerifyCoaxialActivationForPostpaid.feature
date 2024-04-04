@@ -27,8 +27,10 @@ Feature: Verify Coaxial Activation for Postpaid
     And User selects the Coaxial as Infrustructure on Customer360 search page
     And User selects Basic Enterprise Modem on Customer360 search page
     And User selects 12 X ALL012XALL0 Contract Duration from Akses Fee per Modem Basic on Customer360 search page
-    And User enters  serial number into the MACadress  field on Customer360 search page
-#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    When  User enters random Coaxial Mac number to Smart Card field on Product Offering Page
+    And   User clicks the ADD to Cart button on Product Offering Page
+    And   User checks the  Coaxial Mac Number is available for Sale on Product Offering Page
+    Then  User should see the  Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Basic Enterprise Modem" which was selected product on Fiber is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
@@ -66,7 +68,7 @@ Feature: Verify Coaxial Activation for Postpaid
     And User turns back to customer main page on Customer360 search page
     And User clicks the Order button on Customer360 search page
     And User clicks Order status button on Customer360 search page
-   Then User should see the Order Status Coaxial Activation turned to completed  on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page
     And  User clicks Order id of the selected product on Customer360 search page
     Given Get Authorization for API
     When Create an endpoint component

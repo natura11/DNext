@@ -9,12 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.NoSuchElementException;
-
+import javax.xml.xpath.XPath;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import static com.utilities.Utils.waitFor;
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
@@ -50,11 +49,12 @@ public class AbelActivationPage extends BasePage {
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
     public WebElement selectedProductInShoppingCart;
     @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-     public WebElement warningForAlreadyOnGoingSerialNumber;
+    public WebElement warningForAlreadyOnGoingSerialNumber;
     @FindBy(xpath = "//*[.='One of the product already in use by another customer!!']")
-     public WebElement warningForAlreadyInUsedSerialNumber;
-    @FindBy(xpath = "//button[@class='mat-focus-indicator mat-shadow mat-flat-button mat-button-base ng-star-inserted']")
-    public WebElement addButtonForConfirmation;
+    public WebElement warningForAlreadyInUsedSerialNumber;
+    @FindBy(xpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']")
+    public static WebElement successMessageForShoppingCart;
+
 
     public void verifyTheOrderStatusIsCompleted() {
         if (orderStatus.getText().equalsIgnoreCase("completed")) {
@@ -75,9 +75,10 @@ public class AbelActivationPage extends BasePage {
         }
     }
 
-    public void serialNumbersCreation() {
-        String[] numbers =
-                {
+
+    public void fillAbelSmartCardNumber() {
+        List<String> abelNumbers = new ArrayList<>(Arrays
+                .asList(
                         "002001380290", "002001380308", "002001380316", "002001380324", "002001380332", "002001380340", "002001380357",
                         "002001380365", "002001380373", "002001380381", "002001380399", "002001380407", "002001380415", "002001380423",
                         "002001380431", "002001380449", "002001380456", "002001380464", "002001380472", "002001380480", "002001380498",
@@ -85,25 +86,29 @@ public class AbelActivationPage extends BasePage {
                         "002001380571", "002001380589", "002001380597", "002001380605", "002001380613", "002001379003", "002001379011",
                         "002001379029", "002001379037", "002001379045", "002001379052", "002001379060", "002001379078", "002001379086",
                         "002001379094", "002001379102", "002001379110", "002001379128", "002001379136", "002001379144", "002001379151",
-                        "002001379169", "002001379177", "002001379193", "002001379201", "002001379219", "002001379227", "002001380282",};
+                        "002001379169", "002001379177", "002001379193", "002001379201", "002001379219", "002001379227", "002001380282"));
+        Random random = new Random();
+        int randomIndex = random.nextInt(abelNumbers.size());
+        sendKeys(smartCardSerialNumberField, abelNumbers.get(randomIndex));
+    }
 
-        for (String number : numbers) {
-            smartCardSerialNumberField.clear();
-            smartCardSerialNumberField.sendKeys(number);
-            Utils.waitFor(2);
-            addToCartBtn.click();
-            Utils.waitFor(10);
-            System.out.println("number = " + number);
+    public void checkAbelNumberIsAvailableOrNot() {
+        String successMessageXpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']";
+        boolean isNumberAvailable = false;
+        do {
+            Utils.waitFor(3);
+            if (Driver.getDriver().findElements(By.xpath(successMessageXpath)).isEmpty()) {
+                smartCardSerialNumberField.clear();
+                fillAbelSmartCardNumber();
+                clickField(addToCartBtn);
+                Utils.waitFor(3);
+            } else {
+                isNumberAvailable = true;
+            }
+        } while (!isNumberAvailable);
+    }
 
-
-        }
-    }}
-
-
-
-
-
-
-
-
-
+    public void verifyShoppingCartIsCreated() {
+        Assert.assertTrue(isElementDisplayed(successMessageForShoppingCart));
+    }
+}

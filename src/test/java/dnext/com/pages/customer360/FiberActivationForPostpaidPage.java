@@ -4,9 +4,17 @@ import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static dnext.com.pages.customer360.AbelActivationPage.successMessageForShoppingCart;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import static dnext.com.pages.backofficePage.BackofficeHomePage.claimEditButton;
 import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.*;
 import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
@@ -18,6 +26,8 @@ public class FiberActivationForPostpaidPage extends BasePage {
     public WebElement newOrderBtnOnPostpaidOnFiber;
     @FindBy(xpath = "//mat-table[@role='table']//mat-row[1]//mat-cell[1]")
     public WebElement vodafoneGigaFibra200MbpsOptionForPostpaid;
+    @FindBy(xpath = "/html/body/app/app-sales-layout/div[2]/div/app-catalog/div/div/mat-table/mat-row[1]/mat-cell[1]")
+    public WebElement vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid;
     @FindBy(xpath = "//*[@id=\"mat-radio-3\"]")
     public WebElement recurringProductsOnFiber;
     @FindBy(xpath = "/html/body/app/app-sales-layout/div[2]/div/app-catalog/div/app-catalog-filters/mat-card/app-catalog-filters-category/div[2]/mat-tree/mat-nested-tree-node/div/mat-checkbox/label/span[1]")
@@ -38,13 +48,17 @@ public class FiberActivationForPostpaidPage extends BasePage {
     public WebElement taskCompletedPopUpMessageOnCorporateConfirmationPage;
     @FindBy(xpath = "//*[.=' Corporate Confirmation '] ")
     public WebElement corporateConfirmationTextOnCorporateConfirmationPage;
-    @FindBy(xpath = "//*[@id=\"catalog-component-wrapper\"]/div/mat-card[2]/h4")
-    public WebElement textForConfirmation;
+    @FindBy(xpath = "/html/body/app/app-sales-layout/div[2]/div/app-cart/div/div/div[1]/mat-card[1]/div[1]/div[1]/h3")
+    public  WebElement vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText;
+    @FindBy(xpath = " (//*[@class='mat-chip mat-focus-indicator mat-primary mat-basic-chip ng-star-inserted'])[1]")
+    public WebElement aLL12XALL3000MonthCashOption;
 
 
-    public void numbersCreationForSerialNumbers() {
-        String[] numbers =
-                       {"485754436BD1BB1F", "485754436BD1F71F", "485754436BD2331F", "485754436BD2511F",
+
+    public void fillFiberPostpaidCardNumber() {
+        List<String> abelNumbers = new ArrayList<>(Arrays
+                .asList(
+                        "485754436BD1BB1F", "485754436BD1F71F", "485754436BD2331F", "485754436BD2511F",
                         "485754436BD28D1F", "485754436BD2E71F", "485754436BD44E32", "485754436BD4631F",
                         "485754436BD48B1F", "485754436BD49F1F", "485754436BD55583", "4485754431F02C9A",
                         "448575443A2F0F9B", "4854544351AD279B", "485754430003CE76", "485754430009099A",
@@ -53,42 +67,32 @@ public class FiberActivationForPostpaidPage extends BasePage {
                         "48575443003ee242", "485754430047AB9A", "48575443004A878F", "48575443004EF042",
                         "485754430052449A", "485754430055EE42", "485754430057F29A", "485754430058899A",
                         "48575443005D029A", "48575443005E6F60", "48575443005EE042", "48575443005a1242",
-                        "48575443005e0442"};
-        for (String number : numbers) {
-            pPPoEUserInputField.clear();
-            oNTSerialNumberInputField.clear();
-            Utils.waitFor(2);
-            pPPoEUserInputField.sendKeys(number);
-            oNTSerialNumberInputField.sendKeys(number);
-            Utils.waitFor(2);
-            addToCartBtn.click();
-            Utils.waitFor(8);
-            boolean c1=textForConfirmation.isDisplayed();
-            System.out.println("textForConfirmation.isDisplayed() = " + textForConfirmation.isDisplayed());
-            try{
-                if(c1){
-                    System.out.println("The selected serial number "+ number + "is being used!!");
-                    throw new Exception();
-                }
-            }catch (Exception e){
-                log.info("No more available numbers!!!");
-            }
+                        "48575443005e0442"));
+        Random random = new Random();
+        int randomIndex = random.nextInt(abelNumbers.size());
+        sendKeys(pPPoEUserInputField, abelNumbers.get(randomIndex));
+        sendKeys(oNTSerialNumberInputField, abelNumbers.get(randomIndex));
+    }
 
-//            boolean isWarningVisible = false;
-//            try {
-//                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
-//                isWarningVisible = true;
-//            } catch (Exception e) {
-//                isWarningVisible = false;
-//            }
-//            if (isWarningVisible) {
-//                System.out.println(number + "number has already been used.");
-//                continue;
-//            } else {
-//                System.out.println(number + " number has accepted successfully.");
-//                break;
-//            }
-        }
+    public void checkFiberPostpaidNumberIsAvailableOrNot() {
+        String successMessageXpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']";
+        boolean isNumberAvailable = false;
+        do {
+            Utils.waitFor(3);
+            if (Driver.getDriver().findElements(By.xpath(successMessageXpath)).isEmpty()) {
+                pPPoEUserInputField.clear();
+                oNTSerialNumberInputField.clear();
+                fillFiberPostpaidCardNumber();
+                clickField(addToCartBtn);
+                Utils.waitFor(3);
+            } else {
+                isNumberAvailable = true;
+            }
+        } while (!isNumberAvailable);
+    }
+
+    public void verifyShoppingCartIsCreated() {
+        Assert.assertTrue(isElementDisplayed(successMessageForShoppingCart));
     }
 
     public void claimEditButtonUsage(){

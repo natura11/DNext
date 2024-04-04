@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.orderStatus;
-import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.verifyTheOrderStatusIsCompleted;
+
 
 
 @Log4j2
@@ -41,12 +41,8 @@ VtvActivationPage vtvActivationPage;
     public void user_selects_x_all012xall0_contract_duration_from_akses_fee_per_modem_basic_on_customer360_search_page(Integer int1) {
     clickField(verifyCoaxialActivationForPostpaidPage.option12XALL0ContractDurationForBasicMEnterpriseModem);
     }
-    @Then("User enters  serial number into the MACadress  field on Customer360 search page")
-    public void user_enters_serial_number_into_the_ma_cadress_field_on_customer360_search_page() {
-       verifyCoaxialActivationForPostpaidPage.numbersCreationForMacAdreess();
-       Utils.waitFor(10);
-    }
-    @Then("User should see the Order Status Coaxial Activation turned to completed  on Customer360 search page")
+
+    @Then("User should see the Order Status  turned to completed  on Customer360 search page")
     public void user_should_see_the_order_status_coaxial_activation_turned_to_completed_on_customer360_search_page() {
         Utils.waitFor(3);
         verifyCoaxialActivationForPostpaidPage.verifyTheOrderStatusIsCompleted();
@@ -61,5 +57,15 @@ VtvActivationPage vtvActivationPage;
     @And("User clicks Order status button on Customer{int} search page")
     public void userClicksOrderStatusButtonOnCustomerSearchPage(int arg0) {
         clickField(verifyCoaxialActivationForPostpaidPage.orderStatus);
+    }
+
+    @When("User enters random Coaxial Mac number to Smart Card field on Product Offering Page")
+    public void userEntersRandomCoaxialMacNumberToSmartCardFieldOnProductOfferingPage() {
+        verifyCoaxialActivationForPostpaidPage.numbersCreationForMacAdreess();
+    }
+
+    @And("User checks the  Coaxial Mac Number is available for Sale on Product Offering Page")
+    public void userChecksTheCoaxialMacNumberIsAvailableForSaleOnProductOfferingPage() {
+        verifyCoaxialActivationForPostpaidPage.checkCoaxialMacNumberIsAvailableOrNot();
     }
 }

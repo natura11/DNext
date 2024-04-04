@@ -42,12 +42,6 @@ public class AbelActivationStepDefinition extends BasePage {
         clickField(abelActivationPage.contract12XALL0ForSmartCard);
     }
 
-    @And("User enters  Smart Card Serial Number and  clicks the Add to Cart button on Customer{int} search page")
-    public void userEntersSmartCardSerialNumberAndClicksTheAddToCartButtonOnCustomerSearchPage(int arg0) {
-        abelActivationPage.serialNumbersCreation();
-        Utils.waitFor(10);
-    }
-
     @When("User selects Akses Fee per Dekoder Basic on Customer360 search page")
     public void user_selects_akses_fee_per_dekoder_basic_on_customer360_search_page() {
         clickField(abelActivationPage.aksesFeePerDekoderBasicAddSign);
@@ -82,4 +76,23 @@ public class AbelActivationStepDefinition extends BasePage {
     }
 
 
+    @When("User enters random Abel number to Smart Card field on Product Offering Page")
+    public void userEntersRandomAbelNumberToSmartCardFieldOnProductOfferingPage() {
+        abelActivationPage.fillAbelSmartCardNumber();
+    }
+
+    @And("User clicks the ADD to Cart button on Product Offering Page")
+    public void userClicksTheADDToCartButtonOnProductOfferingPage() {
+        clickField(abelActivationPage.addToCartBtn);
+    }
+
+    @And("User checks the Abel Number is available for Sale on Product Offering Page")
+    public void userChecksTheAbelNumberIsAvailableForSaleOnProductOfferingPage() {
+        abelActivationPage.checkAbelNumberIsAvailableOrNot();
+    }
+
+    @Then("User should see the  Number is available for Sale on Product Offering Page")
+    public void userShouldSeeTheAbelNumberIsAvailableForSaleOnProductOfferingPage() {
+        abelActivationPage.verifyShoppingCartIsCreated();
+    }
 }

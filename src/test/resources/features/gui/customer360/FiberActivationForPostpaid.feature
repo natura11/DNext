@@ -20,22 +20,25 @@ Feature: Fiber Activation for Postpaid
     And  User clicks the Recurring Products on Customer360 search page
     When User selects Internet option from products for Postpaid on Customer360 search page
     And  User clicks the search button under product list on Customer360 search page
-    When User selects the Vodafone Gigafibra 200 Mbps for Postpaid on Customer360 search page
-    Then User is directed to the Vodafone GigaFibra 200 Mbps page for details of equipments on Customer360 search page
-    When User selects Contract Duration as  12 X ALL2000  for Vodafone Gigafibra 200 Mbpson Customer360 search page
+    When User selects the Vodafone GigaFibra Pro fifty twenty Mbps Mbps for Postpaid on Customer search page
+    Then User is directed to the Vodafone GigaFibra fifty twenty Mbps page for details of equipments on Customer360 search page
+    When User selects Contract Duration as  12 X ALL3000  for Vodafone Gigafibra 200 Mbpson Customer360 search page
     And User clicks the Infrusructure dropdown button  Customer360 search page
     And User selects the FIBER as Infrustructure on Customer360 search page
     And User selects Basic Enterprise Modem on Customer360 search page
     And User selects 12 X ALL0  Contract Duration for Basic Enterprise Modem on Customer360 search page
-   And User enters PPPoEUser and ONTSerialNumber  into the PPPoEUser and ONTSerialNumber field for the postpaid on Customer360 search page
-#    Then User should see warning as "Shopping cart created successfully!"on Customer360 search page
+    When  User enters random Fiber Postpaid number to Smart Card field on Product Offering Page
+    And   User clicks the ADD to Cart button on Product Offering Page
+    And   User checks the Fiber Postpaid Number is available for Sale on Product Offering Page
+    Then  User should see the  Number is available for Sale on Product Offering Page
     When User clicks the Shopping Cart icon on Customer360 search page
-    Then User sees the name of "Vodafone GigaFibra 200 Mbps" which was selected product on Fiber for postpaid in the Shopping Cart on Customer360 search page
+    Then User sees the name of "Basic Enterprise Modem" which was selected product on Fiber is in the Shopping Cart on Customer360 search page
+    Then User sees the name of "GigaFibra Pro 50-20 Mbps" which was selected product on Fiber for postpaid in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
     And User clicks the save button after checkout action on Customer360 search page
     And User clicks the activation form on top of the opened screen on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
-#    Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
+    Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
     When User clicks the Go Back to Customer360 button on Customer360 search page
     Then User is on the Customer360 page
     And User clicks the Order button on Customer360 search page
@@ -64,7 +67,8 @@ Feature: Fiber Activation for Postpaid
     Then User should see "Task Completed" pop up message  on BackOffice page
     And User turns back to customer main page on Customer360 search page
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status OF Fiber Activation turned to completed  on Customer360 search page
+    And User clicks Order status button on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page
 
 
 
