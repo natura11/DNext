@@ -1,11 +1,14 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinessCustomerPages.GeneralInformationBusinessPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
 public class GeneralInformationBusinessStepDefinition extends BasePage {
@@ -13,7 +16,7 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @And("User clicks the Next button on general information page")
     public void userClicksTheNextButtonOnGeneralInformationPage() {
-        generalInformationBusinessPage.nextBtnClickGeneralInformation();
+        Utils.click(generalInformationBusinessPage.nextBtnOnGeneralInformation);
     }
 
     @Given("User should see the Name box on the general information page on general information page")
@@ -23,7 +26,7 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @Given("User clicks Name Field on general information page")
     public void user_clicks_name_field() {
-        clickField(generalInformationBusinessPage.nameBox);
+        clickField(generalInformationBusinessPage.organizationNameInput);
 
     }
 
@@ -39,12 +42,12 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @Given("User should ensure each options in industry dropdown are selectable on general information page")
     public void user_should_ensure_each_options_in_industry_dropdown_ara_selectable() {
-        generalInformationBusinessPage.industryDropdownSelectable();
+        isDropdownSelectable();
     }
 
     @Then("User should selects any option in the Industry dropdown on general information page")
     public void userShouldSelectsAnyOptionInTheIndustryDropdown() {
-        generalInformationBusinessPage.optionFromIndustryDropdown();
+        randomOptionFromDropdown();
     }
 
     @Given("User clicks Segment dropdown on general information page")
@@ -54,12 +57,12 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @And("User should ensure each options in Segment dropdown are selectable on general information page")
     public void userShouldEnsureEachOptionsInSegmentDropdownAreSelectable() {
-        generalInformationBusinessPage.segmentDropdownSelectable();
+        isDropdownSelectable();
     }
 
     @Then("User should selects any options in the Segment dropdown on general information page")
     public void userShouldSelectsAnyOptionsInTheSegmentDropdown() {
-        generalInformationBusinessPage.segmentOptionFromDropdown();
+        randomOptionFromDropdown();
     }
 
     @Given("User clicks Tax Exempt dropdown on general information page")
@@ -70,33 +73,35 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @And("User should ensure each options in Tax Exempt dropdown are selectable on general information page")
     public void userShouldEnsureEachOptionsInTaxExemptDropdownAreSelectable() {
-        generalInformationBusinessPage.taxExemptDropdownSelectable();
+        isDropdownSelectable();
     }
 
     @Then("User should selects any option in the Tax Exempt dropdown on general information page")
     public void userShouldSelectsAnyOptionInTheTaxExemptDropdown() {
-        generalInformationBusinessPage.taxExemptOptionFromDropdown();
+        randomOptionFromDropdown();
     }
 
     @Given("User clicks email field on general information page")
     public void user_clicks_email_field() {
-        clickField(generalInformationBusinessPage.emailBtnOnGeneralInformationPage);
+        clickField(generalInformationBusinessPage.emailFieldOnGeneral);
     }
 
     @Given("User should see that background is red")
     public void user_should_see_that_background_is_red() {
-        generalInformationBusinessPage.warningBackgroundRedColor();
+        warningBackgroundRedColorOne(
+                generalInformationBusinessPage.emailPictureBtnOnGeneralInformationPage, true);
     }
 
     @And("User enters {string} on general information page")
     public void userEnters(String invalidEmail) {
-
-        generalInformationBusinessPage.enterInvalidFormatEmails(invalidEmail);
+        Utils.sendKeys(generalInformationBusinessPage
+                .emailFieldOnGeneral, invalidEmail + Keys.TAB);
     }
 
     @Given("User enters valid {string} in to the email field on general information page")
     public void userEntersValidInToTheEmailField(String email) {
-        generalInformationBusinessPage.enterValidFormatEmail(email);
+        Utils.sendKeys(generalInformationBusinessPage
+                .emailFieldOnGeneral, email);
     }
 
     @Then("User should see {string} and {string} and {string} inside of email structure on general information page")
@@ -111,12 +116,12 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @And("User should ensure each options in Communication Method dropdown ara selectable on general information page")
     public void userShouldEnsureEachOptionsInCommunicationMethodDropdownAraSelectable() {
-        generalInformationBusinessPage.communicationMethodDropdownSelectable();
+        isDropdownSelectable();
     }
 
     @Then("User should selects SMS option in the Tax Exempt dropdown on general information page")
     public void userShouldSelectsSMSOptionInTheTaxExemptDropdown() {
-        generalInformationBusinessPage.communicationMethodOptionFromDropdown();
+        randomOptionFromDropdown();
     }
 
     @Given("User clicks Country Code dropdown on general information page")
@@ -152,18 +157,20 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
     }
 
     @And("User enters mobile phone number {string} with other country code except Albania on general information page")
-    public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbania(String arg0) {
-        generalInformationBusinessPage.inputOtherMobilePhoneNumberExceptAlbanian();
+    public void userEntersMobilePhoneNumberWithOtherCountryCodeExceptAlbania(String number) {
+        Utils.sendKeys(generalInformationBusinessPage
+                .mobilePhoneNumberBox, "number");
     }
 
     @And("User enters mobile valid phone number {string} on general information page")
-    public void userEntersMobileValidPhoneNumber(String arg0) {
-        generalInformationBusinessPage.inputValidMobilePhoneNumber(arg0);
+    public void userEntersMobileValidPhoneNumber(String phoneNumber) {
+        Utils.sendKeys(generalInformationBusinessPage
+                .mobilePhoneNumberBox, phoneNumber);
     }
 
-    @Given("User clicks Issuing Date field and user selects {string} from calendar on general information page")
-    public void userClicksIssuingDateFieldAndUserSelectsFromCalendarOnGeneralInformationPage(String date) {
-        generalInformationBusinessPage.verifyDateFromCalendarOnGeneralInfo(date);
+    @Given("User clicks Issuing Date field and enters invalid date on General Information page")
+    public void userClicksIssuingDateFieldAndUserSelectsFromCalendarOnGeneralInformationPage() {
+        generalInformationBusinessPage.verifyDateFromCalendarOnGeneralInfo();
     }
 
     @Given("User should see this {string} warning message near to add button on general information page")
@@ -178,7 +185,7 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
 
     @And("User should see the name of {string} added jpg document on the screen on general information page")
     public void userShouldSeeTheNameOfAddedJpgDocumentOnTheScreenOnGeneralInformationPage(String fileName) {
-        Assert.assertEquals("DOCUMENT-" + fileName, generalInformationBusinessPage.nameOfUploadedFileOnGeneral.getText());
+        generalInformationBusinessPage.verifyUploadedExtractQkrDocument(fileName);
     }
 
     @And("User deletes added image document on general information page")
@@ -209,8 +216,53 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
     }
 
     @And("User should see the name of {string} added pdf document on the screen on general information page")
-    public void userShouldSeeTheNameOfAddedPdfDocumentOnTheScreenOnGeneralInformationPage(String fileNameOfPdf) {
+    public void userShouldSeeTheNameOfAddedPdfDocumentOnTheScreen(String fileNameOfPdf) {
         elementDisplayed(generalInformationBusinessPage.nameOfUploadedFileOnGeneral);
         Assert.assertEquals("DOCUMENT-" + fileNameOfPdf, generalInformationBusinessPage.nameOfUploadedFileOnGeneral.getText());
+    }
+
+    @When("User enters random organization name on Business General Information page")
+    public void userEntersRandomOrganizationName() {
+        generalInformationBusinessPage.fillOrganizationNameWithRandomString();
+    }
+
+    @Then("User should see the Company Name is autofilled with organization name on Business General Information page")
+    public void userShouldSeeTheCompanyNameIsAutofilledWithOrganizationNameOnBusinessGeneralInformationPage() {
+        generalInformationBusinessPage.verifyTheCompanyNameIsSame();
+    }
+
+    @Then("User should selects {string} option in the Segment dropdown on general information page")
+    public void userShouldSelectsOptionInTheSegmentDropdown(String segment) {
+        selectSpecificOptionFromDropdown(segment);
+    }
+
+    @And("User enters random email on Business General Information page")
+    public void userEntersRandomEmail() {
+        generalInformationBusinessPage.fillEmailWithRandomEmail();
+    }
+
+    @And("User enters random mobile phone number on Business General Information page")
+    public void userEntersRandomMobilePhoneNumber() {
+        generalInformationBusinessPage.fillPhoneNumberWithRandomNumber();
+    }
+
+    @And("User enters random valid issuing date on Business General Information page")
+    public void userEntersRandomValidIssuingDate() {
+        generalInformationBusinessPage.fillIssuingDateWithRandomValidDate();
+    }
+
+    @When("User clicks the General Information button for Business")
+    public void userClicksTheGeneralInformationButtonForBusiness() {
+        clickField(generalInformationBusinessPage.generalInformationButtonSelectedLabel);
+    }
+
+    @Then("User is on the Business General Information page")
+    public void userIsOnTheBusinessGeneralInformationPage() {
+        generalInformationBusinessPage.verifyUserIsOnGeneralInformationPage();
+    }
+
+    @And("User selects any communication option on General Information Page")
+    public void userSelectsAnyCommunicationOptionOnGeneralInformationPage() {
+        randomOptionFromDropdown();
     }
 }

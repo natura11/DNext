@@ -9,8 +9,8 @@ Feature:New Individual Customer-Customer Creation
     When   User clicks Create Individual Customer on Home page
     Then   User should see the "New Individual Customer" header on screen on Create Individual Customer page
 
-  @individualCustomerCreationWithHappyPath @smoke
-  Scenario: As a user I want to create an Individual Customer
+  @individualAlbanianCustomerCreation @smoke
+  Scenario: As a user I want to create an Albanian Individual Customer
     When  User enters random identification ID for ALBANIAN to the identification number field on Search Individual page
     And   User clicks search button on Create Individual Customer page
     And   User checks the identification ID is already exists or not on Search Individual page

@@ -26,10 +26,9 @@ public class CreateBusinessCustomerCommonPage extends BasePage {
     public WebElement otherInformationHeader;
 
     public void VerificationNewBusinessCustomerHeader(String header) {
-        String actualHeader = newBusinessCustomerHeader.getText();
-        String expectedHeader = header;
-        System.out.println("header = " + header);
-        Assert.assertTrue(header.equals(actualHeader));
+        elementDisplayed(newBusinessCustomerHeader);
+        String actualHeader = newBusinessCustomerHeader.getText().trim();
+        Assert.assertEquals(header, actualHeader);
     }
 
     public void controlTab(String tabName) {

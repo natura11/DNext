@@ -211,10 +211,8 @@ public class OtherInformationIndividualPage extends BasePage{
         Assert.assertEquals(fetchedDataMap.get("ID Number"),
                 getValueByMouseKeyboardAction(identificationNumberInput));
 
-
         DateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
         DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-
         String inputDate = fetchedDataMap.get("Birth Date");
         Date date;
         try {
@@ -224,7 +222,6 @@ public class OtherInformationIndividualPage extends BasePage{
         }
         String outputDate = outputFormat.format(date);
         Assert.assertEquals(outputDate,getValueByMouseKeyboardAction(birthDateInput) );
-
     }
 
     public void verifyCustomerCreateSuccessMessage(String message) {

@@ -11,15 +11,23 @@ import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @Log4j2
 public class OtherInformationBusinessPage extends BasePage {
-    Faker faker = new Faker();
+
     public String seeCompanyName;
     public String seeNiptNumber;
     public String seeIndustry;
-    @FindBy(xpath = "//input[@formcontrolname='companyName']")
+    @FindBy(xpath = "//div[contains(text(),'Other Information')]//ancestor::mat-step-header")
+    public WebElement otherInformationButtonSelectedLabel;
+    @FindBy(xpath = "//h2[text()='Customer Information']//following::*[@formcontrolname='companyName']")
     public WebElement companyNameOnOtherInformation;
     @FindBy(xpath = "//input[@formcontrolname='nipt']")
     public WebElement niptNumberOnOtherInformation;
@@ -37,79 +45,72 @@ public class OtherInformationBusinessPage extends BasePage {
     public WebElement addDocumentButtonOnOtherInformation;
     @FindBy(xpath = "(//input[@id='consentFileInput']")
     public WebElement fileInputGeneralOnOtherInformation;
-    @FindBy(xpath = "//button[@class='mat-focus-indicator save-product-button mat-raised-button mat-button-base']")
+    @FindBy(xpath = "//span[text()='Save']/ancestor::button")
     public WebElement saveButtonOnOtherInformation;
     @FindBy(xpath = "//span[contains(text(),'Customer created successfully')]")
     public WebElement createPopup;
-    @FindBy(xpath = "//div[@fxlayoutalign='space-between']//div[@id='file-label']")
+    @FindBy(xpath = "(//p[contains(text(),'Consent Form')]/following::div/div)[1]")
     public WebElement nameOfUploadedFileOnOther;
 
 
-    public void seeIndustryFields() {
-        seeIndustry = industryOnOtherInformation.getAttribute("value");
-        //log.info("otherInformation okunan industry değer => " + seeIndustry);
-    }
+    /***
+     Below XPaths will be used for General Information Page objects
+     to compare and verify on Other Information page
+     */
+    @FindBy(xpath = "//div[contains(text(),'General Information')]")
+    public WebElement generalInformationButton;
 
-    public void checkIndustryFields() {
-        Utils.click(generalInformationTab);
-        Utils.waitFor(1);
-        String expectedIndustryNumber = selectedIndustry.getText().toUpperCase(Locale.ENGLISH);
-        expectedIndustryNumber = expectedIndustryNumber.replace(" ", "_");
-        expectedIndustryNumber = expectedIndustryNumber.replace("&", "");
-        expectedIndustryNumber = expectedIndustryNumber.replace("__", "_");
-        expectedIndustryNumber = expectedIndustryNumber.replace("-", "EMPTY_SOURCE");
-        //log.info("generalInofrmation seçilen industry değer => " + expectedIndustryNumber);
-        Utils.waitFor(1);
-        Utils.click(otherInformationTab);
-        Assert.assertEquals(seeIndustry, expectedIndustryNumber);
-    }
+    @FindBy(xpath = "//input[@id='companyName']")
+    public WebElement companynameOnGeneral;
 
-    public void seeCompanyName() {
-        seeCompanyName = companyNameOnOtherInformation.getAttribute("value");
-        //log.info("otherInformation okunan company değer => " + seeCompanyName);
-    }
+    @FindBy(xpath = "//input[@formcontrolname='organization']")
+    public WebElement organizationNumberOnGeneral;
 
-    public void checkCompanyName(String expectedCompanyName) {
-        Utils.waitFor(1);
-        //log.info("generalInformation girilen company değer => " + expectedCompanyName.toUpperCase(Locale.ENGLISH));
-        Assert.assertEquals(seeCompanyName, expectedCompanyName.toUpperCase(Locale.ENGLISH));
-    }
+    @FindBy(xpath = "//mat-select[@formcontrolname='industry']//span/span")
+    public WebElement selectedIndustryOption;
 
-    public void seeNiptNumber() {
-        seeNiptNumber = niptNumberOnOtherInformation.getAttribute("value");
-        //log.info("otherInformation okunan nipt değer => " + seeNiptNumber);
-    }
 
-    public void checkNiptNumber(String expectedNiptNumber) {
-        Utils.waitFor(1);
-        //log.info("generalInformation girilen nipt değer => " + expectedNiptNumber);
-        Assert.assertEquals(seeNiptNumber, expectedNiptNumber);
-    }
-
-    public void clickGenerateButton() {
-        Utils.click(generateFormButton);
-    }
-
-    public void checkOpenedForm() throws AWTException {
-        Utils.waitFor(2);
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_ESCAPE);
-        robot.keyRelease(KeyEvent.VK_ESCAPE);
-        boolean pageSize = false;
-        if (Driver.getDriver().getWindowHandles().size() > 0) {
-            pageSize = true;
+    public void verifyUserIsOnOtherInformationPage() {
+        try {
+            elementDisplayed(otherInformationButtonSelectedLabel);
+            Assert.assertEquals("true", otherInformationButtonSelectedLabel.getAttribute("aria-selected"));
+            log.info("Other Information Page is displaying");
+        } catch (Throwable e) {
+            log.info("Error message: Other Information Page is  not displaying");
         }
-        Assert.assertTrue(pageSize);
-        switchToWindowNew(0);
-        Utils.waitFor(2);
     }
 
-    public void clickSaveButton() {
+    private Map<String, String> pickPersonalData() {
+        clickField(generalInformationButton);
+        Map<String, String> dataMap = new HashMap<>();
+        dataMap.put("Company Name", getValueByMouseKeyboardAction(companynameOnGeneral));
+        dataMap.put("Organization Number", getValueByMouseKeyboardAction(organizationNumberOnGeneral));
+        String industry = selectedIndustryOption.getText();
+        if (industry.equals("-")) {
+            industry = "EMPTY_SOURCE";
+        }
+        if (industry.equals("Govt & Education")) {
+            industry = "GOVERNMENT_EDUCATION";
+        }
+        industry = industry.replaceAll("[&_\\s]", "").toUpperCase(Locale.ENGLISH);
+
+        dataMap.put("Industry", industry);
+        return dataMap;
+    }
+
+    public void verifyFetchedPersonData() {
+        Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
+
+        clickField(otherInformationButtonSelectedLabel);
+        verifyUserIsOnOtherInformationPage();
         Utils.waitFor(1);
-        Utils.click(saveButtonOnOtherInformation);
-    }
+        Assert.assertEquals(fetchedDataMap.get("Company Name"),
+                getValueByMouseKeyboardAction(companyNameOnOtherInformation));
+        Assert.assertEquals(fetchedDataMap.get("Organization Number"),
+                getValueByMouseKeyboardAction(niptNumberOnOtherInformation));
 
-    public void checkCustomerCreatePopup() {
-        Utils.waitForVisibility(createPopup, 5);
+        Assert.assertEquals(fetchedDataMap.get("Industry"),
+                getValueByMouseKeyboardAction(industryOnOtherInformation)
+                        .replaceAll("[_\\s]", "").toUpperCase());
     }
 }

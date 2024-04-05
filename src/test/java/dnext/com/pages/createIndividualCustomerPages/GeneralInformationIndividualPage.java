@@ -32,35 +32,35 @@ public class GeneralInformationIndividualPage extends BasePage {
     public WebElement picture;
     @FindBy(xpath = "//*[text()='General Information']")
     public WebElement generalInformationLabel;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[4]/mat-form-field[1]/div/div[1]/div[2]")
+    @FindBy(xpath = "//*[@id='firstName']/parent::div/preceding-sibling::div[1]")
     public WebElement firstNamePicture;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[4]/mat-form-field[2]/div/div[1]/div[2]")
+    @FindBy(xpath = "//*[@id='lastName']/parent::div/preceding-sibling::div[1]")
     public WebElement lastNamePicture;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-individual-general/div/form/div[5]/mat-form-field[1]/div/div[1]/div[2]")
+    @FindBy(xpath = "//*[@id='secondaryName']/parent::div/preceding-sibling::div[1]")
     public WebElement middleNamePicture;
-    @FindBy(xpath = "//app-individual-general//input[@formcontrolname='email']")
+    @FindBy(xpath = "//input[@formcontrolname='email']")
     public WebElement emailFieldOnIndividual;
-    @FindBy(xpath = "//div[@class='mat-form-field-outline mat-form-field-outline-thick ng-tns-c108-334 ng-star-inserted']")
+    @FindBy(xpath = "//input[@formcontrolname='email']/parent::div/preceding-sibling::div[1]")
     public WebElement emailFieldPicture;
-    @FindBy(css = "*[formcontrolname=\"gender\"]")
+    @FindBy(xpath = "//*[@formcontrolname='gender']")
     public WebElement genderDropdown;
     @FindBy(xpath = "(//*[@*='mat-option-text'])[1]")
     public WebElement maleOptionOfGender;
-    @FindBy(css = "[formcontrolname = 'birthDate']")
+    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']")
     public WebElement birthDateField;
-    @FindBy(css = ".mat-form-field-outline.mat-form-field-outline-thick.ng-tns-c108-16.ng-star-inserted")
+    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']/parent::div/preceding-sibling::div[1]")
     public WebElement birthDateFieldPicture;
-    @FindBy(xpath = "//button[@class='mat-focus-indicator mat-icon-button mat-button mat-button-base ng-tns-c108-16 ng-star-inserted']//mat-icon[@role='img'][normalize-space()='close']")
+    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']/parent::div/preceding-sibling::div[1]//mat-icon")
     public WebElement cancelButtonOnDateOfBirthField;
-    @FindBy(css = "[formcontrolname = 'birthCountry']")
+    @FindBy(xpath = "//*[@formcontrolname = 'birthCountry']")
     public WebElement countryOfBirthField;
     @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='ALBANIA']")
     public WebElement albaniaOptionFromCountryDropdown;
-    @FindBy(css = "[formcontrolname = 'placeOfBirth']")
+    @FindBy(xpath = "//*[@formcontrolname = 'placeOfBirth']")
     public WebElement placeOfBirthField;
     @FindBy(xpath = "//span[normalize-space()='BERAT']")
     public WebElement beratCityFromPlaceOfBirthDropdown;
-    @FindBy(css = "app-individual-general [formcontrolname = 'phoneNumber']")
+    @FindBy(xpath = "//*[@formcontrolname = 'phoneNumber']")
     public WebElement mobilePhoneNumberField;
     @FindBy(xpath = "//*[@formcontrolname=\"communicationMethod\"]")
     public WebElement communicationMethodDropDown;

@@ -21,12 +21,12 @@ Feature:New Business Customer-Other Information
     Then  User should selects SMS option in the Tax Exempt dropdown on general information page
     And   User clicks mobile phone numbers field on general information page
     And   User enters mobile valid phone number "698933127" on general information page
-    Given User clicks Issuing Date field and user selects "18/03/2024" from calendar on general information page
+    And   User enters random valid issuing date on Business General Information page
     And   User adds a "document.jpg" of which format is image on general information page
     Then  User clicks the Next button on general information page
     When  User enters one non existing valid "C84353649W" ID number into the Identification Number field on Admin Information page
     Then  User should see "Please click search icon!" warning under the Identification Number field on Admin Information Page
-    And   User clicks the search icon in Identification Number field after Organization Search on Admin Information page
+    And   User clicks the search icon in Identification Number field on Admin Information page
     And   User  clicks the First Name field and enters the  first name as "Ervin" into the First Name field on Admin Information Page
     And   User  clicks the Last Name field and enters the  first name as "Candida" into the First Name field on Admin Information Page
     Given User enters valid "ABC@ABC.COM" in to the email field on  Admin Information Page
@@ -35,7 +35,8 @@ Feature:New Business Customer-Other Information
     And   User selects the country as Albania as country of birth on Admin Information Page
     And   User selects Berat as place of birth on Admin Information Page
     And   User adds "698933127" the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page
-    And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
+    And   User add "document.jpg" document file on Admin Information Page
+    Then  User should see the name of "document.jpg" added jpg document on the screen on Admin Information Page
     And   User clicks next Button on Admin Information Page
     And   User clicks Next button on Contact Information Page
     When  User clicks City dropdown on Address Information Page

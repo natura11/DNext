@@ -1,56 +1,36 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
 
 @Log4j2
 public class GeneralInformationBusinessPage extends BasePage {
+
+    @FindBy(xpath = "//div[contains(text(),'General Information')]//ancestor::mat-step-header")
+    public WebElement generalInformationButtonSelectedLabel;  // aria-selected : true will be validated
+
     public String companyNameFieldForEquals;
-    @FindBy(xpath = "//*[@formcontrolname=\"organization\"]")
+    @FindBy(xpath = "//*[@formcontrolname='organization']")
     public WebElement organizationNumberBox;
-    @FindBy(xpath = "//input[@id=\"name\"]")
-    public WebElement nameBox;
-    @FindBy(xpath = "(//*[@formcontrolname=\"industry\"])[1]")
+    @FindBy(xpath = "//input[@id='name']")
+    public WebElement organizationNameInput;
+    @FindBy(xpath = "//input[@formcontrolname='companyName']")
+    public WebElement companyNameInput;
+    @FindBy(xpath = "(//*[@formcontrolname='industry'])[1]")
     public WebElement industryDropdown;
-    @FindBy(xpath = "//*[text()=' Finance & Insurance ']")
-    public WebElement industryDropdownFinanceOption;
-    @FindBy(xpath = "//*[text()=' Manufacturing ']")
-    public WebElement industryDropdownManufacturingOption;
-    @FindBy(xpath = "//*[text()=' Construction ']")
-    public WebElement industryDropdownConstructionOption;
-    @FindBy(xpath = "//*[text()=' Mining & Agriculture ']")
-    public WebElement industryDropdownMiniAgriculereOption;
-    @FindBy(xpath = "//*[text()=' Retail & Wholesale ']")
-    public WebElement industryDropdownRetailWholesaleOption;
-    @FindBy(xpath = "//*[text()=' Professional Services ']")
-    public WebElement industryDropdownProfessionalServicesleOption;
-    @FindBy(xpath = "//*[text()=' Transport & Logistics ']")
-    public WebElement industryDropdownTransportLogisticsOption;
-    @FindBy(xpath = "//*[text()=' Media ']")
-    public WebElement industryDropdownMediaOption;
-    @FindBy(xpath = "//*[text()=' Accommodation & Leisure ']")
-    public WebElement industryDropdownAccommodationAndLeisureOption;
-    @FindBy(xpath = "//*[text()=' Telecoms ']")
-    public WebElement industryDropdownTelecomsOption;
-    @FindBy(xpath = "//*[text()=' Utilities ']")
-    public WebElement industryDropdownUtilitiesOption;
-    @FindBy(xpath = "//*[text()=' Healthcare ']")
-    public WebElement industryDropdownHealtcareOption;
-    @FindBy(xpath = "//*[text()=' Govt & Education ']")
-    public WebElement industryDropdownGovtEducationOption;
     @FindBy(xpath = "//*[text()=' - ']")
     public WebElement emptyOptionFromIndustryDropdown;
-    @FindBy(xpath = "//*[@id=\"companyName\"]")
+    @FindBy(xpath = "//*[@id='companyName']")
     public WebElement companyNameBox;
-    @FindBy(xpath = "//*[@formcontrolname=\"segment\"]")
+    @FindBy(xpath = "//*[@formcontrolname='segment']")
     public WebElement segmentDropdownBox;
     @FindBy(xpath = "//*[text()=' Corporate ']")
     public WebElement segmentDropdownCorporateOption;
@@ -60,13 +40,13 @@ public class GeneralInformationBusinessPage extends BasePage {
     public WebElement segmentDropdownSOHOoption;
     @FindBy(xpath = "//*[text()=' Other Business ']")
     public WebElement segmentDropdownOtherBusinessOption;
-    @FindBy(xpath = "//*[@formcontrolname=\"taxExempt\"]")
+    @FindBy(xpath = "//*[@formcontrolname='taxExempt']")
     public WebElement taxExemptDropdownBox;
     @FindBy(xpath = "//*[text()=' NO ']")
     public WebElement taxExemptDropdownOOption;
     @FindBy(xpath = "//*[text()=' YES ']")
     public WebElement taxExemptDropdownYESOption;
-    @FindBy(xpath = "//*[@formcontrolname=\"communicationMethod\"]")
+    @FindBy(xpath = "//*[@formcontrolname='communicationMethod']")
     public WebElement communicationMethodDropDown;
     @FindBy(xpath = "(//*[text()=' Email '])[2]")
     public WebElement communicationMethodDropDownEmailOption;
@@ -74,35 +54,28 @@ public class GeneralInformationBusinessPage extends BasePage {
     public WebElement communicationMethodDropDownSMSOption;
     @FindBy(xpath = "//*[text()=' Email & SMS ']")
     public WebElement communicationMethodDropDownEmailAndSmsOption;
-    @FindBy(xpath = "//*[@formcontrolname=\"phoneCode\"]")
+    @FindBy(xpath = "//*[@formcontrolname='phoneCode']")
     public WebElement countryCodeDropdownBox;
-    @FindBy(xpath = "(//*[@formcontrolname=\"phoneNumber\"])[1]")
+    @FindBy(xpath = "(//*[@formcontrolname='phoneNumber'])[1]")
     public WebElement mobilePhoneNumberBox;
     @FindBy(xpath = "(//*[.='Phone number must be like 6XXXXXXXX ! '] )[2]")
     public WebElement warningMessageTextForInvalidAlbanianPhoneNumber;
-    @FindBy(xpath = "//*[@formcontrolname=\"identificationIssuingDate\"]")
-    public WebElement issuingDateDropdownBox;
-    @FindBy(xpath = "//*[@class=\"mat-form-field-suffix ng-tns-c108-28 ng-star-inserted\"]")
-    public WebElement issuingDateIcon;
-    @FindBy(xpath = "//*[@class=\"mat-focus-indicator mat-calendar-period-button mat-button mat-button-base\"]")
-    public WebElement issuingDateMonth;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-corporate-customer-general/div/form/div[7]/div[1]/div/button")
+
+    @FindBy(xpath = "//*[@formcontrolname='identificationIssuingDate']/following::button[@aria-label='Add Document']")
     public WebElement addDocumentButtonOnNewBusinessCustomer;
-    @FindBy(xpath = "//*[@id=\"file-label\"]")
+    @FindBy(xpath = "//*[@id='file-label']")
     public WebElement documentNameVerify;
-    @FindBy(xpath = "//*[@class=\"mat-error ng-star-inserted\"]")
+    @FindBy(xpath = "//*[@class='mat-error ng-star-inserted']")
     public WebElement addWarningDocumentMessage;
-    @FindBy(xpath = "//*[@class=\"mat-focus-indicator red-fg mat-button mat-button-base\"]")
+    @FindBy(xpath = "//*[@formcontrolname='identificationIssuingDate']/following::mat-icon[text()='cancel']")
     public WebElement deleteDocumentButton;
     @FindBy(xpath = "//span[.='Only image and pdf files are accepted!']")
     public WebElement warningMessageForUnmatchedDocument;
     @FindBy(xpath = "//span[.='File size can not be bigger than 5 MB!']")
     public WebElement warningMessageForBiggerDocument;
-    @FindBy(xpath = " //*[@id=\"cdk-step-content-0-1\"]/div/button[2]/span/span")
-    public WebElement nextButtonOnGeneralInformationPage;
-    @FindBy(xpath = " (//*[@formcontrolname=\"email\"])[1]")
-    public WebElement emailBtnOnGeneralInformationPage;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-1\"]/app-corporate-customer-general/div/form/div[5]/mat-form-field[1]/div/div[1]/div[2]")
+    @FindBy(xpath = "(//*[@formcontrolname='email'])[1]")
+    public WebElement emailFieldOnGeneral;
+    @FindBy(xpath = "(//*[@formcontrolname='email'])[1]/parent::div/preceding-sibling::div[1]")
     public WebElement emailPictureBtnOnGeneralInformationPage;
     @FindBy(xpath = "//span[.=' +355 ']")
     public WebElement albanianCountryCode;
@@ -110,84 +83,43 @@ public class GeneralInformationBusinessPage extends BasePage {
     public WebElement countryCodeExceptAlbanian;
     @FindBy(xpath = "(//*[.='Phone number is required ! '])[2]")
     public WebElement warningMessageForEmptyMobilePhoneNumber;
-    @FindBy(xpath = "//*[@formcontrolname=\"identificationIssuingDate\"]")
-    public WebElement issuingDateFieldOnGeneralInformationPage;
+    @FindBy(xpath = "//*[@formcontrolname='identificationIssuingDate']")
+    public WebElement issuingDateField;
+    @FindBy(xpath = "//*[@formcontrolname='identificationIssuingDate']/parent::div/preceding-sibling::div[2]")
+    public WebElement issuingDateBackgroundField;
     @FindBy(xpath = "(//*[.=' You have to add Extract QKR document!'])[1]")
     public WebElement warningOfAddExtractQKRdocumentMessage;
     @FindBy(xpath = "//mat-error/..//input[@id='generalFileInput']")
     public WebElement fileInputGeneral;
-    @FindBy(xpath = "//*[@id=\"file-label\"]/div[1]")
+    @FindBy(xpath = "//*[@id='file-label']/div[1]")
     public WebElement nameOfUploadedFileOnGeneral;
-    @FindBy(xpath = "//div[@id='cdk-step-content-0-1']//span[contains(text(),'Next')]")
+    @FindBy(xpath = "(//span[text()='Next'])[2]//ancestor::button")
     public WebElement nextBtnOnGeneralInformation;
+    @FindBy(xpath = "(//span[text()='Back'])[1]//ancestor::button")
+    public WebElement backBtnOnGeneralInformation;
 
-    public void nextBtnClickGeneralInformation() {
-        Utils.waitFor(1);
-        Utils.click(nextBtnOnGeneralInformation);
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
+
+    public void verifyUserIsOnGeneralInformationPage() {
+        try {
+            elementDisplayed(generalInformationButtonSelectedLabel);
+            Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
+            log.info("Other Information Page is displaying");
+        } catch (Throwable e) {
+            log.info("Error message: Other Information Page is  not displaying");
+        }
     }
 
     public void verificationOfNameBox() {
-        Utils.waitFor(1);
-        Assert.assertTrue(nameBox.isDisplayed());
-        log.info(nameBox + "is displyaing");
+        elementDisplayed(organizationNameInput);
+        Assert.assertTrue(organizationNameInput.isDisplayed());
+        log.info(organizationNameInput + "is displyaing");
     }
 
     public void usingValidFormatName(String validName) {
         companyNameFieldForEquals = validName;
         Utils.waitForPageToLoad();
-        nameBox.sendKeys(validName);
-    }
-
-    public void industryDropdownSelectable() {
-        isDropdownSelectable();
-    }
-
-    public void optionFromIndustryDropdown() {
-        randomOptionFromDropdown();
-    }
-
-    public void segmentDropdownSelectable() {
-        isDropdownSelectable();
-    }
-
-    public void segmentOptionFromDropdown() {
-        randomOptionFromDropdown();
-    }
-
-    public void taxExemptDropdownSelectable() {
-        isDropdownSelectable();
-    }
-
-    public void taxExemptOptionFromDropdown() {
-        randomOptionFromDropdown();
-    }
-
-    public void enterInvalidFormatEmails(String email) {
-        Utils.sendKeys(emailBtnOnGeneralInformationPage, email + Keys.TAB);
-    }
-
-    public void warningBackgroundRedColor() {
-        try {
-            String expectedRedColorCode = "#f44336";
-            String backgroundColor = emailPictureBtnOnGeneralInformationPage.getCssValue("color");
-            Color color = Color.fromString(backgroundColor);
-            String actualBackRoundColorCode = color.asHex();
-            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
-        } catch (Exception e) {
-            log.info("Error Message: Red Warning message is not displaying!!");
-        }
-    }
-
-    public void enterValidFormatEmail(String validEmail) {
-        Utils.sendKeys(emailBtnOnGeneralInformationPage, validEmail);
-    }
-
-    public void communicationMethodDropdownSelectable() {
-        isDropdownSelectable();
-    }
-
-    public void communicationMethodOptionFromDropdown() {
-        randomOptionFromDropdown();
+        organizationNameInput.sendKeys(validName);
     }
 
     public void verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {
@@ -209,17 +141,17 @@ public class GeneralInformationBusinessPage extends BasePage {
         }
     }
 
-    public void inputOtherMobilePhoneNumberExceptAlbanian() {
-        Utils.sendKeys(mobilePhoneNumberBox, "012345678901234");
+    public void fillOrganizationNameWithRandomString(){
+        sendKeys(organizationNameInput,
+                customerFakerDataCreator.organizationNameFromFaker() + " AUTOMATION");
     }
 
-    public void inputValidMobilePhoneNumber(String phoneNumber) {
-        Utils.sendKeys(mobilePhoneNumberBox, phoneNumber);
-    }
-
-    public void verifyDateFromCalendarOnGeneralInfo(String date) {
-        clickField(issuingDateFieldOnGeneralInformationPage);
-        verifyDateFromCalendar(date, issuingDateFieldOnGeneralInformationPage);
+    public void verifyDateFromCalendarOnGeneralInfo() {
+        clickField(issuingDateField);
+        sendKeys(issuingDateField,
+                customerFakerDataCreator.invalidIssuingDateFromFaker());
+        performKeyboardAction(Keys.TAB);
+        warningBackgroundRedColorOne(issuingDateBackgroundField, true);
     }
 
     public void verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
@@ -229,5 +161,30 @@ public class GeneralInformationBusinessPage extends BasePage {
         } catch (Exception e) {
             log.info("Warning message not shown!!!");
         }
+    }
+
+    public void verifyTheCompanyNameIsSame(){
+        Assert.assertEquals(getValueByMouseKeyboardAction(organizationNameInput),
+                            getValueByMouseKeyboardAction(companyNameInput));
+    }
+
+    public void fillEmailWithRandomEmail(){
+        sendKeys(emailFieldOnGeneral,
+                customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillPhoneNumberWithRandomNumber(){
+        sendKeys(mobilePhoneNumberBox,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public void fillIssuingDateWithRandomValidDate(){
+        sendKeys(issuingDateField,
+                customerFakerDataCreator.issuingDateFromFaker());
+    }
+
+    public void verifyUploadedExtractQkrDocument(String fileName) {
+        Utils.waitForVisibility(nameOfUploadedFileOnGeneral, 5);
+        Assert.assertEquals("DOCUMENT-" + fileName, nameOfUploadedFileOnGeneral.getText().trim());
     }
 }

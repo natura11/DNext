@@ -106,6 +106,7 @@ public class ContactInformationIndividualPage extends BasePage {
 
     public void verifyUserIsOnContactInformationPage() {
         try {
+            elementDisplayed(typeOfAuthorizationDropdown);
             Assert.assertTrue(typeOfAuthorizationDropdown.isDisplayed());
             log.info("Type of Authorization is displaying");
         } catch (Throwable e) {

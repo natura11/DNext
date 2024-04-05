@@ -88,11 +88,27 @@ public class SearchOrganizationBusinessStepDefinition extends BasePage {
 
     @When("User fills in the NIPT field with  NIPT numbers on Search Organization page")
     public void userFillsInTheNIPTFieldWithNIPTNumbersOnSearchOrganizationPage() {
-        searchOrganizationBusinessPage.inputNiptForForeignCustomer();
+        searchOrganizationBusinessPage.fillNIPTFieldWithRandomForeignNumber();
     }
 
     @Then("User should see the {string} text on General Information page")
     public void userShouldSeeTheTextOnGeneralInformationPage(String header) {
         createBusinessCustomerCommonPage.controlTab(header);
+    }
+
+    @When("User enters random NIPT for ALBANIAN to the NIPT number field on Search Organization page")
+    public void userEntersRandomNIPTForALBANIANToTheNIPTNumberField() {
+        searchOrganizationBusinessPage.fillNIPTFieldWithRandomAlbanianNumber();
+    }
+
+
+    @And("User checks the NIPT is usable or not on Search Business page")
+    public void userChecksTheNIPTIsUsableOrNotOnSearchBusinessPage() {
+        searchOrganizationBusinessPage.checkNIPTIsAvailableOrNot();
+    }
+
+    @Then("User should see the random NIPT is new for ALBANIAN on Search Business page")
+    public void userShouldSeeTheRandomNIPTIsNewForALBANIAN() {
+        searchOrganizationBusinessPage.verifyOrganizationIsNew();
     }
 }
