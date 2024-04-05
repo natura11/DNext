@@ -13,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,8 +27,6 @@ import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
 @Log4j2
 public class FiberActivationForPrepaidPage extends BasePage {
 
-    @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-    static  public WebElement warningForAlreadyUsedSerialNumber;
     @FindBy(xpath = "//*[@id=\"mat-checkbox-31\"]/label/span[1]")
     public WebElement internetCheckBoxButton;
     @FindBy(xpath = "//*[.=' Vodafone GigaFibra 200 Mbps ']")
@@ -156,7 +155,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
     }
 
 
-    static public void activationFormClicking() {
+    static public void activationFormClicking() throws AWTException {
         Utils.waitFor(1);
         clickField(activationFormButtonAfterCheckout);
         Utils.waitFor(10);
@@ -165,18 +164,9 @@ public class FiberActivationForPrepaidPage extends BasePage {
             switchToWindowNew(1);
             Utils.waitFor(5);
 
-            Robot robot = null;
-            try {
-                robot = new Robot();
-            } catch (AWTException e) {
-                System.err.println("Error creating Robot instance: " + e.getMessage());
-                e.printStackTrace();
-            }
-            if (robot != null) {
-                robot.keyPress(KeyEvent.VK_ESCAPE);
-                robot.keyRelease(KeyEvent.VK_ESCAPE);
-                Utils.waitFor(1); // Adjust this wait time as needed
-            }
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+            robot.keyRelease(KeyEvent.VK_ESCAPE);
             Driver.getDriver().close();
             switchToWindowNew(0);
         }
@@ -215,7 +205,20 @@ public class FiberActivationForPrepaidPage extends BasePage {
         Driver.getDriver().close();
         switchToWindowNew(0);
     }
-
+//    public void verifyGenerateFormInNewTab() {
+//        clickField(activationFormButtonAfterCheckout);
+//        Utils.waitFor(5);
+//        try {
+//            Runtime.getRuntime().exec(
+//                    System.getProperty("user.dir") + "\\src\\test\\resources\\autoItScripts\\cancelDownloadWindow.exe");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Utils.waitFor(1);
+//        Assert.assertEquals(2, Driver.getDriver().getWindowHandles().size());
+//        switchToWindowNew(0);
+//        //Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("blob"));
+//    }
 
 }
 

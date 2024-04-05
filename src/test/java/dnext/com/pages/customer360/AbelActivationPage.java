@@ -44,14 +44,8 @@ public class AbelActivationPage extends BasePage {
     public WebElement orderStatus;
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
     public WebElement addToCartBtn;
-    @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-    public WebElement warningForAlreadyUsedSerialNumber;
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
     public WebElement selectedProductInShoppingCart;
-    @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-    public WebElement warningForAlreadyOnGoingSerialNumber;
-    @FindBy(xpath = "//*[.='One of the product already in use by another customer!!']")
-    public WebElement warningForAlreadyInUsedSerialNumber;
     @FindBy(xpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']")
     public static WebElement successMessageForShoppingCart;
 
