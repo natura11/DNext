@@ -53,6 +53,8 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
     static public WebElement variablesChoiceIconOnCamunda;
     @FindBy(xpath = "/html/body/main/div[2]/div/div[6]/div/div/div[1]/div/table/tbody/tr[2]/td/div/div[2]/div/div/div[2]/div/div/div/div[6]/div/div/div[1]/div/table/tbody/tr[10]/td[3]")
     static public WebElement errorMessageOnVariablesOnCamunda;
+    @FindBy(xpath = "//table/tbody/tr[13]/td[@aria-describedby='dx-col-16']")
+    static public WebElement errorMessageOnVariablesOnCamunda1;
     @FindBy(xpath = "//*[.='getFlowVariables successful!']")
     static public WebElement successfullMessageOnComunda;
     @FindBy(xpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']")
@@ -75,8 +77,9 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
             clickField(variablesChoiceIconOnCamunda);
             Utils.waitFor(2);
             log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
+            log.error("Error message is " + errorMessageOnVariablesOnCamunda1.getText());
             System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
-            switchToWindowNew(0);
+//            switchToWindowNew(0);
         }
     }
 
@@ -113,6 +116,7 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
                 inputFieldForMACAddress.clear();
                 numbersCreationForMacAdreess();
                 clickField(addToCartBtn);
+                Utils.waitFor(3);
             } else {
                 isNumberAvailable = true;
             }

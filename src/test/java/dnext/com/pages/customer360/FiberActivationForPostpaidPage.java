@@ -10,6 +10,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import static dnext.com.pages.customer360.AbelActivationPage.successMessageForShoppingCart;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +50,7 @@ public class FiberActivationForPostpaidPage extends BasePage {
     public WebElement taskCompletedPopUpMessageOnCorporateConfirmationPage;
     @FindBy(xpath = "//*[.=' Corporate Confirmation '] ")
     public WebElement corporateConfirmationTextOnCorporateConfirmationPage;
-    @FindBy(xpath = "/html/body/app/app-sales-layout/div[2]/div/app-cart/div/div/div[1]/mat-card[1]/div[1]/div[1]/h3")
+    @FindBy(xpath = "//h3[.='GigaFibra Pro 50-20 Mbps']")
     public  WebElement vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText;
     @FindBy(xpath = " (//*[@class='mat-chip mat-focus-indicator mat-primary mat-basic-chip ng-star-inserted'])[1]")
     public WebElement aLL12XALL3000MonthCashOption;

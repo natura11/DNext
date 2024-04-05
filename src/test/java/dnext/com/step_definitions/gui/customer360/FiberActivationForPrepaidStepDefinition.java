@@ -73,6 +73,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User clicks the activation form on top of the opened screen on Customer360 search page")
     public void user_clicks_the_activation_form_on_top_of_the_opened_screen_on_customer360_search_page() throws AWTException {
+        Utils.waitFor(5);
         FiberActivationForPrepaidPage.activationFormClicking();
     }
 
@@ -112,4 +113,8 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
     public void userChecksTheFiberPrepaidNumberIsAvailableForSaleOnProductOfferingPage() {
         fiberActivationForPrepaidPage.checkFiberPrepaidNumberIsAvailableOrNot();
     }
+
+
+
+
 }
