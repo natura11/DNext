@@ -91,7 +91,7 @@ public class AbelActivationStepDefinition extends BasePage {
         abelActivationPage.checkAbelNumberIsAvailableOrNot();
     }
 
-    @Then("User should see the Abel Number is available for Sale on Product Offering Page")
+    @Then("User should see the  Number is available for Sale on Product Offering Page")
     public void userShouldSeeTheAbelNumberIsAvailableForSaleOnProductOfferingPage() {
         abelActivationPage.verifyShoppingCartIsCreated();
     }

@@ -80,6 +80,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks the search button under product list on Customer{int} search page")
     public void userClicksTheSearchButtonUnderProductListOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.searchBtnForPruductOption);
+
     }
 
     @When("User selects the Digitalb Premium Plus on Customer{int} search page")
@@ -90,7 +91,8 @@ public class VtvActivationStepDefinition extends BasePage {
     @Then("User is directed to the Digitalb Premium Plus page for details of equipments on Customer{int} search page")
     public void userIsDirectedToTheDigitalbPremiumPlusPageForDetailsOfEquapmentsOnCustomerSearchPage(int arg0) {
         Utils.waitFor(3);
-        Assert.assertEquals("Digitalb Premium Plus", vtvActivationPage.digitalbPremiumPlusText.getText());
+        warningMessage("Digitalb Premium Plus",vtvActivationPage.digitalbPremiumPlusText);
+
     }
 
     @When("User selects cash methods as ALL{int} {int}Month on Customer{int} search page")
@@ -143,14 +145,14 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User should see warning as {string}on Customer{int} search page")
     public void userShouldSeeWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitForVisibility(vtvActivationPage.shoppingCartCreatedSuccesfullyMessage, 10);
+        Utils.waitForVisibility(vtvActivationPage.shoppingCartCreatedSuccesfullyMessage, 20);
         warningMessage(warning, vtvActivationPage.shoppingCartCreatedSuccesfullyMessage);
         Utils.waitFor(2);
     }
 
     @When("User clicks the Shopping Cart icon on Customer{int} search page")
     public void userClicksTheShoppingCartIconOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(5);
+        Utils.waitFor(2);
         clickField(vtvActivationPage.shoppingCartIcon);
         Utils.waitFor(3);
     }
@@ -181,6 +183,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("user sees one pop up warning as {string} on Customer{int} search page")
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
+        Utils.waitForVisibility(vtvActivationPage.checkoutIsSuccessfullyCompletedMessage,10);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
         Utils.waitFor(60);
 
@@ -194,6 +197,8 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks the Order button on Customer{int} search page")
     public void userClicksTheOrderButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.orderButtonOnCustomer360Page);
+        Utils.waitForPageToLoad();
+        Utils.waitFor(2);
 
     }
 
@@ -224,6 +229,7 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User clicks Load Tickets button on Customer{int} search page")
     public void userClicksLoadTicketsButtonOnCustomerSearchPage(int arg0) {
         clickField(vtvActivationPage.loadTicketsOnTroubleTickets);
+        Utils.waitFor(3);
     }
 
     @And("User cliks three dots right of opened block on Customer{int} search page")

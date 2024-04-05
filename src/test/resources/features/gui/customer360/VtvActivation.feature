@@ -67,7 +67,8 @@ Feature: VTV Activation
     When Send a request
     Then Status code is 200
     And User clicks the Order button on Customer360 search page
-    Then User should see the Order Status turned to completed  on Customer360 search page
+    And User clicks Order status button on Customer360 search page
+    Then User should see the Order Status  turned to completed  on Customer360 search page
 
 
 

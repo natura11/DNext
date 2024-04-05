@@ -1,30 +1,42 @@
 package dnext.com.pages.customer360;
 
+import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import static dnext.com.pages.camundaPage.HomePageCamunda.*;
+import static dnext.com.pages.customer360.AbelActivationPage.successMessageForShoppingCart;
+import static dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage.orderIdButtonInOrderDetail;
+import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
 
 @Log4j2
 public class FiberActivationForPrepaidPage extends BasePage {
 
-    @FindBy(xpath = "//*[.='ERROR_MESSAGES.THERE_IS_ALREADY_ON_GOING_CART_ITEM_EXIST']")
-    static  public WebElement warningForAlreadyUsedSerialNumber;
     @FindBy(xpath = "//*[@id=\"mat-checkbox-31\"]/label/span[1]")
     public WebElement internetCheckBoxButton;
     @FindBy(xpath = "//*[.=' Vodafone GigaFibra 200 Mbps ']")
     public static WebElement vodafoneGigaFibra200MbpsOption;
+
     @FindBy(xpath = "(//*[.='Vodafone GigaFibra 200 Mbps'])[2]")
     public WebElement vodafoneGigaFibra200MbpsTextOnProducts;
     @FindBy(xpath = "//mat-basic-chip[normalize-space()='ALL12600 6Month']")
     public WebElement aLL126006MonthCashOption;
+
     @FindBy(xpath = "//*[@id=\"mat-select-value-5\"]")
     public WebElement dropdownForFiberOptions;
     @FindBy(xpath = "//span[@class='mat-option-text'][.=' FIBER ']")
@@ -69,11 +81,13 @@ public class FiberActivationForPrepaidPage extends BasePage {
     public WebElement newOrderBtnOnPostpaid;
     @FindBy(xpath = " //span[.=' Create the receipt ']")
     public WebElement createReceiptButton;
+    @FindBy(css = "div[class='list-item'] div[class='center']")
+    public WebElement orderStatusButtonInOrderDetail;
 
-
-    public void numbersCreationForSerialNumbers() {
-        String[] numbers =
-                {"4857544313F18C92", "4857544314170A9D", "4857544314191E9D", "4857544314228925", "485754431423CD25",
+    public void fillFiberPrepaidCardNumber() {
+        List<String> abelNumbers = new ArrayList<>(Arrays
+                .asList(
+                        "4857544313F18C92", "4857544314170A9D", "4857544314191E9D", "4857544314228925", "485754431423CD25",
                         "485754431424C025", "4857544314269425", "485754431428B925", "48575443142B2625", "48575443144CC225",
                         "48575443145F87A1", "485754431469A2A1", "4857544314705F81", "48575443147142A1", "485754431471D142",
                         "4857544314741540", "4857544314749681", "4857544314749742", "485754431475EB42", "4857544314765942",
@@ -90,55 +104,58 @@ public class FiberActivationForPrepaidPage extends BasePage {
                         "4857544313F2367B", "4857544313F54A25", "4857544313F62225", "4857544313F65825", "4857544313F84344",
                         "4857544313FBD69A", "4857544313FD6025", "4857544313FF358F", "4857544314020425", "4857544314039025",
                         "4857544314064E25", "48575443140A1580", "48575443140B6725", "48575443140C3625", "48575443140D759C",
-                        "4857544314146725", "4857544314165D92", "485754431416DD25"};
-        for (String number : numbers) {
-            pPPoEUserInputField.clear();
-            oNTSerialNumberInputField.clear();
-            pPPoEUserInputField.sendKeys(number);
-            pPPoEUserInputField.sendKeys(Keys.RETURN);
-            oNTSerialNumberInputField.sendKeys(number);
-            oNTSerialNumberInputField.sendKeys(Keys.RETURN);
-            addToCartBtn.click();
-            Utils.waitFor(2);
-            boolean isWarningVisible = false;
-            try {
-                Utils.waitForVisibility(warningForAlreadyUsedSerialNumber, 15);
-                isWarningVisible = true;
-            } catch (Exception e) {
-                isWarningVisible = false;
-            }
-            if (isWarningVisible) {
-                System.out.println(number + "number has already been used.");
-                continue;
+                        "4857544314146725", "4857544314165D92", "485754431416DD25"));
+        Random random = new Random();
+        int randomIndex = random.nextInt(abelNumbers.size());
+        sendKeys(pPPoEUserInputField, abelNumbers.get(randomIndex));
+        sendKeys(oNTSerialNumberInputField, abelNumbers.get(randomIndex));
+    }
+
+    public void checkFiberPrepaidNumberIsAvailableOrNot() {
+        String successMessageXpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']";
+        boolean isNumberAvailable = false;
+        do {
+            Utils.waitFor(3);
+            if (Driver.getDriver().findElements(By.xpath(successMessageXpath)).isEmpty()) {
+                pPPoEUserInputField.clear();
+                oNTSerialNumberInputField.clear();
+                fillFiberPrepaidCardNumber();
+                clickField(addToCartBtn);
+                Utils.waitFor(3);
             } else {
-                System.out.println(number + " number has accepted successfully.");
-                break;
+                isNumberAvailable = true;
             }
-        }
+        } while (!isNumberAvailable);
     }
 
-    static public void verifyTheOrderStatusIsCompleted() {
-        if (orderStatus.getText().equalsIgnoreCase("completed")) {
-            System.out.println("OrderStatus is = " + orderStatus.getText());
-            Assert.assertEquals("completed", orderStatus.getText());
+    public void verifyShoppingCartIsCreated() {
+        Assert.assertTrue(isElementDisplayed(successMessageForShoppingCart));
+    }
+
+
+    public  void verifyTheOrderStatusIsCompleted() {
+        if (orderStatusButtonInOrderDetail.getText().equalsIgnoreCase("completed")) {
+            System.out.println("OrderStatus is = " + orderStatusButtonInOrderDetail.getText());
+            Assert.assertEquals("completed", orderStatusButtonInOrderDetail.getText());
         } else {
-            System.out.println("OrderStatus is = " + orderStatus.getText());
-//            String OrderId = orderIdField.getText();
-//            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-//            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
-//            clickField(productOrderCamundaOnHomePage);
-//            Utils.waitFor(1);
-//            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-//            clickField(variablesChoiceIconOnCamunda);
-//            Utils.waitFor(2);
-//            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-//            switchToWindowNew(0);
+            System.out.println("OrderStatus is = " + orderStatusButtonInOrderDetail.getText());
+            String OrderId = orderIdButtonInOrderDetail.getText();
+            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
+            Utils.waitFor(2);
+            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
+            Utils.waitFor(1);
+            clickField(productOrderCamundaOnHomePage);
+            Utils.waitFor(1);
+            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
+            clickField(variablesChoiceIconOnCamunda);
+            Utils.waitFor(2);
+            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
+            switchToWindowNew(0);
         }
     }
 
 
-
-    static public void activationFormClicking() {
+    static public void activationFormClicking() throws AWTException {
         Utils.waitFor(1);
         clickField(activationFormButtonAfterCheckout);
         Utils.waitFor(10);
@@ -147,18 +164,9 @@ public class FiberActivationForPrepaidPage extends BasePage {
             switchToWindowNew(1);
             Utils.waitFor(5);
 
-            Robot robot = null;
-            try {
-                robot = new Robot();
-            } catch (AWTException e) {
-                System.err.println("Error creating Robot instance: " + e.getMessage());
-                e.printStackTrace();
-            }
-            if (robot != null) {
-                robot.keyPress(KeyEvent.VK_ESCAPE);
-                robot.keyRelease(KeyEvent.VK_ESCAPE);
-                Utils.waitFor(1); // Adjust this wait time as needed
-            }
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+            robot.keyRelease(KeyEvent.VK_ESCAPE);
             Driver.getDriver().close();
             switchToWindowNew(0);
         }
@@ -175,11 +183,11 @@ public class FiberActivationForPrepaidPage extends BasePage {
         System.out.println("agrementIdOfOrder is :" + agrementIdOfOrder);
         orderDateOfOrderButton = orderDateOfOrder.getText();
         clickField(directionSignTofiscalizationReceiptsButton);
-        Utils.waitFor(2);
+        Utils.waitForVisibility(directionSignTofiscalizationReceiptsButton,10);
         clickField(directionSignTofiscalizationReceiptsButton);
-        Utils.waitFor(2);
+        Utils.waitForVisibility(fiscalizationReceiptsButton,10);
         clickField(fiscalizationReceiptsButton);
-        Utils.waitFor(3);
+        Utils.waitForVisibility(detailFirstButtonOnFiscalization,10);
         agrementIdOfFiscalizationReceipt = aggreementIdOfFiscalizationReceipt.getText();
         System.out.println("agrementIdOfFiscalizationReceipt is :" + agrementIdOfFiscalizationReceipt);
         orderDateOfFiscalizationReceipt = invoiceDateOfFiscalizationReceipt.getText();
@@ -197,7 +205,20 @@ public class FiberActivationForPrepaidPage extends BasePage {
         Driver.getDriver().close();
         switchToWindowNew(0);
     }
-
+//    public void verifyGenerateFormInNewTab() {
+//        clickField(activationFormButtonAfterCheckout);
+//        Utils.waitFor(5);
+//        try {
+//            Runtime.getRuntime().exec(
+//                    System.getProperty("user.dir") + "\\src\\test\\resources\\autoItScripts\\cancelDownloadWindow.exe");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Utils.waitFor(1);
+//        Assert.assertEquals(2, Driver.getDriver().getWindowHandles().size());
+//        switchToWindowNew(0);
+//        //Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("blob"));
+//    }
 
 }
 
