@@ -258,4 +258,9 @@ public class AddressInformationBusinessStepDefinition extends BasePage {
     public void userShouldSelectOptionInTheCityDropdownForServiceAddress(String city) {
         selectSpecificOptionFromDropdown(city);
     }
+
+    @Then("User should select random option in the City dropdown on Address Information Page")
+    public void userShouldSelectRandomOptionInTheCityDropdownOnAddressInformationPage() {
+        randomOptionFromDropdown();
+    }
 }

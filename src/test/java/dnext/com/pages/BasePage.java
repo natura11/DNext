@@ -207,20 +207,6 @@ public abstract class BasePage {
         robot.keyRelease(KeyEvent.VK_ESCAPE);
     }
 
-    public static void verifyDateFromCalendar(String date, WebElement issuingDateField) {
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate givenDate = LocalDate.parse(date, formatter);
-        LocalDate threeMonthsAgo = currentDate.minusMonths(3);
-        if (givenDate.isBefore(threeMonthsAgo)) {
-            Utils.sendKeys(issuingDateField, date + Keys.TAB);
-            log.info("The selected date is out of permitted range!!!");
-        } else {
-            Utils.sendKeys(issuingDateField, date + Keys.TAB);
-            log.info("The selected date is inside of permitted range");
-        }
-    }
-
     public static void verifyTheUploadedBigger5MbSizeFile(String fileName, WebElement warningMsg, WebElement addBtn, WebElement sendFieldBtn, String warningTxt) {
         uploadFile(addBtn, sendFieldBtn, fileName);
         Utils.waitForVisibility(warningMsg, 10);
@@ -241,18 +227,14 @@ public abstract class BasePage {
     }
 
     public static void randomOptionFromDropdown() {
-        try {
-            List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));
-            if (!options.isEmpty()) {
-                Random random = new Random();
-                int randomIndex = random.nextInt(options.size());
-                options.get(randomIndex).click();
-                log.info("Random option selected: " + options.get(randomIndex).getText());
-            } else {
-                log.info("No options found in the dropdown.");
-            }
-        } catch (Exception e) {
-            log.info("An error occurred: " + e.getMessage());
+        List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));
+        if (!options.isEmpty()) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(options.size());
+            options.get(randomIndex).click();
+            log.info("Random option selected: " + options.get(randomIndex).getText());
+        } else {
+            log.info("No options found in the dropdown.");
         }
     }
 

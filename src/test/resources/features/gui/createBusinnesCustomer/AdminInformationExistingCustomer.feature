@@ -25,8 +25,6 @@ Feature: Existing Customer-Admin Information-Existing Customer
       | Citizenship           | ALBANIAN   |
       | Country Of Birth      | ALBANIA    |
       | Place Of Birth        | BERAT      |
-      | Email                 |            |
-      | Mobile Phone Number   |            |
     Then User should see the "Phone number must be like 6XXXXXXXX !"warning message  under number field on Admin Information Page
 
   @smoke @addingEmailPhoneNumberForBusinessAdmin
@@ -41,17 +39,20 @@ Feature: Existing Customer-Admin Information-Existing Customer
     Then  User should see this "You have to add customers ID document!" warning message near to add button on Admin Information Page
     And   User tries to add "example.xlsx" of which format is out of image or pdf that connat be uploded on Admin Information Page
     And   User adds "bigger5MB.pdf"  which are image or pdf  which is bigger than five MB and should see "File size can not be bigger than 5 MB!" warning on Admin Information Page
-    And   User add "smaller5MB.pdf" and should see the name of file  on the screen on Admin Information Page
+    And   User add "smaller5MB.pdf" document file on Admin Information Page
+    Then  User should see the name of "smaller5MB.pdf" added jpg document on the screen on Admin Information Page
     And   User deletes already added valid pdf documentation Admin Information Page
-    And   User add the "document.jpg" and should see the name of file on the screen on Admin Information Page
+    And   User add "document.jpg" document file on Admin Information Page
+    Then  User should see the name of "document.jpg" added jpg document on the screen on Admin Information Page
 
   @smoke @nextToContactPageForBusinessAdmin
   Scenario: As a user I want to click next button and pass to Contact Information Page
     Given User clicks the search icon in Identification Number field on Admin Information page
-    And   User add "smaller5MB.pdf" and should see the name of file  on the screen on Admin Information Page
+    And   User add "smaller5MB.pdf" document file on Admin Information Page
+    Then  User should see the name of "smaller5MB.pdf" added jpg document on the screen on Admin Information Page
     And   User enters "alibaba11@gmail.com" on email field  and "624687659" to the phone number field
     And   User clicks next Button on Admin Information Page
-    Then  User should be on the Contact Information Page
+    Then  User is on the Contact Information page
 
 
 

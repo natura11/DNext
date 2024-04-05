@@ -63,6 +63,7 @@ public class AddressInformationBusinessPage extends BasePage {
 
     public void verifyUserIsOnAddressInformationPage() {
         try {
+            elementDisplayed(billingAddressMediumType);
             Assert.assertTrue(billingAddressMediumType.isDisplayed());
             log.info("Address field is displaying");
         } catch (Throwable e) {

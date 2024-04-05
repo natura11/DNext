@@ -227,4 +227,44 @@ public class InvoiceAccountBusinessStepDefinition extends BasePage {
     public void userShouldNotSeeTheWarningMessageOnPhoneFieldOnInvoiceAccountPage() {
         elementNotDisplayed(invoiceAccountBusinessPage.phoneNumberErrorText);
     }
+
+    @And("User enters random Ebill email on Business Invoice Account page")
+    public void userEntersRandomEbillEmail() {
+        invoiceAccountBusinessPage.fillEBillEmailWithRandomEmail();
+    }
+
+    @And("User enters random Ebill mobile number on Business Invoice Account page")
+    public void userEntersRandomEbillMobileNumber() {
+        invoiceAccountBusinessPage.fillEBillPhoneNumberWithRandomNumber();
+    }
+
+    @And("User clicks credit rating postpaid dropdown on Business Invoice Account page")
+    public void userClicksCreditRatingPostpaidDropdown() {
+        clickField(invoiceAccountBusinessPage.postpaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for postpaid on Business Invoice Account page")
+    public void userSelectsRandomCreditRationForPostpaid() {
+        randomOptionFromDropdown();
+    }
+
+    @And("User adds a valid {string} document for Ebill document on Business Invoice Account page")
+    public void userAddsAValidDocumentForEbillDocument(String document) {
+        invoiceAccountBusinessPage.uploadEBillDocument(document);
+    }
+
+    @Then("User should see the name of {string} added Ebill document on Business Invoice Account page")
+    public void userShouldSeeTheNameOfAddedEbillDocument(String documentName) {
+        invoiceAccountBusinessPage.verifyUploadedEBillDocument(documentName);
+    }
+
+    @And("User clicks credit rating prepaid dropdown on Business Invoice Account page")
+    public void userClicksCreditRatingPrepaidDropdown() {
+        clickField(invoiceAccountBusinessPage.prepaidCreditRatingDropdown);
+    }
+
+    @And("User selects random credit ration for prepaid on Business Invoice Account page")
+    public void userSelectsRandomCreditRationForPrepaid() {
+        randomOptionFromDropdown();
+    }
 }

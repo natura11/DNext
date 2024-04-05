@@ -1,6 +1,6 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
-import com.github.javafaker.Faker;
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -11,43 +11,43 @@ import org.openqa.selenium.support.FindBy;
 
 @Log4j2
 public class SearchOrganizationBusinessPage extends BasePage {
-    Faker faker = new Faker();
     public String nonExistenceNiptNumber;
+
     @FindBy(xpath = "//mat-icon[normalize-space()='create']")
     public WebElement searchOrganizationIcon;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[1]/mat-form-field/div/div[1]/div[3]")
-    public WebElement dropdownBtnOfCustomerType;
+    @FindBy(xpath = "//mat-select[@formcontrolname='customerType']")
+    public WebElement customerTypeDropdown;
     @FindBy(xpath = "//span[.=' Albanian Customer ']")
     public WebElement albanianCustomerInDropdown;
     @FindBy(xpath = "//span[normalize-space()='Foreign Customer']")
     public WebElement foreignCustomerInDropdown;
-    @FindBy(css = "[formcontrolname = 'organizationNumber']")
-    public WebElement niptTextOnSeacrOrganization;
     @FindBy(xpath = "//input[@formcontrolname = 'organizationNumber']")
     public WebElement niptNumberField;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-0\"]/app-corporate-customer-select/div/form/div[2]/div/button")
+    @FindBy(xpath = "//input[@formcontrolname = 'organizationNumberWithName']")
+    public WebElement niptNumberFieldWithNewCustomer;
+
+    @FindBy(xpath = "//span[normalize-space()='Search']/parent::button")
     public static WebElement searchBtnOnSearchOrganizationPage;
-    @FindBy(css = "div[id='cdk-step-content-0-0'] span[class='mat-button-wrapper'] span")
+    @FindBy(xpath = "(//span[text()='Next'])[1]//ancestor::button")
     public WebElement nextBtnOnSearchOrganizationPage;
     @FindBy(xpath = "//mat-error[@id='mat-error-0']")
     public WebElement warningInvalidNıptNumber;
-    @FindBy(css = "input[formcontrolname='organizationNumberWithName']")
-    public WebElement newCustomerTextWithNumberInNiptField;
     @FindBy(xpath = "//span[contains(text(),'This organization cannot have more than one custom')]")
     public WebElement warningWithExistingNiptNumber;
+
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
     public void getCurrentUrl(String currentUrl) {
         Utils.waitFor(3);
         Driver.getDriver().getCurrentUrl();
         System.out.println("Driver.getDriver().getCurrentUrl() = " + Driver.getDriver().getCurrentUrl());
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("customer/create-enterprise-customer"));
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(currentUrl));
     }
 
     public void popUpWarningValidationOfExistenceNumber(String popUpMessage) {
         Utils.waitFor(3);
         String actualMessage = warningWithExistingNiptNumber.getText();
-        String expectedMessage = popUpMessage;
-        Assert.assertTrue(expectedMessage.equals(actualMessage));
+        Assert.assertEquals(popUpMessage, actualMessage);
     }
 
     public void usingExistenceNiptNumber(String number) {
@@ -64,13 +64,13 @@ public class SearchOrganizationBusinessPage extends BasePage {
 
     public void selectOfAlbanianCustomerType() {
         Utils.waitForPageToLoad();
-        Utils.click(dropdownBtnOfCustomerType);
+        Utils.click(customerTypeDropdown);
         Utils.click(albanianCustomerInDropdown);
     }
 
     public void selectOfForeignCustomerType() {
         Utils.waitFor(3);
-        Utils.click(dropdownBtnOfCustomerType);
+        Utils.click(customerTypeDropdown);
         Utils.click(foreignCustomerInDropdown);
     }
 
@@ -78,8 +78,6 @@ public class SearchOrganizationBusinessPage extends BasePage {
         elementDisplayed(dnextlogoOnNavbar);
         Utils.hover(dnextlogoOnNavbar);
         Utils.waitFor(3);
-        //Utils.waitForVisibility(createBusinessCustomerBtn,15);
-        //Utils.waitForPageToLoad();
         Utils.click(createBusinessCustomerBtn);
     }
 
@@ -88,15 +86,9 @@ public class SearchOrganizationBusinessPage extends BasePage {
     }
 
     public void warningMessageOfnegativNiptInput(String warningMessage) {
-        String expectedWarning = warningMessage;
         String actualWarning = warningInvalidNıptNumber.getText();
-        log.info(actualWarning + "is " + expectedWarning);
-        Assert.assertTrue(expectedWarning.equals(actualWarning));
-    }
-
-    public void inputNiptForForeignCustomer() {
-        String randomNipt = faker.bothify("?????####");
-        Utils.sendKeys(niptNumberField, randomNipt);
+        log.info(actualWarning + "is " + warningMessage);
+        Assert.assertEquals(warningMessage, actualWarning);
     }
 
     public void searchBtnClickOnSearchOrgPage() {
@@ -104,7 +96,7 @@ public class SearchOrganizationBusinessPage extends BasePage {
     }
 
     public void nextBtnClickOnSearchPage() {
-        Utils.waitFor(1);
+        elementDisplayed(nextBtnOnSearchOrganizationPage);
         Utils.click(nextBtnOnSearchOrganizationPage);
     }
 
@@ -118,5 +110,33 @@ public class SearchOrganizationBusinessPage extends BasePage {
         } catch (Throwable e) {
             System.out.println("The search button is enabled.");
         }
+    }
+
+    public void fillNIPTFieldWithRandomForeignNumber() {
+        Utils.sendKeys(niptNumberField, customerFakerDataCreator.niptNumberForForeign());
+    }
+
+    public void fillNIPTFieldWithRandomAlbanianNumber(){
+        sendKeys(niptNumberField,
+                customerFakerDataCreator.niptNumberForAlbanian());
+    }
+
+    public void checkNIPTIsAvailableOrNot(){
+        String warningMessageXpath = "//span[text()='This organization cannot have more than one customer connected to it']";
+        boolean isNumberAvailable = false;
+        do {
+            Utils.waitFor(3);
+            if(!Driver.getDriver().findElements(By.xpath(warningMessageXpath)).isEmpty()){
+                niptNumberField.clear();
+                fillNIPTFieldWithRandomAlbanianNumber();
+                clickField(searchBtnOnSearchOrganizationPage);
+            }else {
+                isNumberAvailable = true;
+            }
+        }while (!isNumberAvailable);
+    }
+
+    public void verifyOrganizationIsNew(){
+        Assert.assertTrue(getValueByMouseKeyboardAction(niptNumberFieldWithNewCustomer).contains("New Customer"));
     }
 }

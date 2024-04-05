@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinessCustomerPages.AdminInformationBusinessPage;
 import dnext.com.pages.createBusinessCustomerPages.SearchOrganizationBusinessPage;
@@ -20,7 +21,7 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
 
     @Given("User clicks the Admin Information button")
     public void userClicksTheAdminInformationButton() {
-        adminInformationBusinessPage.clickAdminInformationIcon();
+        Utils.click(adminInformationBusinessPage.adminInformationButton);
     }
 
     @Given("User is on the Admin Information  page")
@@ -45,12 +46,13 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
 
     @Then("User clicks the search icon in Identification Number field on Admin Information page")
     public void user_clicks_the_search_icon_in_identification_number_field_on_admin_information_page() {
-        adminInformationBusinessPage.clickSearchIconInIdentificationField();
+        Utils.click(adminInformationBusinessPage.searchIconInIdentificationField);
     }
 
     @Given("User sees some ID related information were fetched on Admin Information Page")
     public void user_sees_some_id_related_information_were_fetched(Map<String, String> table) {
-        adminInformationBusinessPage.verifyOfExistenceNumberInformation(table);
+        elementDisplayed(adminInformationBusinessPage.cancelIconInIdentificationFieldAfterOrganizationSearch);
+        adminInformationBusinessPage.verifyFetchedPersonData(table);
     }
 
     @Then("User should see the {string}warning message  under number field on Admin Information Page")
@@ -73,12 +75,7 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
         adminInformationBusinessPage.verifyTheUploadedBigger5MbSizeFile(fileName, warning);
     }
 
-    @And("User add {string} and should see the name of {string} on the screen on Admin Information Page")
-    public void userAddAndShouldSeeTheNameOfOnTheScreenOnAdminInformationPage(String fileName) {
-        adminInformationBusinessPage.verifyUploadingFilesWithDifferentFormats(fileName);
-    }
-
-    @And("User add {string} and should see the name of file  on the screen on Admin Information Page")
+    @And("User add {string} document file on Admin Information Page")
     public void userAddAndShouldSeeTheNameOfFileOnTheScreenOnAdminInformationPage(String file) {
         adminInformationBusinessPage.verifyUploadingFilesWithDifferentFormats(file);
     }
@@ -86,11 +83,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
     @And("User deletes already added valid pdf documentation Admin Information Page")
     public void userDeletesAlreadyAddedValidPrfDocumentationAdminInformationPage() {
         adminInformationBusinessPage.cancelButton.click();
-    }
-
-    @And("User add the {string} and should see the name of file on the screen on Admin Information Page")
-    public void userAddTheAndShouldSeeTheNameOfFileOnTheScreenOnAdminInformationPage(String fileName) {
-        adminInformationBusinessPage.verifyUploadingFilesWithDifferentFormats(fileName);
     }
 
     @And("User enters {string} on email field  and {string} to the phone number field")
@@ -103,8 +95,18 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
         clickField(adminInformationBusinessPage.nextButtonOnAdminInfoPage);
     }
 
-    @Then("User should be on the Contact Information Page")
-    public void userShouldBeOnTheContactInformationPage() {
-        adminInformationBusinessPage.verifyContactInfoPageIsOpened();
+    @And("User enters random email on Business Admin Information page")
+    public void userEntersRandomEmailOnBusinessAdminInformationPage() {
+        adminInformationBusinessPage.fillEmailWithRandomEmail();
+    }
+
+    @And("User enters random mobile phone number on Business Admin Information page")
+    public void userEntersRandomMobilePhoneNumberOnBusinessAdminInformationPage() {
+        adminInformationBusinessPage.fillPhoneNumberWithRandomNumber();
+    }
+
+    @Then("User should see the name of {string} added jpg document on the screen on Admin Information Page")
+    public void userShouldSeeTheNameOfAddedJpgDocumentOnTheScreenOnAdminInformationPage(String fileName) {
+        adminInformationBusinessPage.verifyUploadedAdminDocument(fileName);
     }
 }

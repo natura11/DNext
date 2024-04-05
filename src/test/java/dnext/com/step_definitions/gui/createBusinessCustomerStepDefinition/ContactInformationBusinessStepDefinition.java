@@ -268,4 +268,19 @@ public class ContactInformationBusinessStepDefinition extends BasePage {
     public void userShouldNotSeeTheAdditionalWarningBackgroundOnPhoneFieldOnContactInformationPage() {
         warningBackgroundRedColorOne(contactInformationBusinessPage.additionalPhoneNumberInputDiv, false);
     }
+
+    @And("User selects random option in the Contact dropdown on Contact Information Page")
+    public void userSelectsRandomOptionInTheContactDropdownOnContactInformationPage() {
+        contactInformationBusinessPage.randomTypeOfContactOptionExceptNone();
+    }
+
+    @And("User enters random mobile phone number on Contact Information page")
+    public void userEntersRandomMobilePhoneNumberOnContactInformationPage() {
+        contactInformationBusinessPage.fillPhoneNumberWithRandomNumber();
+    }
+
+    @And("User enters random email on Contact Information Page")
+    public void userEntersRandomEmailOnContactInformationPage() {
+        contactInformationBusinessPage.fillEmailWithRandomEmail();
+    }
 }

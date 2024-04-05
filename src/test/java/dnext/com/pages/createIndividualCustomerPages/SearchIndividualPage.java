@@ -43,8 +43,7 @@ public class SearchIndividualPage extends BasePage {
 
     public  void verificationNewIndividualCustomerHeader(String header) {
         elementDisplayed(newIndividualCustomerHeaderOnHomePage);
-        String actualHeader = newIndividualCustomerHeaderOnHomePage.getText();
-        System.out.println("header = " + header);
+        String actualHeader = newIndividualCustomerHeaderOnHomePage.getText().trim();
         Assert.assertEquals(header,actualHeader);
     }
 

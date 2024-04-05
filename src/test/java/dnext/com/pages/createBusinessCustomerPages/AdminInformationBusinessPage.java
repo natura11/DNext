@@ -1,5 +1,6 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
@@ -17,82 +18,83 @@ public class AdminInformationBusinessPage extends BasePage {
     public WebElement adminInformationButton;
     @FindBy(xpath = "//div[@class='mat-step-icon mat-step-icon-state-edit mat-step-icon-selected']")
     public WebElement adminInformationIcon;
-    @FindBy(css = "[formcontrolname = 'personalNumber']")
+    @FindBy(xpath = "//*[@formcontrolname = 'personalNumber']")
     public WebElement identificationNumberField;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[2]/span")
+    @FindBy(xpath = "//*[@formcontrolname = 'personalNumberWithName']")
+    public WebElement identificationNumberFieldAfterSearch;
+    @FindBy(xpath = "//input[@formcontrolname='personalNumber']/following::div[@fxlayout='row']/span")
     public WebElement warningForClickingSearchIcon;
-    @FindBy(xpath = "(//div[text()='Admin Information']/following::mat-icon[text()='search'])[2]")
+    @FindBy(xpath = "//*[@formcontrolname = 'personalNumber']/following::mat-icon[text()='search']")
     public WebElement searchIconInIdentificationField;
-    @FindBy(xpath = "//div[text()='Admin Information']/following::mat-icon[text()='search']")
-    public WebElement searchIconInIdentificationFieldAfterOrganizationSearch;
-    @FindBy(css = "[formcontrolname = 'firstName']")
+    @FindBy(xpath = "//*[@formcontrolname = 'personalNumberWithName']/following::mat-icon[text()='cancel']")
+    public WebElement cancelIconInIdentificationFieldAfterOrganizationSearch;
+    @FindBy(xpath = "//*[@formcontrolname='firstName']")
     public WebElement firstName;
-    @FindBy(css = "[formcontrolname = 'lastName']")
+    @FindBy(xpath = "//*[@formcontrolname='lastName']")
     public WebElement lastName;
-    @FindBy(css = "[formcontrolname = 'secondaryName']")
+    @FindBy(xpath = "//*[@formcontrolname='secondaryName']")
     public WebElement middleName;
-    @FindBy(css = "app-corporate-customer-admin [formcontrolname = 'email']")
+    @FindBy(xpath = "//*[@formcontrolname='secondaryName']/following::input[@formcontrolname='email']")
     public WebElement emailField;
-    @FindBy(css = "[formcontrolname = 'birthDate']")
-    public WebElement birthDateField;
-    @FindBy(css = "[formcontrolname = 'gender']")
-    public WebElement genderField;
-    @FindBy(css = "[formcontrolname = 'birthCountry']")
-    public WebElement countryOfBirthField;
-    @FindBy(css = "[formcontrolname = 'placeOfBirth']")
-    public WebElement placeOfBirthField;
-    @FindBy(css = "input[formcontrolname = 'placeOfBirth']")
-    public WebElement placeOfBirthInputField;
-    @FindBy(css = "[formcontrolname = 'citizenShip']")
-    public WebElement citizenshipField;
-    @FindBy(css = "app-corporate-customer-admin [formcontrolname = 'phoneNumber']")
-    public WebElement mobilePhoneNumberField;
-    @FindBy(css = "input[formcontrolname=workPhoneNumber]")
-    public WebElement workPhoneNumberField;
-    @FindBy(xpath = "(//*[@formcontrolname = 'authDocType'])[2]")
-    public WebElement AdminDocField;
-    @FindBy(css = "*[formcontrolname=\"gender\"]")
+    @FindBy(xpath = "//*[@formcontrolname='gender']")
     public WebElement genderDropdown;
-    @FindBy(css = "*[formcontrolname=phoneCodeWork]")
+    @FindBy(xpath = "//*[@formcontrolname='gender']//span/span")
+    public WebElement genderDropdownSelectedOption;
+    @FindBy(xpath = "(//*[@*='mat-option-text'])[1]")
+    public WebElement maleOptionOfGender;
+    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']")
+    public WebElement birthDateField;
+    @FindBy(xpath = "//*[@formcontrolname = 'citizenShip']")
+    public WebElement citizenshipField;
+    @FindBy(xpath = "//*[@formcontrolname = 'citizenShip']//span/span")
+    public WebElement citizenshipFieldSelectedOption;
+    @FindBy(xpath = "//*[@formcontrolname = 'birthCountry']")
+    public WebElement countryOfBirthField;
+    @FindBy(xpath = "//*[@formcontrolname = 'birthCountry']//span/span")
+    public WebElement countryOfBirthFieldSelectedOption;
+    @FindBy(xpath = "//*[@formcontrolname = 'placeOfBirth']")
+    public WebElement placeOfBirthField;
+    @FindBy(xpath = "//*[@formcontrolname = 'placeOfBirth']//span/span")
+    public WebElement placeOfBirthFieldSelectedOption;
+    @FindBy(xpath = "//*[@formcontrolname=phoneCodeWork]")
     public WebElement countryCodeDropdown;
-    @FindBy(xpath = "//*[@id=\"mat-option-419\"]/span")
+    @FindBy(xpath = "//*[@id='mat-option-419']/span")
     public WebElement albaniaCountryCode;
+    @FindBy(xpath = "//input[@formcontrolname='workPhoneNumber']")
+    public WebElement workPhoneNumberField;
+    @FindBy(xpath = "//input[@formcontrolname='workPhoneNumber']/following::*[@formcontrolname='phoneNumber']")
+    public WebElement mobilePhoneNumberField;
     @FindBy(xpath = "(//*[.='Phone number must be like 6XXXXXXXX ! '])[2]")
     public WebElement warningOfMobilePhoneNumber;
+
+    @FindBy(xpath = "(//*[@formcontrolname = 'authDocType'])[2]")
+    public WebElement AdminDocField;
     @FindBy(xpath = "(//*[.=' You have to add customers ID document!'])[2]")
     public WebElement warningOfDocCustomerIdDocument;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[7]/div[1]/div/button")
-    public WebElement addBtn;
+    @FindBy(xpath = "//span[text()='AdminDoc']/following::button[@aria-label='Add Document']")
+    public WebElement addButton;
     @FindBy(xpath = "//mat-error/..//input[@id='adminFileInput']")
     public WebElement txtFileInput;
     @FindBy(xpath = "//*[.='File size can not be bigger than 5 MB!']")
     public WebElement warningBiggerSizeFile;
-    @FindBy(xpath = "//*[@id=\"file-label\"]/div[1]")
+    @FindBy(xpath = "//span[text()='AdminDoc']/following::div[@id='file-label']/div[1]")
     public WebElement nameOfUploadedFile;
-    @FindBy(xpath = "//*[@id=\"file-label\"]/div[2]/a[1]/span/mat-icon")
+    @FindBy(xpath = "//span[text()='AdminDoc']/following::mat-icon[text()='cancel']")
     public WebElement cancelButton;
-    @FindBy(xpath = "//mat-icon[normalize-space()='cancel']")
-    public WebElement cancelIconInIdentificationField;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/div/div/button[2]/span/span")
+    @FindBy(xpath = "(//span[text()='Next'])[3]//ancestor::button")
     public WebElement nextButtonOnAdminInfoPage;
-    @FindBy(xpath = "//mat-icon[normalize-space()='create']")
-    public WebElement contactPageIcon;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[1]/mat-form-field[2]/div/div[1]/div[2]")
+
+    @FindBy(xpath = "//*[@formcontrolname='firstName']/parent::div/preceding-sibling::div[1]")
     public WebElement firstNamePictureBtnOnAdminInformationPage;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[3]/mat-form-field[1]/div/div[1]/div[2]")
+    @FindBy(xpath = "//*[@formcontrolname='secondaryName']/following::input[@formcontrolname='email']/parent::div/preceding-sibling::div[1]")
     public WebElement emailPictureBtnAdminInformationPage;
-    @FindBy(xpath = "(//*[@*='mat-option-text'])[1]")
-    public WebElement maleOptionOfGender;
+
     @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='ALBANIA']")
     public WebElement albaniaOptionFromCountryDropdown;
-    @FindBy(xpath = "//span[normalize-space()='BERAT']")
-    public WebElement beratCityFromPlaceOfBirthDropdown;
-    @FindBy(xpath = "//*[@id=\"cdk-step-content-0-2\"]/app-corporate-customer-admin/div/div[3]/form/div[4]/mat-form-field[1]/div/div[1]/div[3]/button/span/mat-icon")
+    @FindBy(xpath = "//*[@formcontrolname='secondaryName']/following::mat-icon[text()='close']")
     public WebElement cancelButtonOnDateOfbirthField;
 
-    public void clickAdminInformationIcon() {
-        Utils.click(adminInformationButton);
-    }
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
     public void verifyUserIsOnAdminInformationPage() {
         try {
@@ -117,40 +119,32 @@ public class AdminInformationBusinessPage extends BasePage {
         Assert.assertEquals(message, warningForClickingSearchIcon.getText());
     }
 
-    public void clickSearchIconInIdentificationField() {
-        Utils.click(searchIconInIdentificationField);
-    }
 
-    public void verifyOfExistenceNumberInformation(Map<String, String> customerInfo) {
-        log.info("Customer fetched informations are :" + customerInfo);
-        if (customerInfo.get("Email ") == null) {
-            log.info("Customer Email was not given");
-            log.info("Customer Mobile Phone Number was not given");
+    public void verifyUploadingFilesWithDifferentFormats(String fileName) {
+        if (!(fileName.endsWith(".pdf") || fileName.endsWith(".jpg"))) {
+            Utils.waitFor(3);
+            log.info(fileName + " is not an acceptable format");
         } else {
-            log.info("Error message: Customer info was sent!!!!!");
-            log.info("Error message: Customer Mobile Phone Number was sent!!!!!");
+            uploadAdminDocument(fileName);
         }
     }
 
-    public void verifyUploadingFilesWithDifferentFormats(String fileName) {
+    public void uploadAdminDocument(String fileName) {
         try {
-            if (!(fileName.endsWith(".pdf") || fileName.endsWith(".jpg"))) {
-                Utils.waitFor(3);
-                log.info(fileName + " is not an acceptable format");
-            } else {
-                uploadFile(addBtn, txtFileInput, fileName);
-                Assert.assertEquals("AdminDoc-" + fileName, nameOfUploadedFile.getText());
-                elementDisplayed(nameOfUploadedFile);
-                System.out.println("nameOfUploadedFile.getText() = " + nameOfUploadedFile.getText());
-            }
+            uploadFile(addButton, txtFileInput, fileName);
         } catch (Exception e) {
             log.error("Error uploading file: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
 
+    public void verifyUploadedAdminDocument(String fileName) {
+        Utils.waitForVisibility(nameOfUploadedFile, 5);
+        Assert.assertEquals("AdminDoc-" + fileName, nameOfUploadedFile.getText().trim());
+    }
+
     public void verifyTheUploadedBigger5MbSizeFile(String fileName, String warning) {
-        uploadFile(addBtn, txtFileInput, fileName);
+        uploadFile(addButton, txtFileInput, fileName);
         Utils.waitForVisibility(warningBiggerSizeFile, 10);
         log.info(warningBiggerSizeFile.getText());
         Assert.assertEquals(warning, warningBiggerSizeFile.getText());
@@ -164,43 +158,6 @@ public class AdminInformationBusinessPage extends BasePage {
         } catch (Exception e) {
             log.info("Texts not inserted!!!");
         }
-    }
-
-    public void verifyContactInfoPageIsOpened() {
-        try {
-            cancelButton.isDisplayed();
-        } catch (Exception e) {
-            log.info(cancelButton + " is not displayed!!!");
-        }
-    }
-
-    public void warningBackgroundRedColor() {
-        try {
-            String expectedRedColorCode = "#f44336";
-            String backgroundColor = emailPictureBtnAdminInformationPage.getCssValue("color");
-            Color color = Color.fromString(backgroundColor);
-            String actualBackRoundColorCode = color.asHex();
-            Assert.assertEquals(expectedRedColorCode, actualBackRoundColorCode);
-        } catch (Exception e) {
-            log.info("Error Message: Red Warning message is not displaying!!");
-        }
-    }
-
-    public void warningBackgroundIsNotRedColor() {
-        Utils.waitFor(1);
-        try {
-            String expectedRedColorCode = "#f44336";
-            String backgroundColor = firstNamePictureBtnOnAdminInformationPage.getCssValue("color");
-            org.openqa.selenium.support.Color color = Color.fromString(backgroundColor);
-            String actualBackRoundColorCode = color.asHex();
-            Assert.assertFalse(expectedRedColorCode.equals(actualBackRoundColorCode));
-        } catch (Exception e) {
-            log.info("Error Message: Red Warning message is  displaying!!");
-        }
-    }
-
-    public void enterInvalidFormatEmails(String email) {
-        Utils.sendKeys(emailField, email + Keys.TAB);
     }
 
     public void selectMaleOptionFromGenderDropdown() {
@@ -221,5 +178,26 @@ public class AdminInformationBusinessPage extends BasePage {
     public void selectAlbaniaFromDropdown() {
         clickField(countryOfBirthField);
         clickField(albaniaOptionFromCountryDropdown);
+    }
+
+    public void fillEmailWithRandomEmail() {
+        sendKeys(emailField,
+                customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillPhoneNumberWithRandomNumber() {
+        sendKeys(mobilePhoneNumberField,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public void verifyFetchedPersonData(Map<String, String> personData) {
+        Assert.assertEquals(personData.get("Identification Number"), (getValueByMouseKeyboardAction(identificationNumberFieldAfterSearch).split(" "))[0]);
+        Assert.assertEquals(personData.get("First Name"), getValueByMouseKeyboardAction(firstName));
+        Assert.assertEquals(personData.get("Last Name"), getValueByMouseKeyboardAction(lastName));
+        Assert.assertEquals(personData.get("Birth Date"), getValueByMouseKeyboardAction(birthDateField));
+        Assert.assertEquals(personData.get("Gender"), (genderDropdownSelectedOption.getText().split(" "))[1]);
+        Assert.assertEquals(personData.get("Citizenship"), citizenshipFieldSelectedOption.getText());
+        Assert.assertEquals(personData.get("Country Of Birth"), countryOfBirthFieldSelectedOption.getText());
+        Assert.assertEquals(personData.get("Place Of Birth"), placeOfBirthFieldSelectedOption.getText());
     }
 }

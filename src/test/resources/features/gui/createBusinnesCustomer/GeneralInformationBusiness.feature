@@ -76,7 +76,7 @@ Feature:New Business Customer-General Information
 
   @issuingDateGeneralInformationForBusinessGeneral
   Scenario: As a user I want to fill in the Issuing date field to ensure that the selected date is enabled and selectable on general information page
-    Given User clicks Issuing Date field and user selects "15/10/2023" from calendar on general information page
+    Given User clicks Issuing Date field and enters invalid date on General Information page
 
   @fileFormatsGeneralInformatForBusinessGeneral
   Scenario: As a user I want to add file which could be different format and different sizes

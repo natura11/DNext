@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinessCustomerPages.AdminInformationBusinessPage;
 import io.cucumber.java.en.And;
@@ -8,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
 @Log4j2
@@ -26,7 +28,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @Then("User cannot see the red warning background colour after entering the the name into the name field on Admin Information Page")
     public void userCannotSeeTheRedWarningBackgroundColourAfterEnteringTheTheNameIntoTheNameFieldOnAdminInformationPage() {
-        adminInformationBusinessPage.warningBackgroundIsNotRedColor();
+        warningBackgroundRedColorOne(adminInformationBusinessPage.firstNamePictureBtnOnAdminInformationPage, false);
     }
 
     @Given("User clicks email field on  Admin Information Page")
@@ -36,12 +38,12 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @And("User enters {string} on on Admin Information Page")
     public void userEntersOnOnAdminInformationPage(String invalidEmail) {
-        adminInformationBusinessPage.enterInvalidFormatEmails(invalidEmail);
+        Utils.sendKeys(adminInformationBusinessPage.emailField, invalidEmail + Keys.TAB);
     }
 
     @And("User should see that background is red on on Admin Information Page")
     public void userShouldSeeThatBackgroundIsRedOnOnAdminInformationPage() {
-        adminInformationBusinessPage.warningBackgroundRedColor();
+        warningBackgroundRedColorOne(adminInformationBusinessPage.emailPictureBtnAdminInformationPage, true);
     }
 
     @Given("User enters valid {string} in to the email field on  Admin Information Page")
@@ -86,7 +88,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @Then("User sees the search icon turns into the cancel icon")
     public void user_sees_the_search_icon_turns_into_the_cancel_icon() {
-        elementDisplayed(adminInformationBusinessPage.cancelIconInIdentificationField);
+        elementDisplayed(adminInformationBusinessPage.cancelIconInIdentificationFieldAfterOrganizationSearch);
     }
 
     @And("User adds {string} the Mobile Phone  Number into the Mobile Phone Number on Admin Information Page")
@@ -104,8 +106,4 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
         adminInformationBusinessPage.cancelButtonOnDateOfbirthField.click();
     }
 
-    @And("User clicks the search icon in Identification Number field after Organization Search on Admin Information page")
-    public void userClicksTheSearchIconInIdentificationNumberFieldAfterOrganizationSearchOnAdminInformationPage() {
-        clickField(adminInformationBusinessPage.searchIconInIdentificationFieldAfterOrganizationSearch);
-    }
 }

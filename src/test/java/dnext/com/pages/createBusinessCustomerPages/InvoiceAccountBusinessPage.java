@@ -1,5 +1,6 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
+import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -58,7 +59,7 @@ public class InvoiceAccountBusinessPage extends BasePage {
     public WebElement documentAddButton;
     @FindBy(xpath = "//input[@formcontrolname='eBillAttachment']/following-sibling::input")
     public WebElement fileInputField;
-    @FindBy(xpath = "//input[@value='E-Bill Document']/following::div[@id='file-label']")
+    @FindBy(xpath = "//p[contains(text(), 'E-Bill Document')]/following-sibling::div/div[1]")
     public WebElement eBillDocumentNameField;
     @FindBy(xpath = "//input[@value='E-Bill Document']/following::a[@title='Delete']")
     public WebElement eBillCancelButton;
@@ -77,10 +78,13 @@ public class InvoiceAccountBusinessPage extends BasePage {
     @FindBy(xpath = "(//span[text()='Back'])[5]//ancestor::button")
     public WebElement backButtonOnInvoiceAccountPage;
 
+    CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
+
     public void verifyUserIsOnInvoiceAccountPage() {
         try {
-            if (postpaidAccountTitleLabel.isDisplayed())
-                log.info("Account title is displaying");
+            elementDisplayed(postpaidAccountTitleLabel);
+            Assert.assertTrue(postpaidAccountTitleLabel.isDisplayed());
+            log.info("Account title is displaying");
         } catch (Throwable e) {
             log.info("Error message: Account title is  not displaying");
         }
@@ -119,5 +123,29 @@ public class InvoiceAccountBusinessPage extends BasePage {
         } catch (NoSuchElementException exception) {
             log.info("bankNameDropdown and bankAccountNoInput are displaying");
         }
+    }
+
+    public void fillEBillEmailWithRandomEmail(){
+        sendKeys(eBillEmailInput,
+                "BILL" + customerFakerDataCreator.emailFromFaker());
+    }
+
+    public void fillEBillPhoneNumberWithRandomNumber(){
+        sendKeys(eBillMobileNumberInput,
+                customerFakerDataCreator.phoneFromFaker());
+    }
+
+    public void uploadEBillDocument(String fileName) {
+        try {
+            uploadFile(documentAddButton,fileInputField, fileName);
+        }catch (Exception e) {
+            log.error("Error uploading file: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void verifyUploadedEBillDocument(String fileName) {
+        Utils.waitForVisibility(eBillDocumentNameField, 5);
+        Assert.assertEquals("EBillDocument-" + fileName, eBillDocumentNameField.getText().trim());
     }
 }
