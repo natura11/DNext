@@ -46,8 +46,8 @@ Feature:New Individual Customer-Other Information
     When  User clicks the Generate Form button on Individual Other Information Page
     Then  User should see the Generate Form open in a new window on Individual Other Information Page
     When  User go back to Individual Other Information Page
-    And   User adds a valid "smaller5MB.pdf" document for Consent Form on Individual Other Information Page
-    Then  User should see the name of "smaller5MB.pdf" added pdf document on Individual Other Information Page
+    And   User adds a valid "pdfSample.pdf" document for Consent Form on Individual Other Information Page
+    Then  User should see the name of "pdfSample.pdf" added pdf document on Individual Other Information Page
 
   @checkAutofilledFieldsByCustomerInfoForIndividualOtherInformation
   Scenario:As a user I want to check customer data is fetched to Individual Other Information Page

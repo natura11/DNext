@@ -7,8 +7,8 @@ Feature:New Business Customer-Address Information
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
-    Given User clicks the Address Information button
-    Given User is on the Address Information Page
+    Given  User clicks the Address Information button
+    Given  User is on the Address Information Page
 
   @continueWithoutAddingAddressForBusinessAddress
   Scenario: As a user I want to continue without adding any Address on Address Information Page
@@ -23,8 +23,8 @@ Feature:New Business Customer-Address Information
     And   User clicks Back button on Address Information Page
     Then  User is on the Contact Information page
 
-  @fillingAddressLine1ForBusinessAddress
-  Scenario: As a user I want to fill Address Line 1 on Address Information Page
+  @fillingInputFieldsForBusinessAddress
+  Scenario: As a user I want to fill Address Line 1,2 and Post Code on Address Information Page
     Given User should see the Address Line 1 textbox on Address Information Page
     When  User clicks Address Line 1 Field on Address Information Page
     And   User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
@@ -32,15 +32,9 @@ Feature:New Business Customer-Address Information
     Then  User sees the Address Line 1 is required on Address Information Page
     And   User clicks Address Line 1 Field on Address Information Page
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
-
-  @fillingAddressLine2ForBusinessAddress
-  Scenario: As a user I want to fill Address Line 2 on Address Information Page
     Given User should see the Address Line 2 textbox on Address Information Page
     And   User clicks Address Line 2 Field on Address Information Page
     Then  User enters a value "SECOND ADDRESS" in the Address Line 2 textbox on Address Information Page
-
-  @fillingPostCodeForBusinessAddress
-  Scenario: As a user I want to fill Post Code on Address Information Page
     Given User should see the Post Code textbox on Address Information Page
     And   User clicks Post Code Field on Address Information Page
     Then  User enters a value "1234" in the Post Code textbox on Address Information Page

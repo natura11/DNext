@@ -77,7 +77,7 @@ public class AdminInformationBusinessPage extends BasePage {
     public WebElement txtFileInput;
     @FindBy(xpath = "//*[.='File size can not be bigger than 5 MB!']")
     public WebElement warningBiggerSizeFile;
-    @FindBy(xpath = "//span[text()='AdminDoc']/following::div[@id='file-label']/div[1]")
+    @FindBy(xpath = "//span[text()='AdminDoc']/following::div[contains(text(),'AdminDoc')]")
     public WebElement nameOfUploadedFile;
     @FindBy(xpath = "//span[text()='AdminDoc']/following::mat-icon[text()='cancel']")
     public WebElement cancelButton;
@@ -139,7 +139,7 @@ public class AdminInformationBusinessPage extends BasePage {
     }
 
     public void verifyUploadedAdminDocument(String fileName) {
-        Utils.waitForVisibility(nameOfUploadedFile, 5);
+        Utils.waitForVisibility(nameOfUploadedFile, 10);
         Assert.assertEquals("AdminDoc-" + fileName, nameOfUploadedFile.getText().trim());
     }
 

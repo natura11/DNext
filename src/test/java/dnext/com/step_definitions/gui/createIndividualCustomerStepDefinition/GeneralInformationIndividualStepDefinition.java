@@ -26,6 +26,7 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
 
     @Given("User wants to enter {string} as firstname on New Individual Customer page")
     public void userWantsToEnterAsFirstnameOnNewIndividualCustomerPage(String firstname) {
+        generalInformationIndividualPage.firstNameFieldOn.clear();
         sendKeys(generalInformationIndividualPage.firstNameFieldOn, firstname);
     }
 
@@ -34,13 +35,9 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         Assert.assertFalse("1235Ali", Boolean.parseBoolean(generalInformationIndividualPage.firstNameFieldOn.getText()));
     }
 
-    @And("User deletes the entered the firstname field on New Individual Customer page")
-    public void userDeletesTheEnteredTheFirstnameFieldOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.firstNameFieldOn.clear();
-    }
-
     @And("User wants to enter {string} as lastname into the lastname field on New Individual Customer page")
     public void userWantsToEnterAsLastnameIntoTheLastnameFieldOnNewIndividualCustomerPage(String lastname) {
+        generalInformationIndividualPage.lastNameField.clear();
         sendKeys(generalInformationIndividualPage.lastNameField, lastname);
     }
 
@@ -49,24 +46,9 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         Assert.assertFalse("Sunal25", Boolean.parseBoolean(generalInformationIndividualPage.lastNameField.getText()));
     }
 
-    @And("User deletes the entered the lastname field on New Individual Customer page")
-    public void userDeletesTheEnteredTheLastnameFieldOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.lastNameField.clear();
-    }
-
-    @And("User wants to enter {string} as firstname with characters  into the firstname field on New Individual Customer page")
-    public void userWantsToEnterAsFirstnameWithCharactersIntoTheFirstnameFieldOnNewIndividualCustomerPage(String characters) {
-        sendKeys(generalInformationIndividualPage.firstNameFieldOn, characters);
-    }
-
     @Then("User should see that background is red of the firstname picture on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOfTheFirstnamePictureOnNewIndividualCustomerPage() {
         warningBackgroundRedColorOne(generalInformationIndividualPage.firstNamePicture,true);
-    }
-
-    @And("User wants to enter {string} as surname with characters in to the lastname  field on New Individual Customer page")
-    public void userWantsToEnterAsSurnameWithCharactersInToTheLastnameFieldOnNewIndividualCustomerPage(String lastname) {
-        sendKeys(generalInformationIndividualPage.lastNameField, lastname);
     }
 
     @Then("User should see that background is red of the lastname picture on New Individual Customer page")
@@ -74,40 +56,22 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         warningBackgroundRedColorOne(generalInformationIndividualPage.lastNamePicture,true);
     }
 
-    @Given("User wants to enter {string} as firstname with one space at the beginning on New Individual Customer page")
-    public void userWantsToEnterAsFirstnameWithOneSpaceAtTheBeginningOnNewIndividualCustomerPage(String firstname) {
-        sendKeys(generalInformationIndividualPage.firstNameFieldOn, firstname + Keys.TAB);
-    }
-
     @Then("User should see the left space at the beginning of firstname is eliminated on New Individual Customer page")
     public void userShouldSeeTheLeftSpaceAtTheBeginningOfFirstnameIsEliminatedOnNewIndividualCustomerPage() {
+        performKeyboardAction(Keys.TAB);
         assertEquals("ALI", getValueByJS("firstName"));
-    }
-
-    @And("User wants to enter{string} as lastname with one space at the beginning  on New Individual Customer page")
-    public void userWantsToEnterAsLastnameWithOneSpaceAtTheBeginningOnNewIndividualCustomerPage(String lastname) {
-        sendKeys(generalInformationIndividualPage.lastNameField, lastname + Keys.TAB);
     }
 
     @Then("User should see the left space at the beginning of  lastname is eliminated on New Individual Customer page")
     public void userShouldSeeTheLeftSpaceAtTheBeginningOfLastnameIsEliminatedOnNewIndividualCustomerPage() {
+        performKeyboardAction(Keys.TAB);
         assertEquals("SUNAL", getValueByJS("lastName"));
 
-    }
-
-    @Given("User wants to enter {string} as firstname into the firstname field on New Individual Customer page")
-    public void userWantsToEnterAsFirstnameIntoTheFirstnameFieldOnNewIndividualCustomerPage(String firstname) {
-        sendKeys(generalInformationIndividualPage.firstNameFieldOn, firstname + Keys.TAB);
     }
 
     @Then("User should not be allowed to write more than one spaced firstname nouns into the firstname field on New Individual Customer page")
     public void userShouldNotBeAllowedToWriteMoreThanOneSpacedFirstnameNounsIntoTheFirstnameFieldOnNewIndividualCustomerPage() {
         assertEquals("ALI KEMAL", getValueByJS("firstName"));
-    }
-
-    @Given("User wants to enter {string} as a lastname into the lastname field on New Individual Customer page")
-    public void userWantsToEnterAsALastnameIntoTheLastnameFieldOnNewIndividualCustomerPage(String lastname) {
-        sendKeys(generalInformationIndividualPage.lastNameField, lastname + Keys.TAB);
     }
 
     @Then("User should not be allowed to write more than one spaced lastname nouns into the lastname field on New Individual Customer page")
@@ -117,6 +81,7 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
 
     @And("User enters {string} as middle name into the middle name field on New Individual Customer page")
     public void userEntersAsMiddleNameIntoTheMiddleNameFieldOnNewIndividualCustomerPage(String middleName) {
+        generalInformationIndividualPage.middleNameField.clear();
         sendKeys(generalInformationIndividualPage.middleNameField, middleName);
     }
 
@@ -125,34 +90,14 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         assertEquals("BILGE", getValueByJS("secondaryName"));
     }
 
-    @And("User deletes the entered middle name as {string}  on New Individual Customer page")
-    public void userDeletesTheEnteredMiddleNameAsOnNewIndividualCustomerPage(String middleName) {
-        clearEnterText(generalInformationIndividualPage.middleNameField, middleName);
-    }
-
-    @And("User enters {string} as middle name into the middle name field with characters  on New Individual Customer page")
-    public void userEntersAsMiddleNameIntoTheMiddleNameFieldWithCharactersOnNewIndividualCustomerPage(String middleName) {
-        sendKeys(generalInformationIndividualPage.middleNameField, middleName);
-    }
-
     @Then("User should see that background is red of middle name  picture on New Individual Customer page")
     public void userShouldSeeThatBackgroundIsRedOfMiddleNamePictureOnNewIndividualCustomerPage() {
         warningBackgroundRedColorOne(generalInformationIndividualPage.middleNamePicture,true);
     }
 
-    @And("User deletes the entered middle name with characters {string}  on New Individual Customer page")
-    public void userDeletesTheEnteredMiddleNameWithCharactersOnNewIndividualCustomerPage(String middlename) {
-        generalInformationIndividualPage.middleNameField.clear();
-
-    }
-
-    @Given("User wants to enter {string} as middle name with one space at the beginning on New Individual Customer page")
-    public void userWantsToEnterAsMiddleNameWithOneSpaceAtTheBeginningOnNewIndividualCustomerPage(String middleName) {
-        sendKeys(generalInformationIndividualPage.middleNameField, middleName + Keys.TAB);
-    }
-
     @Then("User should see the left space at the beginning of middle name is eliminated on New Individual Customer page")
     public void userShouldSeeTheLeftSpaceAtTheBeginningOfMiddleNameIsEliminatedOnNewIndividualCustomerPage() {
+        performKeyboardAction(Keys.TAB);
         assertEquals("BILGE", getValueByJS("secondaryName"));
     }
 
@@ -231,11 +176,6 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         generalInformationIndividualPage.communicationMethodDropdownSelectableOnIndividual();
     }
 
-    @Then("User should selects SMS option in the Communication Method dropdown on New Individual Customer page")
-    public void userShouldSelectsSMSOptionInTheCommunicationMethodDropdownOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.communicationMethodOptionFromDropdownOnIndividual();
-    }
-
     @And("User clicks next Button in General Information on New Individual Customer page")
     public void userClicksNextButtonInGeneralInformationOnNewIndividualCustomerPage() {
         Utils.click(generalInformationIndividualPage.nextButtonOnGeneralInformation);
@@ -311,5 +251,15 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
     @When("User clicks the General Information button for Individual")
     public void userClicksTheGeneralInformationButtonForIndividual() {
         clickField(generalInformationIndividualPage.generalInformationButtonSelectedLabel);
+    }
+
+    @And("User selects random Communication Method on Individual General Information page")
+    public void userSelectsRandomCommunicationMethod() {
+        randomOptionFromDropdown();
+    }
+
+    @Then("User should see that background is red for the Citizenship dropdown")
+    public void userShouldSeeThatBackgroundIsRedForTheCitizenshipDropdown() {
+        warningBackgroundRedColorOne(generalInformationIndividualPage.citizenShipFieldBackground, true);
     }
 }
