@@ -105,6 +105,7 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
         int randomIndex = random.nextInt(Numbers.size());
         System.out.println("Numbers.get(randomIndex) = " + Numbers.get(randomIndex));
         sendKeys(inputFieldForMACAddress, Numbers.get(randomIndex));
+        Utils.waitFor(2);
     }
 
     public void checkCoaxialMacNumberIsAvailableOrNot() {

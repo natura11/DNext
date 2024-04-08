@@ -1,4 +1,4 @@
-@VFALFT-22443 @vtv @regression
+@VFALFT-22443 @vtv @regression @activation
 Feature: VTV Activation
 
   Background:

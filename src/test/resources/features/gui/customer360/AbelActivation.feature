@@ -1,4 +1,4 @@
-@VFALFT-22442 @abel @regression
+@VFALFT-22442 @abel @regression @activation
 Feature: Abel Activation
 
   Background:

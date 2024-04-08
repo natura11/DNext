@@ -1,4 +1,4 @@
-@VFALFT-22309 @oaxialForPostpaid @regression
+@VFALFT-22309 @coaxialForPostpaid @regression @activation
 Feature: Verify Coaxial Activation for Postpaid
 
   Background:
@@ -20,9 +20,9 @@ Feature: Verify Coaxial Activation for Postpaid
     And  User selects the Recurring Products on Customer360 search page
     When User selects Internet option from products for caoxial on Customer360 search page
     And  User clicks the search button under product list on Customer360 search page
-    When User selects the Vodafone Gigafibra 200 Mbps on Customer360 search page
-    Then User is directed to the Vodafone GigaFibra 200 Mbps page for details of equipments on Customer360 search page
-    And User selects 12 X ALL2000 as Contract Duration on Customer360 search page
+    When User selects the first option from products  on Customer360 search page
+    Then User is directed to the Vodafone "GigaFibra Pro 50-20 Mbps" page for details of equipments on Customer360 search page
+    And User selects first option as cash method on Customer360 search page
     And User clicks the Infrusructure dropdown button  Customer360 search page
     And User selects the Coaxial as Infrustructure on Customer360 search page
     And User selects Basic Enterprise Modem on Customer360 search page

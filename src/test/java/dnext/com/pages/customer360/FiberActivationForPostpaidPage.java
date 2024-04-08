@@ -98,6 +98,7 @@ public class FiberActivationForPostpaidPage extends BasePage {
     }
 
     public void claimEditButtonUsage(){
+        Utils.waitForVisibility(claimEditButton,15);
         Utils.clickWithJS(claimEditButton);
         Utils.waitFor(3);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
@@ -105,11 +106,12 @@ public class FiberActivationForPostpaidPage extends BasePage {
     }
 
     public void approveButton(){
+        Utils.waitForVisibility(approvedButtonOnCorporateConfirmationPage,15);
         clickField(approvedButtonOnCorporateConfirmationPage);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
     }
     public void assertionOfBackOfficePage(String text){
-        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
+        Utils.waitForVisibility(corporateConfirmationTextOnCorporateConfirmationPage,15);
         warningMessage(text, corporateConfirmationTextOnCorporateConfirmationPage);
     }
 

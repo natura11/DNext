@@ -1,4 +1,4 @@
-@VFALFT-22390 @fiberPostpaid @regression
+@VFALFT-22390 @fiberPostpaid @regression @activation
 Feature: Fiber Activation for Postpaid
 
   Background:

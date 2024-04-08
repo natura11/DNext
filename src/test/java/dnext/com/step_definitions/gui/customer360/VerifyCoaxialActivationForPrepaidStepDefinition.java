@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.customer360;
 
+import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.customer360.VerifyCoaxialActivationForPrepaidPage;
@@ -17,7 +18,8 @@ public class VerifyCoaxialActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User selects the first option from products  on Customer360 search page")
     public void user_selects_the_first_option_from_products_on_customer360_search_page() {
-        clickField(verifyCoaxialActivationForPrepaidPage.firstOptionFromProducts);
+        Utils.clickWithJS(verifyCoaxialActivationForPrepaidPage.firstOptionFromProducts);
+//        clickField(verifyCoaxialActivationForPrepaidPage.firstOptionFromProducts);
     }
 
     @Then("User selects first option as cash method on Customer360 search page")
@@ -44,6 +46,7 @@ public class VerifyCoaxialActivationForPrepaidStepDefinition extends BasePage {
 
     @Then("User is directed to the Vodafone {string} page for details of equipments on Customer{int} search page")
     public void userIsDirectedToTheVodafonePageForDetailsOfEquipmentsOnCustomerSearchPage(String text, int arg1) {
+        Utils.waitForVisibility(verifyCoaxialActivationForPrepaidPage.GigaFibraPro50_20MbpsText,15);
         warningMessage(text, verifyCoaxialActivationForPrepaidPage.GigaFibraPro50_20MbpsText);
     }
 

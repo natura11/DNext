@@ -157,6 +157,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
 
     static public void activationFormClicking() throws AWTException {
         Utils.waitFor(1);
+        Utils.waitForVisibility(activationFormButtonAfterCheckout,15);
         clickField(activationFormButtonAfterCheckout);
         Utils.waitFor(10);
         System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
@@ -178,7 +179,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
         String orderDateOfOrderButton = "";
         String orderDateOfFiscalizationReceipt = "";
         clickField(orderButtonOnCustomer360Page);
-        Utils.waitFor(1);
+        Utils.waitForVisibility(aggreementIdOfOrder,25);
         agrementIdOfOrder = aggreementIdOfOrder.getText();
         System.out.println("agrementIdOfOrder is :" + agrementIdOfOrder);
         orderDateOfOrderButton = orderDateOfOrder.getText();
@@ -187,7 +188,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
         clickField(directionSignTofiscalizationReceiptsButton);
         Utils.waitForVisibility(fiscalizationReceiptsButton,10);
         clickField(fiscalizationReceiptsButton);
-        Utils.waitForVisibility(detailFirstButtonOnFiscalization,10);
+        Utils.waitForVisibility(detailFirstButtonOnFiscalization,25);
         agrementIdOfFiscalizationReceipt = aggreementIdOfFiscalizationReceipt.getText();
         System.out.println("agrementIdOfFiscalizationReceipt is :" + agrementIdOfFiscalizationReceipt);
         orderDateOfFiscalizationReceipt = invoiceDateOfFiscalizationReceipt.getText();
@@ -198,6 +199,7 @@ public class FiberActivationForPrepaidPage extends BasePage {
     }
 
     public void receipCreationForABCOM(){
+        Utils.waitForVisibility(createReceiptButton,10);
         clickField(createReceiptButton);
         Utils.waitFor(3);
         switchToWindowNew(1);

@@ -1,4 +1,4 @@
-@VFALFT-22441 @cryptoguard @regression
+@VFALFT-22441 @cryptoguard @regression @activation
 Feature: Cryptoguard Activation
 
   Background:

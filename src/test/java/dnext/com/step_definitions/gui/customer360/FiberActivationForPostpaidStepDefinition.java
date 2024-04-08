@@ -11,6 +11,8 @@ import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import static dnext.com.pages.backofficePage.BackofficeHomePage.claimEditButton;
+
 @Log4j2
 @AllArgsConstructor
 public class FiberActivationForPostpaidStepDefinition extends BasePage {
@@ -63,16 +65,19 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User clicks the three dots on opened page  on Backoffice page")
     public void userClicksTheThreeDotsOnOpenedPageOnBackofficePage() {
+        Utils.waitForVisibility(backofficeHomePage.threeDotsOnOpenedPageAfterClickingNameOfCustomer,10);
         clickField(backofficeHomePage.threeDotsOnOpenedPageAfterClickingNameOfCustomer);
     }
 
     @And("User clicks the ClaimEdit button on opened segent on BackOffice page")
     public void userClicksTheClaimEditButtonOnOpenedSegentOnBackOfficePage() {
+        Utils.waitForVisibility(claimEditButton,10);
         fiberActivationForPostpaidPage.claimEditButtonUsage();
     }
 
     @And("User clicks the isApprovved dropdown button on BackOffice page")
     public void userClicksTheIsApprovvedDropdaownButtonOnBackOfficePage() {
+       Utils.waitForVisibility(fiberActivationForPostpaidPage.isApprovedDropdownButtonOnCorporateConfirmationPage,15);
         Utils.clickWithJS(fiberActivationForPostpaidPage.isApprovedDropdownButtonOnCorporateConfirmationPage);
 
     }
@@ -85,11 +90,13 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User clicks the Complate Task button on the right buttom of the on BackOffice page")
     public void userClicksTheComplateTaskButtonOnTheRightButtomOfTheOnBackOfficePage() {
+        Utils.waitForVisibility(fiberActivationForPostpaidPage.completeTaskButtonOnCorporateConfirmationPage,15);
         clickField(fiberActivationForPostpaidPage.completeTaskButtonOnCorporateConfirmationPage);
     }
 
     @Then("User should see {string} pop up message  on BackOffice page")
     public void userShouldSeePopUpMessageOnBackOfficePage(String messageOnScreen) {
+        Utils.waitForVisibility(fiberActivationForPostpaidPage.taskCompletedPopUpMessageOnCorporateConfirmationPage,15);
         warningMessage(messageOnScreen, fiberActivationForPostpaidPage.taskCompletedPopUpMessageOnCorporateConfirmationPage);
     }
 
@@ -117,17 +124,18 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
     @When("User selects Contract Duration as  {int} X ALL{int}  for Vodafone Gigafibra {int} Mbpson Customer{int} search page")
     public void userSelectsContractDurationAsXALLForVodafoneGigafibraMbpsonCustomerSearchPage(int arg0, int arg1, int arg2, int arg3) {
         Utils.clickWithJS(fiberActivationForPostpaidPage.aLL12XALL3000MonthCashOption);
-        //clickField(fiberActivationForPostpaidPage.aLL12XALL3000MonthCashOption);
+
     }
 
     @When("User selects the Vodafone GigaFibra Pro fifty twenty Mbps Mbps for Postpaid on Customer search page")
     public void userSelectsTheVodafoneGigaFibraProFiftyTwentyMbpsMbpsForPostpaidOnCustomerSearchPage() {
-        Utils.waitForVisibility(fiberActivationForPostpaidPage.vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid,15);
+        Utils.waitForVisibility(fiberActivationForPostpaidPage.vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid,30);
         Utils.clickWithJS(fiberActivationForPostpaidPage.vodafoneGigaFibraPro50_20MbpsMbpsOptionForPostpaid);
     }
 
     @Then("User is directed to the Vodafone GigaFibra fifty twenty Mbps page for details of equipments on Customer{int} search page")
     public void userIsDirectedToTheVodafoneGigaFibraFiftyTwentyMbpsPageForDetailsOfEquipmentsOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(fiberActivationForPostpaidPage.vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText,15);
         warningMessage("GigaFibra Pro 50-20 Mbps",fiberActivationForPostpaidPage.vodafoneGigaFibraGigaFibraPro50_20MbpsOptionText);
     }
 }

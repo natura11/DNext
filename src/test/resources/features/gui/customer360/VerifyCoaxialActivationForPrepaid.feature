@@ -1,4 +1,4 @@
-@VFALFT-22330 @coaxialForPrepaid @regression
+@VFALFT-22330 @coaxialForPrepaid @regression @activation
 Feature: Verify Coaxial Activation for Prepaid
 
   Background:

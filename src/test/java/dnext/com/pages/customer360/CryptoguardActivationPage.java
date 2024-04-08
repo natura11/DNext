@@ -67,7 +67,7 @@ public class CryptoguardActivationPage extends BasePage {
                 smartCardSerialNumberField.clear();
                 cryptoguardNumbersCreationForSerialNumbers();
                 clickField(addToCartBtn);
-                Utils.waitFor(4);
+                Utils.waitFor(3);
             } else {
                 isNumberAvailable = true;
             }

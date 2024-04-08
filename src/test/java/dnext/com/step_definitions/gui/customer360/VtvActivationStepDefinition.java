@@ -28,7 +28,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User is on the Customer360 page")
     public void user_is_on_the_customer360_page() {
-        Utils.waitFor(2);
+        Utils.waitForVisibility(vtvActivationPage.customerSearchIcon,25);
         elementDisplayed(vtvActivationPage.customerSearchIcon);
         Utils.waitFor(1);
     }
@@ -66,14 +66,14 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User is redirected to the  product catalog on Customer{int} search page")
     public void userIsRedirectedToTheProductCatalogOnCustomerSearchPage(int arg0) {
-        Utils.waitForVisibility(vtvActivationPage.productsText, 15);
-        warningMessage("Products", vtvActivationPage.productsText);
+        Utils.waitForVisibility(VtvActivationPage.productsText, 15);
+        warningMessage("Products", VtvActivationPage.productsText);
 
     }
 
     @When("User selects TV option from products on Customer{int} search page")
     public void userSelectsTVOptionFromProductsOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(3);
+        Utils.waitForVisibility(vtvActivationPage.tvOptionOnCheckBox,10);
         clickField(vtvActivationPage.tvOptionOnCheckBox);
     }
 
@@ -90,7 +90,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User is directed to the Digitalb Premium Plus page for details of equipments on Customer{int} search page")
     public void userIsDirectedToTheDigitalbPremiumPlusPageForDetailsOfEquapmentsOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(3);
+        Utils.waitForVisibility(vtvActivationPage.digitalbPremiumPlusText,10);
         warningMessage("Digitalb Premium Plus",vtvActivationPage.digitalbPremiumPlusText);
 
     }
@@ -176,7 +176,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the COMPLATE CHECKOUT button on Customer{int} search page")
     public void userClicksTheCOMPLATECHECKOUTButtonOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(3);
+        Utils.waitForVisibility(vtvActivationPage.completeChecekoutBtn,15);
         clickField(vtvActivationPage.completeChecekoutBtn);
 
     }
@@ -185,7 +185,7 @@ public class VtvActivationStepDefinition extends BasePage {
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
         Utils.waitForVisibility(vtvActivationPage.checkoutIsSuccessfullyCompletedMessage,10);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
-        Utils.waitFor(60);
+        Utils.waitFor(10);
 
     }
 
@@ -204,7 +204,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User sees the Order id of the selected product on Customer{int} search page")
     public void userSeesTheOrderIdOfTheSelectedProductOnCustomerSearchPage(int arg0) {
-        Utils.waitForVisibility(vtvActivationPage.orderIdField, 10);
+        Utils.waitForVisibility(vtvActivationPage.orderIdField, 25);
         vtvActivationPage.orderIdField.isEnabled();
     }
 
@@ -257,16 +257,19 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the resolve option from the opened dropdown FAVEO  page")
     public void userClicksTheResolveOptionFromTheOpenedDropdownFAVEOPage() {
+        Utils.waitForVisibility(ticketDetailsPageOfFaveo.changeStatusWithResolvedBtnOnFaveoPage,15);
         clickField(ticketDetailsPageOfFaveo.changeStatusWithResolvedBtnOnFaveoPage);
     }
 
     @And("User clicks the Proceed button FAVEO  page")
     public void userClicksTheProceedButtonFAVEOPage() {
+        Utils.waitForVisibility(ticketDetailsPageOfFaveo.proceedBtnOnFaveoPage,15);
         clickField(ticketDetailsPageOfFaveo.proceedBtnOnFaveoPage);
     }
 
     @And("User should see {string} warning on FAVEO page")
     public void userShouldSeeWarningOnFAVEOPage(String warning) {
+        Utils.waitForVisibility(ticketDetailsPageOfFaveo.ticketStatusChangedSuccessfullyMessage,15);
         warningMessage(warning, ticketDetailsPageOfFaveo.ticketStatusChangedSuccessfullyMessage);
 
     }

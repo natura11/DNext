@@ -29,6 +29,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     @When("User selects the Vodafone Gigafibra {int} Mbps on Customer360 search page")
     public void user_selects_the_vodafone_gigafibra_mbps_on_customer360_search_page(Integer int1) {
+        Utils.waitForVisibility(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption,15);
         Utils.clickWithJS(FiberActivationForPrepaidPage.vodafoneGigaFibra200MbpsOption);
 
     }
