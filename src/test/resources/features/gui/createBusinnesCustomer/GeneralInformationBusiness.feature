@@ -10,6 +10,7 @@ Feature:New Business Customer-General Information
     Given  User selects the Albanian Customer from the dropdown on Search Organization page
     When   User fills in the NIPT field with valid and non-existing  "R12985637T" on Search Organization page
     Then   User clicks the Search button on Search Organization page
+    And   User checks the NIPT is usable or not on Search Business page
     And    User clicks the Next button on Search Organization page
     Then   User should see the "General Information" header on General Information  page
 
@@ -25,23 +26,23 @@ Feature:New Business Customer-General Information
     And   User clicks Name Field on general information page
     Then  User enters a value ",,,Fer-rari.." consisting of letters and special characters in the name box on general information page
 
-  @selectionOptionSegmentDropForBusinessGeneral
-  Scenario: As a user I want to select one option from Segment dropdown
+  @selectionOptionsForDropdownsForBusinessGeneral
+  Scenario: As a user I want to select one option from Segment, TaxExempt and Communication Method dropdown
     Given User clicks Segment dropdown on general information page
     And   User should ensure each options in Segment dropdown are selectable on general information page
     Then  User should selects any options in the Segment dropdown on general information page
-
-  @selectionOptionTaxExemptDropForBusinessGeneral
-  Scenario: As a user I want to select one option from Tax Exempt dropdown
     Given User clicks Tax Exempt dropdown on general information page
     And   User should ensure each options in Tax Exempt dropdown are selectable on general information page
     Then  User should selects any option in the Tax Exempt dropdown on general information page
+    Given User clicks Communication Method dropdown on general information page
+    And   User should ensure each options in Communication Method dropdown ara selectable on general information page
+    Then  User selects any communication option on General Information Page
 
   @invalidEmailInsertForBusinessGeneral
   Scenario Outline: As a user I want to enter invalid and invalid  characters based email into email field
     Given User clicks email field on general information page
     And   User enters "<emails>" on general information page
-    And   User should see that background is red
+    And   User should see that background is red for email field
     Given User enters valid "abc123@gmail.com" in to the email field on general information page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on general information page
 
@@ -51,11 +52,6 @@ Feature:New Business Customer-General Information
       | emails@com   |
       | emails@123.c |
 
-  @communicationMethodDrpForBusinessGeneral
-  Scenario: As a user I want to select one option from Communication Method dropdown
-    Given User clicks Communication Method dropdown on general information page
-    And   User should ensure each options in Communication Method dropdown ara selectable on general information page
-    Then  User should selects SMS option in the Tax Exempt dropdown on general information page
 
   @selectOptionCountryDrpAlbaniaForBusinessGeneral
   Scenario Outline: As a user I want to select one option from Country dropdown with Albania number and numbers except Albanian numbers
@@ -87,5 +83,5 @@ Feature:New Business Customer-General Information
     And   User adds a "2bigger5MB.pdf" of which format is pdf with bigger five MB should see the "File size can not be bigger than 5 MB!" warning messageon general information page
     And   User adds a document of which format is "example.xlsx" on general information page
     Then  User should see "Only image and pdf files are accepted!" warning message on top of  the screen for unmatched format on general information page
-    And   User adds a valid "smaller5MB.pdf" document  on general information page
-    And   User should see the name of "smaller5MB.pdf" added pdf document on the screen on general information page
+    And   User adds a "document.jpg" of which format is image on general information page
+    And   User should see the name of "document.jpg" added jpg document on the screen on general information page

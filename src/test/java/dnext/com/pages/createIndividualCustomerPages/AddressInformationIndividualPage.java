@@ -77,16 +77,19 @@ public class AddressInformationIndividualPage extends BasePage {
         String isDisabled = webElement.getAttribute("aria-disabled");
         Assert.assertEquals("true", isDisabled);
     }
-    public void verifyCountryHasDefaultValueOnIndividual(WebElement webElement, String value) {
+
+    public void verifyCountryHasDefaultValue(WebElement webElement, String value) {
         List<WebElement> spanLists = webElement.findElements(By.xpath(".//span"));
-        for (WebElement element: spanLists) {
+        for (WebElement element : spanLists) {
             String actualCountry = element.getText();
-            if(actualCountry.equals(value)){
+            if (actualCountry.equals(value)) {
                 Assert.assertTrue(true);
+                return;
             }
         }
         Assert.fail();
     }
+
     public void verifyServiceAddressValueOnIndividual() {
         Utils.scrollToElement(serviceAddressContactTypeOnIndividual);
         String contactType = getValueByMouseKeyboardAction(serviceAddressContactTypeOnIndividual);

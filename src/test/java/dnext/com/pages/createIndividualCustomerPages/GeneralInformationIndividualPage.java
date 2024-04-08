@@ -26,6 +26,8 @@ public class GeneralInformationIndividualPage extends BasePage {
     public WebElement middleNameField;
     @FindBy(xpath = "//*[@formcontrolname='citizenShip']")
     public WebElement citizenShipField;
+    @FindBy(xpath = "//*[@formcontrolname='citizenShip']/parent::div/preceding-sibling::div[1]")
+    public WebElement citizenShipFieldBackground;
     @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='ALBANIAN']")
     public WebElement albanianOptionForCitizenship;
     @FindBy(xpath = "(//div[@class='mat-form-field-wrapper ng-tns-c108-19'])[1]")
@@ -48,7 +50,7 @@ public class GeneralInformationIndividualPage extends BasePage {
     public WebElement maleOptionOfGender;
     @FindBy(xpath = "//*[@formcontrolname = 'birthDate']")
     public WebElement birthDateField;
-    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']/parent::div/preceding-sibling::div[1]")
+    @FindBy(xpath = "//*[@formcontrolname = 'birthDate']/parent::div/preceding-sibling::div[2]")
     public WebElement birthDateFieldPicture;
     @FindBy(xpath = "//*[@formcontrolname = 'birthDate']/parent::div/preceding-sibling::div[1]//mat-icon")
     public WebElement cancelButtonOnDateOfBirthField;
@@ -62,7 +64,7 @@ public class GeneralInformationIndividualPage extends BasePage {
     public WebElement beratCityFromPlaceOfBirthDropdown;
     @FindBy(xpath = "//*[@formcontrolname = 'phoneNumber']")
     public WebElement mobilePhoneNumberField;
-    @FindBy(xpath = "//*[@formcontrolname=\"communicationMethod\"]")
+    @FindBy(xpath = "//*[@formcontrolname='communicationMethod']")
     public WebElement communicationMethodDropDown;
     @FindBy(xpath = "(//span[text()='Next'])[2]//ancestor::button")
     public WebElement nextButtonOnGeneralInformation;

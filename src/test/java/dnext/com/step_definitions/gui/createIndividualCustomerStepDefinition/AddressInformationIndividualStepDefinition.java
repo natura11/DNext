@@ -119,13 +119,13 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
     }
 
     @Then("User see the Country dropdown is non-editable in Address Information on Create Individual Customer page")
-    public void userSeeTheCountryDropdownIsNonEditableInAddressInformationOnCreateIndividualCustomerPage() {
+    public void userSeeTheCountryDropdownIsNonEditableInAddressInformation() {
         addressInformationIndividualPage.verifyDropdownNonEditableOnIndividual(addressInformationIndividualPage.billingCountryDropdownOnIndividual);
     }
 
     @Then("User see the ALBANIA value on the Country dropdown in Address Information on Create Individual Customer page")
     public void userSeeTheALBANIAValueOnTheCountryDropdownInAddressInformationOnCreateIndividualCustomerPage() {
-        addressInformationIndividualPage.verifyCountryHasDefaultValueOnIndividual(addressInformationIndividualPage.billingCountryDropdownOnIndividual, "ALBANIA");
+        addressInformationIndividualPage.verifyCountryHasDefaultValue(addressInformationIndividualPage.billingCountryDropdownOnIndividual, "ALBANIA");
     }
 
     @Given("User should see the City dropdown in Address Information on Create Individual Customer page")
@@ -146,11 +146,6 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
     @Then("User should select {string} option in the City dropdown in Address Information on Create Individual Customer page")
     public void userShouldSelectOptionInTheCityDropdownInAddressInformationOnCreateIndividualCustomerPage(String city) {
         selectSpecificOptionFromDropdown(city);
-    }
-
-    @Then("User is in the Contact Information on Create Individual Customer page")
-    public void userIsInTheContactInformationOnCreateIndividualCustomerPage() {
-        addressInformationIndividualPage.selectedContactInformationOnIndividual.isDisplayed();
     }
 
     @Given("User should see the Service Address slider in Address Information on Create Individual Customer page")
@@ -236,7 +231,7 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
 
     @Then("User see the ALBANIA value on the Country dropdown for Service Address in Address Information on Create Individual Customer page")
     public void userSeeTheALBANIAValueOnTheCountryDropdownForServiceAddressInAddressInformationOnCreateIndividualCustomerPage() {
-        addressInformationIndividualPage.verifyCountryHasDefaultValueOnIndividual(addressInformationIndividualPage.serviceCountryDropdownOnIndividual, "ALBANIA");
+        addressInformationIndividualPage.verifyCountryHasDefaultValue(addressInformationIndividualPage.serviceCountryDropdownOnIndividual, "ALBANIA");
     }
 
     @Given("User should see the City dropdown for Service Address in Address Information on Create Individual Customer page")

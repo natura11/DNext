@@ -24,15 +24,12 @@ Feature:New Individual Customer-Invoice Account
     And   User clicks Back button on Individual Invoice Account page
     Then  User is on the Individual Contact Information page
 
-  @selectionOptionFromCurrencyDropForIndividualInvoice
+  @selectionOptionFromCurrencyDropdownAndDescriptionForIndividualInvoice
   Scenario: As a user I want to select one option from Currency dropdown
     Given User should see the Currency dropdown on Individual Invoice Account page
     When  User clicks Currency dropdown on Individual Invoice Account page
     And   User should ensure each options in Currency dropdown are selectable on Individual Invoice Account page
     Then  User should selects any option in the Currency dropdown on Individual Invoice Account page
-
-  @writingDescriptionForIndividualInvoice
-  Scenario: As a user I want to enter description into description field
     Given User should see the Description textbox on Individual Invoice Account page
     And   User clicks Description Field on Individual Invoice Account page
     Then  User enters a value "Individual Test Description 123" in the Description textbox on Individual Invoice Account page
@@ -76,7 +73,7 @@ Feature:New Individual Customer-Invoice Account
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Individual Invoice Account page
     Then  User should see that background is not red for the email field on Individual Invoice Account Page
 
-  @fillInvalidPhoneNumberWithAlbaniaCountryForIndividualInvoice
+  @fillInvalidAndValidPhoneNumberWithAlbaniaCountryForIndividualInvoice
   Scenario: As a user I want to enter invalid numbers on Invoice Account Page
     Given User should see Country Code dropdown on Individual Invoice Account Page
     Then  User should see the E-Bill mobile number textbox on Individual Invoice Account page
@@ -88,12 +85,5 @@ Feature:New Individual Customer-Invoice Account
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Individual Invoice Account page
     And   User enters invalid "41234567" phone numbers on Individual Invoice Account page
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Individual Invoice Account page
-
-  @fillValidPhoneNumberWithAlbaniaCountryForIndividualInvoice
-  Scenario: As a user I want to enter valid numbers on Individual Invoice Account Page
-    Given User should see Country Code dropdown on Individual Invoice Account Page
-    Then  User should see the E-Bill mobile number textbox on Individual Invoice Account page
-    Then  User should see the Country dropdown is disabled on Individual Invoice Account page
-    When  User clicks mobile phone number field on Individual Invoice Account page
     And   User enters valid "628641593" into the phone number field on Individual Invoice Account page
     Then  User should not see the warning message on phone field on Individual Invoice Account page

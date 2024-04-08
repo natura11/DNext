@@ -27,6 +27,8 @@ Feature:New Individual Customer-Customer Creation
     And   User selects random place of birth on Individual General Information page
     And   User clicks Citizenship dropdown on Create Individual Customer page
     And   User selects ALBANIAN citizenship from dropdown on Create Individual Customer page
+    And   User clicks Communication Method dropdown on New Individual Customer page
+    And   User selects random Communication Method on Individual General Information page
     And   User enters random mobile phone number on Individual General Information page
     And   User clicks Next button on Individual General Information Page
 
@@ -37,7 +39,7 @@ Feature:New Individual Customer-Customer Creation
     And   User selects random city on Individual Address Information page
     And   User clicks Next button in Address Information on Create Individual Customer page
 
-    Then  User is in the Contact Information on Create Individual Customer page
+    Then  User is on the Individual Contact Information page
     When  User clicks Next button on Individual Contact Information Page
 
     Then  User is on the Individual Invoice Account page
