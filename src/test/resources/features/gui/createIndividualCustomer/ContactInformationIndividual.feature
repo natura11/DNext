@@ -60,8 +60,8 @@ Feature:New Individual Customer-Contact Information
 
     Then  User should see that Citizenship dropdown is enabled on Individual Contact Information Page
     When  User should see the document "You have to add customers ATTORNEY LETTER document!" warning message on Individual Contact Information Page
-    And   User adds a valid "smaller5MB.pdf" document for Letter of Attorney on Individual Contact Information Page
-    Then  User should see the name of "smaller5MB.pdf" added pdf document on Individual Contact Information Page
+    And   User adds a valid "dummy.pdf" document for Letter of Attorney on Individual Contact Information Page
+    Then  User should see the name of "dummy.pdf" added pdf document on Individual Contact Information Page
     When  User clicks Next button on Individual Contact Information Page
     Then  User is on the Individual Invoice Account page
 
@@ -97,8 +97,8 @@ Feature:New Individual Customer-Contact Information
     When  User should see Document Type dropdown on Individual Contact Information Page
     And   User should see Add button on Individual Contact Information Page
     And   User should see the document "You have to add customers ATTORNEY LETTER document!" warning message on Individual Contact Information Page
-    And   User adds a valid "smaller5MB.pdf" document for Letter of Attorney on Individual Contact Information Page
-    Then  User should see the name of "smaller5MB.pdf" added pdf document on Individual Contact Information Page
+    And   User adds a valid "dummy.pdf" document for Letter of Attorney on Individual Contact Information Page
+    Then  User should see the name of "dummy.pdf" added pdf document on Individual Contact Information Page
     When  User clicks Next button on Individual Contact Information Page
     Then  User is on the Individual Invoice Account page
 

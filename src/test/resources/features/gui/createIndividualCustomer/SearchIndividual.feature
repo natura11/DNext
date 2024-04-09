@@ -23,7 +23,7 @@ Feature:New Individual Customer -Search Individual
     And   User clicks next Button in Search Individual on Create Individual Customer page
     And   User clicks Citizenship dropdown on Create Individual Customer page
     And   User selects ALBANIAN citizenship from dropdown on Create Individual Customer page
-    Then  User should see that background is red
+    Then  User should see that background is red for the Citizenship dropdown
 
   Scenario: As a user I want to enter identification number that valid ALBANIAN customer number
     Given User enters "K12345678R" identification ID for ALBANIAN to the identification number field on Create Individual Customer page

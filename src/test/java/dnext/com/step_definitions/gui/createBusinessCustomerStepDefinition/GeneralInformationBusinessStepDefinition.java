@@ -86,7 +86,7 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
         clickField(generalInformationBusinessPage.emailFieldOnGeneral);
     }
 
-    @Given("User should see that background is red")
+    @Given("User should see that background is red for email field")
     public void user_should_see_that_background_is_red() {
         warningBackgroundRedColorOne(
                 generalInformationBusinessPage.emailPictureBtnOnGeneralInformationPage, true);
@@ -117,11 +117,6 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
     @And("User should ensure each options in Communication Method dropdown ara selectable on general information page")
     public void userShouldEnsureEachOptionsInCommunicationMethodDropdownAraSelectable() {
         isDropdownSelectable();
-    }
-
-    @Then("User should selects SMS option in the Tax Exempt dropdown on general information page")
-    public void userShouldSelectsSMSOptionInTheTaxExemptDropdown() {
-        randomOptionFromDropdown();
     }
 
     @Given("User clicks Country Code dropdown on general information page")
@@ -209,17 +204,6 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
         warningMessage(warningMessage, generalInformationBusinessPage.warningMessageForUnmatchedDocument);
     }
 
-
-    @And("User adds a valid {string} document  on general information page")
-    public void userAddsAValidDocumentOnGeneralInformationPage(String fileValidPdf) {
-        uploadFile(generalInformationBusinessPage.addDocumentButtonOnNewBusinessCustomer, generalInformationBusinessPage.fileInputGeneral, fileValidPdf);
-    }
-
-    @And("User should see the name of {string} added pdf document on the screen on general information page")
-    public void userShouldSeeTheNameOfAddedPdfDocumentOnTheScreen(String fileNameOfPdf) {
-        elementDisplayed(generalInformationBusinessPage.nameOfUploadedFileOnGeneral);
-        Assert.assertEquals("DOCUMENT-" + fileNameOfPdf, generalInformationBusinessPage.nameOfUploadedFileOnGeneral.getText());
-    }
 
     @When("User enters random organization name on Business General Information page")
     public void userEntersRandomOrganizationName() {

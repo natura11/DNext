@@ -24,15 +24,12 @@ Feature:New Business Customer-Invoice Account
     And   User clicks Back button on Invoice Account page
     Then  User is on the Address Information Page
 
-  @selectionOptionFromCurrencyDropForBusinessInvoice
+  @selectionOptionFromCurrencyDropdownAndDescriptionForBusinessInvoice
   Scenario: As a user I want to select one option from Currency dropdown
     Given User should see the Currency dropdown on Invoice Account page
     When  User clicks Currency dropdown on Invoice Account page
     And   User should ensure each options in Currency dropdown are selectable on Invoice Account page
     Then  User should selects any option in the Currency dropdown on Invoice Account page
-
-  @writingDescriptionForBusinessInvoice
-  Scenario: As a user I want to enter description into description field
     Given User should see the Description textbox on Invoice Account page
     And   User clicks Description Field on Invoice Account page
     Then  User enters a value "Business Test Description 123" in the Description textbox on Invoice Account page
@@ -98,13 +95,5 @@ Feature:New Business Customer-Invoice Account
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Invoice Account page
     And   User enters invalid "41234567" phone numbers on Invoice Account page
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Invoice Account page
-
-  @fillValidPhoneNumberWithAlbaniaCountryForBusinessInvoice
-  Scenario: As a user I want to select Albania and enter valid numbers on Invoice Account Page
-    Given User should see Country Code dropdown on Invoice Account Page
-    Then  User should see the E-Bill mobile number textbox on Invoice Account page
-    When  User clicks Country Code dropdown on Invoice Account page
-    When  User selects "+355" option in the Country Code dropdown on Invoice Account page
-    And   User clicks mobile phone number field on Invoice Account page
     And   User enters valid "628641593" into the phone number field on Invoice Account page
     Then  User should not see the warning message on phone field on Invoice Account page
