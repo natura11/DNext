@@ -101,14 +101,10 @@ public class SearchOrganizationBusinessPage extends BasePage {
     }
 
     public void verifySearchBtnEnable() {
-        try {
-            Utils.waitFor(3);
-            String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
-            if (isDisabled != null && isDisabled.equals("true")) {
-                System.out.println("The search button is disabled.");
-            }
-        } catch (Throwable e) {
-            System.out.println("The search button is enabled.");
+        Utils.waitFor(3);
+        String isDisabled = searchBtnOnSearchOrganizationPage.getAttribute("disabled");
+        if (isDisabled != null && isDisabled.equals("true")) {
+            System.out.println("The search button is disabled.");
         }
     }
 
@@ -116,27 +112,27 @@ public class SearchOrganizationBusinessPage extends BasePage {
         Utils.sendKeys(niptNumberField, customerFakerDataCreator.niptNumberForForeign());
     }
 
-    public void fillNIPTFieldWithRandomAlbanianNumber(){
+    public void fillNIPTFieldWithRandomAlbanianNumber() {
         sendKeys(niptNumberField,
                 customerFakerDataCreator.niptNumberForAlbanian());
     }
 
-    public void checkNIPTIsAvailableOrNot(){
+    public void checkNIPTIsAvailableOrNot() {
         String warningMessageXpath = "//span[text()='This organization cannot have more than one customer connected to it']";
         boolean isNumberAvailable = false;
         do {
             Utils.waitFor(3);
-            if(!Driver.getDriver().findElements(By.xpath(warningMessageXpath)).isEmpty()){
+            if (!Driver.getDriver().findElements(By.xpath(warningMessageXpath)).isEmpty()) {
                 niptNumberField.clear();
                 fillNIPTFieldWithRandomAlbanianNumber();
                 clickField(searchBtnOnSearchOrganizationPage);
-            }else {
+            } else {
                 isNumberAvailable = true;
             }
-        }while (!isNumberAvailable);
+        } while (!isNumberAvailable);
     }
 
-    public void verifyOrganizationIsNew(){
+    public void verifyOrganizationIsNew() {
         Assert.assertTrue(getValueByMouseKeyboardAction(niptNumberFieldWithNewCustomer).contains("New Customer"));
     }
 }
