@@ -133,28 +133,6 @@ public class FiberActivationForPrepaidPage extends BasePage {
     }
 
 
-    public  void verifyTheOrderStatusIsCompleted() {
-        if (orderStatusButtonInOrderDetail.getText().equalsIgnoreCase("completed")) {
-            System.out.println("OrderStatus is = " + orderStatusButtonInOrderDetail.getText());
-            Assert.assertEquals("completed", orderStatusButtonInOrderDetail.getText());
-        } else {
-            System.out.println("OrderStatus is = " + orderStatusButtonInOrderDetail.getText());
-            String OrderId = orderIdButtonInOrderDetail.getText();
-            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-            Utils.waitFor(2);
-            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
-            Utils.waitFor(1);
-            clickField(productOrderCamundaOnHomePage);
-            Utils.waitFor(1);
-            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-            clickField(variablesChoiceIconOnCamunda);
-            Utils.waitFor(2);
-            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-            switchToWindowNew(0);
-        }
-    }
-
-
     static public void activationFormClicking() throws AWTException {
         Utils.waitFor(1);
         Utils.waitForVisibility(activationFormButtonAfterCheckout,15);
@@ -179,16 +157,16 @@ public class FiberActivationForPrepaidPage extends BasePage {
         String orderDateOfOrderButton = "";
         String orderDateOfFiscalizationReceipt = "";
         clickField(orderButtonOnCustomer360Page);
-        Utils.waitForVisibility(aggreementIdOfOrder,25);
+        Utils.waitForVisibility(aggreementIdOfOrder,30);
         agrementIdOfOrder = aggreementIdOfOrder.getText();
         System.out.println("agrementIdOfOrder is :" + agrementIdOfOrder);
         orderDateOfOrderButton = orderDateOfOrder.getText();
         clickField(directionSignTofiscalizationReceiptsButton);
-        Utils.waitForVisibility(directionSignTofiscalizationReceiptsButton,10);
+        Utils.waitForVisibility(directionSignTofiscalizationReceiptsButton,30);
         clickField(directionSignTofiscalizationReceiptsButton);
-        Utils.waitForVisibility(fiscalizationReceiptsButton,10);
+        Utils.waitForVisibility(fiscalizationReceiptsButton,30);
         clickField(fiscalizationReceiptsButton);
-        Utils.waitForVisibility(detailFirstButtonOnFiscalization,25);
+        Utils.waitForVisibility(detailFirstButtonOnFiscalization,30);
         agrementIdOfFiscalizationReceipt = aggreementIdOfFiscalizationReceipt.getText();
         System.out.println("agrementIdOfFiscalizationReceipt is :" + agrementIdOfFiscalizationReceipt);
         orderDateOfFiscalizationReceipt = invoiceDateOfFiscalizationReceipt.getText();

@@ -1,5 +1,5 @@
-@VFALFT-22441 @cryptoguard @regression @activation
-Feature: Cryptoguard Activation
+@VFALFT-22863 @bundle @regression @activation
+Feature: Bundle  Cryptoguard-Coaxial Activation
 
   Background:
     Given  I have opened the "Customer Management" application
@@ -7,7 +7,7 @@ Feature: Cryptoguard Activation
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
 
-  Scenario:As a user, I want complete TVT Cryptoguard process successfully  on Customer360 search page
+  Scenario:As a user, I want complete Bundle Activation process successfully  on Customer360 search page
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
@@ -16,20 +16,23 @@ Feature: Cryptoguard Activation
     And   User selects opened name of searched name on Customer360 search page
     When User clicks the Account tab on Customer360 search page
     When User clicks the New Order for prepaid rating type on Customer360 search page
-    Then User is redirected to the  product catalog on Customer360 search page
-    When User selects TV option from products on Customer360 search page
+    And User clicks the Bundle option from the dropdown on Customer360 search page
     And User clicks the search button under product list on Customer360 search page
-    When User selects the Digitalb Premium Plus on Customer360 search page
-    Then User is directed to the Digitalb Premium Plus page for details of equipments on Customer360 search page
-    When User selects cash methods as ALL7900 3Month on Customer360 search page
-    And user clicks the TVInfrusructure dropdown button  Customer360 search page
-    And User selects the Cryptoguard  as TVInfrustructure on Customer360 search page
+    And User selects the first option of products from opened products page on Customer360 search page
+    And User selects first option as cash method for the selected product on Customer360 search page
+    And user clicks the Infrusructure dropdown button  Customer360 search page
+    And User selects the Coaxial  as Infrustructure on Customer360 search page
+    And user clicks the TVInfrusructure dropdown for Bundle Activation  Customer360 search page
+    And User selects the Cryptoguard  as TVInfrustructure for Bundle on Customer360 search page
     And User clicks the Smart Card add button for cryptoguard on Customer360 search page
-    And User selects the ALL0 3Month option for Smart Card Contract Duration on Customer360 search page
-    And User selects Akses Fee per Dekoder Basic add button on Customer360 search page
-    And User selects the ALL0 3Month option of Akses Fee per Dekoder Premium as cash option on Customer360 search page
-    And User selects Tarife Instalimi from Purchasable Addons for Cryptoguard part on Customer360 search page
-    And User selects ALL4000 3Month option as cash  method on Customer360 search page
+    And User selects the first option as cash method for the smart card on Customer360 search page
+    And User selects Tarife Instalimi from Bundle option  on Customer360 search page
+    And User selects the first option as cash method for the Tarife Instalimi on Customer360 search page
+    And User clicks the Akses Fee per Modem Basic add button for Bundle on Customer360 search page
+    And User selects the first option as cash method for the Akses Fee per Modem Basic on Customer360 search page
+    And User clicks the Akses Fee per Dekoder Basic add button on Customer360 search page
+    And User selects the first option as cash method for Akses Fee per Dekoder Basic on Customer360 search page
+
     When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
     And   User clicks the ADD to Cart button on Product Offering Page
     And   User checks the Cryptoguard Number is available for Sale on Product Offering Page

@@ -3,6 +3,7 @@ package dnext.com.step_definitions.gui.customer360;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.CryptoguardActivationPage;
+import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 public class CryptoguardActivationStepDefinition extends BasePage {
     CryptoguardActivationPage cryptoguardActivationPage;
-
+    VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
     @When("User selects the Cryptoguard  as TVInfrustructure on Customer360 search page")
     public void user_selects_the_cryptoguard_as_tv_infrustructure_on_customer360_search_page() {
         Utils.waitForVisibility(cryptoguardActivationPage.optionCryptoguard,15);
@@ -57,11 +58,6 @@ public class CryptoguardActivationStepDefinition extends BasePage {
         clickField(cryptoguardActivationPage.smartCardAddSignofCryptoguard);
     }
 
-    @Then("User should see the Order Status turned to completed for the Cryptoguard  on Customer{int} search page")
-    public void userShouldSeeTheOrderStatusTurnedToCompletedForTheCryptoguardOnCustomerSearchPage(int arg0) {
-        cryptoguardActivationPage.verifyTheOrderStatusIsCompleted();
-    }
-
     @When("User enters random Cryptoguard number to Smart Card field on Product Offering Page")
     public void userEntersRandomCryptoguardNumberToSmartCardFieldOnProductOfferingPage() {
         cryptoguardActivationPage.cryptoguardNumbersCreationForSerialNumbers();
@@ -70,5 +66,10 @@ public class CryptoguardActivationStepDefinition extends BasePage {
     @And("User checks the Cryptoguard Number is available for Sale on Product Offering Page")
     public void userChecksTheCryptoguardNumberIsAvailableForSaleOnProductOfferingPage() {
         cryptoguardActivationPage.checkCryptoguardNumberIsAvailableOrNot();
+    }
+
+    @And("User cliks three dots right of opened block for cryptoguard activation on Customer{int} search page")
+    public void userCliksThreeDotsRightOfOpenedBlockForCryptoguardActivationOnCustomerSearchPage(int arg0) {
+        clickField(cryptoguardActivationPage.threeDotsForDcaseOnCryptoguard);
     }
 }

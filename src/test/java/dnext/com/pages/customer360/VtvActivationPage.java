@@ -90,7 +90,7 @@ public class VtvActivationPage extends BasePage {
     public WebElement mainPageButton;
     @FindBy(xpath = "//span[normalize-space()='Load Tickets']")
     public WebElement loadTicketsOnTroubleTickets;
-    @FindBy(xpath = "//*[@id=\"mat-tab-content-2-0\"]/div/app-general-tab/div[4]/div/app-extended-trouble-ticket-widget/mat-card/div/div[2]/table/tbody/tr[1]/td[9]/button/span/mat-icon")
+    @FindBy(xpath = "/html/body/app/vertical-layout-1/div/div/div/div/content/app-customer360/div/div[2]/div[2]/app-customer360-detail/div/mat-tab-group/div/mat-tab-body[1]/div/app-main-page/div/mat-tab-group/div/mat-tab-body[1]/div/app-general-tab/div[4]/div/app-extended-trouble-ticket-widget/mat-card/div/div[2]/table/tbody/tr[1]/td[9]/button/span/mat-icon")
     public WebElement threeDotsIconNearLoadTickets;
     @FindBy(xpath = "//*[.='DCase']")
     public WebElement dCaseButton;
@@ -113,30 +113,6 @@ public class VtvActivationPage extends BasePage {
         System.out.println("moved to Dnext succesfully!!");
     }
 
-    public void verifyTheOrderStatusIsCompleted() {
-        System.out.println("orderStatus.getText() = " + orderStatus.getText());
-        if (orderStatus.getText().equalsIgnoreCase("completed")){
-            System.out.println("orderStatus.getText() = " + orderStatus.getText());
-            Assert.assertEquals("completed", orderStatus.getText());
-
-        }else {
-            System.out.println("OrderStatus  is= " + orderStatus.getText());
-            String OrderId   = orderIdField.getText();
-            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-            //switchToWindowNew(1);
-            sendKeys(orderIdFieldOnCamundaHomePage,OrderId);
-            clickField(productOrderCamundaOnHomePage);
-                Utils.waitFor(1);
-                clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-                clickField(variablesChoiceIconOnCamunda);
-                Utils.waitFor(2);
-                log.error("Error message at Camunda is " +errorMessageOnVariablesOnCamunda.getText());
-            System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
-            switchToWindowNew(0);
-
-        }
-    }
-
     public void verifyOrderAggrementIdMatchedInFiscalizationReceipt() {
         List<WebElement> aggrementIds = Driver.getDriver().findElements(By.xpath("//*[@class='mat-cell cdk-cell cdk-column-agreementId mat-column-agreementId ng-star-inserted']"));
         List<String> agreementIdTexts = new ArrayList<>();
@@ -146,7 +122,7 @@ public class VtvActivationPage extends BasePage {
         System.out.println("agreementIdTexts = " + agreementIdTexts);
     }
     public void turningBackToCustomerManagementPage(){
-        Utils.waitFor(300);
+        Utils.waitFor(240);
         Driver.getDriver().navigate().refresh();
         switchToDnextFromFaveo();
     }

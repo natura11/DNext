@@ -76,10 +76,10 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
             clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
             clickField(variablesChoiceIconOnCamunda);
             Utils.waitFor(2);
-            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-            log.error("Error message is " + errorMessageOnVariablesOnCamunda1.getText());
+            log.error("Error message at Camunda is " + errorMessageOnVariablesOnCamunda.getText());
+            log.error("Error message at Camunda is " + errorMessageOnVariablesOnCamunda1.getText());
             System.out.println("Driver.getDriver().getWindowHandles().size() = " + Driver.getDriver().getWindowHandles().size());
-//            switchToWindowNew(0);
+            switchToWindowNew(0);
         }
     }
 

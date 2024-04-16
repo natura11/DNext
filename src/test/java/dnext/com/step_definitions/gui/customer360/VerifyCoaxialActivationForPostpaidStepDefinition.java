@@ -19,6 +19,7 @@ import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.orderSta
 public class VerifyCoaxialActivationForPostpaidStepDefinition extends BasePage {
 VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
 VtvActivationPage vtvActivationPage;
+
     @Then("User selects the Recurring Products on Customer360 search page")
     public void user_selects_the_recurring_products_on_customer360_search_page() {
         clickField(verifyCoaxialActivationForPostpaidPage.recurringProductsOption);

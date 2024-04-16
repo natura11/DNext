@@ -5,6 +5,7 @@ import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.backofficePage.BackofficeHomePage;
 import dnext.com.pages.customer360.FiberActivationForPostpaidPage;
+import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +19,7 @@ import static dnext.com.pages.backofficePage.BackofficeHomePage.claimEditButton;
 public class FiberActivationForPostpaidStepDefinition extends BasePage {
     FiberActivationForPostpaidPage fiberActivationForPostpaidPage;
     BackofficeHomePage backofficeHomePage;
-
+    VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
 
     @When("User clicks the New Order for postpaid rating for the customer type on Customer360 search page")
     public void user_clicks_the_new_order_for_postpaid_rating_for_the_customer_type_on_customer360_search_page() {

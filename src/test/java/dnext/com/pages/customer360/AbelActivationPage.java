@@ -3,6 +3,7 @@ import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ import static com.utilities.Utils.waitFor;
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
 @Log4j2
+
 public class AbelActivationPage extends BasePage {
 
     @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='Abel']")
@@ -50,24 +52,6 @@ public class AbelActivationPage extends BasePage {
     public static WebElement successMessageForShoppingCart;
 
 
-    public void verifyTheOrderStatusIsCompleted() {
-        if (orderStatus.getText().equalsIgnoreCase("completed")) {
-            System.out.println("orderStatus.getText() = " + orderStatus.getText());
-            Assert.assertEquals("completed", orderStatus.getText());
-        } else {
-            System.out.println("OrderStatus is= " + orderStatus.getText());
-            String OrderId = orderIdField.getText();
-            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
-            clickField(productOrderCamundaOnHomePage);
-            waitFor(1);
-            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-            clickField(variablesChoiceIconOnCamunda);
-            waitFor(2);
-            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-            switchToWindowNew(0);
-        }
-    }
 
 
     public void fillAbelSmartCardNumber() {

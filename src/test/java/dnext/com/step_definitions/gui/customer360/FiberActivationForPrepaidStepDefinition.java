@@ -4,6 +4,7 @@ import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.FiberActivationForPrepaidPage;
+import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.customer360.VtvActivationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -21,7 +22,7 @@ public class FiberActivationForPrepaidStepDefinition extends BasePage {
 
     FiberActivationForPrepaidPage fiberActivationForPrepaidPage;
     VtvActivationPage vtvActivationPage;
-
+    VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
     @When("User selects Internet option from products on Customer360 search page")
     public void user_selects_internet_option_from_products_on_customer360_search_page() {
         clickField(fiberActivationForPrepaidPage.internetCheckBoxButton);

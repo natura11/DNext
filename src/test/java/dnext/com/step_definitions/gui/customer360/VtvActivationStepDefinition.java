@@ -4,6 +4,7 @@ import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.customer360.VtvActivationPage;
 import dnext.com.pages.faveo.LoginOfFaveo;
 import dnext.com.pages.faveo.TicketDetailsPageOfFaveo;
@@ -24,7 +25,7 @@ public class VtvActivationStepDefinition extends BasePage {
     VtvActivationPage vtvActivationPage;
     LoginOfFaveo loginOfFaveo;
     TicketDetailsPageOfFaveo ticketDetailsPageOfFaveo;
-
+    VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
 
     @Then("User is on the Customer360 page")
     public void user_is_on_the_customer360_page() {
@@ -34,6 +35,7 @@ public class VtvActivationStepDefinition extends BasePage {
     }
     @Given("User clicks select Search Type field on Customer{int} search page")
     public void userClicksSelectSearchTypeFieldOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.selectSearchTypeBtn,10);
         clickField(vtvActivationPage.selectSearchTypeBtn);
     }
 
@@ -55,11 +57,13 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @When("User clicks the Account tab on Customer{int} search page")
     public void userClicksTheAccountTabOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.accountButton,10);
         clickField(vtvActivationPage.accountButton);
     }
 
     @When("User clicks the New Order for prepaid rating type on Customer{int} search page")
     public void userClicksTheNewOrderForPrepaidRatingTypeOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.newOrderBtnOnPrepaid,10);
         clickField(vtvActivationPage.newOrderBtnOnPrepaid);
         Utils.waitFor(2);
     }
@@ -85,6 +89,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @When("User selects the Digitalb Premium Plus on Customer{int} search page")
     public void userSelectsTheDigitalbPremiumPlusonCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.digitalbPremiumPlusOption,10);
         clickField(vtvActivationPage.digitalbPremiumPlusOption);
     }
 
@@ -97,6 +102,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @When("User selects cash methods as ALL{int} {int}Month on Customer{int} search page")
     public void userSelectsCashMethodsAsALLMonthOnCustomerSearchPage(int arg0, int arg1, int arg2) {
+        Utils.waitForVisibility(vtvActivationPage.paymentOptionALL79003Month,10);
         clickField(vtvActivationPage.paymentOptionALL79003Month);
         Utils.waitFor(3);
     }
@@ -120,6 +126,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User selects the ALL{int} {int}Month option as cash option on Customer{int} search page")
     public void userSelectsTheALLMonthOptionAsCashOptionOnCustomerSearchPage(int arg0, int arg1, int arg2) {
+        Utils.waitForVisibility(vtvActivationPage.all03MonnthsForAkesFeePerDokoderPremium,10);
         clickField(vtvActivationPage.all03MonnthsForAkesFeePerDokoderPremium);
     }
 
@@ -130,11 +137,13 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User selects Tarife Instalimi from Purchasable Addons part on Customer{int} search page")
     public void userSelectsTarifeInstalimiFromPurchasableAddonsPartOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.addIconForTarifeInstalimi,10);
         clickField(vtvActivationPage.addIconForTarifeInstalimi);
     }
 
     @And("User selects ALL{int} {int}Month option as cash  method on Customer{int} search page")
     public void uaerSelectsALLMonthOptionAsCashMethodOnCustomerSearchPage(int arg0, int arg1, int arg2) {
+        Utils.waitFor(10);
         clickField(VtvActivationPage.allMonthsOptionForTarifeInstalimi);
     }
 
@@ -159,11 +168,13 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @Then("User sees the name of {string} which was selected product on VTV is in the Shopping Cart on Customer{int} search page")
     public void userSeesTheNameOfWhichWasSelectedProductOnVTVIsInTheShoppingCartOnCustomerSearchPage(String warning, int arg1) {
+        Utils.waitForVisibility(vtvActivationPage.selectedProductInShoppingCart,10);
         warningMessage(warning, vtvActivationPage.selectedProductInShoppingCart);
     }
 
     @When("User clicks the CHECKOUT button on Customer{int} search page")
     public void userClicksTheCHECKOUTButtonOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.checkoutBtn,10);
         clickField(vtvActivationPage.checkoutBtn);
     }
 
@@ -176,14 +187,14 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks the COMPLATE CHECKOUT button on Customer{int} search page")
     public void userClicksTheCOMPLATECHECKOUTButtonOnCustomerSearchPage(int arg0) {
-        Utils.waitForVisibility(vtvActivationPage.completeChecekoutBtn,15);
+        Utils.waitFor(10);
         clickField(vtvActivationPage.completeChecekoutBtn);
 
     }
 
     @Then("user sees one pop up warning as {string} on Customer{int} search page")
     public void userSeesOnePopUpWarningAsOnCustomerSearchPage(String warning, int arg1) {
-        Utils.waitForVisibility(vtvActivationPage.checkoutIsSuccessfullyCompletedMessage,10);
+        Utils.waitFor(10);
         warningMessage(warning, vtvActivationPage.checkoutIsSuccessfullyCompletedMessage);
         Utils.waitFor(10);
 
@@ -191,6 +202,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @When("User clicks the Go Back to Customer{int} button on Customer{int} search page")
     public void userClicksTheGoBackToCustomerButtonOnCustomerSearchPage(int arg0, int arg1) {
+        Utils.waitForVisibility(vtvActivationPage.goBackToCustomer360Btn,10);
         clickField(vtvActivationPage.goBackToCustomer360Btn);
     }
 
@@ -228,6 +240,7 @@ public class VtvActivationStepDefinition extends BasePage {
 
     @And("User clicks Load Tickets button on Customer{int} search page")
     public void userClicksLoadTicketsButtonOnCustomerSearchPage(int arg0) {
+        Utils.waitForVisibility(vtvActivationPage.loadTicketsOnTroubleTickets,30);
         clickField(vtvActivationPage.loadTicketsOnTroubleTickets);
         Utils.waitFor(3);
     }
@@ -277,12 +290,6 @@ public class VtvActivationStepDefinition extends BasePage {
     @And("User turns back to Customer Mangement page on Customer{int} search page")
     public void userTurnsBackToCustomerMangementPageOnCustomerSearchPage(int arg0) {
         vtvActivationPage.turningBackToCustomerManagementPage();
-
-    }
-
-    @Then("User should see the Order Status turned to completed  on Customer{int} search page")
-    public void userShouldSeeTheOrderStatusTurnedToCompletedOnCustomerSearchPage(int arg0) {
-        vtvActivationPage.verifyTheOrderStatusIsCompleted();
 
     }
 

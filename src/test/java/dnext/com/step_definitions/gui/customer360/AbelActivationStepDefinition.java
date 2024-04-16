@@ -3,6 +3,7 @@ package dnext.com.step_definitions.gui.customer360;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.customer360.AbelActivationPage;
+import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.customer360.VtvActivationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,7 @@ import org.junit.Assert;
 public class AbelActivationStepDefinition extends BasePage {
     AbelActivationPage abelActivationPage;
     VtvActivationPage vtvActivationPage;
+   VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
 
     @When("User clicks the New Order for postpaid rating type on Customer{int} search page")
     public void userClicksTheNewOrderForPostpaidRatingTypeOnCustomerSearchPage(int arg0) {
@@ -68,13 +70,6 @@ public class AbelActivationStepDefinition extends BasePage {
         warningMessage(text, abelActivationPage.selectedProductInShoppingCart);
 
     }
-
-    @Then("User should see the Order Status of Abel turned to completed  on Customer{int} search page")
-    public void userShouldSeeTheOrderStatusOfAbelTurnedToCompletedOnCustomerSearchPage(int arg0) {
-        Utils.waitFor(2);
-        abelActivationPage.verifyTheOrderStatusIsCompleted();
-    }
-
 
     @When("User enters random Abel number to Smart Card field on Product Offering Page")
     public void userEntersRandomAbelNumberToSmartCardFieldOnProductOfferingPage() {
