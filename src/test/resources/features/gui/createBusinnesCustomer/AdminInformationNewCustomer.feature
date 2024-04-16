@@ -8,7 +8,7 @@ Feature:Admin Information-New Customer Creation
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given User clicks the Admin Information button
-    Given User is on the Admin Information  page
+    Given User should see the "Admin Information" tab is opened
 
   @fillingNamesForBusinessAdmin
   Scenario:As a user,I want to enter new-not existing ID number and fill the First Name and Last Name fields into the required fields on Admin Information Page

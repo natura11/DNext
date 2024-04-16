@@ -100,15 +100,6 @@ public class GeneralInformationBusinessPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnGeneralInformationPage() {
-        try {
-            elementDisplayed(generalInformationButtonSelectedLabel);
-            Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
 
     public void verificationOfNameBox() {
         elementDisplayed(organizationNameInput);
@@ -145,6 +136,7 @@ public class GeneralInformationBusinessPage extends BasePage {
     public void fillOrganizationNameWithRandomString(){
         sendKeys(organizationNameInput,
                 customerFakerDataCreator.organizationNameFromFaker() + " AUTOMATION");
+        performKeyboardAction(Keys.TAB);
     }
 
     public void verifyDateFromCalendarOnGeneralInfo() {

@@ -80,15 +80,6 @@ public class InvoiceAccountBusinessPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnInvoiceAccountPage() {
-        try {
-            elementDisplayed(postpaidAccountTitleLabel);
-            Assert.assertTrue(postpaidAccountTitleLabel.isDisplayed());
-            log.info("Account title is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Account title is  not displaying");
-        }
-    }
 
     public void selectAnOptionFromDropdown(String paymentMethod) {
         List<WebElement> options = Driver.getDriver()

@@ -240,11 +240,6 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
         clickField(generalInformationBusinessPage.generalInformationButtonSelectedLabel);
     }
 
-    @Then("User is on the Business General Information page")
-    public void userIsOnTheBusinessGeneralInformationPage() {
-        generalInformationBusinessPage.verifyUserIsOnGeneralInformationPage();
-    }
-
     @And("User selects any communication option on General Information Page")
     public void userSelectsAnyCommunicationOptionOnGeneralInformationPage() {
         randomOptionFromDropdown();

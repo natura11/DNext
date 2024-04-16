@@ -53,7 +53,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Admin Information Page")
     public void userShouldSeeAndAndInsideOfEmailStructureOnAdminInformationPage(String dotSign, String tagSign, String email) {
-        adminInformationBusinessPage.verifyValidFormatEmail(dotSign, tagSign, email);
+        verifyValidFormatEmail(dotSign, tagSign, email);
     }
 
     @Given("User Male option from gender on Admin Information Page")

@@ -29,11 +29,6 @@ public class OtherInformationBusinessStepDefinition extends BasePage {
         Assert.assertEquals(" ConsentForm-" + fileName, otherInformationBusinessPage.nameOfUploadedFileOnOther.getText());
     }
 
-    @Then("User is on the Business Other Information page")
-    public void userIsOnTheBusinessOtherInformationPage() {
-        otherInformationBusinessPage.verifyUserIsOnOtherInformationPage();
-    }
-
     @Then("User should see the random customer data is fetched to input fields on Business Other Information Page")
     public void userShouldSeeTheRandomCustomerDataIsFetchedToInputFields() {
         otherInformationBusinessPage.verifyFetchedPersonData();

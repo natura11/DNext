@@ -61,16 +61,6 @@ public class AddressInformationBusinessPage extends BasePage {
     @FindBy(xpath = "(//span[text()='Back'])[4]//ancestor::button")
     public WebElement backButtonOnAddressInformationPage;
 
-    public void verifyUserIsOnAddressInformationPage() {
-        try {
-            elementDisplayed(billingAddressMediumType);
-            Assert.assertTrue(billingAddressMediumType.isDisplayed());
-            log.info("Address field is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Address field is  not displaying");
-        }
-    }
-
     public void verifyInputElementsNonEditable(WebElement webElement) {
         String isReadOnly = webElement.getAttribute("readonly");
         Assert.assertEquals("true", isReadOnly);

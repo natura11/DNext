@@ -96,15 +96,6 @@ public class AdminInformationBusinessPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnAdminInformationPage() {
-        try {
-            if (adminInformationIcon.isDisplayed())
-                log.info("Icon is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Icon is  not displaying");
-        }
-    }
-
     public void clickIdentificationNumberField() {
         Utils.waitForPageToLoad();
         Utils.click(identificationNumberField);

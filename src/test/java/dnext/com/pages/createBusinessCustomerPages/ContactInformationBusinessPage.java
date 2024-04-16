@@ -83,16 +83,6 @@ public class ContactInformationBusinessPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnContactInformationPage() {
-        try {
-            elementDisplayed(typeOfContactDropdown);
-            Assert.assertTrue(typeOfContactDropdown.isDisplayed());
-            log.info("Type of Contact is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Type of Contact field is  not displaying");
-        }
-    }
-
     public void randomTypeOfContactOptionExceptNone() {
         List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));
         if (!options.isEmpty()) {
