@@ -9,7 +9,7 @@ Feature:New Individual Customer -Search Individual
     Given  User clicks Create Individual Customer on Home page
 
   Scenario: As a user I want  to click Create Individual Customer
-    Then  User should see the "New Individual Customer" header on screen on Create Individual Customer page
+    Then  User should see the "New Individual Customer" header on screen on Create Customer page
 
   Scenario: As a user I want to enter an-existing individual customer with identification ID
     Given User enters "AA050FC6046ECC1" existing identification ID in to identification number field on Create Individual Customer page

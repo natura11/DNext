@@ -7,7 +7,7 @@ Feature:New Individual Customer-Customer Creation
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
     When   User clicks Create Individual Customer on Home page
-    Then   User should see the "New Individual Customer" header on screen on Create Individual Customer page
+    Then   User should see the "New Individual Customer" header on screen on Create Customer page
 
   @individualAlbanianCustomerCreation @smoke
   Scenario: As a user I want to create an Albanian Individual Customer

@@ -1,7 +1,7 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinessCustomerPages.CreateBusinessCustomerCommonPage;
+import dnext.com.pages.CreateCustomerCommonPage;
 import dnext.com.pages.createBusinessCustomerPages.SearchOrganizationBusinessPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SearchOrganizationBusinessStepDefinition extends BasePage {
     private SearchOrganizationBusinessPage searchOrganizationBusinessPage;
-    private CreateBusinessCustomerCommonPage createBusinessCustomerCommonPage;
+    private CreateCustomerCommonPage createCustomerCommonPage;
 
     @Given("User opens Create Business Customer page on Home page")
     public void user_opens_create_business_customer_page_on_home_page() throws InterruptedException {
@@ -26,9 +26,9 @@ public class SearchOrganizationBusinessStepDefinition extends BasePage {
         searchOrganizationBusinessPage.getCurrentUrl(pageUrl);
     }
 
-    @Given("User should see the {string} header on screen on Create Business Customer page")
+    @Given("User should see the {string} header on screen on Create Customer page")
     public void user_should_see_the_header_on_screen_on_create_business_customer_page(String header) {
-        createBusinessCustomerCommonPage.VerificationNewBusinessCustomerHeader(header);
+        createCustomerCommonPage.verificationCustomerHeader(header);
     }
 
     @Given("User selects the Albanian Customer from the dropdown on Search Organization page")
@@ -76,11 +76,6 @@ public class SearchOrganizationBusinessStepDefinition extends BasePage {
         searchOrganizationBusinessPage.nextBtnClickOnSearchPage();
     }
 
-    @Then("User should see the {string} header on General Information  page")
-    public void userShouldSeeTheHeaderOnGeneralInformationPage(String header) {
-        createBusinessCustomerCommonPage.controlTab(header);
-    }
-
     @Given("User selects the Foreign Customer from the dropdown on Search Organization page")
     public void userSelectsTheForeignCustomerFromTheDropdownOnSearchOrganizationPage() {
         searchOrganizationBusinessPage.selectOfForeignCustomerType();
@@ -89,11 +84,6 @@ public class SearchOrganizationBusinessStepDefinition extends BasePage {
     @When("User fills in the NIPT field with  NIPT numbers on Search Organization page")
     public void userFillsInTheNIPTFieldWithNIPTNumbersOnSearchOrganizationPage() {
         searchOrganizationBusinessPage.fillNIPTFieldWithRandomForeignNumber();
-    }
-
-    @Then("User should see the {string} text on General Information page")
-    public void userShouldSeeTheTextOnGeneralInformationPage(String header) {
-        createBusinessCustomerCommonPage.controlTab(header);
     }
 
     @When("User enters random NIPT for ALBANIAN to the NIPT number field on Search Organization page")

@@ -7,7 +7,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
@@ -238,11 +237,6 @@ public class GeneralInformationBusinessStepDefinition extends BasePage {
     @When("User clicks the General Information button for Business")
     public void userClicksTheGeneralInformationButtonForBusiness() {
         clickField(generalInformationBusinessPage.generalInformationButtonSelectedLabel);
-    }
-
-    @Then("User is on the Business General Information page")
-    public void userIsOnTheBusinessGeneralInformationPage() {
-        generalInformationBusinessPage.verifyUserIsOnGeneralInformationPage();
     }
 
     @And("User selects any communication option on General Information Page")

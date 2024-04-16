@@ -41,12 +41,6 @@ public class SearchIndividualPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public  void verificationNewIndividualCustomerHeader(String header) {
-        elementDisplayed(newIndividualCustomerHeaderOnHomePage);
-        String actualHeader = newIndividualCustomerHeaderOnHomePage.getText().trim();
-        Assert.assertEquals(header,actualHeader);
-    }
-
     public void verifyUserIsOnSearchIndividualPage() {
         try {
             Assert.assertTrue(searchIndividualButtonSelectedLabel.isDisplayed());

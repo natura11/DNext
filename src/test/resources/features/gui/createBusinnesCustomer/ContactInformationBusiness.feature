@@ -8,19 +8,19 @@ Feature:New Business Customer-Contact Information
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given User clicks the Contact Information button
-    Given User is on the Contact Information page
+    Given User should see the "Contact Information" tab is opened
 
   @continueWithoutAddingContactForBusinessContact
   Scenario: As a user I want to continue without adding any Contact on Contact Information Page
-    Given User is on the Contact Information page
+    Given User should see the "Contact Information" tab is opened
     And   User clicks Next button on Contact Information Page
-    Then  User is on the Address Information Page
+    Then  User should see the "Address Information" tab is opened
 
   @backToPreviousPageWithoutAddingContactForBusinessContact
   Scenario: As a user I want to go previous page without adding any Contact on Contact Information Page
-    Given User is on the Contact Information page
+    Given User should see the "Contact Information" tab is opened
     And   User clicks Back button on Contact Information Page
-    Then  User should see the Admin Information Page
+    Then  User should see the "Admin Information" tab is opened
 
   @fillPhoneNumberWithDifferentCountryForBusinessContact
   Scenario: As a user I want to select different country and numbers except Albanian numbers on Contact Information Page
@@ -93,7 +93,7 @@ Feature:New Business Customer-Contact Information
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Contact Information Page
     Then  User should see that background is not red for the email field on Contact Information Page
     And   User clicks Next button on Contact Information Page
-    Then  User is on the Address Information Page
+    Then  User should see the "Address Information" tab is opened
 
     Examples:
       | Contact Type        |
@@ -142,4 +142,4 @@ Feature:New Business Customer-Contact Information
     Then  User should see "." and "@" and "abc123@gmail.com" inside of additional email structure on Contact Information Page
     Then  User should see that additional background is not red for the email field on Contact Information Page
     And   User clicks Next button on Contact Information Page
-    Then  User is on the Address Information Page
+    Then  User should see the "Address Information" tab is opened

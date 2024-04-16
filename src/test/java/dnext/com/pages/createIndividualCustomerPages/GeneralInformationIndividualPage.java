@@ -116,21 +116,6 @@ public class GeneralInformationIndividualPage extends BasePage {
         beratCityFromPlaceOfBirthDropdown.click();
     }
 
-    public void communicationMethodDropdownSelectableOnIndividual() {
-        isDropdownSelectable();
-    }
-
-    public void communicationMethodOptionFromDropdownOnIndividual() {
-        randomOptionFromDropdown();
-    }
-
-    public void segmentDropdownSelectableOnIndividual() {
-        isDropdownSelectable();
-    }
-
-    public void segmentOptionFromDropdownOnIndividual() {
-        randomOptionFromDropdown();
-    }
 
     public void fillFirstNameWithRandomString(){
         sendKeys(firstNameFieldOn,

@@ -9,8 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
-
 @Log4j2
 public class GeneralInformationBusinessPage extends BasePage {
 
@@ -100,15 +98,6 @@ public class GeneralInformationBusinessPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnGeneralInformationPage() {
-        try {
-            elementDisplayed(generalInformationButtonSelectedLabel);
-            Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
 
     public void verificationOfNameBox() {
         elementDisplayed(organizationNameInput);
@@ -145,6 +134,7 @@ public class GeneralInformationBusinessPage extends BasePage {
     public void fillOrganizationNameWithRandomString(){
         sendKeys(organizationNameInput,
                 customerFakerDataCreator.organizationNameFromFaker() + " AUTOMATION");
+        performKeyboardAction(Keys.TAB);
     }
 
     public void verifyDateFromCalendarOnGeneralInfo() {

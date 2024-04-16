@@ -29,7 +29,7 @@ Feature:New Business Customer-Other Information
     And   User adds a "document.jpg" of which format is image on general information page
     And   User should see the name of "document.jpg" added jpg document on the screen on general information page
     And   User clicks the Next button on general information page
-    Then  User is on the Admin Information  page
+    Then  User should see the "Admin Information" tab is opened
     When  User clicks on the Identification Number field on Admin Information Page
     When  User enters one non existing valid "C84353649W" ID number into the Identification Number field on Admin Information page
     Then  User should see "Please click search icon!" warning under the Identification Number field on Admin Information Page
@@ -50,14 +50,14 @@ Feature:New Business Customer-Other Information
     And   User should select "BERAT" option in the City dropdown on Address Information Page
     Then  User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
     And   User clicks Next button on Address Information Page
-    Then  User is on the Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
     And   User clicks mobile phone number field on Invoice Account page
     And   User enters valid "698933127" into the phone number field on Invoice Account page
     And   User clicks email field on Invoice Account page
     And   User enters valid "ABC@ABC.COM" in to the email field on Invoice Account page
     And   User clicks Next button on Invoice Account page
     And   User clicks the General Information button for Business
-    Then  User is on the Business General Information page
+    Then  User should see the "General Information" tab is opened
     Then  User should see the random customer data is fetched to input fields on Business Other Information Page
 
   @clickGenerateFormForBusinessOther

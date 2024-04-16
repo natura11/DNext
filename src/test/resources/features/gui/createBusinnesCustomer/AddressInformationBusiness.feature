@@ -8,20 +8,20 @@ Feature:New Business Customer-Address Information
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given  User clicks the Address Information button
-    Given  User is on the Address Information Page
+    Given  User should see the "Address Information" tab is opened
 
   @continueWithoutAddingAddressForBusinessAddress
   Scenario: As a user I want to continue without adding any Address on Address Information Page
-    Given User is on the Address Information Page
+    Given User should see the "Address Information" tab is opened
     And   User clicks Next button on Address Information Page
-    Then  User is on the Address Information Page
+    Then  User should see the "Address Information" tab is opened
     Then  User sees the Address Line 1 is required on Address Information Page
 
   @backToPreviousPageWithoutAddingAddressForBusinessAddress
   Scenario: As a user I want to go previous page without adding any Address on Address Information Page
-    Given User is on the Address Information Page
+    Given User should see the "Address Information" tab is opened
     And   User clicks Back button on Address Information Page
-    Then  User is on the Contact Information page
+    Then  User should see the "Contact Information" tab is opened
 
   @fillingInputFieldsForBusinessAddress
   Scenario: As a user I want to fill Address Line 1,2 and Post Code on Address Information Page
@@ -67,7 +67,7 @@ Feature:New Business Customer-Address Information
     When  User clicks City dropdown on Address Information Page
     And   User should select "BERAT" option in the City dropdown on Address Information Page
     And   User clicks Next button on Address Information Page
-    Then  User is on the Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
   @enteringDifferentServiceAddressForBusinessAddress
   Scenario: As a user I want to enter a different service address on Address Information Page
@@ -96,4 +96,4 @@ Feature:New Business Customer-Address Information
     When User clicks City dropdown for Service Address on Address Information Page
     Then  User should select "BERAT" option in the City dropdown for Service Address on Address Information Page
     And   User clicks Next button on Address Information Page
-    Then  User is on the Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened

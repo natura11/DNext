@@ -25,11 +25,6 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     }
 
-    @Given("User should see the {string} header on screen on Create Individual Customer page")
-    public void user_should_see_the_header_on_screen_on_create_ındividual_customer_page(String string) {
-        searchIndividualPage.verificationNewIndividualCustomerHeader(string);
-    }
-
     @Given("User enters {string} existing identification ID in to identification number field on Create Individual Customer page")
     public void userEntersIdentificationIDInToIdentificationNumberFieldOnCreateIndividualCustomerPage(String idNumber) {
         sendKeys(searchIndividualPage.identificationNumberBtnOnSearchIndividualHomePage, idNumber);

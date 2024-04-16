@@ -2,10 +2,8 @@ package dnext.com.pages.createBusinessCustomerPages;
 
 import com.utilities.CustomerFakerDataCreator;
 import com.utilities.Driver;
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -82,16 +80,6 @@ public class ContactInformationBusinessPage extends BasePage {
     public WebElement backButtonOnContactInformationPage;
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
-
-    public void verifyUserIsOnContactInformationPage() {
-        try {
-            elementDisplayed(typeOfContactDropdown);
-            Assert.assertTrue(typeOfContactDropdown.isDisplayed());
-            log.info("Type of Contact is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Type of Contact field is  not displaying");
-        }
-    }
 
     public void randomTypeOfContactOptionExceptNone() {
         List<WebElement> options = Driver.getDriver().findElements(By.xpath("//*[@class='mat-option-text']"));

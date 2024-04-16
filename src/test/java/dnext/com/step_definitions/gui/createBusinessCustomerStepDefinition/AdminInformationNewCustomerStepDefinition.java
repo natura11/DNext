@@ -1,6 +1,5 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.createBusinessCustomerPages.AdminInformationBusinessPage;
 import io.cucumber.java.en.And;
@@ -9,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.Keys;
 
 @AllArgsConstructor
 @Log4j2
@@ -53,7 +51,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @Then("User should see {string} and {string} and {string} inside of email structure on Admin Information Page")
     public void userShouldSeeAndAndInsideOfEmailStructureOnAdminInformationPage(String dotSign, String tagSign, String email) {
-        adminInformationBusinessPage.verifyValidFormatEmail(dotSign, tagSign, email);
+        verifyValidFormatEmail(dotSign, tagSign, email);
     }
 
     @Given("User Male option from gender on Admin Information Page")

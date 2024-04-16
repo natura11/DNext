@@ -18,11 +18,6 @@ public class InvoiceAccountBusinessStepDefinition extends BasePage {
         clickField(invoiceAccountBusinessPage.invoiceAccountButton);
     }
 
-    @Given("User is on the Invoice Account page")
-    public void userIsOnTheInvoiceAccountPage() {
-        invoiceAccountBusinessPage.verifyUserIsOnInvoiceAccountPage();
-    }
-
     @And("User clicks Next button on Invoice Account page")
     public void userClicksNextButtonOnInvoiceAccountPage() {
         clickField(invoiceAccountBusinessPage.nextButtonOnInvoiceAccountPage);
