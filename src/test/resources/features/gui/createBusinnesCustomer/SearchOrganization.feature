@@ -8,7 +8,7 @@ Feature:New Business Customer-Search Organization
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given  User should see the "customer/create-enterprise-customer" on Create Business Customer page
-    Given  User should see the "New Business Customer" header on screen on Create Business Customer page
+    Given User should see the "New Business Customer" header on screen on Create Customer page
 
   @smoke @existingNiptNumberForBusinessSearch
   Scenario:As a user,I want to search customer by using existing NIPT numbers on Search Organization Page
@@ -31,7 +31,7 @@ Feature:New Business Customer-Search Organization
     And    User clicks the Search button on Search Organization page
     And    User is not allowed to use the search button on Search Organization page
     And    User clicks the Next button on Search Organization page
-    Then   User should see the "General Information" header on General Information  page
+    Then   User should see the "General Information" tab is opened
 
   @smoke @selectForeignCustomerForBusinessSearch
   Scenario: As a user,I want to search customer by selecting Foreign Customer on Search Organization Page
@@ -40,4 +40,4 @@ Feature:New Business Customer-Search Organization
     And    User clicks the Search button on Search Organization page
     And    User checks the NIPT is usable or not on Search Business page
     And    User clicks the Next button on Search Organization page
-    Then   User should see the "General Information" header on General Information  page
+    Then   User should see the "General Information" tab is opened

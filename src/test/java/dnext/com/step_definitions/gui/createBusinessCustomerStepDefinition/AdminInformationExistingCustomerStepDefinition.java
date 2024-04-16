@@ -24,11 +24,6 @@ public class AdminInformationExistingCustomerStepDefinition extends BasePage {
         Utils.click(adminInformationBusinessPage.adminInformationButton);
     }
 
-    @Given("User is on the Admin Information  page")
-    public void user_is_on_the_page() {
-        adminInformationBusinessPage.verifyUserIsOnAdminInformationPage();
-    }
-
     @And("User clicks on the Identification Number field on Admin Information Page")
     public void userClicksOnTheIdentificationNumberField() {
         adminInformationBusinessPage.clickIdentificationNumberField();

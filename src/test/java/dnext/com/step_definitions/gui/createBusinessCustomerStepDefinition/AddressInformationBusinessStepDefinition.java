@@ -20,10 +20,6 @@ public class AddressInformationBusinessStepDefinition extends BasePage {
         clickField(addressInformationBusinessPage.addressInformationButton);
     }
 
-    @Then("User is on the Address Information Page")
-    public void userShouldSeeTheAddressInformationPage() {
-        addressInformationBusinessPage.verifyUserIsOnAddressInformationPage();
-    }
 
     @And("User clicks Next button on Address Information Page")
     public void userClicksNextButtonOnAddressInformationPage() {

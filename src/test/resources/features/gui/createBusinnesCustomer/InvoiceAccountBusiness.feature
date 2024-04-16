@@ -8,21 +8,21 @@ Feature:New Business Customer-Invoice Account
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given User clicks the Invoice Account button
-    Given User is on the Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
 
   @continueWithoutAddingInvoiceAccountForBusinessInvoice
   Scenario: As a user I want to continue without adding any Account on Invoice Account Page
-    Given User is on the Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
     And   User clicks Next button on Invoice Account page
-    Then  User is on the Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
     Then  User sees the Ebill Email is required on Invoice Account page
     Then  User sees the Ebill Mobile Number is required on Invoice Account page
 
   @backToPreviousPageWithoutInvoiceAccountForBusinessInvoice
   Scenario: As a user I want to go previous page without adding any Account on Invoice Account Page
-    Given User is on the Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
     And   User clicks Back button on Invoice Account page
-    Then  User is on the Address Information Page
+    Then  User should see the "Address Information" tab is opened
 
   @selectionOptionFromCurrencyDropdownAndDescriptionForBusinessInvoice
   Scenario: As a user I want to select one option from Currency dropdown

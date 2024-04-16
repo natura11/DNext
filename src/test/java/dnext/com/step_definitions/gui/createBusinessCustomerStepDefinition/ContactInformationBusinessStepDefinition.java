@@ -23,11 +23,6 @@ public class ContactInformationBusinessStepDefinition extends BasePage {
         clickField(contactInformationBusinessPage.contactInformationButton);
     }
 
-    @Given("User is on the Contact Information page")
-    public void userIsOnTheContactInformationPage() {
-        contactInformationBusinessPage.verifyUserIsOnContactInformationPage();
-    }
-
     @And("User clicks Next button on Contact Information Page")
     public void userClicksNextButtonOnContactInformationPage() {
         clickField(contactInformationBusinessPage.nextButtonOnContactInformationPage);
@@ -38,10 +33,6 @@ public class ContactInformationBusinessStepDefinition extends BasePage {
         clickField(contactInformationBusinessPage.backButtonOnContactInformationPage);
     }
 
-    @Then("User should see the Admin Information Page")
-    public void userShouldSeeTheAdminInformationPage() {
-        adminInformationBusinessPage.verifyUserIsOnAdminInformationPage();
-    }
 
     @Given("User should see the Type of Contact dropdown on Contact Information Page")
     public void userShouldSeeTheTypeOfContactDropdown() {

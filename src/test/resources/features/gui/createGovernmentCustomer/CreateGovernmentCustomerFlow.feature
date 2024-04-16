@@ -1,19 +1,19 @@
-@VFALFT-23470 @smoke @regression @BusinessCustomerCreation
-Feature:New Business Customer-Customer Creation
+@VFALFT-15818 @smoke @regression @GovernmentCustomerCreation
+Feature:New Government Customer-Customer Creation
 
   Background:
     Given  I have opened the "Customer Management" application
     Given  I enter a value "gerta.vathi" in the Username or email field on Sign In page
     Given  I enter a value "1234" in the Password field on Sign In page
     Given  I click the Sign in button on Sign In page
-    Given  User opens Create Business Customer page on Home page
-    Then   User should see the "New Business Customer" header on screen on Create Customer page
+    Given  User opens Create Government Customer page on Home page
+    Then   User should see the "New Government Customer" header on screen on Create Customer page
 
-  @BusinessAlbanianCustomerCreation @smoke
-  Scenario: As a user I want to create an Albanian Business  Customer
+  @GovernmentCustomerCreation @smoke
+  Scenario: As a user I want to create a Government Customer
     When  User enters random NIPT for ALBANIAN to the NIPT number field on Search Organization page
     And   User clicks the Search button on Search Organization page
-    And   User checks the NIPT is usable or not on Search Business page
+    And   User checks the NIPT is usable or not on Search Government page
     Then  User should see the random NIPT is new for ALBANIAN on Search Business page
     And   User clicks the Next button on Search Organization page
 
@@ -24,7 +24,7 @@ Feature:New Business Customer-Customer Creation
     Then  User should see the Company Name is autofilled with organization name on Business General Information page
     When  User clicks Segment dropdown on general information page
     And   User should selects any options in the Segment dropdown on general information page
- #   Then  User should selects "Corporate" option in the Segment dropdown on general information page
+#    Then  User should selects "Corporate" option in the Segment dropdown on general information page
     And   User clicks Tax Exempt dropdown on general information page
     And   User should selects any option in the Tax Exempt dropdown on general information page
     And   User enters random email on Business General Information page
@@ -101,7 +101,6 @@ Feature:New Business Customer-Customer Creation
     And   User clicks Next button on Invoice Account page
 
     Then  User should see the "Other Information" tab is opened
-
     When  User clicks the General Information button for Business
     Then  User should see the "General Information" tab is opened
     Then  User should see the random customer data is fetched to input fields on Business Other Information Page

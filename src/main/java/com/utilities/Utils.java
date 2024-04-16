@@ -41,6 +41,7 @@ public class Utils {
     }
 
     public static void click(WebElement element) {
+        waitForVisibility(element, GLOBAL_TIME_OUT);
         highlightElement(element);
         waitForClickablility(element).click();
         waitForPageToLoad();

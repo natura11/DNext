@@ -173,7 +173,7 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in Communication Method dropdown ara selectable on New Individual Customer page")
     public void userShouldEnsureEachOptionsInCommunicationMethodDropdownAraSelectableOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.communicationMethodDropdownSelectableOnIndividual();
+        isDropdownSelectable();
     }
 
     @And("User clicks next Button in General Information on New Individual Customer page")
@@ -188,12 +188,12 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
 
     @And("User should ensure each options in Segment dropdown are selectable on New Individual Customer page")
     public void userShouldEnsureEachOptionsInSegmentDropdownAreSelectableOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.segmentDropdownSelectableOnIndividual();
+        isDropdownSelectable();
     }
 
     @Then("User should selects any options in the Segment dropdown on New Individual Customer page")
     public void userShouldSelectsAnyOptionsInTheSegmentDropdownOnNewIndividualCustomerPage() {
-        generalInformationIndividualPage.segmentOptionFromDropdownOnIndividual();
+        randomOptionFromDropdown();
     }
 
     @Then("User is on the Individual General Information page")

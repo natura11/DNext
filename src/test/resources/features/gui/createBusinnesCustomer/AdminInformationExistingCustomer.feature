@@ -8,7 +8,7 @@ Feature: Existing Customer-Admin Information-Existing Customer
     Given  I click the Sign in button on Sign In page
     Given  User opens Create Business Customer page on Home page
     Given User clicks the Admin Information button
-    Given User is on the Admin Information  page
+    Given User should see the "Admin Information" tab is opened
     And   User clicks on the Identification Number field on Admin Information Page
     When  User enters one existing "M12345678C" ID number into the Identification Number field on Admin Information page
 
@@ -52,7 +52,7 @@ Feature: Existing Customer-Admin Information-Existing Customer
     Then  User should see the name of "pdfSample.pdf" added jpg document on the screen on Admin Information Page
     And   User enters "alibaba11@gmail.com" on email field  and "624687659" to the phone number field
     And   User clicks next Button on Admin Information Page
-    Then  User is on the Contact Information page
+    Then  User should see the "Contact Information" tab is opened
 
 
 

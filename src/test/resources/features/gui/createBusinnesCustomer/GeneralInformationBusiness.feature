@@ -12,7 +12,7 @@ Feature:New Business Customer-General Information
     Then   User clicks the Search button on Search Organization page
     And   User checks the NIPT is usable or not on Search Business page
     And    User clicks the Next button on Search Organization page
-    Then   User should see the "General Information" header on General Information  page
+    Then   User should see the "General Information" tab is opened
 
   @selectionOptionFrmIndustryDropForBusinessGeneral
   Scenario: As a user I want to select one option from Industry dropdown

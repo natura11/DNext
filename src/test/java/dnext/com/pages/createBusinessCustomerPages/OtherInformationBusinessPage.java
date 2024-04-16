@@ -1,20 +1,14 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
-import com.github.javafaker.Faker;
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.CreateCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -70,15 +64,8 @@ public class OtherInformationBusinessPage extends BasePage {
     public WebElement selectedIndustryOption;
 
 
-    public void verifyUserIsOnOtherInformationPage() {
-        try {
-            elementDisplayed(otherInformationButtonSelectedLabel);
-            Assert.assertEquals("true", otherInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
+    CreateCustomerCommonPage createCustomerCommonPage = new CreateCustomerCommonPage();
+
 
     private Map<String, String> pickPersonalData() {
         clickField(generalInformationButton);
@@ -102,7 +89,7 @@ public class OtherInformationBusinessPage extends BasePage {
         Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
 
         clickField(otherInformationButtonSelectedLabel);
-        verifyUserIsOnOtherInformationPage();
+        createCustomerCommonPage.verifyInCorrectTab("Other Information");
         Utils.waitFor(1);
         Assert.assertEquals(fetchedDataMap.get("Company Name"),
                 getValueByMouseKeyboardAction(companyNameOnOtherInformation));
