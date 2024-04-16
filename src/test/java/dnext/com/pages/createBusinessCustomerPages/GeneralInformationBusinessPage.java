@@ -123,6 +123,7 @@ public class GeneralInformationBusinessPage extends BasePage {
     }
 
     public void verifyEnterInvalidFormatMobilePhoneNumber(String mobile, String message) {
+        mobilePhoneNumberBox.clear();
         Utils.sendKeys(mobilePhoneNumberBox, mobile + Keys.TAB);
         Assert.assertEquals(message, warningMessageTextForInvalidAlbanianPhoneNumber.getText());
     }

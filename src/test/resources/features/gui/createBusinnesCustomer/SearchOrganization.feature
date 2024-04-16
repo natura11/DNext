@@ -38,5 +38,6 @@ Feature:New Business Customer-Search Organization
     Given  User selects the Foreign Customer from the dropdown on Search Organization page
     When   User fills in the NIPT field with  NIPT numbers on Search Organization page
     And    User clicks the Search button on Search Organization page
+    And    User checks the NIPT is usable or not on Search Business page
     And    User clicks the Next button on Search Organization page
     Then   User should see the "General Information" header on General Information  page
