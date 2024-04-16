@@ -1,10 +1,7 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.createBusinessCustomerPages.GeneralInformationBusinessPage;
 import dnext.com.pages.createBusinessCustomerPages.OtherInformationBusinessPage;
-import dnext.com.pages.createBusinessCustomerPages.SearchOrganizationBusinessPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;

@@ -1,22 +1,14 @@
 package dnext.com.pages.createBusinessCustomerPages;
 
-import com.github.javafaker.Faker;
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.CreateCustomerCommonPage;
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;

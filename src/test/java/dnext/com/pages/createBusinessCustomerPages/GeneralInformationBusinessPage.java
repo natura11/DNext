@@ -9,8 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.apache.hc.client5.http.utils.DateUtils.formatDate;
-
 @Log4j2
 public class GeneralInformationBusinessPage extends BasePage {
 
