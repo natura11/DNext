@@ -17,18 +17,17 @@ Feature:Admin Information-New Customer Creation
     Then User cannot see the red warning background colour after entering the the name into the name field on Admin Information Page
 
   @fillingEmailsForBusinessAdmin
-  Scenario Outline: As a user I want to enter invalid and valid characters based email into email field on Admin Information Page
+  Scenario: As a user I want to enter invalid and valid characters based email into email field on Admin Information Page
     Given User clicks email field on  Admin Information Page
-    And   User enters "<emails>" on on Admin Information Page
+    And   User enters "abcgmailcom" on on Admin Information Page
+    And   User should see that background is red on on Admin Information Page
+    And   User enters "emails@com" on on Admin Information Page
+    And   User should see that background is red on on Admin Information Page
+    And   User enters "emails@123.c" on on Admin Information Page
     And   User should see that background is red on on Admin Information Page
     Given User enters valid "abc123@gmail.com" in to the email field on  Admin Information Page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Admin Information Page
 
-    Examples:
-      | emails       |
-      | abcgmailcom  |
-      | emails@com   |
-      | emails@123.c |
 
   @fillingOtherFieldsForBusinessAdmin
   Scenario:As a user I want to fill the gender,birth date ,citizenship, country ,place of birth fields and work phone number into the related fields on Admin Information Page

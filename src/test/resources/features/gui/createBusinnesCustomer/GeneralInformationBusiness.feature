@@ -38,38 +38,34 @@ Feature:New Business Customer-General Information
     And   User should ensure each options in Communication Method dropdown ara selectable on general information page
     Then  User selects any communication option on General Information Page
 
-  @invalidEmailInsertForBusinessGeneral
-  Scenario Outline: As a user I want to enter invalid and invalid  characters based email into email field
+  @invalidAndValidEmailInsertForBusinessGeneral
+  Scenario: As a user I want to enter invalid and invalid  characters based email into email field
     Given User clicks email field on general information page
-    And   User enters "<emails>" on general information page
+    And   User enters "abcgmailcom" on general information page
+    And   User should see that background is red for email field
+    And   User enters "emails@com" on general information page
+    And   User should see that background is red for email field
+    And   User enters "emails@123.c" on general information page
     And   User should see that background is red for email field
     Given User enters valid "abc123@gmail.com" in to the email field on general information page
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on general information page
 
-    Examples:
-      | emails       |
-      | abcgmailcom  |
-      | emails@com   |
-      | emails@123.c |
-
 
   @selectOptionCountryDrpAlbaniaForBusinessGeneral
-  Scenario Outline: As a user I want to select one option from Country dropdown with Albania number and numbers except Albanian numbers
+  Scenario: As a user I want to select one option from Country dropdown with Albania number and numbers except Albanian numbers
     Given User clicks Country Code dropdown on general information page
     Then  User should selects +355 option from country code dropdown on general information page
     And   User clicks mobile phone numbers field on general information page
-    And   User enters invalid "<invalidMobile>" phone numbers and should see "Phone number must be like 6XXXXXXXX !" under mobile phone number field on general information page
+    And   User enters invalid "61234567" phone numbers and should see "Phone number must be like 6XXXXXXXX !" under mobile phone number field on general information page
+    And   User clicks mobile phone numbers field on general information page
+    And   User enters invalid "512345678" phone numbers and should see "Phone number must be like 6XXXXXXXX !" under mobile phone number field on general information page
+    And   User clicks mobile phone numbers field on general information page
+    And   User enters invalid "41234567" phone numbers and should see "Phone number must be like 6XXXXXXXX !" under mobile phone number field on general information page
     Given User clicks Country Code dropdown on general information page
     Then  User should selects +213 option from country code dropdown except Albania and clicks mobile phone numbers field on general information page
     And   User enters no number into the mobile phone number field and should see "Phone number is required !" warning message on phone field on general information page
     And   User enters mobile phone number "12346678910" with other country code except Albania on general information page
-
-    Examples:
-      | invalidMobile |
-      | 61234567      |
-      | 512345678     |
-      | 41234567      |
-
+    
   @issuingDateGeneralInformationForBusinessGeneral
   Scenario: As a user I want to fill in the Issuing date field to ensure that the selected date is enabled and selectable on general information page
     Given User clicks Issuing Date field and enters invalid date on General Information page

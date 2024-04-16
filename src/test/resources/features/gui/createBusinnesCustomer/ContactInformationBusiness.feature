@@ -38,8 +38,8 @@ Feature:New Business Customer-Contact Information
     And   User enters mobile phone number "12346678910" with other country code except Albania on Contact Information page
     Then  User should not see the warning message on phone field on Contact Information page
 
-  @fillInvalidPhoneNumberWithAlbaniaCountryForBusinessContact
-  Scenario: As a user I want to select Albania and enter invalid numbers on Contact Information Page
+  @fillInvalidAndValidPhoneNumberWithAlbaniaCountryForBusinessContact
+  Scenario: As a user I want to select Albania and enter invalid and valid numbers on Contact Information Page
     Given User should see the Type of Contact dropdown on Contact Information Page
     And   User clicks Type of Contact dropdown on Contact Information Page
     And   User selects "Contact Person" option in the Contact dropdown on Contact Information Page
@@ -54,17 +54,6 @@ Feature:New Business Customer-Contact Information
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Contact Information page
     And   User enters invalid "41234567" phone numbers on Contact Information Page
     Then  User should see "Phone number must be like 6XXXXXXXX !" message under mobile phone number field on Contact Information page
-
-  @fillValidPhoneNumberWithAlbaniaCountryForBusinessContact
-  Scenario: As a user I want to select Albania and enter valid numbers on Contact Information Page
-    Given User should see the Type of Contact dropdown on Contact Information Page
-    And   User clicks Type of Contact dropdown on Contact Information Page
-    And   User selects "Contact Person" option in the Contact dropdown on Contact Information Page
-    Then  User should see Country Code dropdown on Contact Information Page
-    Then  User should see Mobile Phone Number textbox on Contact Information Page
-    Given User clicks Country Code dropdown Contact Information Page
-    When  User selects "+355" option in the Country Code dropdown on Contact Information page
-    And   User clicks mobile phone number field on Contact Information page
     And   User enters valid "628641593" into the phone number field on Contact Information page
     Then  User should not see the warning message on phone field on Contact Information page
 

@@ -104,6 +104,31 @@ public class ContactInformationIndividualPage extends BasePage {
     @FindBy(xpath = "(//span[text()='Back'])[3]//ancestor::button")
     public WebElement backButtonOnContactInformationPage;
 
+    @FindBy(xpath = "//mat-icon[text()='remove']" +
+            "//following::*[@formcontrolname='PartyRole']")
+    public WebElement additionalTypeOfAuthorizationDropdown;
+    @FindBy(xpath = "//mat-icon[text()='remove']" +
+            "//following::*[@formcontrolname='PersonalIdWithName']")
+    public WebElement additionalIdentificationNumberInputWithName;
+    @FindBy(xpath = "//mat-icon[text()='remove']" +
+            "//following::*[@formcontrolname='GivenName']")
+    public WebElement additionalFirstNameInput;
+    @FindBy(xpath = "//mat-icon[text()='remove']" +
+            "//following::*[@formcontrolname='FamilyName']")
+    public WebElement additionalLastNameInput;
+    @FindBy(xpath = "(//input[@formcontrolname='birthDate'])[3]")
+    public WebElement additionalBirthDateInput;
+    @FindBy(xpath = "(//mat-select[@formcontrolname='gender'])[3]")
+    public WebElement additionalGenderDropdown;
+    @FindBy(xpath = "(//mat-select[@formcontrolname='citizenShip'])[3]")
+    public WebElement additionalCitizenshipDropdown;
+    @FindBy(xpath = "(//button[@aria-label='Add Document'])[2]")
+    public WebElement additionalDocumentAddButton;
+    @FindBy(xpath = "(//input[@id='fileInput'])[2]")
+    public WebElement additionalDocumentUploadField;
+    @FindBy(xpath = "(//p[contains(text(), 'Attorney Letter for ID')]/following-sibling::div/div[1])[2]")
+    public WebElement additionalDocumentNameText;
+
     public void verifyUserIsOnContactInformationPage() {
         try {
             elementDisplayed(typeOfAuthorizationDropdown);
@@ -114,8 +139,8 @@ public class ContactInformationIndividualPage extends BasePage {
         }
     }
 
-    public void verifyCitizenshipStatus(boolean enabled) {
-        String isDisabled = citizenshipDropdown.getAttribute("aria-disabled");
+    public void verifyCitizenshipStatus(WebElement webElement, boolean enabled) {
+        String isDisabled = webElement.getAttribute("aria-disabled");
         if (!enabled) {
             Assert.assertEquals("true", isDisabled);
         } else {
@@ -141,9 +166,9 @@ public class ContactInformationIndividualPage extends BasePage {
         }
     }
 
-    public void verifyUploadedLetterOfAttorneyDocument(String fileName) {
-        Utils.waitForVisibility(documentNameText, 3);
-        Assert.assertEquals("AttorneyLetter-" + fileName, documentNameText.getText().trim());
+    public void verifyUploadedLetterOfAttorneyDocument(WebElement webElement, String fileName) {
+        Utils.waitForVisibility(webElement, 5);
+        Assert.assertEquals("AttorneyLetter-" + fileName, webElement.getText().trim());
     }
 
     public void verifyPersonIsNewParty() {
@@ -162,6 +187,21 @@ public class ContactInformationIndividualPage extends BasePage {
             log.info(toBeSelectedOption + " option is selected!");
         } else {
             log.info("No options found in the dropdown.");
+        }
+    }
+
+    public void verifyAdditionalPersonIsNewParty() {
+        Utils.waitFor(3);
+        additionalIdentificationNumberInputWithName.click();
+        Assert.assertTrue(getValueByMouseKeyboardAction(additionalIdentificationNumberInputWithName).contains("New Party"));
+    }
+
+    public void uploadAdditionalLetterOfAttorneyDocument(String fileName) {
+        try {
+            uploadFile(additionalDocumentAddButton, additionalDocumentUploadField, fileName);
+        } catch (Exception e) {
+            log.error("Error uploading file: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

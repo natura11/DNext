@@ -12,6 +12,7 @@ Feature:New Business Customer-Other Information
   Scenario: As a user I want to Check the Company name, Organization Number and Industry fields
     When  User fills in the NIPT field with valid and non-existing  "I56867986N" on Search Organization page
     Then  User clicks the Search button on Search Organization page
+    And   User is not allowed to use the search button on Search Organization page
     And   User clicks the Next button on Search Organization page
     And   User clicks Industry dropdown on general information page
     Then  User should selects any option in the Industry dropdown on general information page
