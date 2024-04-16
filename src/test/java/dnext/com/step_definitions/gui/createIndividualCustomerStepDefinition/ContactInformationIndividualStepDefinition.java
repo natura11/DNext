@@ -121,7 +121,8 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see that Citizenship dropdown is disabled on Individual Contact Information Page")
     public void userShouldSeeThatCitizenshipDropdownIsDisabled() {
-        contactInformationIndividualPage.verifyCitizenshipStatus(false);
+        contactInformationIndividualPage.verifyCitizenshipStatus(
+                contactInformationIndividualPage.citizenshipDropdown, false);
     }
 
     @Then("User should see Document Type dropdown on Individual Contact Information Page")
@@ -173,7 +174,8 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see that Citizenship dropdown is enabled on Individual Contact Information Page")
     public void userShouldSeeThatCitizenshipDropdownIsEnabled() {
-        contactInformationIndividualPage.verifyCitizenshipStatus(true);
+        contactInformationIndividualPage.verifyCitizenshipStatus(
+                contactInformationIndividualPage.citizenshipDropdown, true);
     }
 
     @And("User adds a valid {string} document for Letter of Attorney on Individual Contact Information Page")
@@ -183,7 +185,8 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
 
     @Then("User should see the name of {string} added pdf document on Individual Contact Information Page")
     public void userShouldSeeTheNameOfAddedPdfDocument(String fileName) {
-        contactInformationIndividualPage.verifyUploadedLetterOfAttorneyDocument(fileName);
+        contactInformationIndividualPage.verifyUploadedLetterOfAttorneyDocument(
+                contactInformationIndividualPage.documentNameText, fileName);
     }
 
     @And("User selects {string} option in the Authorization dropdown on Individual Contact Information Page")
@@ -349,5 +352,97 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
     @Then("User should see that background is not red for the email field on Individual Contact Information Page")
     public void userShouldSeeThatBackgroundIsNotRedForTheEmailField() {
         warningBackgroundRedColorOne(contactInformationIndividualPage.emailInputDiv, false);
+    }
+
+    @And("User clicks Add+ button to add Additional Contact on Individual Contact Information Page")
+    public void userClicksAddButtonToAddAdditionalContact() {
+        clickField(contactInformationIndividualPage.addAdditionalContactButton);
+    }
+
+    @And("User clicks Add+ button to add Additional Type of Authorization on Individual Contact Information Page")
+    public void userClicksAddButtonToAddAdditionalTypeOfAuthorization() {
+        clickField(contactInformationIndividualPage.addAdditionalTypeOfAuthorizationButton);
+    }
+
+    @And("User clicks additional Type of Authorization dropdown on Individual Contact Information Page")
+    public void userClicksAdditionalTypeOfAuthorizationDropdown() {
+        clickField(contactInformationIndividualPage.additionalTypeOfAuthorizationDropdown);
+    }
+
+    @Then("User should ensure each options in additional Type of Authorization dropdown are selectable on Individual Contact Information Page")
+    public void userShouldEnsureEachOptionsInAdditionalTypeOfAuthorizationDropdownAreSelectable() {
+        isDropdownSelectable();
+    }
+
+    @When("User clicks additional Identification Number textbox on Contact Information Page")
+    public void userClicksAdditionalIdentificationNumberTextboxOnContactInformationPage() {
+        clickField(contactInformationIndividualPage.identificationNumberInput);
+    }
+
+    @And("User enters {string} for the additional Identification Number textbox on Individual Contact Information Page")
+    public void userEntersForTheAdditionalIdentificationNumberTextbox(String text) {
+        fillInput(contactInformationIndividualPage.identificationNumberInput, text);
+    }
+
+    @Then("User should see the additional entered person is new party on Individual Contact Information Page")
+    public void userShouldSeeTheAdditionalEnteredPersonIsNewParty() {
+        contactInformationIndividualPage.verifyAdditionalPersonIsNewParty();
+    }
+
+    @When("User clicks additional First Name textbox on Individual Contact Information Page")
+    public void userClicksAdditionalFirstNameTextbox() {
+        clickField(contactInformationIndividualPage.additionalFirstNameInput);
+    }
+
+    @And("User enters {string} for the additional First Name textbox on Individual Contact Information Page")
+    public void userEntersForTheAdditionalFirstNameTextbox(String firstName) {
+        fillInput(contactInformationIndividualPage.additionalFirstNameInput, firstName);
+    }
+
+    @When("User clicks additional Last Name textbox on Individual Contact Information Page")
+    public void userClicksAdditionalLastNameTextbox() {
+        clickField(contactInformationIndividualPage.additionalLastNameInput);
+    }
+
+    @And("User enters {string} for the additional Last Name textbox on Individual Contact Information Page")
+    public void userEntersForTheAdditionalLastNameTextbox(String lastName) {
+        fillInput(contactInformationIndividualPage.additionalLastNameInput, lastName);
+    }
+
+    @When("User clicks additional Birth Date input on Individual Contact Information Page")
+    public void userClicksAdditionalBirthDateInput() {
+        clickField(contactInformationIndividualPage.additionalBirthDateInput);
+    }
+
+    @And("User enters {string} for the additional Birth Date input on Individual Contact Information Page")
+    public void userEntersForTheAdditionalBirthDateInput(String birthDate) {
+        fillInput(contactInformationIndividualPage.additionalBirthDateInput, birthDate);
+    }
+
+    @When("User clicks additional Gender dropdown on Individual Contact Information Page")
+    public void userClicksAdditionalGenderDropdown() {
+        clickField(contactInformationIndividualPage.additionalGenderDropdown);
+    }
+
+    @Then("User should see that additional Citizenship dropdown is enabled on Individual Contact Information Page")
+    public void userShouldSeeThatAdditionalCitizenshipDropdownIsEnabled() {
+        contactInformationIndividualPage.verifyCitizenshipStatus(
+                contactInformationIndividualPage.additionalCitizenshipDropdown, true);
+    }
+
+    @When("User clicks additional Citizenship dropdown on Individual Contact Information Page")
+    public void userClicksAdditionalCitizenshipDropdown() {
+        clickField(contactInformationIndividualPage.additionalCitizenshipDropdown);
+    }
+
+    @And("User adds a valid {string} document for additional Letter of Attorney on Individual Contact Information Page")
+    public void userAddsAValidDocumentForAdditionalLetterOfAttorney(String fileName) {
+        contactInformationIndividualPage.uploadAdditionalLetterOfAttorneyDocument(fileName);
+    }
+
+    @Then("User should see the name of {string} added additional pdf document on Individual Contact Information Page")
+    public void userShouldSeeTheNameOfAddedAdditionalPdfDocument(String fileName) {
+        contactInformationIndividualPage.verifyUploadedLetterOfAttorneyDocument(
+                contactInformationIndividualPage.additionalDocumentNameText, fileName);
     }
 }

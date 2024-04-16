@@ -187,6 +187,7 @@ public abstract class BasePage {
 
 
     public static void enterValidFormatEmail(String validEmail, WebElement emailButton) {
+        emailButton.clear();
         Utils.sendKeys(emailButton, validEmail);
     }
 

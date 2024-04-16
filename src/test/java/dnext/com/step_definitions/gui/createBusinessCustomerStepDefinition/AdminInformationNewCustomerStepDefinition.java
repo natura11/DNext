@@ -38,7 +38,7 @@ public class AdminInformationNewCustomerStepDefinition extends BasePage {
 
     @And("User enters {string} on on Admin Information Page")
     public void userEntersOnOnAdminInformationPage(String invalidEmail) {
-        Utils.sendKeys(adminInformationBusinessPage.emailField, invalidEmail + Keys.TAB);
+        fillInputWithTab(adminInformationBusinessPage.emailField, invalidEmail);
     }
 
     @And("User should see that background is red on on Admin Information Page")

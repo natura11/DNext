@@ -161,7 +161,7 @@ public class AdminInformationBusinessPage extends BasePage {
     }
 
     public void selectMaleOptionFromGenderDropdown() {
-        genderDropdown.click();
+        Utils.click(genderDropdown);
         maleOptionOfGender.click();
     }
 
