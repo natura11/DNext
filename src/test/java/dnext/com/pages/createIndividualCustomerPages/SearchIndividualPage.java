@@ -41,15 +41,6 @@ public class SearchIndividualPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnSearchIndividualPage() {
-        try {
-            Assert.assertTrue(searchIndividualButtonSelectedLabel.isDisplayed());
-            Assert.assertEquals("true", searchIndividualButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
 
     public void fillIDFieldWithRandomNumber(){
         sendKeys(identificationNumberBtnOnSearchIndividualHomePage,

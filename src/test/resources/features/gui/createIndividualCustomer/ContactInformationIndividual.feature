@@ -1,4 +1,4 @@
-@VFALFT-23461 @regression @contactInformationForIndividual
+@VFALFT-23461 @regression @IndividualCustomer
 Feature:New Individual Customer-Contact Information
 
   Background:
@@ -8,19 +8,19 @@ Feature:New Individual Customer-Contact Information
     Given  I click the Sign in button on Sign In page
     Given  User clicks Create Individual Customer on Home page
     Given User clicks the Contact Information button for Individual
-    Given User is on the Individual Contact Information page
+    Given User should see the "Contact Information" tab is opened
 
   @continueWithoutAddingContactForIndividualContact
   Scenario: As a user I want to continue without adding any Contact on Contact Information Page for Individual
-    Given User is on the Individual Contact Information page
+    Given User should see the "Contact Information" tab is opened
     And   User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
   @backToPreviousPageWithoutAddingContactForIndividualContact
   Scenario: As a user I want to go previous page without adding any Contact on Contact Information Page for Individual
-    Given User is on the Individual Contact Information page
+    Given User should see the "Contact Information" tab is opened
     And   User clicks Back button on Individual Contact Information Page
-    Then  User should see the Individual Address Information Page
+    Then  User should see the "Address Information" tab is opened
 
   @addLegalCustodianWithExistingPersonForIndividualContact
   Scenario:As a user I want to add random type of Authorization with existing person on Individual Contact Information Page
@@ -63,7 +63,7 @@ Feature:New Individual Customer-Contact Information
     And   User adds a valid "dummy.pdf" document for Letter of Attorney on Individual Contact Information Page
     Then  User should see the name of "dummy.pdf" added pdf document on Individual Contact Information Page
     When  User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
 
   @addDifferentTypeOfAuthorizationForIndividualContact
@@ -100,7 +100,7 @@ Feature:New Individual Customer-Contact Information
     And   User adds a valid "dummy.pdf" document for Letter of Attorney on Individual Contact Information Page
     Then  User should see the name of "dummy.pdf" added pdf document on Individual Contact Information Page
     When  User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
     Examples:
       | Authorization Type | Identification Numbers | First Name | Last Name | Birth Date | Gender | Citizenship |
@@ -154,7 +154,7 @@ Feature:New Individual Customer-Contact Information
     #Then  User should see the name of "sample2.pdf" added additional pdf document on Individual Contact Information Page
 
     When  User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
   @addDifferentTypeOfContactsForIndividualContact
   Scenario Outline: As a user I want to add different type of Contacts on Individual Contact Information Page
@@ -175,7 +175,7 @@ Feature:New Individual Customer-Contact Information
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Individual Contact Information Page
     Then  User should see that background is not red for the email field on Individual Contact Information Page
     And   User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
     Examples:
       | Contact Type        |
@@ -225,4 +225,4 @@ Feature:New Individual Customer-Contact Information
     Then  User should see "." and "@" and "abc123@gmail.com" inside of email structure on Individual Contact Information Page
     Then  User should see that additional background is not red for the email field on Contact Information Page
     And   User clicks Next button on Individual Contact Information Page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened

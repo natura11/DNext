@@ -5,20 +5,14 @@ import com.utilities.ApiTokenGenerator;
 import com.utilities.ApiUtils;
 import com.utilities.ConfigurationReader;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.FiberActivationForPrepaidPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.path.json.JsonPath;
-import io.restassured.specification.RequestSpecification;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.datatable.DataTable;
 import io.restassured.response.Response;
-import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 import java.util.List;
 import java.util.Map;
 

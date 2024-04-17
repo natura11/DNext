@@ -129,16 +129,6 @@ public class ContactInformationIndividualPage extends BasePage {
     @FindBy(xpath = "(//p[contains(text(), 'Attorney Letter for ID')]/following-sibling::div/div[1])[2]")
     public WebElement additionalDocumentNameText;
 
-    public void verifyUserIsOnContactInformationPage() {
-        try {
-            elementDisplayed(typeOfAuthorizationDropdown);
-            Assert.assertTrue(typeOfAuthorizationDropdown.isDisplayed());
-            log.info("Type of Authorization is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Type of Authorization field is  not displaying");
-        }
-    }
-
     public void verifyCitizenshipStatus(WebElement webElement, boolean enabled) {
         String isDisabled = webElement.getAttribute("aria-disabled");
         if (!enabled) {

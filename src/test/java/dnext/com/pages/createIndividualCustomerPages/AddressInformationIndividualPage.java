@@ -55,16 +55,6 @@ public class AddressInformationIndividualPage extends BasePage {
     public WebElement serviceCityDropdownOnIndividual;
 
 
-    public void verifyUserIsOnAddressInformationPage() {
-        try {
-            elementDisplayed(addressInformationButtonSelectedLabel);
-            Assert.assertEquals("true", addressInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Contact Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Contact Information Page is  not displaying");
-        }
-    }
-
     public void fillInputField(WebElement webElement, String text) {
         webElement.clear();
         webElement.sendKeys(text);

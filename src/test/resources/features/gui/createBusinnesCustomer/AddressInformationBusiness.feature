@@ -1,4 +1,4 @@
-@VFALFT-22207 @regression @addressInformationForBusiness
+@VFALFT-22207 @regression @BusinessCustomer
 Feature:New Business Customer-Address Information
 
   Background:
@@ -73,6 +73,10 @@ Feature:New Business Customer-Address Information
   Scenario: As a user I want to enter a different service address on Address Information Page
     Given User should see the Service Address slider on Address Information Page
     When User switch off the slider on Address Information Page
+    When  User clicks Address Line 1 Field on Address Information Page
+    And   User enters a value "FIRST ADDRESS" in the Address Line 1 textbox on Address Information Page
+    When  User clicks City dropdown on Address Information Page
+    And   User should select "BERAT" option in the City dropdown on Address Information Page
     Then User should see the Service Address field for Contact Type on Address Information Page
     Given User should see the Address Line 1 textbox for Service Address on Address Information Page
     And   User clicks Address Line 1 Field for Service Address on Address Information Page

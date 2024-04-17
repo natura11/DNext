@@ -1,4 +1,4 @@
-@VFALFT-15818 @smoke @regression @GovernmentCustomerCreation
+@VFALFT-15818 @smoke @regression @GovernmentCustomer
 Feature:New Government Customer-Customer Creation
 
   Background:

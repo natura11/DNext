@@ -1,4 +1,4 @@
-@VFALFT-23470 @smoke @regression @BusinessCustomerCreation
+@VFALFT-23470 @smoke @regression @BusinessCustomer
 Feature:New Business Customer-Customer Creation
 
   Background:

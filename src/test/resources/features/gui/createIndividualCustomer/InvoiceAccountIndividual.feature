@@ -1,4 +1,4 @@
-@VFALFT-23462 @regression @invoiceAccountForIndividual
+@VFALFT-23462 @regression @IndividualCustomer
 Feature:New Individual Customer-Invoice Account
 
   Background:
@@ -8,21 +8,21 @@ Feature:New Individual Customer-Invoice Account
     Given  I click the Sign in button on Sign In page
     Given  User clicks Create Individual Customer on Home page
     Given User clicks the Invoice Account button for Individual
-    Given User is on the Individual Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
 
   @continueWithoutAddingInvoiceAccountForIndividualInvoice
   Scenario: As a user I want to continue without adding any Account on Invoice Account Page
-    Given User is on the Individual Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
     And   User clicks Next button on Individual Invoice Account page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
     Then  User sees the Ebill Email is required on Individual Invoice Account page
     Then  User sees the Ebill Mobile Number is required on Individual Invoice Account page
 
   @backToPreviousPageWithoutInvoiceAccountForIndividualInvoice
   Scenario: As a user I want to go previous page without adding any Account on Invoice Account Page
-    Given User is on the Individual Invoice Account page
+    Given User should see the "Invoice Account" tab is opened
     And   User clicks Back button on Individual Invoice Account page
-    Then  User is on the Individual Contact Information page
+    Then  User should see the "Contact Information" tab is opened
 
   @selectionOptionFromCurrencyDropdownAndDescriptionForIndividualInvoice
   Scenario: As a user I want to select one option from Currency dropdown

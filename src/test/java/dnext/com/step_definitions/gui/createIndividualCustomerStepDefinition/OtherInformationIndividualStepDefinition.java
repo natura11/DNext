@@ -20,11 +20,6 @@ public class OtherInformationIndividualStepDefinition extends BasePage {
     }
 
 
-    @Given("User is on the Individual Other Information page")
-    public void userIsOnTheIndividualOtherInformationPage() {
-        otherInformationIndividualPage.verifyUserIsOnOtherInformationPage();
-    }
-
     @When("User clicks Back button on Individual Other Information page")
     public void userClicksBackButtonOnIndividualOtherInformationPage() {
         clickField(otherInformationIndividualPage.backButtonOnOtherInformationPage);

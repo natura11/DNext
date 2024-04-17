@@ -1,4 +1,4 @@
-@VFALFT-23460 @regression @addressInformationForIndividualCustomer
+@VFALFT-23460 @regression @IndividualCustomer
 Feature: New Individual Customer - Address Information
 
   Background: As a user,I want to Create Individual Customer on New Individual Customer page
@@ -8,20 +8,20 @@ Feature: New Individual Customer - Address Information
     Given  I click the Sign in button on Sign In page
     Given  User clicks Create Individual Customer on Home page
     Given User clicks the Address Information button
-    Given User is in the Address Information on Create Individual Customer page
+    Given User should see the "Address Information" tab is opened
 
   @continueWithoutAddingAddressOnIndividual
   Scenario: As a user I want to continue without adding any Address in Address Information on Create Individual Customer page
-    Given User is in the Address Information on Create Individual Customer page
+    Given User should see the "Address Information" tab is opened
     And   User clicks Next button in Address Information on Create Individual Customer page
-    Then  User is in the Address Information on Create Individual Customer page
+    Then  User should see the "Address Information" tab is opened
     Then  User sees the Address Line 1 is required in Address Information on Create Individual Customer page
 
   @backToPreviousPageWithoutAddingAddressOnIndividual
   Scenario: As a user I want to go previous page without adding any Address in Address Information on Create Individual Customer page
-    Given User is in the Address Information on Create Individual Customer page
+    Given User should see the "Address Information" tab is opened
     And   User clicks Back button on Address Information on Create Individual Customer page
-    Then  User is in the General Information on Create Individual Customer page
+    Then  User should see the "General Information" tab is opened
 
   @fillingInputFieldsIndividualAddressPage
   Scenario: As a user I want to fill Address Line 1,2 and Post Code in Address Information on Create Individual Customer page
@@ -67,13 +67,17 @@ Feature: New Individual Customer - Address Information
     When  User clicks City dropdown in Address Information on Create Individual Customer page
     And   User should select "BERAT" option in the City dropdown in Address Information on Create Individual Customer page
     And   User clicks Next button in Address Information on Create Individual Customer page
-    Then  User is on the Individual Contact Information page
+    Then  User should see the "Contact Information" tab is opened
 
   @enteringDifferentServiceAddressOnIndividual
   Scenario: As a user I want to enter a different service address in Address Information on Create Individual Customer page
     Given User should see the Service Address slider in Address Information on Create Individual Customer page
-    When User switch off the slider in Address Information on Create Individual Customer page
-    Then User should see the Service Address field for Contact Type in Address Information on Create Individual Customer page
+    When  User switch off the slider in Address Information on Create Individual Customer page
+    When  User clicks Address Line 1 Field in Address Information on Create Individual Customer page
+    And   User enters a value "FIRST ADDRESS" in the Address Line 1 textbox in Address Information on Create Individual Customer page
+    When  User clicks City dropdown in Address Information on Create Individual Customer page
+    And   User should select "BERAT" option in the City dropdown in Address Information on Create Individual Customer page
+    Then  User should see the Service Address field for Contact Type in Address Information on Create Individual Customer page
     Given User should see the Address Line 1 textbox for Service Address in Address Information on Create Individual Customer page
     And   User clicks Address Line 1 Field for Service Address in Address Information on Create Individual Customer page
     Then  User enters a value "FIRST SERVICE ADDRESS" in the Address Line 1 textbox for Service Address in Address Information on Create Individual Customer page
@@ -96,4 +100,4 @@ Feature: New Individual Customer - Address Information
     When User clicks City dropdown for Service Address in Address Information on Create Individual Customer page
     Then  User should select "BERAT" option in the City dropdown for Service Address in Address Information on Create Individual Customer page
     And   User clicks Next button in Address Information on Create Individual Customer page
-    Then  User is on the Individual Contact Information page
+    Then  User should see the "Contact Information" tab is opened

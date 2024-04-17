@@ -1,4 +1,4 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.activationPages;
 
 import com.github.javafaker.Faker;
 import com.utilities.ConfigurationReader;

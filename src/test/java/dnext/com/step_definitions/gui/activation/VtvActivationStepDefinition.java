@@ -1,10 +1,8 @@
-package dnext.com.step_definitions.gui.customer360;
+package dnext.com.step_definitions.gui.activation;
 
-import com.utilities.ConfigurationReader;
-import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.VtvActivationPage;
+import dnext.com.pages.activationPages.VtvActivationPage;
 import dnext.com.pages.faveo.LoginOfFaveo;
 import dnext.com.pages.faveo.TicketDetailsPageOfFaveo;
 import io.cucumber.java.en.And;
@@ -13,10 +11,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.openqa.selenium.Keys;
-
-import java.time.Duration;
 
 @AllArgsConstructor
 @Log4j2

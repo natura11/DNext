@@ -4,6 +4,7 @@ import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 
+import dnext.com.pages.CreateCustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -37,7 +38,7 @@ public class OtherInformationIndividualPage extends BasePage{
     @FindBy(xpath = "//input[@formcontrolname='mobileNumber']")
     public WebElement mobileNumberInput;
 
-    @FindBy(xpath = "(//input[@formcontrolname='email'])[2]")
+    @FindBy(xpath = "//h2[text()='Customer Information']//following::*[@formcontrolname='email']")
     public WebElement emailInput;
 
     @FindBy(xpath = "//input[@formcontrolname='identificationNumber']")
@@ -131,15 +132,10 @@ public class OtherInformationIndividualPage extends BasePage{
     @FindBy(xpath = "//input[@formcontrolname='birthDate']")
     public WebElement birthDateField;
 
-    public void verifyUserIsOnOtherInformationPage() {
-        try {
-            elementDisplayed(otherInformationButtonSelectedLabel);
-            Assert.assertEquals("true", otherInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
+    @FindBy(xpath = "//mat-select[@formcontrolname='gender']//span/span")
+    public WebElement selectedGenderOption;
+
+    CreateCustomerCommonPage createCustomerCommonPage = new CreateCustomerCommonPage();
 
     public void verifyCheckboxStatus(WebElement webElement, boolean isChecked){
         if(isChecked){
@@ -164,7 +160,7 @@ public class OtherInformationIndividualPage extends BasePage{
 
     public void switchToOtherInformationPage() {
         switchToWindowNew(0);
-        verifyUserIsOnOtherInformationPage();
+        createCustomerCommonPage.verifyInCorrectTab("Other Information");
     }
 
     public void uploadConsentFormDocument(String fileName) {
@@ -192,7 +188,11 @@ public class OtherInformationIndividualPage extends BasePage{
         dataMap.put("Email", getValueByMouseKeyboardAction(emailField));
         dataMap.put("ID Number", getValueByMouseKeyboardAction(personalNumberField));
         dataMap.put("Birth Date", getValueByMouseKeyboardAction(birthDateField));
-
+        String gender = selectedGenderOption.getText();
+        if (gender.contains(" ")){
+            gender = gender.trim().split(" ")[1];
+        }
+        dataMap.put("Gender", gender);
         return dataMap;
     }
 
@@ -200,7 +200,7 @@ public class OtherInformationIndividualPage extends BasePage{
         Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
 
         clickField(otherInformationButton);
-        verifyUserIsOnOtherInformationPage();
+        createCustomerCommonPage.verifyInCorrectTab("Other Information");
         Utils.waitFor(1);
         Assert.assertEquals(fetchedDataMap.get("FirstAndLastName"),
                 getValueByMouseKeyboardAction(firstLastNameInput));
@@ -210,6 +210,8 @@ public class OtherInformationIndividualPage extends BasePage{
                 getValueByMouseKeyboardAction(emailInput));
         Assert.assertEquals(fetchedDataMap.get("ID Number"),
                 getValueByMouseKeyboardAction(identificationNumberInput));
+        Assert.assertEquals(fetchedDataMap.get("Gender"),
+                getValueByMouseKeyboardAction(genderInput));
 
         DateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
         DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
