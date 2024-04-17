@@ -1,4 +1,4 @@
-@VFALFT-22217 @smoke @regression @individualCustomerCreation
+@VFALFT-22217 @smoke @regression @IndividualCustomer
 Feature:New Individual Customer-Customer Creation
 
   Background:
@@ -17,7 +17,7 @@ Feature:New Individual Customer-Customer Creation
     Then  User should see the random identification ID is new for ALBANIAN on Search Individual page
     And   User clicks next Button in Search Individual on Create Individual Customer page
 
-    Then  User is on the Individual General Information page
+    Then  User should see the "General Information" tab is opened
     When  User enters random firstname on Individual General Information page
     And   User enters random lastname on Individual General Information page
     And   User enters random email on Individual General Information page
@@ -32,17 +32,26 @@ Feature:New Individual Customer-Customer Creation
     And   User enters random mobile phone number on Individual General Information page
     And   User clicks Next button on Individual General Information Page
 
-    Then  User is in the Address Information on Create Individual Customer page
+    Then  User should see the "Address Information" tab is opened
     When  User clicks Address Line 1 Field in Address Information on Create Individual Customer page
     And   User enters a value "FIRST ADDRESS" in the Address Line 1 textbox in Address Information on Create Individual Customer page
     When  User clicks City dropdown in Address Information on Create Individual Customer page
     And   User selects random city on Individual Address Information page
     And   User clicks Next button in Address Information on Create Individual Customer page
 
-    Then  User is on the Individual Contact Information page
+    Then  User should see the "Contact Information" tab is opened
+    And   User clicks Type of Contact dropdown on Individual Contact Information Page
+    And   User selects random option in the Contact dropdown on Contact Information Page
+    Then  User should see Mobile Phone Number textbox on Individual Contact Information Page
+    When  User clicks Country Code dropdown Individual Contact Information Page
+    And   User selects "+355" option in the Country Code dropdown on Individual Contact Information page
+    And   User clicks mobile phone number field on Individual Contact Information page
+    And   User enters random mobile phone number on Contact Information page
+    And   User clicks Email textbox on Individual Contact Information Page
+    And   User enters random email on Contact Information Page
     When  User clicks Next button on Individual Contact Information Page
 
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
     When  User clicks Description Field on Individual Invoice Account page
     And   User enters a value "Individual Test Description 123" in the Description textbox on Individual Invoice Account page
     And   User clicks Payment Method dropdown on Individual Invoice Account page
@@ -59,9 +68,9 @@ Feature:New Individual Customer-Customer Creation
     And   User selects random credit ration for prepaid on Individual Invoice Account page
 
     And   User clicks Next button on Individual Invoice Account page
-    Then  User is on the Individual Other Information page
+    Then  User should see the "Other Information" tab is opened
     When  User clicks the General Information button for Individual
-    Then  User is on the Individual General Information page
+    Then  User should see the "General Information" tab is opened
     Then  User should see the random customer data is fetched to input fields on Individual Other Information Page
     Then  User should see the first checkbox is selected on Individual Other Information Page
     Then  User should see the second checkbox is selected on Individual Other Information Page

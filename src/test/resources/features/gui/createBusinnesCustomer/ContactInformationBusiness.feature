@@ -1,4 +1,4 @@
-@VFALFT-22206 @regression @contactInformationForBusiness
+@VFALFT-22206 @regression @BusinessCustomer
 Feature:New Business Customer-Contact Information
 
   Background:

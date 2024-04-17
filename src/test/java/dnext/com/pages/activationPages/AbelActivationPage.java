@@ -1,4 +1,4 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.activationPages;
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
@@ -7,10 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import javax.xml.xpath.XPath;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

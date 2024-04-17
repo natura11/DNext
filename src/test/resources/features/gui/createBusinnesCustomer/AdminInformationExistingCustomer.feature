@@ -1,4 +1,4 @@
-@VFALFT-22205 @regression @adminInfoExistCustomer
+@VFALFT-22205 @regression @BusinessCustomer
 Feature: Existing Customer-Admin Information-Existing Customer
 
   Background:

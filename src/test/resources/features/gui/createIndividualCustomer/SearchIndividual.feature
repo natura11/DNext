@@ -1,4 +1,4 @@
-@VFALFT-18395 @regression @searchIndividualForIndividualCustomer
+@VFALFT-18395 @regression @IndividualCustomer
 Feature:New Individual Customer -Search Individual
 
   Background: As a user,I want to Create Individual Customer on New Individual Customer page

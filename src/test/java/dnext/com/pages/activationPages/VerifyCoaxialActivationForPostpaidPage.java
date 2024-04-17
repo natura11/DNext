@@ -1,11 +1,10 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.activationPages;
 
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
+import static dnext.com.pages.activationPages.VtvActivationPage.addToCartBtn;
 
 @Log4j2
 public class VerifyCoaxialActivationForPostpaidPage extends BasePage {

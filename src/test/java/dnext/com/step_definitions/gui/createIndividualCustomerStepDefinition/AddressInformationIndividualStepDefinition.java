@@ -17,11 +17,6 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
     AddressInformationIndividualPage addressInformationIndividualPage;
     GeneralInformationIndividualPage generalInformationIndividualPage;
 
-    @Given("User is in the Address Information on Create Individual Customer page")
-    public void userIsInTheAddressInformationOnCreateIndividualCustomerPage() {
-        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
-    }
-
     @And("User clicks Next button in Address Information on Create Individual Customer page")
     public void userClicksNextButtonInAddressInformationOnCreateIndividualCustomerPage() {
         clickField(addressInformationIndividualPage.nextButtonOnAddressInformationOnIndividual);
@@ -38,10 +33,6 @@ public class AddressInformationIndividualStepDefinition extends BasePage {
         clickField(addressInformationIndividualPage.backButtonOnAddressInformationOnIndividual);
     }
 
-    @Then("User is in the General Information on Create Individual Customer page")
-    public void userIsInTheGeneralInformationOnCreateIndividualCustomerPage() {
-        generalInformationIndividualPage.selectedGeneralInformationOnIndividual.isDisplayed();
-    }
 
     @Given("User should see the Address Line 1 textbox in Address Information on Create Individual Customer page")
     public void userShouldSeeTheAddressLineOneTextboxInAddressInformationOnCreateIndividualCustomerPage() {

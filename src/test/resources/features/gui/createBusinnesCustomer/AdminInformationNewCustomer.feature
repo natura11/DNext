@@ -1,4 +1,4 @@
-@VFALFT-22629 @regression @adminInfoNewCustomer
+@VFALFT-22629 @regression @BusinessCustomer
 Feature:Admin Information-New Customer Creation
 
   Background:

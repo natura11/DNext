@@ -1,4 +1,4 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.customerUpdatePages;
 
 import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;

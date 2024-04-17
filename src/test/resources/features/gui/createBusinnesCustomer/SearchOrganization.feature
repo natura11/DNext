@@ -1,4 +1,4 @@
-@VFALFT-22203  @regression @searchOrganization
+@VFALFT-22203  @regression @BusinessCustomer
 Feature:New Business Customer-Search Organization
 
   Background:

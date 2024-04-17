@@ -75,16 +75,6 @@ public class GeneralInformationIndividualPage extends BasePage {
 
     CustomerFakerDataCreator customerFakerDataCreator = new CustomerFakerDataCreator();
 
-    public void verifyUserIsOnGeneralInformationPage() {
-        try {
-            elementDisplayed(generalInformationButtonSelectedLabel);
-            Assert.assertEquals("true", generalInformationButtonSelectedLabel.getAttribute("aria-selected"));
-            log.info("Other Information Page is displaying");
-        } catch (Throwable e) {
-            log.info("Error message: Other Information Page is  not displaying");
-        }
-    }
-
     public void enterInvalidFormatEmailsOnIndividual(String email) {
         Utils.sendKeys(emailFieldOnIndividual, email + Keys.TAB);
     }

@@ -1,4 +1,4 @@
-@VFALFT-22208 @regression @invoiceAccountForBusiness
+@VFALFT-22208 @regression @BusinessCustomer
 Feature:New Business Customer-Invoice Account
 
   Background:

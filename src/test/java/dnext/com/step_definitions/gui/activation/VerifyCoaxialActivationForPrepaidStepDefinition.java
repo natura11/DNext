@@ -1,9 +1,9 @@
-package dnext.com.step_definitions.gui.customer360;
+package dnext.com.step_definitions.gui.activation;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage;
-import dnext.com.pages.customer360.VerifyCoaxialActivationForPrepaidPage;
+import dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage;
+import dnext.com.pages.activationPages.VerifyCoaxialActivationForPrepaidPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
