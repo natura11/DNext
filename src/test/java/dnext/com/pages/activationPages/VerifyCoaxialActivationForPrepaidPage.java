@@ -1,20 +1,8 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.activationPages;
 
-import com.utilities.Driver;
-import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.oNTSerialNumberInputField;
-import static dnext.com.pages.customer360.FiberActivationForPrepaidPage.pPPoEUserInputField;
-import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
 
 public class VerifyCoaxialActivationForPrepaidPage extends BasePage {
     @FindBy(xpath = "//div[@class='mat-chip-list-wrapper']/mat-basic-chip")

@@ -1,13 +1,12 @@
-package dnext.com.step_definitions.gui.customer360;
+package dnext.com.step_definitions.gui.customerUpdate;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.BusinessCustomerTaxExemptUpdatePage;
+import dnext.com.pages.customerUpdatePages.BusinessCustomerTaxExemptUpdatePage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 
 @Log4j2
 @AllArgsConstructor

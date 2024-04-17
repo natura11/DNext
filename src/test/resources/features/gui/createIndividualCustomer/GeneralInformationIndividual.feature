@@ -1,4 +1,4 @@
-@VFALFT-18396 @regression @generalInformationForIndividualCustomer
+@VFALFT-18396 @regression @IndividualCustomer
 Feature:New Individual Customer - General Information
 
   Background:

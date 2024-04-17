@@ -1,4 +1,4 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.activationPages;
 
 import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
@@ -7,22 +7,19 @@ import dnext.com.pages.BasePage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
-import static dnext.com.pages.customer360.AbelActivationPage.successMessageForShoppingCart;
-import static dnext.com.pages.customer360.VerifyCoaxialActivationForPostpaidPage.orderIdButtonInOrderDetail;
-import static dnext.com.pages.customer360.VtvActivationPage.addToCartBtn;
+import static dnext.com.pages.activationPages.AbelActivationPage.successMessageForShoppingCart;
+import static dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage.orderIdButtonInOrderDetail;
 
 @Log4j2
 public class FiberActivationForPrepaidPage extends BasePage {

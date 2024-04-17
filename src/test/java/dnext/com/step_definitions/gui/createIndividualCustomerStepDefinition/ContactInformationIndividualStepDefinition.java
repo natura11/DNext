@@ -24,29 +24,15 @@ public class ContactInformationIndividualStepDefinition extends BasePage {
         clickField(contactInformationIndividualPage.contactInformationButton);
     }
 
-    @Given("User is on the Individual Contact Information page")
-    public void userIsOnTheIndividualContactInformationPage() {
-        contactInformationIndividualPage.verifyUserIsOnContactInformationPage();
-    }
-
     @And("User clicks Next button on Individual Contact Information Page")
     public void userClicksNextButtonOnIndividualContactInformationPage() {
         clickField(contactInformationIndividualPage.nextButtonOnContactInformationPage);
     }
 
-    @Then("User is on the Individual Invoice Account page")
-    public void userIsOnTheIndividualInvoiceAccountPage() {
-        invoiceAccountIndividualPage.verifyUserIsOnInvoiceAccountPage();
-    }
 
     @And("User clicks Back button on Individual Contact Information Page")
     public void userClicksBackButtonOnIndividualContactInformationPage() {
         clickField(contactInformationIndividualPage.backButtonOnContactInformationPage);
-    }
-
-    @Then("User should see the Individual Address Information Page")
-    public void userShouldSeeTheIndividualAddressInformationPage() {
-        addressInformationIndividualPage.verifyUserIsOnAddressInformationPage();
     }
 
     @Given("User should see the Type of Authorization dropdown on Individual Contact Information Page")

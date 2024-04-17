@@ -196,11 +196,6 @@ public class GeneralInformationIndividualStepDefinition extends BasePage {
         randomOptionFromDropdown();
     }
 
-    @Then("User is on the Individual General Information page")
-    public void userIsOnTheIndividualGeneralInformationPage() {
-        generalInformationIndividualPage.verifyUserIsOnGeneralInformationPage();
-    }
-
     @When("User enters random firstname on Individual General Information page")
     public void userEntersRandomFirstnameOnIndividualGeneralInformationPage() {
         generalInformationIndividualPage.fillFirstNameWithRandomString();

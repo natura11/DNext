@@ -1,4 +1,4 @@
-package dnext.com.pages.customer360;
+package dnext.com.pages.customerUpdatePages;
 
 import com.github.javafaker.Faker;
 import com.utilities.Utils;

@@ -1,4 +1,4 @@
-@VFALFT-23463 @regression @otherInformationForIndividual
+@VFALFT-23463 @regression @IndividualCustomer
 Feature:New Individual Customer-Other Information
 
   Background:
@@ -8,17 +8,17 @@ Feature:New Individual Customer-Other Information
     Given  I click the Sign in button on Sign In page
     Given  User clicks Create Individual Customer on Home page
     Given User clicks the Other Information button for Individual
-    Given User is on the Individual Other Information page
+    Given User should see the "Other Information" tab is opened
 
   @backToPreviousPageForIndividualOtherInformation
   Scenario: As a user I want to go previous page on Other Information Page for Individual
-    Given User is on the Individual Other Information page
+    Given User should see the "Other Information" tab is opened
     When  User clicks Back button on Individual Other Information page
-    Then  User is on the Individual Invoice Account page
+    Then  User should see the "Invoice Account" tab is opened
 
   @checkCheckboxSelectableForIndividualOtherInformation
   Scenario: As a user I want to check the checkbox selectable options on Individual Other Information Page
-    Given User is on the Individual Other Information page
+    Given User should see the "Other Information" tab is opened
     When  User selects the first checkbox about agreement on Individual Other Information Page
     Then  User should see the first checkbox is selected on Individual Other Information Page
     When  User selects the second checkbox about agreement on Individual Other Information Page
@@ -42,7 +42,7 @@ Feature:New Individual Customer-Other Information
 
   @uploadFormDocumentForIndividualOtherInformation
   Scenario: As a user I want to upload Form Document on Individual Other Information Page
-    Given User is on the Individual Other Information page
+    Given User should see the "Other Information" tab is opened
     When  User clicks the Generate Form button on Individual Other Information Page
     Then  User should see the Generate Form open in a new window on Individual Other Information Page
     When  User go back to Individual Other Information Page
@@ -52,13 +52,13 @@ Feature:New Individual Customer-Other Information
   @checkAutofilledFieldsByCustomerInfoForIndividualOtherInformation
   Scenario:As a user I want to check customer data is fetched to Individual Other Information Page
     When  User clicks the Search Individual button for Individual
-    Then  User is on the Individual Search Individual page
+    Then  User should see the "Search Individual" tab is opened
     When  User enters "K12365478P" identification ID for ALBANIAN to the identification number field on Create Individual Customer page
     And   User clicks search button on Create Individual Customer page
     And   User checks the identification ID is already exists or not on Search Individual page
     Then  User should see the random identification ID is new for ALBANIAN on Search Individual page
     And   User clicks next Button in Search Individual on Create Individual Customer page
-    Then  User is on the Individual General Information page
+    Then  User should see the "General Information" tab is opened
     When  User wants to enter "KUCUK" as firstname on New Individual Customer page
     And   User wants to enter "PRENS" as lastname into the lastname field on New Individual Customer page
     And   User enters valid "KUCUKPRENS@ABC.COM" in to the email field on New Individual Customer page
@@ -69,9 +69,9 @@ Feature:New Individual Customer-Other Information
     And   User selects Berat as place of birth on New Individual Customer page
     And   User adds "612312312" the Mobile Phone Number into the Mobile Phone Number on New Individual Customer page
     And   User clicks the Other Information button for Individual
-    Then  User is on the Individual Other Information page
+    Then  User should see the "Other Information" tab is opened
     When  User clicks the General Information button for Individual
-    Then  User is on the Individual General Information page
+    Then  User should see the "General Information" tab is opened
     Then  User should see the random customer data is fetched to input fields on Individual Other Information Page
     Then  User should see the first checkbox is selected on Individual Other Information Page
     Then  User should see the second checkbox is selected on Individual Other Information Page

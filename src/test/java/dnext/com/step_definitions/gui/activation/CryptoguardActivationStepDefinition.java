@@ -1,8 +1,8 @@
-package dnext.com.step_definitions.gui.customer360;
+package dnext.com.step_definitions.gui.activation;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.customer360.CryptoguardActivationPage;
+import dnext.com.pages.activationPages.CryptoguardActivationPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

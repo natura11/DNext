@@ -75,11 +75,6 @@ public class SearchIndividualStepDefinition extends BasePage {
         clickField(searchIndividualPage.searchIndividualButton);
     }
 
-    @Then("User is on the Individual Search Individual page")
-    public void userIsOnTheIndividualSearchIndividualPage() {
-        searchIndividualPage.verifyUserIsOnSearchIndividualPage();
-    }
-
     @When("User enters random identification ID for ALBANIAN to the identification number field on Search Individual page")
     public void userEntersRandomIdentificationIDForALBANIANToTheIdentificationNumberField() {
         searchIndividualPage.fillIDFieldWithRandomNumber();
