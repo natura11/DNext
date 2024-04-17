@@ -3,6 +3,7 @@ package dnext.com.step_definitions.gui.activation;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.backofficePage.BackofficeHomePage;
 import dnext.com.pages.activationPages.FiberActivationForPostpaidPage;
 import io.cucumber.java.en.And;

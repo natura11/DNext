@@ -2,6 +2,7 @@ package dnext.com.step_definitions.gui.activation;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage;
 import dnext.com.pages.activationPages.VtvActivationPage;
 import dnext.com.pages.faveo.LoginOfFaveo;
 import dnext.com.pages.faveo.TicketDetailsPageOfFaveo;

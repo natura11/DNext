@@ -1,4 +1,4 @@
-@VFALFT-22863 @bundle @regression @activation
+@VFALFT-22863 @bundle @regression
 Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
 
   Background:
@@ -15,34 +15,26 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of searched name on Customer360 search page
     When User clicks the Account tab on Customer360 search page
-    When User clicks the New Order for prepaid rating type on Customer360 search page
+    When User clicks the New Order for prepaid rating for the customer type on Customer360 search page
     And User clicks the Bundle option from the dropdown on Customer360 search page
     And User clicks the search button under product list on Customer360 search page
     And User selects the first option of products from opened products page on Customer360 search page
     And User selects first option as cash method for the selected product on Customer360 search page
     And User selects first option as cash method for the selected product for bundle on Customer360 search page
     And user clicks the Infrusructure dropdown button  Customer360 search page
-
     And User selects the Coaxial  as Infrustructure on Customer360 search page
-    And user clicks the TVInfrusructure dropdown for Bundle Activation  Customer360 search page
-    And User selects the Cryptoguard  as TVInfrustructure for Bundle on Customer360 search page
-    And User clicks the Smart Card add button for cryptoguard on Customer360 search page
-    And User selects the first option as cash method for the smart card on Customer360 search page
-    And User selects Tarife Instalimi from Bundle option  on Customer360 search page
-    And User selects the first option as cash method for the Tarife Instalimi on Customer360 search page
-    And User clicks the Akses Fee per Modem Basic add button for Bundle on Customer360 search page
-    And User selects the first option as cash method for the Akses Fee per Modem Basic on Customer360 search page
-    And User clicks the Akses Fee per Dekoder Basic add button on Customer360 search page
-    And User selects the first option as cash method for Akses Fee per Dekoder Basic on Customer360 search page
-    When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
+    And User clicks the Basic Enterprise Modem add button on Customer360 search page
+    And User selects the first option as cash method for the Basic Enterprise Modem on Customer360 search page
+    And User selects the first option as cash method for the Public IP for Bundle  on Customer360 search page
+    When  User enters random IP Adress to IPAdress field on Product Offering Page
     When  User enters random Coaxial Mac number to Smart Card field on Product Offering Page
     And   User clicks the ADD to Cart button on Product Offering Page
-    And   User checks the Cryptoguard Number and Coaxial number is available for Sale on Product Offering Page
+    And   User checks the  Coaxial Mac Number is available for Sale on Product Offering Page
     Then  User should see the  Number is available for Sale on Product Offering Page
-
     When User clicks the Shopping Cart icon on Customer360 search page
-    Then User sees the name of "Digitalb Premium Plus" which was selected product on Cryptoguard is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
+    And User clicks the save button after checkout action on Customer360 search page
+    And User clicks the activation form on top of the opened screen on Customer360 search page
     And User clicks the Collected radio button on Customer360 search page
     And User clicks the COMPLATE CHECKOUT button on Customer360 search page
     Then user sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
@@ -65,16 +57,16 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
     And User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer360 search page
-    And User click the detail button
-    Given Get Authorization for API
-    When Create an endpoint component
-      | Type                 | Value                                   | parameters           |
-      | endpoint             | getCryptoguard_ForFiscalization         |                      |
-      | requestType          | getRequestOfCryptoguardForFiscalization |                      |
-      |                      |                                         |                      |
-      | fiscalizationBaseURI | fiscalizationBaseURI                    | fiscalizationBaseURI |
-    When Send a request
-    Then Status code is 200
+#    And User click the detail button
+#    Given Get Authorization for API
+#    When Create an endpoint component
+#      | Type                 | Value                                   | parameters           |
+#      | endpoint             | getCryptoguard_ForFiscalization         |                      |
+#      | requestType          | getRequestOfCryptoguardForFiscalization |                      |
+#      |                      |                                         |                      |
+#      | fiscalizationBaseURI | fiscalizationBaseURI                    | fiscalizationBaseURI |
+#    When Send a request
+#    Then Status code is 200
     And User clicks the Order button on Customer360 search page
     And User clicks Order status button on Customer360 search page
     Then User should see the Order Status  turned to completed  on Customer360 search page
