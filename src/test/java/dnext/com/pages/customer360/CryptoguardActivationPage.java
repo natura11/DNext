@@ -32,7 +32,7 @@ public class CryptoguardActivationPage extends BasePage {
     @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
     public WebElement selectedProductInShoppingCart;
     @FindBy(xpath = "//input[@id='SmartCardSerialNumber']")
-    public WebElement smartCardSerialNumberField;
+    public static WebElement smartCardSerialNumberField;
     @FindBy(xpath = "//mat-row[1]//mat-cell[2]//span[1]")
     public WebElement orderStatus;
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
@@ -47,7 +47,7 @@ public class CryptoguardActivationPage extends BasePage {
     public WebElement threeDotsForDcaseOnCryptoguard;
 
 
-    public void cryptoguardNumbersCreationForSerialNumbers() {
+    public static void cryptoguardNumbersCreationForSerialNumbers() {
         List<String> abelNumbers = new ArrayList<>(Arrays
                 .asList("00340008407198", "00340008414196", "00340008415193", "00340008424195",
                         "00340008426199", "00340008449198", "00340008452198", "00340008502190",
@@ -72,7 +72,7 @@ public class CryptoguardActivationPage extends BasePage {
         sendKeys(smartCardSerialNumberField, abelNumbers.get(randomIndex));
     }
 
-    public void checkCryptoguardNumberIsAvailableOrNot() {
+    public  void checkCryptoguardNumberIsAvailableOrNot() {
         String successMessageXpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']";
         boolean isNumberAvailable = false;
         do {

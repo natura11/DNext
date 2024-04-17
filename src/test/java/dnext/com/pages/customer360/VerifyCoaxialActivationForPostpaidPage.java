@@ -32,7 +32,7 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
     @FindBy(xpath = "//mat-basic-chip[normalize-space()='12 X ALL0']")
     public WebElement option12XALL0ContractDurationForBasicMEnterpriseModem;
     @FindBy(xpath = "//input[@id='MACAddress']")
-    public WebElement inputFieldForMACAddress;
+    public static WebElement inputFieldForMACAddress;
     @FindBy(xpath = "//mat-row[1]//mat-cell[2]//span[1]")
     public WebElement orderStatus;
     @FindBy(css = "div[class='list-item'] div[class='center']")
@@ -84,7 +84,7 @@ public class VerifyCoaxialActivationForPostpaidPage extends BasePage {
     }
 
 
-    public void numbersCreationForMacAdreess() {
+    public static void numbersCreationForMacAdreess() {
         List<String> Numbers = new ArrayList<>(Arrays
                 .asList("0024D186E41F", "0024D186E426", "0024D186E42D", "0024D186E434", "0024D186E43B",
                         "0024D186E442", "0024D186E449", "0024D186E450", "0024D186E457", "0024D186E45E",

@@ -1,5 +1,5 @@
 @VFALFT-22863 @bundle @regression @activation
-Feature: Bundle  Cryptoguard-Coaxial Activation
+Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
 
   Background:
     Given  I have opened the "Customer Management" application
@@ -11,7 +11,7 @@ Feature: Bundle  Cryptoguard-Coaxial Activation
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
-    And   User fills in enter Customer name field with valid name as "KEMAL SUNAL"  on Customer360 search page
+    And   User fills in enter Customer name field with valid name as "KUHN GROUP"  on Customer360 search page
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of searched name on Customer360 search page
     When User clicks the Account tab on Customer360 search page
@@ -20,7 +20,9 @@ Feature: Bundle  Cryptoguard-Coaxial Activation
     And User clicks the search button under product list on Customer360 search page
     And User selects the first option of products from opened products page on Customer360 search page
     And User selects first option as cash method for the selected product on Customer360 search page
+    And User selects first option as cash method for the selected product for bundle on Customer360 search page
     And user clicks the Infrusructure dropdown button  Customer360 search page
+
     And User selects the Coaxial  as Infrustructure on Customer360 search page
     And user clicks the TVInfrusructure dropdown for Bundle Activation  Customer360 search page
     And User selects the Cryptoguard  as TVInfrustructure for Bundle on Customer360 search page
@@ -32,11 +34,12 @@ Feature: Bundle  Cryptoguard-Coaxial Activation
     And User selects the first option as cash method for the Akses Fee per Modem Basic on Customer360 search page
     And User clicks the Akses Fee per Dekoder Basic add button on Customer360 search page
     And User selects the first option as cash method for Akses Fee per Dekoder Basic on Customer360 search page
-
     When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
+    When  User enters random Coaxial Mac number to Smart Card field on Product Offering Page
     And   User clicks the ADD to Cart button on Product Offering Page
-    And   User checks the Cryptoguard Number is available for Sale on Product Offering Page
+    And   User checks the Cryptoguard Number and Coaxial number is available for Sale on Product Offering Page
     Then  User should see the  Number is available for Sale on Product Offering Page
+
     When User clicks the Shopping Cart icon on Customer360 search page
     Then User sees the name of "Digitalb Premium Plus" which was selected product on Cryptoguard is in the Shopping Cart on Customer360 search page
     When User clicks the CHECKOUT button on Customer360 search page
