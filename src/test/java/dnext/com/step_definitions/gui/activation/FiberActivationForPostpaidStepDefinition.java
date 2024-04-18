@@ -50,7 +50,7 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User switches to Backoffice page")
     public void userSwitchesToBackofficePage() {
-        Driver.getDriver().get("https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks");
+        Driver.getDriver().navigate().to("https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks");
     }
 
     @And("User should see the name of {string}progressed customer on BackOffice page")
@@ -103,7 +103,8 @@ public class FiberActivationForPostpaidStepDefinition extends BasePage {
 
     @And("User turns back to customer main page on Customer{int} search page")
     public void userTurnsBackToCustomerMainPageOnCustomerSearchPage(int arg0) {
-        Driver.getDriver().get("https://dcm-ui.uat.dnext.al.vodafone.com/customer360/search?customerId=F21366901");
+        switchToWindowNew(0);
+        Driver.getDriver().navigate().back();
 
     }
 

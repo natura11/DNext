@@ -1,5 +1,6 @@
 package dnext.com.pages.activationPages;
 
+import com.github.javafaker.Faker;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
@@ -17,6 +18,7 @@ import static dnext.com.pages.activationPages.CryptoguardActivationPage.smartCar
 import static dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage.inputFieldForMACAddress;
 import static dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage.numbersCreationForMacAdreess;
 import static dnext.com.pages.activationPages.VtvActivationPage.addToCartBtn;
+import static dnext.com.pages.backofficePage.BackOfficeIpInventoryPage.*;
 
 public class BundleActivationPage extends BasePage {
 
@@ -47,10 +49,8 @@ public class BundleActivationPage extends BasePage {
     public WebElement cashOptionoFPublicIPforBundleForVbu;
     @FindBy(xpath = "(//mat-basic-chip[normalize-space()='ALL0 6Month'])[2]")
     public WebElement cashOptionBasicEnterpriseModem;
-
     @FindBy(xpath = "(//input[@id='IPAddress'])[2]")
     public WebElement inputFieldForIpAdreessForVbu;
-
 
 
 
@@ -94,20 +94,27 @@ public class BundleActivationPage extends BasePage {
     }
 
 
-    public void ipAdressCreationForBundle() {
-        List<String> abelNumbers = new ArrayList<>(Arrays
-                .asList(
-                        "21.47.72.208", "22.100.113.51;22.100.113.53",
-                        "95.255.128.252_30", "235.175.66.2", "86.250.214.62;86.250.214.65",
-                        "87.124.246.125", "65.25.204.144_30", "104.226.166.253;104.226.166.254",
-                        "155.221.126.78", "143.104.225.77_30", "200.66.100.9",
-                        "95.244.21.112;95.244.21.115", "72.111.121.49_30", "132.173.15.174",
-                        "165.228.43.100;165.228.43.105", "238.156.38.6_30", "71.8.102.23",
-                        "215.31.91.56;215.31.91.57", "59.69.77.241", "184.48.161.136",
-                        "55.236.115.105"));
-        Random random = new Random();
-        int randomIndex = random.nextInt(abelNumbers.size());
-        sendKeys(inputFieldForIpAdreessForVbu, abelNumbers.get(randomIndex));
-    }
+
+public void usingCreatedIpAddressAtBackOffice(){
+        Faker faker=new Faker();
+        Driver.getDriver().navigate().to("https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks");
+        clickField(ipInventoryButton);
+        clickField(createButtonToStartIpInventory);
+        clickField(adressButtonForIpInventory);
+        sendKeys(adressButtonForIpInventory,faker.numerify("###.###.###"));
+        clickField(serviceTypeDropdownForIpInventory);
+        clickField(ipOptionFromDropdownForIpInventory);
+        clickField(addressTypeDropdownForIpInventory);
+        clickField(singleOptionFromAddressTypeDropdownForIpInventory);
+        clickField(onOptionFromAutoProvForIpInventory);
+        clickField(createButtonToCompleteIpInventory);
+        String inventedIpAddress=createdIpfieldForIpInventory.getText();
+        System.out.println("inventedIpAddress = " + inventedIpAddress);
+        Driver.getDriver().navigate().back();
+        Driver.getDriver().navigate().back();
+        sendKeys(inputFieldForIpAdreessForVbu,inventedIpAddress);
+}
+
+
 
 }

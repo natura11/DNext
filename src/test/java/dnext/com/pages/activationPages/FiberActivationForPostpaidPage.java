@@ -71,6 +71,7 @@ public class FiberActivationForPostpaidPage extends BasePage {
         int randomIndex = random.nextInt(abelNumbers.size());
         sendKeys(pPPoEUserInputField, abelNumbers.get(randomIndex));
         sendKeys(oNTSerialNumberInputField, abelNumbers.get(randomIndex));
+        System.out.println("abelNumbers.get(randomIndex) = " + abelNumbers.get(randomIndex));
     }
 
     public void checkFiberPostpaidNumberIsAvailableOrNot() {

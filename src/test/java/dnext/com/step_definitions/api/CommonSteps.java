@@ -64,7 +64,8 @@ public class CommonSteps extends BasePage {
             endpoint = orderIdForCoaxial.getAttribute("innerText");
         }else if (endpoint.equalsIgnoreCase("getCoaxialPrepaid_ForFiscalization")){
             endpoint = paymentIdForFiscalization.getAttribute("innerText");
-
+        }else if (endpoint.equalsIgnoreCase("getBundleCoaxialPrepaid_ForFiscalization")){
+            endpoint = paymentIdForFiscalization.getAttribute("innerText");
 
 }
 
@@ -140,6 +141,9 @@ public class CommonSteps extends BasePage {
             //response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfCoaxialPrepaidForFiscalization")) {
             response = ApiBaseMethods.getRequestOfCoaxialPrepaidForFiscalization(fullEndpoint, token);
+            //response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestOfBundleCoaxialPrepaidForFiscalization")) {
+            response = ApiBaseMethods.getRequestOfBundleCoaxialPrepaidForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
         }
 

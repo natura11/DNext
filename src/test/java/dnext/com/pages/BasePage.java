@@ -35,6 +35,10 @@ import static com.utilities.Utils.*;
 public abstract class BasePage {
     protected Faker faker;
 
+
+
+
+
     @FindBy(xpath = "//span[normalize-space()='Customer360']")
     public WebElement customer360btn;
 
@@ -103,6 +107,12 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer/div/div[2]/div[1]/mat-list/mat-list-item[1]/div/div[3]/div[2]")
     public WebElement orderIdForCoaxial;
+
+
+
+
+
+
 
     public BasePage(Faker faker) {
         this.faker = faker;

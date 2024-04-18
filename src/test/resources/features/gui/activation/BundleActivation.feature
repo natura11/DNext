@@ -1,4 +1,4 @@
-@VFALFT-22863 @bundle @regression
+@VFALFT-22863 @bundle @regression @activation
 Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
 
   Background:
@@ -19,6 +19,7 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And User clicks the Bundle option from the dropdown on Customer360 search page
     And User clicks the search button under product list on Customer360 search page
     And User selects the first option of products from opened products page on Customer360 search page
+    And User enters the created IP Address at BackOffice into the IP Address field
     And User selects first option as cash method for the selected product on Customer360 search page
     And User selects first option as cash method for the selected product for bundle on Customer360 search page
     And user clicks the Infrusructure dropdown button  Customer360 search page
@@ -26,7 +27,6 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And User clicks the Basic Enterprise Modem add button on Customer360 search page
     And User selects the first option as cash method for the Basic Enterprise Modem on Customer360 search page
     And User selects the first option as cash method for the Public IP for Bundle  on Customer360 search page
-    When  User enters random IP Adress to IPAdress field on Product Offering Page
     When  User enters random Coaxial Mac number to Smart Card field on Product Offering Page
     And   User clicks the ADD to Cart button on Product Offering Page
     And   User checks the  Coaxial Mac Number is available for Sale on Product Offering Page
@@ -57,16 +57,16 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And User turns back to Customer Mangement page on Customer360 search page
     And User clicks the Order button on Customer360 search page
     And User compares the AgreementId on Order with AgreementId on Fiscalization Receipts on Customer360 search page
-#    And User click the detail button
-#    Given Get Authorization for API
-#    When Create an endpoint component
-#      | Type                 | Value                                   | parameters           |
-#      | endpoint             | getCryptoguard_ForFiscalization         |                      |
-#      | requestType          | getRequestOfCryptoguardForFiscalization |                      |
-#      |                      |                                         |                      |
-#      | fiscalizationBaseURI | fiscalizationBaseURI                    | fiscalizationBaseURI |
-#    When Send a request
-#    Then Status code is 200
+    And User click the detail button
+    Given Get Authorization for API
+    When Create an endpoint component
+      | Type                 | Value                                            | parameters           |
+      | endpoint             | getBundleCoaxialPrepaid_ForFiscalization         |                      |
+      | requestType          | getRequestOfBundleCoaxialPrepaidForFiscalization |                      |
+      |                      |                                                  |                      |
+      | fiscalizationBaseURI | fiscalizationBaseURI                             | fiscalizationBaseURI |
+    When Send a request
+    Then Status code is 200
     And User clicks the Order button on Customer360 search page
     And User clicks Order status button on Customer360 search page
     Then User should see the Order Status  turned to completed  on Customer360 search page

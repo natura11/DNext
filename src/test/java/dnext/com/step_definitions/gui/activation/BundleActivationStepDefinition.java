@@ -4,6 +4,8 @@ import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.activationPages.BundleActivationPage;
 import dnext.com.pages.activationPages.VerifyCoaxialActivationForPostpaidPage;
+import dnext.com.pages.backofficePage.BackOfficeIpInventoryPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,7 +16,7 @@ import lombok.extern.log4j.Log4j2;
 public class BundleActivationStepDefinition extends BasePage {
     BundleActivationPage bundleActivationPage;
     VerifyCoaxialActivationForPostpaidPage verifyCoaxialActivationForPostpaidPage;
-
+    BackOfficeIpInventoryPage backOfficeIpInventoryPage;
     @When("User clicks the Bundle option from the dropdown on Customer360 search page")
     public void user_clicks_the_bundle_option_from_the_dropdown_on_customer360_search_page() {
         clickField(bundleActivationPage.bundleOptionFromDropdown);
@@ -61,9 +63,8 @@ public class BundleActivationStepDefinition extends BasePage {
         clickField(bundleActivationPage.cashOptionBasicEnterpriseModem);
     }
 
-    @When("User enters random IP Adress to IPAdress field on Product Offering Page")
-    public void user_enters_random_ip_adress_to_ip_adress_field_on_product_offering_page() {
-        bundleActivationPage.ipAdressCreationForBundle();
+    @And("User enters the created IP Address at BackOffice into the IP Address field")
+    public void userEntersTheCreatedIPAdreesAtBackOfficIntoTheIPAdressField() {
+        bundleActivationPage.usingCreatedIpAddressAtBackOffice();
     }
-
 }
