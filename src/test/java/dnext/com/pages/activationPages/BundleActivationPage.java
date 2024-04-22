@@ -25,16 +25,16 @@ public class BundleActivationPage extends BasePage {
     @FindBy(xpath = "//input[@id='bundle-checkbox-input']/..")
     public WebElement bundleOptionFromDropdown;
 
-    @FindBy(xpath = "(//mat-cell[@class='mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted'])[1]")
+    @FindBy(xpath = "(//mat-row[@class='mat-row cdk-row ng-star-inserted']/following-sibling::mat-row/mat-cell/../preceding-sibling::mat-row)[1]")
     public WebElement productsFirstOptionForVbu;
 
     @FindBy(xpath = "(//mat-select[@id='Infrastructure'])[1]")
     public WebElement infrastructureDropdown;
 
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='6Month']")
+    @FindBy(xpath = "(//div[@class='mat-chip-list-wrapper']/mat-basic-chip)[1]")
     public WebElement cashOptionOfSelectedProductsForFirstOptionForVbu;
 
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='ALL34800 6Month']")
+    @FindBy(xpath = "((//p/following-sibling::div/mat-chip-list/div/mat-basic-chip)[1])")
     public WebElement cashOptionOfSelectedProductsForBundleForVbu;
 
     @FindBy(xpath = "//mat-select[@id='Infrastructure']")
@@ -45,10 +45,10 @@ public class BundleActivationPage extends BasePage {
 
     @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[1]")
     public WebElement basicEnterpriseModemAddSignForVbu;
-    @FindBy(xpath = "(//mat-basic-chip[normalize-space()='ALL0 6Month'])[1]")
-    public WebElement cashOptionoFPublicIPforBundleForVbu;
-    @FindBy(xpath = "(//mat-basic-chip[normalize-space()='ALL0 6Month'])[2]")
+    @FindBy(xpath = "(//*[.=' Basic Enterprise Modem ']/following::div/mat-chip-list)[1]/div/mat-basic-chip/div//*[@id=\"mat-chip-list-3\"]/div/mat-basic-chip")
     public WebElement cashOptionBasicEnterpriseModem;
+    @FindBy(xpath = "//p[text()=' Public IP for Bundle ']/following::div/mat-chip-list")
+    public WebElement cashOptionoFPublicIPforBundleForVbu;
     @FindBy(xpath = "(//input[@id='IPAddress'])[2]")
     public WebElement inputFieldForIpAdreessForVbu;
 

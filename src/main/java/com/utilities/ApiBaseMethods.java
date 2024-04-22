@@ -213,6 +213,7 @@ public class ApiBaseMethods {
                     .and()
 //                    .contentType("application/json;charset=UTF-8")
                     //.log().all()
+                    //.body("data.items[0].succeeded",is("True"))
                     .extract().response();
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
@@ -303,6 +304,7 @@ public class ApiBaseMethods {
                     .then()
                     .statusCode(200)
                     .and()
+                    .body("data.items[0].succeeded",is("True"))
                     //.log().all()
                     .extract().response();
             log.info("!!!!!!!!!!!!!!!Exception at API Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));

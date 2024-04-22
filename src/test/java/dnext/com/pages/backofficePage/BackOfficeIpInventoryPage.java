@@ -26,18 +26,24 @@ public class BackOfficeIpInventoryPage extends BasePage {
     static public WebElement onOptionFromAutoProvForIpInventory;
     @FindBy(xpath = "(//span[contains(text(),'Create')])[2]")
     static public WebElement createButtonToCompleteIpInventory;
-
     @FindBy(xpath = "(//tbody[@role='rowgroup']/tr/td)[1]")
     static public WebElement createdIpfieldForIpInventory;
-
-
-
-
-
-
-
-
-
+    @FindBy(xpath = "//span[.='All']/../../..")
+    static public WebElement statusDropdownForIpInventory;
+    @FindBy(xpath = "//span[contains(text(),'Reserved')]")
+    static public WebElement reservedOptionfromsSatusDropdownForIpInventory;
+    @FindBy(xpath = "//mat-label[contains(text(),'Text Search')]/../../../input")
+    static public WebElement textSearchInputFieldForIpInventory;
+    @FindBy(xpath = "//span[contains(text(),' Search ')]")
+    static public WebElement searchButtonForIpInventory;
+    @FindBy(xpath = "//tbody[@role='rowgroup']/tr/td")
+    static public WebElement accountNumberFieldForIpInventory;
+    @FindBy(xpath = "//tbody[@role='rowgroup']/tr/td")
+    static public WebElement statusForIpInventory;
+    @FindBy(xpath = "//tbody[@role='rowgroup']/tr/td[8]/mat-icon")
+    static public WebElement cancelStatusSignForIpInventory;
+    @FindBy(xpath = "//tbody[@role='rowgroup']/tr/td[7]/mat-icon")
+    static public WebElement doneStatusSignForIpInventory;
 
 
 }

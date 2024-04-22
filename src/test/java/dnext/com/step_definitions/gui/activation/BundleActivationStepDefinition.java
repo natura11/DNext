@@ -24,6 +24,7 @@ public class BundleActivationStepDefinition extends BasePage {
 
     @When("User selects the first option of products from opened products page on Customer360 search page")
     public void user_selects_the_first_option_of_products_from_opened_products_page_on_customer360_search_page() {
+        Utils.waitForVisibility(bundleActivationPage.productsFirstOptionForVbu,25);
         clickField(bundleActivationPage.productsFirstOptionForVbu);
     }
 
@@ -51,16 +52,17 @@ public class BundleActivationStepDefinition extends BasePage {
     @When("User clicks the Basic Enterprise Modem add button on Customer360 search page")
     public void user_clicks_the_basic_enterprise_modem_add_button_on_customer360_search_page() {
         clickField(bundleActivationPage.basicEnterpriseModemAddSignForVbu);
+        Utils.waitFor(3);
     }
 
     @When("User selects the first option as cash method for the Basic Enterprise Modem on Customer360 search page")
     public void user_selects_the_first_option_as_cash_method_for_the_basic_enterprise_modem_on_customer360_search_page() {
-        Utils.clickWithJS(bundleActivationPage.cashOptionoFPublicIPforBundleForVbu);
+        clickField(bundleActivationPage.cashOptionBasicEnterpriseModem);
     }
 
     @When("User selects the first option as cash method for the Public IP for Bundle  on Customer360 search page")
     public void user_selects_the_first_option_as_cash_method_for_the_public_ip_for_bundle_on_customer360_search_page() {
-        clickField(bundleActivationPage.cashOptionBasicEnterpriseModem);
+        Utils.clickWithJS(bundleActivationPage.cashOptionoFPublicIPforBundleForVbu);
     }
 
     @And("User enters the created IP Address at BackOffice into the IP Address field")

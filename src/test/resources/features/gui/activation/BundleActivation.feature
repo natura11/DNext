@@ -25,6 +25,7 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And user clicks the Infrusructure dropdown button  Customer360 search page
     And User selects the Coaxial  as Infrustructure on Customer360 search page
     And User clicks the Basic Enterprise Modem add button on Customer360 search page
+
     And User selects the first option as cash method for the Basic Enterprise Modem on Customer360 search page
     And User selects the first option as cash method for the Public IP for Bundle  on Customer360 search page
     When  User enters random Coaxial Mac number to Smart Card field on Product Offering Page
