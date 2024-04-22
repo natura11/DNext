@@ -4,7 +4,7 @@ import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 
-import dnext.com.pages.CreateCustomerCommonPage;
+import dnext.com.pages.CustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -135,7 +135,7 @@ public class OtherInformationIndividualPage extends BasePage{
     @FindBy(xpath = "//mat-select[@formcontrolname='gender']//span/span")
     public WebElement selectedGenderOption;
 
-    CreateCustomerCommonPage createCustomerCommonPage = new CreateCustomerCommonPage();
+    CustomerCommonPage customerCommonPage = new CustomerCommonPage();
 
     public void verifyCheckboxStatus(WebElement webElement, boolean isChecked){
         if(isChecked){
@@ -160,7 +160,7 @@ public class OtherInformationIndividualPage extends BasePage{
 
     public void switchToOtherInformationPage() {
         switchToWindowNew(0);
-        createCustomerCommonPage.verifyInCorrectTab("Other Information");
+        customerCommonPage.verifyInCorrectTab("Other Information");
     }
 
     public void uploadConsentFormDocument(String fileName) {
@@ -200,7 +200,7 @@ public class OtherInformationIndividualPage extends BasePage{
         Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
 
         clickField(otherInformationButton);
-        createCustomerCommonPage.verifyInCorrectTab("Other Information");
+        customerCommonPage.verifyInCorrectTab("Other Information");
         Utils.waitFor(1);
         Assert.assertEquals(fetchedDataMap.get("FirstAndLastName"),
                 getValueByMouseKeyboardAction(firstLastNameInput));
@@ -227,7 +227,7 @@ public class OtherInformationIndividualPage extends BasePage{
     }
 
     public void verifyCustomerCreateSuccessMessage(String message) {
-        elementDisplayed(successSnakeMessage);
+        Utils.waitForVisibility(successSnakeMessage, 30);
         Assert.assertEquals(message, successSnakeMessage.getText());
     }
 

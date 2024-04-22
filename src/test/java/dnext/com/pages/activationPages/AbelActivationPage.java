@@ -19,54 +19,12 @@ import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 @Log4j2
 public class AbelActivationPage extends BasePage {
 
-    @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='Abel']")
-    public WebElement optionAbel;
-    @FindBy(xpath = "//p[.='Smart Card']")
-    public WebElement smartCardOption;
-    @FindBy(xpath = "(//span[@class='mat-button-wrapper'])[5]")
-    public WebElement smartCardAddSign;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='12 X ALL2550']")
-    public WebElement contract12XALL2550ForDigitalbPremiumPlus;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='12 X ALL0']")
-    public WebElement contract12XALL0ForSmartCard;
+
     @FindBy(xpath = "//input[@id=\"SmartCardSerialNumber\"]")
     public WebElement smartCardSerialNumberField;
-    @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[1]")
-    public WebElement aksesFeePerDekoderBasicAddSign;
-    @FindBy(xpath = "(//*[@class='mat-chip mat-focus-indicator mat-primary mat-basic-chip ng-star-inserted'][.=' 12 X ALL0 '])[2]")
-    public WebElement contract12XALL0ForAksesFeePerDekoderBasic;
-    @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[2]")
-    public WebElement addIconForTarifeInstalimi;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='ALL1500 12Month']")
-    public WebElement contractALL150012MonthForTarifeInstalimi;
-    @FindBy(xpath = "//mat-row[1]//mat-cell[2]//span[1]")
-    public WebElement orderStatus;
+
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
     public WebElement addToCartBtn;
-    @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
-    public WebElement selectedProductInShoppingCart;
-    @FindBy(xpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']")
-    public static WebElement successMessageForShoppingCart;
-
-
-    public void verifyTheOrderStatusIsCompleted() {
-        if (orderStatus.getText().equalsIgnoreCase("completed")) {
-            System.out.println("orderStatus.getText() = " + orderStatus.getText());
-            Assert.assertEquals("completed", orderStatus.getText());
-        } else {
-            System.out.println("OrderStatus is= " + orderStatus.getText());
-            String OrderId = orderIdField.getText();
-            Driver.getDriver().get(ConfigurationReader.getProperty("comundaViewer.site.url"));
-            sendKeys(orderIdFieldOnCamundaHomePage, OrderId);
-            clickField(productOrderCamundaOnHomePage);
-            waitFor(1);
-            clickField(fullfillmentTypeFirstChoiceIconOnCamunda);
-            clickField(variablesChoiceIconOnCamunda);
-            waitFor(2);
-            log.error("Error message is " + errorMessageOnVariablesOnCamunda.getText());
-            switchToWindowNew(0);
-        }
-    }
 
 
     public void fillAbelSmartCardNumber() {
@@ -101,7 +59,5 @@ public class AbelActivationPage extends BasePage {
         } while (!isNumberAvailable);
     }
 
-    public void verifyShoppingCartIsCreated() {
-        Assert.assertTrue(isElementDisplayed(successMessageForShoppingCart));
-    }
+
 }
