@@ -30,43 +30,22 @@ import org.openqa.selenium.support.FindBy;
      @FindBy(xpath = "//p[normalize-space()='Task Completed']")
      public WebElement taskCompletedPopUpMessageOnCorporateConfirmationPage;
 
-     @FindBy(xpath = "/html/body/app/vertical-layout-1/div/div/div/div/content/app-tasks/app-page-view/div/div[2]/div[2]/div[2]/div[1]/div[1]/app-task-list-item/div/div/div/div[1]/div[1]/span")
-     public WebElement customerTaskABC;
 
 
      public void openingBackOfficeInNewTab(){
          ((JavascriptExecutor) Driver.getDriver()).executeScript("window.open('https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks')");
          Utils.waitFor(5);
-         //Driver.getDriver().switchTo().newWindow(WindowType.TAB);
-         //Driver.getDriver().get("https://backoffice-ui.uat.dnext.al.vodafone.com/orders/my-group-tasks");
+         switchToWindowNew(1);
      }
 
-     /***
-      *  @And("User should see the name of {string}progressed customer on BackOffice page")
-      *     public void userShouldSeeTheNameOfProgressedCustomerOnBackOfficePage(String nameOfCustomer) {
-      *         Utils.waitForVisibility(backofficeHomePage.nameOfCustomerOnMyGroupTasks,15);
-      *         warningMessage(nameOfCustomer, backofficeHomePage.nameOfCustomerOnMyGroupTasks);
-      *     }
-      *
-      *     @And("User clicks the name of customer  on BackOffice page")
-      *     public void userClicksTheNameOfCustomerOnBackOfficePage() {
-      *         clickField(backofficeHomePage.nameOfCustomerOnMyGroupTasks);
-      *     }
-      *
-      * */
      public void verifyTheNameOfCustomer(String customerName){
-         //Utils.waitForVisibility(customerTaskABC,15);
-         //warningMessage(customerName, customerTaskABC);
          String xpathOfTask = "(//span[@class='user-name' and text()='" + customerName + "'])[1]";
-         Utils.waitForPageToLoad();
          Utils.waitForVisibility(By.xpath(xpathOfTask), 15);
          WebElement customerNameOfTask = Driver.getDriver().findElement(By.xpath(xpathOfTask));
          Assert.assertEquals(customerName, customerNameOfTask.getText());
      }
 
      public void clickTheNameOfCustomer(String customerName){
-        /* WebElement splashScreen = Driver.getDriver().findElement(By.id("fuse-splash-screen"));
-         Driver.getDriver().switchTo().frame(splashScreen);*/
          String xpathOfTask = "(//span[@class='user-name' and text()='" + customerName + "'])[1]";
          WebElement customerNameOfTask = Driver.getDriver().findElement(By.xpath(xpathOfTask));
          customerNameOfTask.click();
@@ -80,7 +59,7 @@ import org.openqa.selenium.support.FindBy;
      }
 
      public void assertionOfBackOfficePage(String text){
-         System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
+         elementDisplayed(corporateConfirmationTextOnCorporateConfirmationPage);
          warningMessage(text, corporateConfirmationTextOnCorporateConfirmationPage);
      }
 

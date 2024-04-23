@@ -27,6 +27,7 @@ public class TicketDetailsPageOfFaveo extends BasePage {
     public void turningBackToCustomerManagementPage(){
         Utils.waitFor(180);
         Driver.getDriver().navigate().refresh();
+        Driver.getDriver().close();
         switchToDnextFromFaveo();
     }
 
