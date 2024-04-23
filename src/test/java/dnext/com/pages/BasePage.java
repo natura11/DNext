@@ -361,5 +361,10 @@ public abstract class BasePage {
         elementDisplayed(webElement);
         Assert.assertEquals(message, webElement.getText().trim());
     }
+    public static void slidingButton(WebElement slideButton){
+        Actions action = new Actions(Driver.getDriver());
+        int buttonWidth = slideButton.getSize().getWidth();
+        action.clickAndHold(slideButton).moveByOffset(buttonWidth, 0).release().perform();
+    }
 
 }

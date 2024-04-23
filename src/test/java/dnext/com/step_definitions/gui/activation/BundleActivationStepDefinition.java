@@ -1,5 +1,6 @@
 package dnext.com.step_definitions.gui.activation;
 
+import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
 import dnext.com.pages.activationPages.BundleActivationPage;
@@ -9,6 +10,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.interactions.Actions;
 
 
 @Log4j2
@@ -19,6 +21,7 @@ public class BundleActivationStepDefinition extends BasePage {
     BackOfficeIpInventoryPage backOfficeIpInventoryPage;
     @When("User clicks the Bundle option from the dropdown on Customer360 search page")
     public void user_clicks_the_bundle_option_from_the_dropdown_on_customer360_search_page() {
+        Utils.waitForVisibility(bundleActivationPage.bundleOptionFromDropdown,10);
         clickField(bundleActivationPage.bundleOptionFromDropdown);
     }
 
@@ -68,5 +71,10 @@ public class BundleActivationStepDefinition extends BasePage {
     @And("User enters the created IP Address at BackOffice into the IP Address field")
     public void userEntersTheCreatedIPAdreesAtBackOfficIntoTheIPAdressField() {
         bundleActivationPage.usingCreatedIpAddressAtBackOffice();
+    }
+
+    @And("User slides the New Devices Button")
+    public void userSlidesTheNewDevicesButton() {
+        slidingButton(bundleActivationPage.slideButtonForBundle);
     }
 }

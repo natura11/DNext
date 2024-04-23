@@ -43,14 +43,17 @@ public class BundleActivationPage extends BasePage {
     @FindBy(xpath = "//span[text()=' COAXIAL ']")
     public WebElement coaxialOptionFromDropdownForVbu;
 
-    @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[1]")
+    @FindBy(xpath = "(//p[.=' Basic Enterprise Modem ']/following::button)[1]")
     public WebElement basicEnterpriseModemAddSignForVbu;
-    @FindBy(xpath = "(//*[.=' Basic Enterprise Modem ']/following::div/mat-chip-list)[1]/div/mat-basic-chip/div//*[@id=\"mat-chip-list-3\"]/div/mat-basic-chip")
+    @FindBy(xpath = "//*[.=' Basic Enterprise Modem ']/following::div/mat-chip-list[1]/div/mat-basic-chip[1]")
     public WebElement cashOptionBasicEnterpriseModem;
-    @FindBy(xpath = "//p[text()=' Public IP for Bundle ']/following::div/mat-chip-list")
+    @FindBy(xpath = "//*[.=' Basic Enterprise Modem ']/following::div/mat-chip-list[1]/div/mat-basic-chip[2]")
     public WebElement cashOptionoFPublicIPforBundleForVbu;
     @FindBy(xpath = "(//input[@id='IPAddress'])[2]")
     public WebElement inputFieldForIpAdreessForVbu;
+
+    @FindBy(xpath = "//input[@class='mat-slide-toggle-input cdk-visually-hidden']")
+    public WebElement slideButtonForBundle;
 
 
 

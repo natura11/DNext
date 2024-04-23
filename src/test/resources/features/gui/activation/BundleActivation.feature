@@ -21,6 +21,7 @@ Feature: Bundle  Cryptoguard-Coaxial Activation for VBU
     And User selects the first option of products from opened products page on Customer360 search page
     And User enters the created IP Address at BackOffice into the IP Address field
     And User selects first option as cash method for the selected product on Customer360 search page
+    And User slides the New Devices Button
     And User selects first option as cash method for the selected product for bundle on Customer360 search page
     And user clicks the Infrusructure dropdown button  Customer360 search page
     And User selects the Coaxial  as Infrustructure on Customer360 search page
