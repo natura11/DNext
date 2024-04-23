@@ -23,10 +23,6 @@ public class GovermentDefaultBillingAdressUpdateStepDefination extends BasePage 
     public void user_fills_in_enter_customer_ıd_field_with_valid_id_on_customer360_search_page(String string) {
         govermentDefaultBillingAdressUpdatePage.usingValidCustomerId(string);
     }
-    @Given("User clicks Search Button on Customer360 search page")
-    public void user_clicks_search_button_on_customer360_search_page() {
-        clickField(govermentDefaultBillingAdressUpdatePage.searchBtnOnCustomerSearch);
-    }
     @Given("User selects opened name of id on Customer360 search page")
     public void user_selects_opened_name_of_id_on_customer360_search_page() {
         clickField(govermentDefaultBillingAdressUpdatePage.idInfofield);

@@ -14,10 +14,6 @@ public class SearchGovernmentStepDefinition extends BasePage {
     SearchGovernmentPage searchGovernmentPage;
 
 
-    @Given("User opens Create Government Customer page on Home page")
-    public void userOpensCreateGovernmentCustomerPageOnHomePage() {
-        Utils.click(createGovernmentCustomerBtn);
-    }
 
     @And("User checks the NIPT is usable or not on Search Government page")
     public void userChecksTheNIPTIsUsableOrNotOnSearchGovernmentPage() {

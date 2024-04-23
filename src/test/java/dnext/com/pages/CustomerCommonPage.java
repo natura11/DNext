@@ -1,5 +1,6 @@
 package dnext.com.pages;
 
+import com.utilities.Driver;
 import com.utilities.Utils;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
@@ -8,7 +9,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Log4j2
-public class CreateCustomerCommonPage extends BasePage {
+public class CustomerCommonPage extends BasePage {
+    @FindBy(xpath = "//*[.=' Customer Search ']")
+    public WebElement customerSearchIcon;
+    @FindBy(xpath = "//mat-select[@panelclass='dropDown-overlay']")
+    public WebElement selectSearchTypeBtn;
+    @FindBy(xpath = "//mat-option/span[contains(text(),'Customer Name')]")
+    public WebElement selectSearchTypeWithCostomerName;
+    @FindBy(xpath = "//*[@placeholder=\"Type text..\"]")
+    public WebElement enterCustomerNamefield;
+    @FindBy(xpath = "//span[text()='Search ']")
+    public WebElement searchBtnOnCustomerSearch;
+    @FindBy(xpath = "//div[@role='listbox']//span[@class='mat-option-text']/span")
+    public WebElement searchedNameField;
+
     @FindBy(xpath = "//div[contains(@class,'h2')]")
     public WebElement customerHeader;
     @FindBy(xpath = "//div[contains(text(),'Search Individual')]")
@@ -28,6 +42,7 @@ public class CreateCustomerCommonPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Other Information')]")
     public WebElement otherInformationHeader;
 
+
     public void verificationCustomerHeader(String header) {
         elementDisplayed(customerHeader);
         String actualHeader = customerHeader.getText().trim();
@@ -35,7 +50,7 @@ public class CreateCustomerCommonPage extends BasePage {
     }
 
     public void verifyInCorrectTab(String tabName) {
-        Utils.waitFor(1);
+        Utils.waitFor(3);
         switch (tabName) {
             case "Search Individual":
                 Assert.assertEquals("true", searchIndividualHeader
@@ -79,5 +94,37 @@ public class CreateCustomerCommonPage extends BasePage {
                 break;
             default:
         }
+    }
+
+    public void openCreateCustomerPages(String customerType) {
+        elementDisplayed(dnextlogoOnNavbar);
+        Utils.hover(dnextlogoOnNavbar);
+        Utils.waitFor(3);
+        switch (customerType){
+            case "Individual":
+                Utils.click(createIndividualCustomerBtn);
+                break;
+            case "Business":
+                Utils.click(createBusinessCustomerBtn);
+                break;
+            case "Government":
+                Utils.click(createGovernmentCustomerBtn);
+                break;
+        }
+    }
+
+    public void clickSpecificTabOnCustomer360(String tabName){
+        String xpathOfTab = "//div[@role='tab']/div[text()='" + tabName + "']";
+        Utils.waitForVisibility(By.xpath(xpathOfTab), 15);
+        WebElement tabButton = Driver.getDriver().findElement(By.xpath(xpathOfTab));
+        clickField(tabButton);
+        Utils.waitForPageToLoad();
+    }
+    public void clickNewOrderButton(String orderType){
+        Utils.waitForVisibility(By.xpath("//span[contains(text(),'New Order')]"), 15);
+        WebElement newOrderButton = Driver.getDriver().findElement(By.xpath(
+                "//span[contains(text(),'" + orderType +
+                        "')]/following::span[contains(text(),'New Order')]"));
+        newOrderButton.click();
     }
 }

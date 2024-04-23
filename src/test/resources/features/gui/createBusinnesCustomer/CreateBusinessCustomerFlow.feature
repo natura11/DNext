@@ -79,7 +79,8 @@ Feature:New Business Customer-Customer Creation
     And   User clicks Post Code Field on Address Information Page
     And   User enters a value "1234" in the Post Code textbox on Address Information Page
     And   User clicks City dropdown on Address Information Page
-    Then  User should select random option in the City dropdown on Address Information Page
+    Then  User should select "BERAT" option in the City dropdown on Address Information Page
+#    Then  User should select random option in the City dropdown on Address Information Page
     And   User clicks Next button on Address Information Page
 
     Then  User should see the "Invoice Account" tab is opened

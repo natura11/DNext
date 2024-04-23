@@ -17,18 +17,11 @@ public class SearchIndividualStepDefinition extends BasePage {
     SearchIndividualPage searchIndividualPage;
     GeneralInformationIndividualPage generalInformationIndividualPage;
 
-    @Given("User clicks Create Individual Customer on Home page")
-    public void user_opens_create_ındividual_customer_on_home_page() {
-        Utils.waitFor(3);
-        elementDisplayed(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
-        clickField(searchIndividualPage.createIndividualCustomerBtnOnHomePage);
 
-    }
 
     @Given("User enters {string} existing identification ID in to identification number field on Create Individual Customer page")
     public void userEntersIdentificationIDInToIdentificationNumberFieldOnCreateIndividualCustomerPage(String idNumber) {
         sendKeys(searchIndividualPage.identificationNumberBtnOnSearchIndividualHomePage, idNumber);
-
     }
 
     @And("User clicks search button on Create Individual Customer page")

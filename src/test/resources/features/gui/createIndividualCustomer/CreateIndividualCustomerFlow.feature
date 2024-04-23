@@ -36,6 +36,7 @@ Feature:New Individual Customer-Customer Creation
     When  User clicks Address Line 1 Field in Address Information on Create Individual Customer page
     And   User enters a value "FIRST ADDRESS" in the Address Line 1 textbox in Address Information on Create Individual Customer page
     When  User clicks City dropdown in Address Information on Create Individual Customer page
+#    Then  User should select "BERAT" option in the City dropdown on Address Information Page
     And   User selects random city on Individual Address Information page
     And   User clicks Next button in Address Information on Create Individual Customer page
 

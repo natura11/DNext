@@ -2,7 +2,7 @@ package dnext.com.pages.createBusinessCustomerPages;
 
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import dnext.com.pages.CreateCustomerCommonPage;
+import dnext.com.pages.CustomerCommonPage;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -64,7 +64,7 @@ public class OtherInformationBusinessPage extends BasePage {
     public WebElement selectedIndustryOption;
 
 
-    CreateCustomerCommonPage createCustomerCommonPage = new CreateCustomerCommonPage();
+    CustomerCommonPage customerCommonPage = new CustomerCommonPage();
 
 
     private Map<String, String> pickPersonalData() {
@@ -89,7 +89,7 @@ public class OtherInformationBusinessPage extends BasePage {
         Map<String, String> fetchedDataMap = new HashMap<>(pickPersonalData());
 
         clickField(otherInformationButtonSelectedLabel);
-        createCustomerCommonPage.verifyInCorrectTab("Other Information");
+        customerCommonPage.verifyInCorrectTab("Other Information");
         Utils.waitFor(1);
         Assert.assertEquals(fetchedDataMap.get("Company Name"),
                 getValueByMouseKeyboardAction(companyNameOnOtherInformation));
