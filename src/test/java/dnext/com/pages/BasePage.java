@@ -20,8 +20,6 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.event.KeyEvent;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -102,8 +100,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.=\"arrow_back\"]/..")
     public WebElement arrowBackBtn;
 
-    @FindBy(css = "mat-list:nth-child(1) mat-list-item:nth-child(1) div:nth-child(1) div:nth-child(3) div:nth-child(2)")
-    public WebElement paymentIdForFiscalization;
+    @FindBy(xpath = "//div[contains(text(),'Payment Id')]/following-sibling::div")
+    public WebElement paymentIdOfFiscalizationDetail;
 
     @FindBy(xpath = "//*[@id=\"mat-tab-content-0-4\"]/div/app-order-page/mat-drawer-container/mat-drawer/div/div[2]/div[1]/mat-list/mat-list-item[1]/div/div[3]/div[2]")
     public WebElement orderIdForCoaxial;
@@ -179,7 +177,7 @@ public abstract class BasePage {
     }
 
     public static void warningMessage(String message, WebElement element) {
-        Utils.waitFor(3);
+        Utils.waitForVisibility(element,3);
         String actualMessage = element.getText();
         Assert.assertEquals(message, actualMessage);
     }
@@ -190,7 +188,7 @@ public abstract class BasePage {
     }
 
     public static void clickField(WebElement element) {
-        Utils.waitFor(3);
+        Utils.waitForClickablility(element);
         //Utils.waitForPageToLoad();
         Utils.click(element);
     }
@@ -366,5 +364,41 @@ public abstract class BasePage {
         int buttonWidth = slideButton.getSize().getWidth();
         action.clickAndHold(slideButton).moveByOffset(buttonWidth, 0).release().perform();
     }
+
+    public static int getMatTableHeaderIndex(String label) {
+        List<WebElement> tableHeaders = Driver.getDriver().findElements(By.xpath("//mat-header-row//div[@role]/div[text()]"));
+        for (int i = 0; i < tableHeaders.size(); i++) {
+            if (tableHeaders.get(i).getText().contains(label)) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static String getMatCellDataByColumnName(String label, int rowNumber) {
+        WebElement tableCellElement = Driver.getDriver()
+                .findElement(By.xpath("//mat-row[" + rowNumber +  "]" +
+                        "/mat-cell[" + getMatTableHeaderIndex(label) +  "]/span"));
+        return tableCellElement.getText().trim();
+    }
+
+    public static int getTableHeaderIndex(String label) {
+        List<WebElement> tableHeaders = Driver.getDriver().findElements(By.xpath("//table/thead/tr/th[contains(text(),'')]"));
+        for (int i = 0; i < tableHeaders.size(); i++) {
+            if (tableHeaders.get(i).getText().contains(label)) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static String getTableCellDataByColumnName(String label, int rowNumber) {
+        WebElement tableCellElement = Driver.getDriver()
+                .findElement(By.xpath("//tbody/tr[" + rowNumber +  "]" +
+                        "/td[" + getTableHeaderIndex(label) +  "]/*[text()]"));
+
+        return tableCellElement.getText().trim();
+    }
+
 
 }

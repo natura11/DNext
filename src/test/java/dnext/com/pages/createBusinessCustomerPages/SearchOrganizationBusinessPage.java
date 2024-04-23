@@ -74,13 +74,6 @@ public class SearchOrganizationBusinessPage extends BasePage {
         Utils.click(foreignCustomerInDropdown);
     }
 
-    public void openCreateBusinessCustomerPage() {
-        elementDisplayed(dnextlogoOnNavbar);
-        Utils.hover(dnextlogoOnNavbar);
-        Utils.waitFor(3);
-        Utils.click(createBusinessCustomerBtn);
-    }
-
     public void negativNiptInput(String inavlidFormatNipt) {
         Utils.sendKeys(niptNumberField, inavlidFormatNipt + Keys.ENTER);
     }

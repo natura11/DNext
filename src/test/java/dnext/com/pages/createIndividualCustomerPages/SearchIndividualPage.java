@@ -64,6 +64,7 @@ public class SearchIndividualPage extends BasePage {
     }
 
     public void verifyCustomerIsNew(){
+        elementDisplayed(identificationNumberInputNewCustomer);
         Assert.assertTrue(getValueByMouseKeyboardAction(identificationNumberInputNewCustomer).contains("New Customer"));
     }
 

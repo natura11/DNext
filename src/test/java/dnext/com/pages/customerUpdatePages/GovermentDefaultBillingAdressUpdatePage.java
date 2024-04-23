@@ -18,8 +18,7 @@ public class GovermentDefaultBillingAdressUpdatePage extends BasePage {
     public WebElement selectSearchTypeWithCostomerName;
     @FindBy(xpath = "//*[@placeholder=\"Enter Customer ID..\"]")
     public WebElement enterCustomerIdfield;
-    @FindBy(xpath = "//span[text()='Search ']")
-    public WebElement searchBtnOnCustomerSearch;
+
     @FindBy(xpath = "//*[@class=\"mat-autocomplete-panel custom-mat-autocomplete ng-star-inserted mat-autocomplete-visible\"]")
     public WebElement idInfofield;
     @FindBy(xpath = "//div[@class='mat-tab-label-content'][normalize-space()='Address']")

@@ -1,7 +1,7 @@
 package dnext.com.step_definitions.gui.createBusinessCustomerStepDefinition;
 
 import dnext.com.pages.BasePage;
-import dnext.com.pages.CreateCustomerCommonPage;
+import dnext.com.pages.CustomerCommonPage;
 import dnext.com.pages.createBusinessCustomerPages.SearchOrganizationBusinessPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,21 +14,11 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SearchOrganizationBusinessStepDefinition extends BasePage {
     private SearchOrganizationBusinessPage searchOrganizationBusinessPage;
-    private CreateCustomerCommonPage createCustomerCommonPage;
-
-    @Given("User opens Create Business Customer page on Home page")
-    public void user_opens_create_business_customer_page_on_home_page() throws InterruptedException {
-        searchOrganizationBusinessPage.openCreateBusinessCustomerPage();
-    }
+    private CustomerCommonPage customerCommonPage;
 
     @Given("User should see the {string} on Create Business Customer page")
-    public void user_should_see_the_on_create_business_customer_page(String pageUrl) throws InterruptedException {
+    public void user_should_see_the_on_create_business_customer_page(String pageUrl) {
         searchOrganizationBusinessPage.getCurrentUrl(pageUrl);
-    }
-
-    @Given("User should see the {string} header on screen on Create Customer page")
-    public void user_should_see_the_header_on_screen_on_create_business_customer_page(String header) {
-        createCustomerCommonPage.verificationCustomerHeader(header);
     }
 
     @Given("User selects the Albanian Customer from the dropdown on Search Organization page")

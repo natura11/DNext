@@ -5,6 +5,7 @@ import com.utilities.ApiTokenGenerator;
 import com.utilities.ApiUtils;
 import com.utilities.ConfigurationReader;
 import dnext.com.pages.BasePage;
+import dnext.com.pages.customer360Pages.FiscalizationReceiptsPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -55,17 +56,16 @@ public class CommonSteps extends BasePage {
         if (endpoint.equalsIgnoreCase("getFromPost")) {
             endpoint = getOrderId;
         }else if (endpoint.equalsIgnoreCase("getFromFiscalization")){
-            endpoint = paymentIdForFiscalization.getAttribute("innerText");
+            endpoint = paymentIdOfFiscalizationDetail.getText().trim();
         }else if (endpoint.equalsIgnoreCase("getFromVtvForFiscalization")){
-            endpoint = paymentIdForFiscalization.getAttribute("innerText");
+            endpoint = paymentIdOfFiscalizationDetail.getText().trim();
         }else if (endpoint.equalsIgnoreCase("getCryptoguard_ForFiscalization")){
-            endpoint = paymentIdForFiscalization.getAttribute("innerText");
+            endpoint = paymentIdOfFiscalizationDetail.getText().trim();
         }else if (endpoint.equalsIgnoreCase("getOrderDetailForCoaxialPostpaid")){
             endpoint = orderIdForCoaxial.getAttribute("innerText");
         }else if (endpoint.equalsIgnoreCase("getCoaxialPrepaid_ForFiscalization")){
-            endpoint = paymentIdForFiscalization.getAttribute("innerText");
-        }else if (endpoint.equalsIgnoreCase("getBundleCoaxialPrepaid_ForFiscalization")){
-            endpoint = paymentIdForFiscalization.getAttribute("innerText");
+            endpoint = paymentIdOfFiscalizationDetail.getText().trim();
+
 
 }
 
@@ -141,9 +141,6 @@ public class CommonSteps extends BasePage {
             //response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfCoaxialPrepaidForFiscalization")) {
             response = ApiBaseMethods.getRequestOfCoaxialPrepaidForFiscalization(fullEndpoint, token);
-            //response.prettyPrint();
-        }else if (requestType.equalsIgnoreCase("getRequestOfBundleCoaxialPrepaidForFiscalization")) {
-            response = ApiBaseMethods.getRequestOfBundleCoaxialPrepaidForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
         }
 

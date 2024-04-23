@@ -3,7 +3,6 @@ import com.utilities.ConfigurationReader;
 import com.utilities.Driver;
 import com.utilities.Utils;
 import dnext.com.pages.BasePage;
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -18,39 +17,14 @@ import static com.utilities.Utils.waitFor;
 import static dnext.com.pages.camundaPage.HomePageCamunda.*;
 
 @Log4j2
-
 public class AbelActivationPage extends BasePage {
 
-    @FindBy(xpath = "//span[@class='mat-option-text'][normalize-space()='Abel']")
-    public WebElement optionAbel;
-    @FindBy(xpath = "//p[.='Smart Card']")
-    public WebElement smartCardOption;
-    @FindBy(xpath = "(//span[@class='mat-button-wrapper'])[5]")
-    public WebElement smartCardAddSign;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='12 X ALL2550']")
-    public WebElement contract12XALL2550ForDigitalbPremiumPlus;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='12 X ALL0']")
-    public WebElement contract12XALL0ForSmartCard;
+
     @FindBy(xpath = "//input[@id=\"SmartCardSerialNumber\"]")
     public WebElement smartCardSerialNumberField;
-    @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[1]")
-    public WebElement aksesFeePerDekoderBasicAddSign;
-    @FindBy(xpath = "(//*[@class='mat-chip mat-focus-indicator mat-primary mat-basic-chip ng-star-inserted'][.=' 12 X ALL0 '])[2]")
-    public WebElement contract12XALL0ForAksesFeePerDekoderBasic;
-    @FindBy(xpath = "(//mat-icon[@role='img'][normalize-space()='add'])[2]")
-    public WebElement addIconForTarifeInstalimi;
-    @FindBy(xpath = "//mat-basic-chip[normalize-space()='ALL1500 12Month']")
-    public WebElement contractALL150012MonthForTarifeInstalimi;
-    @FindBy(xpath = "//mat-row[1]//mat-cell[2]//span[1]")
-    public WebElement orderStatus;
+
     @FindBy(xpath = "//span[normalize-space()='Add to Cart']")
     public WebElement addToCartBtn;
-    @FindBy(xpath = "//h3[.=\"Digitalb Premium Plus \"]")
-    public WebElement selectedProductInShoppingCart;
-    @FindBy(xpath = "//simple-snack-bar/span[text()='Shopping cart created successfully!']")
-    public static WebElement successMessageForShoppingCart;
-
-
 
 
     public void fillAbelSmartCardNumber() {
@@ -85,7 +59,5 @@ public class AbelActivationPage extends BasePage {
         } while (!isNumberAvailable);
     }
 
-    public void verifyShoppingCartIsCreated() {
-        Assert.assertTrue(isElementDisplayed(successMessageForShoppingCart));
-    }
+
 }
