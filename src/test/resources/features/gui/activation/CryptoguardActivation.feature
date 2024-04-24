@@ -12,7 +12,7 @@ Feature: Cryptoguard Activation
     Then User is on the Customer360 page
     Given User clicks select Search Type field on Customer360 search page
     And   User selects Customer Name option from dropdown on Customer360 search page
-    And   User fills in enter Customer name field with valid name as "KEMAL SUNAL" on Customer360 search page
+    And   User fills in enter Customer name field with valid name as "WADE DOOLEY AUTOMATION" on Customer360 search page
     And   User clicks Search Button on Customer360 search page
     And   User selects opened name of searched name on Customer360 search page
     And   User clicks the "Account" button on Customer360 search page
@@ -39,6 +39,7 @@ Feature: Cryptoguard Activation
     Then  User should see the "Smart Card" product is added on Shopping Cart Page
     Then  User should see the "Tarife Instalimi" product is added on Shopping Cart Page
     When  User clicks the CHECKOUT button on Shopping Cart Page
+    And   User clicks the Collected radio button for "Individual" on Shopping Cart Page
     And   User clicks the Complete Checkout button on Before Checkout Page
     Then  User sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
 
