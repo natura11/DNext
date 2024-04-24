@@ -55,19 +55,20 @@ public class CommonSteps extends BasePage {
         String endpoint = rows.get(0).get("Value");
         if (endpoint.equalsIgnoreCase("getFromPost")) {
             endpoint = getOrderId;
-        }else if (endpoint.equalsIgnoreCase("getFromFiscalization")){
+        } else if (endpoint.equalsIgnoreCase("getFromFiscalization")) {
             endpoint = paymentIdOfFiscalizationDetail.getText().trim();
-        }else if (endpoint.equalsIgnoreCase("getFromVtvForFiscalization")){
+        } else if (endpoint.equalsIgnoreCase("getFromVtvForFiscalization")) {
             endpoint = paymentIdOfFiscalizationDetail.getText().trim();
-        }else if (endpoint.equalsIgnoreCase("getCryptoguard_ForFiscalization")){
+        } else if (endpoint.equalsIgnoreCase("getCryptoguard_ForFiscalization")) {
             endpoint = paymentIdOfFiscalizationDetail.getText().trim();
-        }else if (endpoint.equalsIgnoreCase("getOrderDetailForCoaxialPostpaid")){
+        } else if (endpoint.equalsIgnoreCase("getOrderDetailForCoaxialPostpaid")) {
             endpoint = orderIdForCoaxial.getAttribute("innerText");
-        }else if (endpoint.equalsIgnoreCase("getCoaxialPrepaid_ForFiscalization")){
+        } else if (endpoint.equalsIgnoreCase("getCoaxialPrepaid_ForFiscalization")) {
             endpoint = paymentIdOfFiscalizationDetail.getText().trim();
+        }else if (endpoint.equalsIgnoreCase("getBundleCoaxialPrepaid_ForFiscalization")) {
+                endpoint = paymentIdOfFiscalizationDetail.getText().trim();
 
-
-}
+        }
 
 
 
@@ -138,9 +139,12 @@ public class CommonSteps extends BasePage {
             //response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfCoaxialBrmOrder")) {
             response = ApiBaseMethods.getRequestOfCoaxialBrmOrder(fullEndpoint, token);
-            //response.prettyPrint();
+            response.prettyPrint();
         }else if (requestType.equalsIgnoreCase("getRequestOfCoaxialPrepaidForFiscalization")) {
             response = ApiBaseMethods.getRequestOfCoaxialPrepaidForFiscalization(fullEndpoint, token);
+            //response.prettyPrint();
+        }else if (requestType.equalsIgnoreCase("getRequestOfBundleCoaxialPrepaidForFiscalization")) {
+            response = ApiBaseMethods.getRequestOfBundleCoaxialPrepaidForFiscalization(fullEndpoint, token);
             //response.prettyPrint();
         }
 

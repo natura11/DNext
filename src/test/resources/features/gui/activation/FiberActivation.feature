@@ -15,7 +15,7 @@ Feature: Fiber Activation
     And   User clicks the "Account" button on Customer360 search page
 
 
-  @fiberActivationForPostpaid
+  @fiberActivationForPostpaid @activation
   Scenario:As a user, I want complete fiber Activation for Postpaid process successfully  on Customer360 search page
     When  User clicks the New Order button for "Postpaid" account
     Then  User is redirected to the  product catalog on DSales page
@@ -77,7 +77,7 @@ Feature: Fiber Activation
     Then  User gets the error message if "Order Status" is not "completed"
 
 
-  @fiberActivationForPrepaid
+  @fiberActivationForPrepaid @activation
   Scenario:As a user, I want complete fiber Activation for Prepaid process successfully  on Customer360 search page
     When  User clicks the New Order button for "Prepaid" account
     Then  User is redirected to the  product catalog on DSales page

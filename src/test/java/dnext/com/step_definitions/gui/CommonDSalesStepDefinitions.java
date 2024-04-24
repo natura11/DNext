@@ -120,14 +120,17 @@ public class CommonDSalesStepDefinitions extends BasePage {
     }
     @And("User clicks the Collected radio button on Shopping Cart Page")
     public void userClicksTheCollectedRadioButtonOnCustomerSearchPage() {
-        Utils.waitFor(3);
+        Utils.waitFor(5);
         elementDisplayed(dSalesCommonPage.collectedTickBeforeCompleteCheckout);
-        clickField(dSalesCommonPage.collectedTickBeforeCompleteCheckout);
+        Utils.isElementSelected(dSalesCommonPage.collectedTickBeforeCompleteCheckout);
+        Utils.clickWithJS(dSalesCommonPage.collectedTickBeforeCompleteCheckout);
+
     }
 
     @When("User clicks the activation form on top of the opened screen on Before Checkout Popup")
     public void user_clicks_the_activation_form_on_top_of_the_opened_screen_on_customer360_search_page(){
         Utils.waitForClickablility(dSalesCommonPage.activationFormButtonAfterCheckout);
+        Utils.waitForVisibility(dSalesCommonPage.activationFormButtonAfterCheckout,30);
         clickField(dSalesCommonPage.activationFormButtonAfterCheckout);
     }
 

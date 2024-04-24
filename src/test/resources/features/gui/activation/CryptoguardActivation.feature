@@ -27,11 +27,12 @@ Feature: Cryptoguard Activation
     And   User clicks the TV Infrusructure dropdown on Product Detail page
     And   User selects the "Cryptoguard" as infrastructure on Product Detail page
     And   User selects "Smart Card" as resource and its price on Product Detail page
-    When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
+
     And   User selects "Akses Fee per Dekoder Basic" as resource and its price on Product Detail page
     And   User adds "Tarife Instalimi" from Purchasable Addons and its price on Product Detail page
+    When  User enters random Cryptoguard number to Smart Card field on Product Offering Page
     And   User clicks the Add to Cart button on Product Detail page
-    And   User checks the Cryptoguard Number is available for Sale on Product Offering Page
+    And User checks the Cryptoguard Number is available for Sale on Product Offering Page
     Then  User should see the  Number is available with success message for Sale on Product Offering Page
     When  User clicks the Shopping Cart icon on DSales Product page
     Then  User should see the Shopping Cart Products number is correct on Shopping Cart Page
@@ -39,11 +40,10 @@ Feature: Cryptoguard Activation
     Then  User should see the "Smart Card" product is added on Shopping Cart Page
     Then  User should see the "Tarife Instalimi" product is added on Shopping Cart Page
     When  User clicks the CHECKOUT button on Shopping Cart Page
+    And   User clicks the Collected radio button on Shopping Cart Page
     And   User clicks the Complete Checkout button on Before Checkout Page
     Then  User sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
-
     And User clicks the create receipt button
-
     When  User clicks the Go Back to Customer360 button on Customer360 search page
     Then  User is on the Customer360 page
     And   User clicks the "Order" button on Customer360 search page
@@ -53,7 +53,7 @@ Feature: Cryptoguard Activation
     When  User should be  General part  under  Main page  button on Customer360 search page
 
     And User clicks Load Tickets button on Customer360 search page
-    And User cliks three dots right of opened block for cryptoguard activation on Customer360 search page
+    And User cliks three dots right of opened block on Customer360 search page
     And User clicks Dnext option from the opened dropdown on Customer360 search page
     And User enters "faveo" as Username, "wa7upRlsIpu_" as password  and clicks the login button on FAVEO login page
     And User clicks the Change Status button on FAVEO page
