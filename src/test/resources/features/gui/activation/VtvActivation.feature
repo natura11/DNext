@@ -37,7 +37,7 @@ Feature: VTV Activation
     Then  User should see the "Akses Fee per Dekoder Premium" product is added on Shopping Cart Page
     Then  User should see the "Tarife Instalimi" product is added on Shopping Cart Page
     When  User clicks the CHECKOUT button on Shopping Cart Page
-    And   User clicks the Collected radio button on Shopping Cart Page
+    And   User clicks the Collected radio button for "Individual" on Shopping Cart Page
     And   User clicks the Complete Checkout button on Before Checkout Page
     Then  User sees one pop up warning as "Checkout is successfully completed" on Customer360 search page
     When  User clicks the Go Back to Customer360 button on Customer360 search page
