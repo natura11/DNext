@@ -1,4 +1,4 @@
-@VFALFT-22309 @coaxial @regression @activation
+@VFALFT-22309 @coaxial @regression
 Feature: Coaxial Activation
 
   Background:
@@ -14,7 +14,7 @@ Feature: Coaxial Activation
     And   User selects opened name of searched name on Customer360 search page
     And   User clicks the "Account" button on Customer360 search page
 
-  @coaxialActivationForPostpaid
+  @coaxialActivationForPostpaid @activation
   Scenario:As a user, I want complete Coaxial Activation for Postpaid process successfully  on Customer360 search page
     When  User clicks the New Order button for "Postpaid" account
     Then  User is redirected to the  product catalog on DSales page
@@ -74,6 +74,7 @@ Feature: Coaxial Activation
     And User turns back to Customer Management after task completion on BackOffice page
     And   User clicks the "Order" button on Customer360 search page
     Then  User gets the error message if "Order Status" is not "completed"
+    And User clicks the first Order Id within Order
     Given Get Authorization for API
     When Create an endpoint component
       | Type          | Value                            | parameters    |
@@ -85,7 +86,7 @@ Feature: Coaxial Activation
     Then Status code is 200
 
 
-  @coaxialActivationForPrepaid
+  @coaxialActivationForPrepaid @activation
   Scenario:As a user, I want complete COAXIAL Activation for Prepaid process successfully  on Customer360 search page
     When  User clicks the New Order button for "Prepaid" account
     Then  User is redirected to the  product catalog on DSales page

@@ -24,10 +24,12 @@ public class OrderPage extends BasePage {
     public WebElement fullfillmentTypeFirstChoiceIconOnCamunda;
     @FindBy(xpath = "//span[text()='Variables']")
     public WebElement variablesChoiceIconOnCamunda;
-    @FindBy(xpath = "//td[text()='GatewayUtilClassExceptionMessage' or" +
-            "text()='BrmStateChangeDescription'" +
-            "]//following-sibling::td[2]")
+    @FindBy(xpath = "//td[text()='GatewayUtilClassExceptionMessage' or " +
+            "text()='BrmStateChangeDescription']//following-sibling::td[2]")
     public WebElement exceptionMessage;
+    @FindBy(xpath = "//mat-table[@class='mat-table cdk-table mat-sort products-table ps ng-star-inserted']/mat-header-row/following-sibling::mat-row/mat-cell/span")
+    public WebElement orderIdOfOrder;
+
 
 
 

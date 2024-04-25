@@ -213,6 +213,7 @@ public class ApiBaseMethods {
                     .and()
 //                    .contentType("application/json;charset=UTF-8")
                     //.log().all()
+                    //.body("data.items[0].succeeded",is("True"))
                     .extract().response();
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
             log.info("!!!!!!!!!!!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
@@ -281,6 +282,7 @@ public class ApiBaseMethods {
                     .statusCode(200)
                     .and()
                     //.log().all()
+                    //!!!!!!!!.body("data.items[0].succeeded",is("true"))
                     .extract().response();
             log.info("!!!!!!!!!!!!!!!Exception at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
             log.info("!!!!!!!!!!!!!!!Succeeded type at Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
@@ -290,5 +292,34 @@ public class ApiBaseMethods {
         RestAssured.reset();
         return r;
     }
+    public static Response getRequestOfBundleCoaxialPrepaidForFiscalization(String endpoint, String token) {
+        Utils.waitFor(20);
+        defaultParser = Parser.JSON;
+        baseURI = endpoint;
+        Response r = null;
+        System.out.println("baseURI: " + baseURI);
+        try {
+            r = given().headers("Content-Type", " application/json", "Authorization", token)
+                    .when()
+                    .get(baseURI)
+                    .then()
+                    .statusCode(200)
+                    .and()
+                    //!!!!!!!!.body("data.items[0].succeeded",is("true"))
+                    //.log().all()
+                    .extract().response();
+            log.info("!!!!!!!!!!!!!!!Exception at API Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].exception"));
+            log.info("!!!!!!!!!!!!!!!Succeeded type at API Fiscalization is = " + r.getBody().jsonPath().getString("data.items[0].succeeded"));
+        } catch (Exception e) {
+            throw new JsonPathException("Failed to parse the JSON document", e);
+        }
+        RestAssured.reset();
+        return r;
+    }
+
+
+
+
+
 
 }

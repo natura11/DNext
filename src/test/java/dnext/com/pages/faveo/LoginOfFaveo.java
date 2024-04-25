@@ -18,7 +18,7 @@ public class LoginOfFaveo extends BasePage {
 
 
     public LoginOfFaveo login(String username, String password) throws InterruptedException {
-        //openURL(GetData.url);
+        Utils.waitForVisibility(userNameForLoginOnFaveoPage,15);
         clickField(userNameForLoginOnFaveoPage);
         clearEnterText(userNameForLoginOnFaveoPage, username);
         clickField(passwordForLoginOnFaveoPage);
