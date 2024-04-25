@@ -108,7 +108,7 @@ Feature: Coaxial Activation
     Then  User should see the "Basic Enterprise Modem" product is added on Shopping Cart Page
     When  User clicks the CHECKOUT button on Shopping Cart Page
     And   User clicks the save button after checkout action on Shopping Cart Page
-    And   User clicks the Collected radio button on Shopping Cart Page
+    And   User clicks the Collected radio button for "Business" on Shopping Cart Page
     And   User clicks the activation form on top of the opened screen on Before Checkout Popup
     Then  User should see the Activation Form open in a new window on Before Checkout Popup
     When  User go back to Shopping Cart Page on Before Checkout Popup

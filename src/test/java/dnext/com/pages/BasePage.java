@@ -240,6 +240,7 @@ public abstract class BasePage {
         if (!options.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(options.size());
+            Utils.waitForClickablility(options.get(randomIndex));
             options.get(randomIndex).click();
             log.info("Random option selected: " + options.get(randomIndex).getText());
         } else {

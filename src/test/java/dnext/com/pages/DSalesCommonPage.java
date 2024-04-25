@@ -199,6 +199,14 @@ public class DSalesCommonPage extends BasePage {
         Driver.getDriver().close();
     }
 
+    public void clickCollected(String customerType){
+        Utils.waitFor(5);
+        elementDisplayed(collectedTickBeforeCompleteCheckout);
+        clickField(collectedTickBeforeCompleteCheckout);
+        if(customerType.equals("Individual")){
+       //     clickField(collectedTickBeforeCompleteCheckout);
+        }
+    }
     public void switchToDSalesPage() {
         switchToWindowNew(0);
         elementDisplayed(beforeCheckoutHeader);

@@ -37,6 +37,7 @@ public class SearchIndividualStepDefinition extends BasePage {
 
     @And("User clicks next Button in Search Individual on Create Individual Customer page")
     public void userClicksNextButtonInSearchIndividualOnCreateIndividualCustomerPage() {
+        Utils.waitFor(2);
         clickField(searchIndividualPage.nextBtnOnSearchIndividualHomePage);
     }
 
